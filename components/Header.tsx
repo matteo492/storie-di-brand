@@ -1,0 +1,50 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const LINKS = [
+  { href: "/episodi", label: "Episodi" },
+  { href: "/#youtube", label: "YouTube" },
+  { href: "/#collabora", label: "Collabora" },
+];
+
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header className={`nav${scrolled ? " scrolled" : ""}`}>
+      <Link href="/" className="nav__logo">
+        STORIE<span>DI</span>BRAND
+      </Link>
+      <nav className={`nav__links${open ? " open" : ""}`}>
+        {LINKS.map((l) => (
+          <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+      <Link href="/episodi" className="btn btn--small">
+        Tutti gli episodi
+      </Link>
+      <button
+        className="nav__burger"
+        aria-label="Menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+  );
+}
