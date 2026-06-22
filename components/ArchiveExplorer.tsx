@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 export interface ArchiveItem {
@@ -9,9 +9,8 @@ export interface ArchiveItem {
   brand: string;
   sector: string;
   era: string;
-  duration: string;
-  excerpt: string;
   coverColor: string;
+  thumbnail: string | null;
 }
 
 interface Facets {
@@ -28,11 +27,12 @@ function Card({ ep }: { ep: ArchiveItem }) {
       <Link
         href={`/episodi/${ep.slug}`}
         className="ep-card__art"
-        style={{ ["--c" as string]: ep.coverColor }}
+        style={{
+          ["--c" as string]: ep.coverColor,
+          backgroundImage: ep.thumbnail ? `url(${ep.thumbnail})` : undefined,
+        }}
         aria-label={ep.title}
-      >
-        <span className="ep-card__brand">{ep.brand}</span>
-      </Link>
+      />
       <div className="ep-card__body">
         <h3>
           <Link href={`/episodi/${ep.slug}`}>{ep.title}</Link>
@@ -41,15 +41,73 @@ function Card({ ep }: { ep: ArchiveItem }) {
           <span>{ep.brand}</span>
           <span>•</span>
           <span>{ep.sector}</span>
-          {ep.duration && (
-            <>
-              <span>•</span>
-              <span>{ep.duration}</span>
-            </>
-          )}
         </div>
       </div>
     </article>
+  );
+}
+
+function Dropdown({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: string | null;
+  options: string[];
+  onChange: (v: string | null) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, []);
+
+  return (
+    <div className="dropdown" ref={ref}>
+      <button
+        className={`dropdown__btn${value ? " dropdown__btn--active" : ""}`}
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+      >
+        <span className="dropdown__label">{label}</span>
+        <span className="dropdown__value">{value ?? "Tutti"}</span>
+        <span className="dropdown__caret" aria-hidden="true">
+          ▾
+        </span>
+      </button>
+      {open && (
+        <div className="dropdown__panel" role="listbox">
+          <button
+            className={`dropdown__opt${!value ? " is-sel" : ""}`}
+            onClick={() => {
+              onChange(null);
+              setOpen(false);
+            }}
+          >
+            Tutti
+          </button>
+          {options.map((o) => (
+            <button
+              key={o}
+              className={`dropdown__opt${value === o ? " is-sel" : ""}`}
+              onClick={() => {
+                onChange(o);
+                setOpen(false);
+              }}
+            >
+              {o}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -66,8 +124,8 @@ export default function ArchiveExplorer({
     era: null,
   });
 
-  const toggle = (key: FilterKey, value: string) =>
-    setActive((prev) => ({ ...prev, [key]: prev[key] === value ? null : value }));
+  const set = (key: FilterKey, value: string | null) =>
+    setActive((prev) => ({ ...prev, [key]: value }));
 
   const filtered = useMemo(
     () =>
@@ -80,40 +138,36 @@ export default function ArchiveExplorer({
     [episodes, active]
   );
 
-  const rows: { key: FilterKey; label: string; values: string[] }[] = [
-    { key: "brand", label: "Marchio", values: facets.brands },
-    { key: "sector", label: "Settore", values: facets.sectors },
-    { key: "era", label: "Epoca", values: facets.eras },
-  ];
-
   const hasFilters = active.brand || active.sector || active.era;
 
   return (
     <>
-      <div className="filters">
-        {rows.map((row) => (
-          <div className="filters__row" key={row.key}>
-            <span className="filters__label">{row.label}</span>
-            {row.values.map((v) => (
-              <button
-                key={v}
-                className={`chip${active[row.key] === v ? " chip--active" : ""}`}
-                onClick={() => toggle(row.key, v)}
-              >
-                {v}
-              </button>
-            ))}
-          </div>
-        ))}
+      <div className="filter-bar">
+        <Dropdown
+          label="Marchio"
+          value={active.brand}
+          options={facets.brands}
+          onChange={(v) => set("brand", v)}
+        />
+        <Dropdown
+          label="Settore"
+          value={active.sector}
+          options={facets.sectors}
+          onChange={(v) => set("sector", v)}
+        />
+        <Dropdown
+          label="Epoca"
+          value={active.era}
+          options={facets.eras}
+          onChange={(v) => set("era", v)}
+        />
         {hasFilters && (
-          <div className="filters__row">
-            <button
-              className="chip"
-              onClick={() => setActive({ brand: null, sector: null, era: null })}
-            >
-              ✕ Azzera filtri
-            </button>
-          </div>
+          <button
+            className="filter-reset"
+            onClick={() => setActive({ brand: null, sector: null, era: null })}
+          >
+            ✕ Azzera
+          </button>
         )}
       </div>
 

@@ -20,9 +20,10 @@ export default function ArchivePage() {
     brand: e.brand,
     sector: e.sector,
     era: e.era,
-    duration: e.duration ?? "",
-    excerpt: e.excerpt,
     coverColor: e.coverColor ?? "#ff5757",
+    thumbnail: e.youtubeId
+      ? `https://i.ytimg.com/vi/${e.youtubeId}/maxresdefault.jpg`
+      : null,
   }));
 
   return (

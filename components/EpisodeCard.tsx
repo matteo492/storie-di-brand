@@ -8,16 +8,21 @@ export default function EpisodeCard({
   episode: Episode;
   feature?: boolean;
 }) {
+  const thumbnail = episode.youtubeId
+    ? `https://i.ytimg.com/vi/${episode.youtubeId}/maxresdefault.jpg`
+    : undefined;
+
   return (
     <article className={`ep-card${feature ? " ep-card--feature" : ""}`}>
       <Link
         href={`/episodi/${episode.slug}`}
         className="ep-card__art"
-        style={{ ["--c" as string]: episode.coverColor }}
+        style={{
+          ["--c" as string]: episode.coverColor,
+          backgroundImage: thumbnail ? `url(${thumbnail})` : undefined,
+        }}
         aria-label={episode.title}
-      >
-        <span className="ep-card__brand">{episode.brand}</span>
-      </Link>
+      />
       <div className="ep-card__body">
         {feature && <span className="tag">In evidenza</span>}
         <h3>
@@ -28,12 +33,6 @@ export default function EpisodeCard({
           <span>{episode.brand}</span>
           <span>•</span>
           <span>{episode.sector}</span>
-          {episode.duration && (
-            <>
-              <span>•</span>
-              <span>{episode.duration}</span>
-            </>
-          )}
         </div>
         {feature && (
           <Link href={`/episodi/${episode.slug}`} className="btn btn--primary btn--small">
