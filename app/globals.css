@@ -217,7 +217,12 @@ img { max-width: 100%; display: block; }
   transition: transform 0.25s, border-color 0.25s;
 }
 .ep-card:hover { transform: translateY(-6px); border-color: var(--red); }
-.ep-card--feature { grid-column: span 3; flex-direction: row; align-items: stretch; }
+.ep-card--feature {
+  grid-column: span 3;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 360px;
+}
 .ep-card__art {
   background-color: var(--c, var(--red));
   background-size: cover;
@@ -227,19 +232,40 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 .ep-card--feature .ep-card__art {
-  flex: 0 0 50%;
-  aspect-ratio: 16 / 9;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  flex: 0 0 52%;
+  aspect-ratio: unset;
+  background-size: cover;
+  background-position: center top;
 }
 .ep-card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
-.ep-card--feature .ep-card__body { justify-content: flex-start; gap: 1.5rem; padding: 3rem; align-items: flex-start; }
+.ep-card--feature .ep-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.9rem;
+  padding: 2.2rem 2.5rem;
+}
 .ep-card__body h3 { font-size: 1.25rem; }
-.ep-card--feature .ep-card__body h3 { font-size: clamp(1.6rem, 3vw, 2.6rem); }
-.ep-card__body p { color: rgba(250,249,210,0.7); font-size: 0.95rem; }
+.ep-card--feature .ep-card__body h3 {
+  font-size: clamp(1.25rem, 1.8vw, 1.8rem);
+  line-height: 1.18;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ep-card__body p {
+  color: rgba(250,249,210,0.7);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .ep-card__meta { display: flex; gap: 0.6rem; flex-wrap: wrap; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,249,210,0.5); }
-.ep-card__body .btn { align-self: flex-start; margin-top: 1rem; margin-left: 0.2rem; }
+.ep-card__body .btn { align-self: flex-start; margin-top: auto; }
 
 .tag {
   align-self: flex-start;
