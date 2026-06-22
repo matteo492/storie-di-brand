@@ -254,7 +254,7 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
 }
 .ep-card--feature .tag {
-  margin: 0 0 1rem 0;
+  margin: 1rem 1.2rem 1.2rem 0;
 }
 
 /* ---------- COLLAB ---------- */
