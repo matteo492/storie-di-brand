@@ -24,7 +24,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" id="ascolta">
         <div className="hero__inner">
-          <p className="eyebrow">Le storie dei marchi, ogni giorno: video, podcast e live</p>
+          <p className="eyebrow">Ogni giorno: video, podcast e live</p>
           <h1 className="hero__title">
             Le incredibili storie
             <br />
@@ -37,9 +37,9 @@ export default function Home() {
             sono nati i brand che usi ogni giorno.
           </p>
           <div className="hero__cta">
-            <Link href="/episodi" className="btn btn--primary">
-              Esplora gli episodi
-            </Link>
+            <a href="mailto:info@storiedibrand.it" className="btn btn--primary">
+              Contattaci
+            </a>
             <a
               href="https://www.youtube.com/@StoriediBrand"
               target="_blank"
