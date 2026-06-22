@@ -24,7 +24,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" id="ascolta">
         <div className="hero__inner">
-          <p className="eyebrow">La docu-serie sulle storie dei brand</p>
+          <p className="eyebrow">Le storie dei marchi, ogni giorno: video, podcast e live</p>
           <h1 className="hero__title">
             Le incredibili storie
             <br />
@@ -137,6 +137,67 @@ export default function Home() {
       {/* PODCAST BRANDY — gioco di ricerca episodi */}
       <section className="podcast" id="podcast">
         <BrandyGame />
+      </section>
+
+      {/* LIVE */}
+      <section className="live" id="live">
+        <div className="live__inner">
+          <div className="live__text">
+            <p className="eyebrow">Eventi dal vivo</p>
+            <h2 className="live__title">
+              Storie di Brand <span className="hl">sul palco</span>
+            </h2>
+            <p className="live__sub">
+              Portiamo il racconto dei marchi fuori dallo schermo: keynote, talk e
+              show dal vivo per aziende, conferenze ed eventi. Lo stesso storytelling
+              che appassiona oltre 1 milione di persone, davanti al tuo pubblico.
+            </p>
+            <a href="mailto:info@storiedibrand.it?subject=Richiesta%20evento%20live" className="btn btn--primary">
+              Richiedi una live
+            </a>
+          </div>
+          <div className="live__video">
+            <iframe
+              src="https://drive.google.com/file/d/1Ugd7L9E8_DlksNjSWqUHpYKOXNsSLtky/preview"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              title="Storie di Brand — Live"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* LIBRO */}
+      <section className="book" id="libro">
+        <div className="book__inner">
+          <a
+            href="https://www.amazon.it/Persone-che-pensano-grande-raccontato-ebook/dp/B0CG9FT3DJ/"
+            target="_blank"
+            rel="noopener"
+            className="book__cover"
+            aria-label="Persone che pensano in grande — acquista su Amazon"
+          >
+            <span className="book__cover-label">Persone che pensano in grande</span>
+            <span className="book__cover-author">Max Corona</span>
+          </a>
+          <div className="book__text">
+            <p className="eyebrow">Il libro di Max Corona</p>
+            <h2 className="book__title">Persone che pensano in grande</h2>
+            <p className="book__sub">
+              Le storie e le intuizioni delle menti che hanno cambiato il modo di fare
+              impresa, raccontate dalla voce di Storie di Brand. Un viaggio tra coraggio,
+              visione e idee fuori dagli schemi.
+            </p>
+            <a
+              href="https://www.amazon.it/Persone-che-pensano-grande-raccontato-ebook/dp/B0CG9FT3DJ/"
+              target="_blank"
+              rel="noopener"
+              className="btn btn--primary"
+            >
+              Acquista su Amazon
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* COLLABORA */}

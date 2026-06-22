@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 
 const LINKS = [
   { href: "/episodi", label: "Episodi" },
-  { href: "/#youtube", label: "YouTube" },
+  { href: "/#podcast", label: "Podcast" },
+  { href: "/#live", label: "Live" },
+  { href: "/#libro", label: "Libro" },
   { href: "/#collabora", label: "Collabora" },
 ];
 
