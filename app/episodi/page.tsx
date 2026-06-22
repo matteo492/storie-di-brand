@@ -17,7 +17,6 @@ export default function ArchivePage() {
   const items: ArchiveItem[] = episodes.map((e) => ({
     slug: e.slug,
     title: e.title,
-    episodeNumber: e.episodeNumber,
     brand: e.brand,
     sector: e.sector,
     era: e.era,

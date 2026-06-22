@@ -1,13 +1,12 @@
 ---
 title: "IKEA: il genio frugale dietro l'impero dei mobili da montare"
 slug: "ikea-storia"
-episodeNumber: 135
 publishedAt: "2025-11-26"
 brand: "IKEA"
 sector: "Arredamento"
 era: "Anni 1940"
 youtubeUrl: "https://youtu.be/aa9678O8_JY"
-duration: "22 min"
+duration: "33 min"
 excerpt: "Un bambino dislessico che vendeva fiammiferi in bicicletta, un tavolo smontato per entrare in un'auto e un labirinto senza finestre studiato a tavolino. La storia di IKEA, di Ingvar Kamprad e delle strategie che ci fanno comprare più del previsto."
 coverColor: "#faf9d2"
 featured: false

@@ -1,7 +1,6 @@
 ---
 title: "Costco: il supermercato che guadagna non vendendoti niente"
 slug: "costco-storia"
-episodeNumber: 137
 publishedAt: "2025-05-20"
 brand: "Costco"
 sector: "Retail"

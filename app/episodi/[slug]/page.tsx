@@ -120,7 +120,7 @@ export default async function EpisodePage({
             <Link href="/episodi" className="link-arrow">
               ← Archivio
             </Link>
-            <span className="tag">Episodio #{ep.episodeNumber}</span>
+            <span className="tag">{ep.sector}</span>
           </div>
           <h1 className="episode__title">{ep.title}</h1>
           <p className="episode__excerpt">{ep.excerpt}</p>

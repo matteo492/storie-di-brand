@@ -1,7 +1,6 @@
 ---
 title: "Puma Suede: la scarpa che divenne simbolo dei diritti civili"
 slug: "puma-suede-storia"
-episodeNumber: 140
 publishedAt: "2024-08-02"
 brand: "Puma"
 sector: "Sneaker"

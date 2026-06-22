@@ -1,13 +1,12 @@
 ---
 title: "Labello: come un flop diventò il burrocacao più famoso del mondo"
 slug: "labello-storia"
-episodeNumber: 143
 publishedAt: "2026-06-11"
 brand: "Labello"
 sector: "Cosmetica"
 era: "Anni 1910"
 youtubeUrl: "https://youtu.be/uFOrGM0-7jg"
-duration: "14 min"
+duration: "22 min"
 excerpt: "Un oggetto che diamo tutti per scontato nasconde una delle più grandi lezioni di marketing della storia: a volte non vince il prodotto migliore, ma quello con la forma giusta. La storia del Labello e del genio dietro NIVEA, Oscar Troplowitz."
 coverColor: "#faf9d2"
 featured: true

@@ -1,13 +1,12 @@
 ---
 title: "BlackBerry: l'iPhone prima dell'iPhone, e come si è autodistrutto"
 slug: "blackberry-storia"
-episodeNumber: 131
 publishedAt: "2025-10-21"
 brand: "BlackBerry"
 sector: "Tecnologia"
 era: "Anni 2000"
 youtubeUrl: "https://youtu.be/Nlo8Yr2pIeY"
-duration: "20 min"
+duration: "36 min"
 excerpt: "Il telefono degli uomini più potenti della Terra, da Wall Street alla Casa Bianca. La storia della Research in Motion, di un genio incompreso e di un manager spregiudicato — e di come un'icona sia passata dal trono all'oblio in pochi anni."
 coverColor: "#ff5757"
 featured: false

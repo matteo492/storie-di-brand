@@ -1,13 +1,12 @@
 ---
 title: "Nokia: come il re dei telefoni è caduto per una sola decisione"
 slug: "nokia-storia"
-episodeNumber: 132
 publishedAt: "2025-03-11"
 brand: "Nokia"
 sector: "Tecnologia"
 era: "Anni 1990"
 youtubeUrl: "https://youtu.be/vhanCLmb9eU"
-duration: "17 min"
+duration: "23 min"
 excerpt: "A inizio anni 2000 metà del pianeta aveva in tasca un Nokia. Un'azienda centenaria sopravvissuta a due guerre mondiali, crollata in pochi anni per l'arroganza, la paura e una singola scelta sbagliata. La storia di un gigante caduto — e rinato."
 coverColor: "#ff5757"
 featured: false

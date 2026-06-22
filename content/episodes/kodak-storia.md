@@ -1,13 +1,12 @@
 ---
 title: "Kodak: come il re della fotografia ha inventato il digitale e ne è morto"
 slug: "kodak-storia"
-episodeNumber: 134
 publishedAt: "2025-11-12"
 brand: "Kodak"
 sector: "Tecnologia"
 era: "Anni 1880"
 youtubeUrl: "https://youtu.be/vWYFH5Slkjs"
-duration: "18 min"
+duration: "31 min"
 excerpt: "Un'azienda che ha reso la fotografia un superpotere alla portata di tutti, costruendo un impero sulla chimica. Poi inventò la macchina fotografica digitale — e la nascose, perché minacciava il suo stesso business. La parabola di George Eastman e della Kodak."
 coverColor: "#faf9d2"
 featured: false

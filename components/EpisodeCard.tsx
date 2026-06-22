@@ -16,7 +16,7 @@ export default function EpisodeCard({
         style={{ ["--c" as string]: episode.coverColor }}
         aria-label={episode.title}
       >
-        <span className="ep-card__num">#{episode.episodeNumber}</span>
+        <span className="ep-card__brand">{episode.brand}</span>
       </Link>
       <div className="ep-card__body">
         {feature && <span className="tag">In evidenza</span>}

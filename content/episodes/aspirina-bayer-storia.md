@@ -1,13 +1,12 @@
 ---
 title: "Aspirina: la pillola che ha salvato milioni di vite (e la sua storia oscura)"
 slug: "aspirina-bayer-storia"
-episodeNumber: 136
 publishedAt: "2025-04-30"
 brand: "Bayer"
 sector: "Farmaceutica"
 era: "Anni 1890"
 youtubeUrl: "https://youtu.be/qjHEteXRK-4"
-duration: "19 min"
+duration: "24 min"
 excerpt: "Dal salice degli antichi Egizi al farmaco più famoso della storia. La storia dell'Aspirina e della Bayer: un viaggio di genio scientifico, marketing pionieristico e pagine drammatiche del Novecento."
 coverColor: "#ff5757"
 featured: false

@@ -1,13 +1,12 @@
 ---
 title: "Moka Bialetti: la caffettiera che ha conquistato l'Italia (e ora rischia di sparire)"
 slug: "moka-bialetti-storia"
-episodeNumber: 133
 publishedAt: "2025-06-04"
 brand: "Bialetti"
 sector: "Design"
 era: "Anni 1930"
 youtubeUrl: "https://youtu.be/mJ4ucTj8tqM"
-duration: "16 min"
+duration: "30 min"
 excerpt: "Otto facce di alluminio lucente nate dall'idea di un poeta mancato e portate nel mondo da un figlio vulcanico. La storia della Moka Bialetti: un trionfo di design italiano e, oggi, un'azienda sull'orlo del fallimento."
 coverColor: "#ff5757"
 featured: false

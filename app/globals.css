@@ -233,6 +233,18 @@ img { max-width: 100%; display: block; }
   mix-blend-mode: multiply;
   opacity: 0.85;
 }
+.ep-card__brand {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.01em;
+  color: var(--black);
+  line-height: 0.92;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  word-break: break-word;
+}
+.ep-card--feature .ep-card__brand { font-size: clamp(2.2rem, 5vw, 4rem); }
 .ep-card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
 .ep-card--feature .ep-card__body { justify-content: center; gap: 1rem; padding: 2.5rem; }
 .ep-card__body h3 { font-size: 1.25rem; }

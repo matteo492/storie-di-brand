@@ -1,13 +1,12 @@
 ---
 title: "Bacio Perugina: il cioccolatino nato da uno scarto e da un amore proibito"
 slug: "bacio-perugina-storia"
-episodeNumber: 130
 publishedAt: "2025-02-13"
 brand: "Perugina"
 sector: "Dolciumi"
 era: "Anni 1920"
 youtubeUrl: "https://youtu.be/ykAGJxC1JAU"
-duration: "13 min"
+duration: "14 min"
 excerpt: "Simbolo dell'amore e di San Valentino, il Bacio Perugina nasce da un mucchio di nocciole scartate e da una storia d'amore impossibile. Al centro, una delle più grandi imprenditrici italiane: Luisa Spagnoli."
 coverColor: "#ff5757"
 featured: false

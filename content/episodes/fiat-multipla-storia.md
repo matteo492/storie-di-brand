@@ -1,13 +1,12 @@
 ---
 title: "Fiat Multipla: l'auto più brutta (e più geniale) della storia"
 slug: "fiat-multipla-storia"
-episodeNumber: 141
 publishedAt: "2025-09-12"
 brand: "Fiat"
 sector: "Automotive"
 era: "Anni 1990"
 youtubeUrl: "https://youtu.be/QRc5dydzwqo"
-duration: "23 min"
+duration: "34 min"
 excerpt: "Definita l'auto più brutta del secolo, nessuno se ne innamorò a prima vista. Eppure chi l'ha posseduta la rimpiange. La storia di come due progettisti Fiat hanno ribaltato il modo di disegnare un'automobile, partendo dall'interno."
 coverColor: "#faf9d2"
 featured: false

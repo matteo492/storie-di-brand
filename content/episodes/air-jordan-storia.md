@@ -1,13 +1,12 @@
 ---
 title: "Air Jordan: l'accordo del secolo tra Nike e Michael Jordan"
 slug: "air-jordan-storia"
-episodeNumber: 139
 publishedAt: "2024-06-05"
 brand: "Nike"
 sector: "Sneaker"
 era: "Anni 1980"
 youtubeUrl: "https://youtu.be/8HD-fQRG_AA"
-duration: "12 min"
+duration: "10 min"
 excerpt: "Dietro le scarpe più cool di sempre c'è una scommessa folle, un divieto trasformato in oro e un'ossessione collettiva dal lato oscuro. La storia di come Nike, puntando tutto su un rookie, ha inventato il moderno marketing sportivo."
 coverColor: "#faf9d2"
 featured: false

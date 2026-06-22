@@ -1,13 +1,12 @@
 ---
 title: "La Settimana Enigmistica: il segreto della rivista che non conosce crisi"
 slug: "settimana-enigmistica-storia"
-episodeNumber: 127
 publishedAt: "2024-09-05"
 brand: "La Settimana Enigmistica"
 sector: "Editoria"
 era: "Anni 1930"
 youtubeUrl: "https://youtu.be/sQijF1CASrg"
-duration: "11 min"
+duration: "10 min"
 excerpt: "In un'editoria che arranca, c'è una rivista italiana che vende milioni di copie da oltre 90 anni senza cambiare quasi nulla. La storia della Settimana Enigmistica e dei tre segreti del suo successo inossidabile."
 coverColor: "#ff5757"
 featured: false

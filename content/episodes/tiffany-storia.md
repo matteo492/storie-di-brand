@@ -1,13 +1,12 @@
 ---
 title: "Tiffany: come una cartoleria è diventata il re dei diamanti"
 slug: "tiffany-storia"
-episodeNumber: 129
 publishedAt: "2024-11-28"
 brand: "Tiffany"
 sector: "Lusso"
 era: "Anni 1830"
 youtubeUrl: "https://youtu.be/VVWKfnVgx0c"
-duration: "10 min"
+duration: "9 min"
 excerpt: "Una scatoletta azzurra diventata sinonimo di lusso. La storia di Tiffany, da emporio di cancelleria a re dei diamanti di New York, tra strategie di marketing pionieristiche, il colore più famoso del mondo e un pizzico di mistero."
 coverColor: "#faf9d2"
 featured: false

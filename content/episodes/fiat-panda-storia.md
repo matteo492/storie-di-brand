@@ -1,13 +1,12 @@
 ---
 title: "Fiat Panda: come un 'frigo con le ruote' è diventato l'auto degli italiani"
 slug: "fiat-panda-storia"
-episodeNumber: 142
 publishedAt: "2026-04-22"
 brand: "Fiat"
 sector: "Automotive"
 era: "Anni 1980"
 youtubeUrl: "https://youtu.be/ZItT0G6lMPY"
-duration: "27 min"
+duration: "45 min"
 excerpt: "L'auto italiana più venduta di tutti i tempi nasce da un foglio bianco, un budget minimo e un'idea radicale: nascondere la povertà trasformandola in stile. La storia della Panda, da Giugiaro al miracolo di marketing che conquistò un intero Paese."
 coverColor: "#ff5757"
 featured: false

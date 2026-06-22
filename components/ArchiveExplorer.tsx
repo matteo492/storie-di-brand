@@ -6,7 +6,6 @@ import Link from "next/link";
 export interface ArchiveItem {
   slug: string;
   title: string;
-  episodeNumber: number;
   brand: string;
   sector: string;
   era: string;
@@ -32,7 +31,7 @@ function Card({ ep }: { ep: ArchiveItem }) {
         style={{ ["--c" as string]: ep.coverColor }}
         aria-label={ep.title}
       >
-        <span className="ep-card__num">#{ep.episodeNumber}</span>
+        <span className="ep-card__brand">{ep.brand}</span>
       </Link>
       <div className="ep-card__body">
         <h3>

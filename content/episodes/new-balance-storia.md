@@ -1,13 +1,12 @@
 ---
 title: "New Balance: come una scarpa 'noiosa' è diventata simbolo di stile"
 slug: "new-balance-storia"
-episodeNumber: 138
 publishedAt: "2026-04-14"
 brand: "New Balance"
 sector: "Sneaker"
 era: "Anni 1900"
 youtubeUrl: "https://youtu.be/ijOFKoWB7z8"
-duration: "20 min"
+duration: "26 min"
 excerpt: "Nata come supporto ortopedico ispirato a una zampa di gallina, orgogliosamente noiosa e senza testimonial per decenni. Poi il mondo è cambiato e l'ordinario è diventato cool. La storia di New Balance, il marchio di scarpe in più rapida crescita al mondo."
 coverColor: "#faf9d2"
 featured: false

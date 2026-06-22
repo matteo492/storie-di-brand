@@ -15,7 +15,6 @@ export interface EpisodeSource {
 export interface EpisodeFrontmatter {
   title: string;
   slug: string;
-  episodeNumber: number;
   publishedAt: string; // ISO date, es. "2026-06-10"
   brand: string; // marchio protagonista
   sector: string; // settore (es. "Beverage")

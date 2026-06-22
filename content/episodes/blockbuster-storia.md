@@ -1,13 +1,12 @@
 ---
 title: "Blockbuster: come il re del noleggio film rifiutò Netflix (e sparì)"
 slug: "blockbuster-storia"
-episodeNumber: 128
 publishedAt: "2024-06-18"
 brand: "Blockbuster"
 sector: "Intrattenimento"
 era: "Anni 1980"
 youtubeUrl: "https://youtu.be/WkUBTVdGE9Q"
-duration: "12 min"
+duration: "13 min"
 excerpt: "9.000 negozi, 65 milioni di clienti, e la bancarotta in meno di tre anni. La storia di Blockbuster non è la favola dello streaming che batte i DVD: è quella di un impero costruito su un prodotto fisico destinato a sparire."
 coverColor: "#faf9d2"
 featured: false
