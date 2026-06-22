@@ -239,13 +239,14 @@ img { max-width: 100%; display: block; }
 .ep-card--feature .ep-card__body h3 { font-size: clamp(1.6rem, 3vw, 2.6rem); }
 .ep-card__body p { color: rgba(250,249,210,0.7); font-size: 0.95rem; }
 .ep-card__meta { display: flex; gap: 0.6rem; flex-wrap: wrap; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,249,210,0.5); }
-.ep-card__body .btn { align-self: flex-start; margin-top: 0.5rem; }
+.ep-card__body .btn { align-self: flex-start; margin-top: 1rem; margin-left: 0.2rem; }
 
 .tag {
   align-self: flex-start;
   font-family: var(--display);
   font-size: 0.72rem;
   letter-spacing: 0.18em;
+  margin: 0.4rem 0.6rem 0 0;
   text-transform: uppercase;
   color: var(--red);
   border: 1px solid var(--red);
@@ -378,7 +379,16 @@ img { max-width: 100%; display: block; }
   background: var(--ink-2);
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 1.5rem;
+  padding: 2.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+.brandy__noresult::before {
+  content: "🔍 ";
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 .brandy__embed {
   border-radius: 14px;
