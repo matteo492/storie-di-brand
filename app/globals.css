@@ -206,14 +206,7 @@ img { max-width: 100%; display: block; }
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
-/* Layout asimmetrico per sezione YouTube: featured grande a sinistra, 3 video a destra */
-#youtube .episodes__grid {
-  grid-template-columns: repeat(4, 1fr);
-}
-#youtube .ep-card--feature {
-  grid-column: 1;
-  grid-row: 1 / 3;
-}
+/* Sezione YouTube: featured a tutta larghezza in alto + 3 video sotto */
 .ep-card {
   background: var(--ink-2);
   border: 1px solid var(--line);
