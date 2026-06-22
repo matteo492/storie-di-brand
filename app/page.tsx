@@ -10,6 +10,7 @@ const YT_VIDEOS = [
   },
   { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre" },
   { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa" },
+  { id: "vWYFH5Slkjs", title: "Kodak: come il re della fotografia ha inventato il digitale e ne è morto" },
 ];
 
 export default function Home() {
