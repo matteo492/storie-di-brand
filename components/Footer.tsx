@@ -21,7 +21,9 @@ export default function Footer() {
           <a href="https://www.youtube.com/@StoriediBrand" target="_blank" rel="noopener">
             YouTube
           </a>
-          <a href="#">Spotify</a>
+          <a href="https://open.spotify.com/show/6aRhnsN2n7a3XvdR9XNgAC" target="_blank" rel="noopener">
+            Spotify
+          </a>
           <a href="#">Apple Podcasts</a>
         </div>
         <div className="footer__col">
@@ -29,6 +31,9 @@ export default function Footer() {
           <a href="mailto:info@storiedibrand.it">info@storiedibrand.it</a>
           <a href="https://www.instagram.com/storiedibrand" target="_blank" rel="noopener">
             Instagram @storiedibrand
+          </a>
+          <a href="https://www.linkedin.com/company/storie-di-brand/" target="_blank" rel="noopener">
+            LinkedIn
           </a>
         </div>
       </div>

@@ -118,9 +118,6 @@ export default function Home() {
                 className="ep-card__art"
                 style={{
                   backgroundImage: `url(https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg)`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  minHeight: v.main ? 320 : 200,
                 }}
               />
               <div className="ep-card__body">
@@ -177,8 +174,7 @@ export default function Home() {
             className="book__cover"
             aria-label="Persone che pensano in grande — acquista su Amazon"
           >
-            <span className="book__cover-label">Persone che pensano in grande</span>
-            <span className="book__cover-author">Max Corona</span>
+            <img src="/libro-cover.jpg" alt="Copertina del libro Persone che pensano in grande di Max Corona" />
           </a>
           <div className="book__text">
             <p className="eyebrow">Il libro di Max Corona</p>
