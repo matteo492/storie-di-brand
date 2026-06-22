@@ -141,8 +141,7 @@ export default function Home() {
               <span className="hl">Brandy</span>
             </h2>
             <p className="podcast__sub">
-              Il podcast di Storie di Brand: ogni settimana,{" "}
-              <strong>dal lunedì al venerdì</strong>, un distillato di fatti curiosi
+              Il podcast di Storie di Brand: ogni giorno, <strong>dal lunedì al venerdì</strong>, un distillato di fatti curiosi
               dal magico mondo del marketing e del business.
             </p>
             <ul className="podcast__list">
