@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllEpisodes } from "@/lib/episodes";
 import EpisodeCard from "@/components/EpisodeCard";
+import BrandyGame from "@/components/BrandyGame";
 
 const YT_VIDEOS = [
   {
@@ -133,44 +134,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PODCAST BRANDY */}
+      {/* PODCAST BRANDY — gioco di ricerca episodi */}
       <section className="podcast" id="podcast">
-        <div className="podcast__inner">
-          <div>
-            <p className="eyebrow">Il podcast quotidiano</p>
-            <h2 className="podcast__title">
-              <span className="hl">Brandy</span>
-            </h2>
-            <p className="podcast__sub">
-              Il podcast di Storie di Brand: ogni giorno, <strong>dal lunedì al venerdì</strong>, un distillato di fatti curiosi
-              dal magico mondo del marketing e del business.
-            </p>
-            <ul className="podcast__list">
-              <li>Chi ha inventato il divano letto?</li>
-              <li>Quali sono le campagne pubblicitarie più famose della storia?</li>
-              <li>Perché in Thailandia tutti odiano la Pepsi?</li>
-              <li>Questo e molto altro nel tuo bicchiere di Brandy quotidiano.</li>
-            </ul>
-            <a
-              href="https://open.spotify.com/show/6aRhnsN2n7a3XvdR9XNgAC"
-              target="_blank"
-              rel="noopener"
-              className="btn btn--primary"
-            >
-              Ascolta il podcast
-            </a>
-          </div>
-          <div className="podcast__embed">
-            <iframe
-              src="https://open.spotify.com/embed/show/6aRhnsN2n7a3XvdR9XNgAC?utm_source=generator&theme=0"
-              width="100%"
-              height="100%"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              title="BRANDY — il podcast di Storie di Brand su Spotify"
-            />
-          </div>
-        </div>
+        <BrandyGame />
       </section>
 
       {/* COLLABORA */}
