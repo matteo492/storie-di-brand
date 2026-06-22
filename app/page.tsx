@@ -164,7 +164,7 @@ export default function Home() {
             <iframe
               src="https://open.spotify.com/embed/show/6aRhnsN2n7a3XvdR9XNgAC?utm_source=generator&theme=0"
               width="100%"
-              height="352"
+              height="100%"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
               title="BRANDY — il podcast di Storie di Brand su Spotify"
