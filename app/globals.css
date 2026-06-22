@@ -234,7 +234,7 @@ img { max-width: 100%; display: block; }
   background-position: center;
 }
 .ep-card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
-.ep-card--feature .ep-card__body { justify-content: center; gap: 1rem; padding: 2.5rem; }
+.ep-card--feature .ep-card__body { justify-content: flex-start; gap: 1.5rem; padding: 3rem; align-items: flex-start; }
 .ep-card__body h3 { font-size: 1.25rem; }
 .ep-card--feature .ep-card__body h3 { font-size: clamp(1.6rem, 3vw, 2.6rem); }
 .ep-card__body p { color: rgba(250,249,210,0.7); font-size: 0.95rem; }
@@ -246,15 +246,11 @@ img { max-width: 100%; display: block; }
   font-family: var(--display);
   font-size: 0.72rem;
   letter-spacing: 0.18em;
-  margin: 0.4rem 0.6rem 0 0;
   text-transform: uppercase;
   color: var(--red);
   border: 1px solid var(--red);
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
-}
-.ep-card--feature .tag {
-  margin: 1rem 1.2rem 1.2rem 0;
 }
 
 /* ---------- COLLAB ---------- */
