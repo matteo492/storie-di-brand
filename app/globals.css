@@ -310,6 +310,8 @@ img { max-width: 100%; display: block; }
 }
 .live__video {
   position: relative;
+  width: 100%;
+  max-width: 800px;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
