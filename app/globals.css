@@ -225,7 +225,13 @@ img { max-width: 100%; display: block; }
   position: relative;
   display: block;
 }
-.ep-card--feature .ep-card__art { flex: 0 0 42%; aspect-ratio: auto; min-height: 320px; }
+.ep-card--feature .ep-card__art {
+  flex: 0 0 50%;
+  aspect-ratio: 16 / 9;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .ep-card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
 .ep-card--feature .ep-card__body { justify-content: center; gap: 1rem; padding: 2.5rem; }
 .ep-card__body h3 { font-size: 1.25rem; }
