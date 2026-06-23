@@ -8,11 +8,12 @@ const YT_VIDEOS = [
   {
     id: "F06RtRjXrCU",
     title: "Che fine ha fatto A-STYLE? Il simbolo più trasgressivo degli anni 2000",
+    views: "124.765",
     main: true,
   },
-  { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre" },
-  { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa" },
-  { id: "vWYFH5Slkjs", title: "Kodak: come il re della fotografia ha inventato il digitale e ne è morto" },
+  { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre", views: "543.908" },
+  { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa", views: "871.987" },
+  { id: "vWYFH5Slkjs", title: "Kodak: come il re della fotografia ha inventato il digitale e ne è morto", views: "110.180" },
 ];
 
 export default function Home() {
@@ -117,7 +118,7 @@ export default function Home() {
               <div className="ep-card__body">
                 <h3>{v.title}</h3>
                 <div className="ep-card__meta">
-                  <span>Guarda su YouTube</span>
+                  <span>{v.views} visualizzazioni</span>
                 </div>
               </div>
             </a>
@@ -148,13 +149,13 @@ export default function Home() {
             </a>
           </div>
           <div className="live__video">
-            <iframe
-              src="https://drive.google.com/file/d/1Ugd7L9E8_DlksNjSWqUHpYKOXNsSLtky/preview"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              title="Storie di Brand — Live"
-            />
+            <video controls preload="metadata">
+              <source src="/live-trailer.mp4" type="video/mp4" />
+            </video>
           </div>
+          <a href="mailto:info@storiedibrand.it?subject=Richiesta%20evento%20live" className="btn btn--ghost live__discover">
+            Scopri di più
+          </a>
         </div>
       </section>
 

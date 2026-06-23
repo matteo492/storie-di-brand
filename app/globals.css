@@ -435,13 +435,16 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 40px 100px rgba(0,0,0,0.6);
   background: var(--ink-2);
 }
-.live__video iframe {
+.live__video video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  pointer-events: none;
+  object-fit: cover;
+}
+.live__discover {
+  margin-top: 1.5rem;
 }
 
 /* ---------- LIBRO ---------- */
