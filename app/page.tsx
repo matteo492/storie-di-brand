@@ -73,9 +73,9 @@ export default function Home() {
             <p className="eyebrow">Gli ultimi</p>
             <h2 className="section-title">Episodi recenti</h2>
           </div>
-          <Link href="/episodi" className="link-arrow">
-            Tutto l&apos;archivio →
-          </Link>
+          <a href="mailto:info@storiedibrand.it" className="link-arrow">
+            Contattaci →
+          </a>
         </div>
 
         <EpisodeSlider episodes={episodes.slice(0, 10)} />
