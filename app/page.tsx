@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllEpisodes } from "@/lib/episodes";
 import EpisodeCard from "@/components/EpisodeCard";
 import BrandyGame from "@/components/BrandyGame";
+import NewsletterForm from "@/components/NewsletterForm";
 
 const YT_VIDEOS = [
   {
@@ -193,6 +194,23 @@ export default function Home() {
               Acquista su Amazon
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="newsletter" id="newsletter">
+        <div className="newsletter__inner">
+          <p className="eyebrow">La newsletter settimanale</p>
+          <h2 className="newsletter__title">
+            Il meglio della settimana,<br />
+            <span className="hl">ogni venerdì</span>
+          </h2>
+          <p className="newsletter__sub">
+            Gli episodi BRANDY dal lunedì al venerdì, il video YouTube e le storie
+            del podcast: tutto raccolto in una mail. Niente spam, solo marketing
+            e business raccontati come piace a te.
+          </p>
+          <NewsletterForm />
         </div>
       </section>
 

@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/#podcast", label: "Podcast" },
   { href: "/#live", label: "Live" },
   { href: "/#libro", label: "Libro" },
+  { href: "/#newsletter", label: "Newsletter" },
   { href: "/#collabora", label: "Collabora" },
 ];
 

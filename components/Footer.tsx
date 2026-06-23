@@ -14,6 +14,7 @@ export default function Footer() {
           <h4>Esplora</h4>
           <Link href="/episodi">Episodi</Link>
           <Link href="/#youtube">YouTube</Link>
+          <Link href="/#newsletter">Newsletter</Link>
           <Link href="/#collabora">Collabora</Link>
         </div>
         <div className="footer__col">
