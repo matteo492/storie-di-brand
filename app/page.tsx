@@ -56,12 +56,12 @@ export default function Home() {
               <span>visualizzazioni</span>
             </div>
             <div className="stat">
-              <strong>{episodes.length}</strong>
-              <span>episodi</span>
+              <strong>🏆 Top 20</strong>
+              <span>podcast più ascoltati in Italia</span>
             </div>
             <div className="stat">
-              <strong>4.9★</strong>
-              <span>su 300+ recensioni</span>
+              <strong>4,8★</strong>
+              <span>su 3.135 recensioni</span>
             </div>
           </div>
         </div>
