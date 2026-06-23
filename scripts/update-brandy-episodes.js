@@ -23,10 +23,12 @@ async function parseFeed(xml) {
   const items = parsed.rss.channel[0].item || [];
 
   return items.map((item) => {
-    const link = item.link?.[0] || "";
-    // Estrai l'ID Megaphone dall'URL (es: https://podcast.megaphone.fm/?e=XXXXX)
-    const match = link.match(/[?&]e=([^&]+)/);
-    const id = match ? match[1] : link.split("/").pop() || "";
+    // L'ID Megaphone (es: MNTHA6659022875) è nell'URL della enclosure
+    // URL: https://pdst.fm/e/prfx.byspotify.com/e/pscrb.fm/rss/p/traffic.megaphone.fm/MNTHA6659022875.mp3
+    const enclosure = item.enclosure?.[0];
+    const enclosureUrl = enclosure?.$.url || "";
+    const idMatch = enclosureUrl.match(/\/([A-Z0-9]+)\.mp3$/);
+    const id = idMatch ? idMatch[1] : "";
 
     const title = item.title?.[0] || "";
     const description = (item.description?.[0] || "").replace(/<[^>]*>/g, "");
@@ -60,7 +62,7 @@ async function main() {
 
     // Mergia: evita duplicati basati su ID
     const idSet = new Set(allEpisodes.map((ep) => ep.id));
-    const toAdd = newEpisodes.filter((ep) => !idSet.has(ep.id));
+    const toAdd = newEpisodes.filter((ep) => ep.id && !idSet.has(ep.id));
 
     allEpisodes.unshift(...toAdd); // Aggiungi i nuovi in cima
     allEpisodes.sort((a, b) => new Date(b.date) - new Date(a.date)); // Ordina per data decrescente
