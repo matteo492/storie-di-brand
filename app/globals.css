@@ -882,8 +882,24 @@ img { max-width: 100%; display: block; }
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .nav__links, .nav .btn--small { display: none; }
+  .nav__links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    z-index: 999;
+    border-bottom: 1px solid var(--line);
+  }
   .nav__burger { display: flex; }
   .episodes__grid, .archive__grid { grid-template-columns: 1fr; }
+  .ep-card--feature { grid-column: 1 / -1; flex-direction: column; }
+  .ep-card--feature .ep-card__art { flex: none; width: 100%; }
+  .ep-card--feature .ep-card__body { position: static; width: 100%; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }

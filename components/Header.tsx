@@ -35,9 +35,9 @@ export default function Header() {
           </Link>
         ))}
       </nav>
-      <Link href="/episodi" className="btn btn--small">
-        Tutti gli episodi
-      </Link>
+      <a href="mailto:info@storiedibrand.it" className="btn btn--small">
+        Contattaci
+      </a>
       <button
         className="nav__burger"
         aria-label="Menu"

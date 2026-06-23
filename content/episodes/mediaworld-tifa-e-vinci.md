@@ -7,7 +7,10 @@ sector: Retail
 era: Anni 2000
 youtubeUrl: https://www.youtube.com/watch?v=ojZke2cuh1c
 duration: 19 min
-excerpt: Nel 2006 Mediaworld lanciò la campagna più rischiosa del marketing italiano: "Tifa e Vinci". Compravi una TV e se l'Italia vinceva i Mondiali ricevevi il rimborso completo. Cosa accadde quando gli Azzurri effettivamente trionfarono?
+excerpt: >-
+  Nel 2006 Mediaworld lanciò la campagna più rischiosa del marketing italiano:
+  "Tifa e Vinci". Compravi una TV e se l'Italia vinceva i Mondiali ricevevi il
+  rimborso completo. Cosa accadde quando gli Azzurri effettivamente trionfarono?
 coverColor: "#ff5757"
 sources:
   - label: "Ascolta il podcast su Spotify"
