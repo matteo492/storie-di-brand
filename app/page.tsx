@@ -174,7 +174,7 @@ export default function Home() {
             className="book__cover"
             aria-label="Persone che pensano in grande — acquista su Amazon"
           >
-            <img src="/libro-cover.jpg" alt="Copertina del libro Persone che pensano in grande di Max Corona" />
+            <img src="/libro-cover.png" alt="Copertina del libro Persone che pensano in grande di Max Corona" />
           </a>
           <div className="book__text">
             <p className="eyebrow">Il libro di Max Corona</p>
