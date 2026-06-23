@@ -220,7 +220,7 @@ img { max-width: 100%; display: block; }
 .ep-card--feature {
   grid-column: span 3;
   flex-direction: row;
-  align-items: stretch;
+  position: relative;
 }
 .ep-card__art {
   background-color: var(--c, var(--red));
@@ -230,22 +230,27 @@ img { max-width: 100%; display: block; }
   position: relative;
   display: block;
 }
-/* Featured: immagine sempre 16:9, ancorata in alto a sinistra; il body si adatta */
+/* Featured: l'immagine 16:9 detta l'altezza della card; il body è assoluto
+   sulla metà destra e si centra verticalmente (mai gap sotto l'immagine) */
 .ep-card--feature .ep-card__art {
   flex: 0 0 52%;
-  align-self: flex-start;
   aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center;
 }
 .ep-card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
 .ep-card--feature .ep-card__body {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 48%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.8rem;
   padding: 2rem 2.4rem;
+  overflow: hidden;
 }
 .ep-card__body h3 { font-size: 1.25rem; }
 .ep-card--feature .ep-card__body h3 {
@@ -811,7 +816,8 @@ img { max-width: 100%; display: block; }
   .nav__burger { display: flex; }
   .episodes__grid, .archive__grid { grid-template-columns: 1fr; }
   .ep-card--feature { grid-column: span 1; flex-direction: column; }
-  .ep-card--feature .ep-card__art { flex: none; width: 100%; align-self: stretch; aspect-ratio: 16 / 9; }
+  .ep-card--feature .ep-card__art { flex: none; width: 100%; aspect-ratio: 16 / 9; }
+  .ep-card--feature .ep-card__body { position: static; width: auto; padding: 1.8rem; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
