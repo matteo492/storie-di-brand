@@ -450,7 +450,7 @@ img { max-width: 100%; display: block; }
 /* ---------- LIBRO ---------- */
 .book {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background: var(--cream);
+  background: linear-gradient(to bottom, var(--cream), rgba(250,249,210,0.80));
   border-top: none;
 }
 .book__inner {
@@ -470,7 +470,6 @@ img { max-width: 100%; display: block; }
   transition: transform 0.35s ease;
   transform: perspective(1400px) rotateY(-9deg);
   transform-origin: left center;
-  filter: drop-shadow(0 40px 60px rgba(0,0,0,0.65));
 }
 .book__cover:hover { transform: perspective(1400px) rotateY(-2deg) translateY(-6px); }
 .book__cover img { display: block; width: 100%; height: auto; border-radius: 4px 10px 10px 4px; }
