@@ -78,7 +78,7 @@ export default function Home() {
           </a>
         </div>
 
-        <EpisodeSlider episodes={episodes.slice(0, 10)} />
+        <EpisodeSlider episodes={episodes.slice(0, 9)} />
       </section>
 
       {/* YOUTUBE */}
