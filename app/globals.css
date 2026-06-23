@@ -450,10 +450,8 @@ img { max-width: 100%; display: block; }
 /* ---------- LIBRO ---------- */
 .book {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background:
-    radial-gradient(70% 120% at 15% 0%, rgba(255,87,87,0.16), transparent 55%),
-    var(--ink-2);
-  border-top: 1px solid var(--line);
+  background: var(--cream);
+  border-top: none;
 }
 .book__inner {
   max-width: var(--maxw);
@@ -480,14 +478,16 @@ img { max-width: 100%; display: block; }
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   margin: 0.4rem 0 1.2rem;
   line-height: 1;
+  color: var(--black);
 }
 .book__sub {
   font-size: 1.1rem;
-  color: rgba(250,249,210,0.78);
+  color: rgba(0,0,0,0.65);
   max-width: 50ch;
   margin-bottom: 2rem;
   line-height: 1.55;
 }
+.book .eyebrow { color: var(--red); }
 @media (max-width: 900px) {
   .book__inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .book__cover { order: -1; }
