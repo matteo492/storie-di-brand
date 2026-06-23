@@ -169,25 +169,6 @@ export default async function EpisodePage({
           className="prose"
           dangerouslySetInnerHTML={{ __html: ep.bodyHtml }}
         />
-
-        {ep.sources && ep.sources.length > 0 && (
-          <section className="sources">
-            <h2>Fonti e crediti</h2>
-            <ol>
-              {ep.sources.map((s, i) => (
-                <li key={i}>
-                  {s.url ? (
-                    <a href={s.url} target="_blank" rel="noopener">
-                      {s.label}
-                    </a>
-                  ) : (
-                    s.label
-                  )}
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
       </article>
 
       {related.length > 0 && (
