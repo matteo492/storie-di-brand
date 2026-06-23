@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllEpisodes } from "@/lib/episodes";
-import EpisodeCard from "@/components/EpisodeCard";
+import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
 
@@ -17,8 +17,6 @@ const YT_VIDEOS = [
 
 export default function Home() {
   const episodes = getAllEpisodes();
-  const [feature, ...rest] = episodes;
-  const latest = rest.slice(0, 3);
 
   return (
     <>
@@ -79,12 +77,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="episodes__grid">
-          {feature && <EpisodeCard episode={feature} feature />}
-          {latest.map((ep) => (
-            <EpisodeCard key={ep.slug} episode={ep} />
-          ))}
-        </div>
+        <EpisodeSlider episodes={episodes.slice(0, 10)} />
       </section>
 
       {/* YOUTUBE */}
