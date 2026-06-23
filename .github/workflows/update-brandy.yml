@@ -1,4 +1,4 @@
-name: Update Brandy Episodes
+name: "Update Brandy Episodes"
 
 on:
   schedule:
