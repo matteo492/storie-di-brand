@@ -218,7 +218,8 @@ img { max-width: 100%; display: block; }
   gap: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  /* niente scroll-behavior:smooth qui: i riposizionamenti del loop devono essere
+     istantanei (invisibili). Lo scroll morbido delle frecce è chiesto via JS. */
   padding: 0.5rem clamp(1.2rem, 5vw, 3rem) 1.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
