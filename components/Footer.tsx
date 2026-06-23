@@ -13,7 +13,6 @@ export default function Footer() {
         <div className="footer__col">
           <h4>Esplora</h4>
           <Link href="/episodi">Episodi</Link>
-          <Link href="/#youtube">YouTube</Link>
           <Link href="/#newsletter">Newsletter</Link>
           <Link href="/#collabora">Collabora</Link>
         </div>
@@ -22,16 +21,15 @@ export default function Footer() {
           <a href="https://www.youtube.com/@StoriediBrand" target="_blank" rel="noopener">
             YouTube
           </a>
-          <a href="https://open.spotify.com/show/6aRhnsN2n7a3XvdR9XNgAC" target="_blank" rel="noopener">
+          <a href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS" target="_blank" rel="noopener">
             Spotify
           </a>
-          <a href="#">Apple Podcasts</a>
         </div>
         <div className="footer__col">
           <h4>Contatti</h4>
           <a href="mailto:info@storiedibrand.it">info@storiedibrand.it</a>
           <a href="https://www.instagram.com/storiedibrand" target="_blank" rel="noopener">
-            Instagram @storiedibrand
+            Instagram
           </a>
           <a href="https://www.linkedin.com/company/storie-di-brand/" target="_blank" rel="noopener">
             LinkedIn
