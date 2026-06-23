@@ -257,7 +257,7 @@ img { max-width: 100%; display: block; }
   font-size: clamp(1.2rem, 1.7vw, 1.7rem);
   line-height: 1.15;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -437,6 +437,21 @@ img { max-width: 100%; display: block; }
 @media (max-width: 900px) {
   .book__inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .book__cover { order: -1; }
+}
+
+/* Featured card: sotto i 1024px impila (immagine sopra 16:9, testo sotto senza
+   limiti di righe) per evitare troncamenti del titolo nella colonna stretta */
+@media (max-width: 1024px) {
+  .ep-card--feature { flex-direction: column; }
+  .ep-card--feature .ep-card__art { flex: none; width: 100%; aspect-ratio: 16 / 9; }
+  .ep-card--feature .ep-card__body {
+    position: static;
+    width: auto;
+    padding: 1.8rem 2rem;
+    overflow: visible;
+  }
+  .ep-card--feature .ep-card__body h3 { -webkit-line-clamp: unset; }
+  .ep-card--feature .ep-card__body p { -webkit-line-clamp: unset; }
 }
 
 /* ---------- COLLAB ---------- */
@@ -815,9 +830,6 @@ img { max-width: 100%; display: block; }
   .nav__links, .nav .btn--small { display: none; }
   .nav__burger { display: flex; }
   .episodes__grid, .archive__grid { grid-template-columns: 1fr; }
-  .ep-card--feature { grid-column: span 1; flex-direction: column; }
-  .ep-card--feature .ep-card__art { flex: none; width: 100%; aspect-ratio: 16 / 9; }
-  .ep-card--feature .ep-card__body { position: static; width: auto; padding: 1.8rem; }
   .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
 }
