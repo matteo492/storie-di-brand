@@ -56,7 +56,7 @@ export default function Home() {
               <span>visualizzazioni</span>
             </div>
             <div className="stat">
-              <strong>🏆 Top 20</strong>
+              <strong>Top 20</strong>
               <span>podcast più ascoltati in Italia</span>
             </div>
             <div className="stat">
