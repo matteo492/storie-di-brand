@@ -206,9 +206,8 @@ export default function Home() {
             <span className="hl">ogni venerdì</span>
           </h2>
           <p className="newsletter__sub">
-            Gli episodi BRANDY dal lunedì al venerdì, il video YouTube e le storie
-            del podcast: tutto raccolto in una mail. Niente spam, solo marketing
-            e business raccontati come piace a te.
+            Il meglio di Storie di Brand, raccolto in una mail. Niente spam, solo
+            marketing e business raccontati come piace a te.
           </p>
           <NewsletterForm />
         </div>
