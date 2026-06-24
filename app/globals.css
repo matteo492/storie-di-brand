@@ -83,6 +83,8 @@ img { max-width: 100%; display: block; }
 .btn--dark { background: var(--black); border-color: var(--black); color: var(--cream); }
 .btn--dark:hover { background: #1a1a1a; }
 .btn--small { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+.btn--red { background: var(--red); border-color: var(--red); color: #fff; }
+.btn--red:hover { background: #ff3d3d; }
 .btn--big { padding: 1.2rem 2.6rem; font-size: 1.2rem; }
 
 /* ---------- NAV ---------- */

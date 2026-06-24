@@ -138,12 +138,6 @@ export default async function EpisodePage({
               <span>Epoca</span>
               <strong>{ep.era}</strong>
             </div>
-            {ep.duration && (
-              <div className="fact">
-                <span>Durata</span>
-                <strong>{ep.duration}</strong>
-              </div>
-            )}
             <div className="fact">
               <span>Pubblicato</span>
               <strong>{publishedLabel}</strong>

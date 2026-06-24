@@ -35,7 +35,7 @@ export default function Header() {
           </Link>
         ))}
       </nav>
-      <a href="mailto:info@storiedibrand.it" className="btn btn--small">
+      <a href="mailto:info@storiedibrand.it" className="btn btn--small btn--red">
         Contattaci
       </a>
       <button
