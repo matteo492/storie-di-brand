@@ -50,6 +50,12 @@ img { max-width: 100%; display: block; }
   margin-bottom: 1rem;
 }
 .eyebrow--dark { color: var(--black); }
+/* optically center the letter-spaced eyebrow within centered sections
+   (the trailing letter-space would otherwise shift it slightly left) */
+.live__text .eyebrow,
+.brandy .eyebrow,
+.collab .eyebrow,
+.newsletter .eyebrow { text-indent: 0.28em; }
 
 .section-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
 
@@ -444,10 +450,6 @@ img { max-width: 100%; display: block; }
   border: 0;
   object-fit: cover;
 }
-.live__discover {
-  margin-top: 1.5rem;
-}
-
 /* ---------- LIBRO ---------- */
 .book {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);

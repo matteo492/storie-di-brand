@@ -73,9 +73,9 @@ export default function Home() {
             <p className="eyebrow">Gli ultimi</p>
             <h2 className="section-title">Episodi recenti</h2>
           </div>
-          <a href="mailto:info@storiedibrand.it" className="link-arrow">
-            Contattaci →
-          </a>
+          <Link href="/episodi" className="link-arrow">
+            Esplora →
+          </Link>
         </div>
 
         <EpisodeSlider episodes={episodes.slice(0, 9)} />
@@ -153,9 +153,6 @@ export default function Home() {
               <source src="/live-trailer.mp4" type="video/mp4" />
             </video>
           </div>
-          <a href="mailto:info@storiedibrand.it?subject=Richiesta%20evento%20live" className="btn btn--ghost live__discover">
-            Scopri di più
-          </a>
         </div>
       </section>
 
