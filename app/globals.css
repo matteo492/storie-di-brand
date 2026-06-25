@@ -718,6 +718,9 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2rem;
   text-wrap: balance;
 }
+@media (max-width: 640px) {
+  .sdb-podcast__br { display: none; }
+}
 .sdb-podcast__latest {
   display: flex;
   gap: 1rem;

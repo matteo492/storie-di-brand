@@ -27,10 +27,8 @@ export default function PodcastSection() {
           <p className="eyebrow">Il podcast originale</p>
           <h2 className="sdb-podcast__title">Storie di Brand</h2>
           <p className="sdb-podcast__sub">
-            Ogni episodio, una storia che non ti aspetti.
-            <br />
-            Fallimenti clamorosi, intuizioni geniali e visioni di lungo periodo.
-            <br />
+            Ogni episodio, una storia che non ti aspetti.<br className="sdb-podcast__br" />{" "}
+            Fallimenti clamorosi, intuizioni geniali e visioni di lungo periodo.<br className="sdb-podcast__br" />{" "}
             Il podcast che ha cambiato il modo di raccontare il business in Italia.
           </p>
         </div>
