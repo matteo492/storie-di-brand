@@ -29,7 +29,9 @@ export default function PodcastSection() {
           <p className="sdb-podcast__sub">
             Ogni episodio, una storia che non ti aspetti.
             <br />
-            Fallimenti clamorosi, intuizioni geniali e visioni di lungo periodo. Il podcast che ha cambiato il modo di raccontare il business in Italia.
+            Fallimenti clamorosi, intuizioni geniali e visioni di lungo periodo.
+            <br />
+            Il podcast che ha cambiato il modo di raccontare il business in Italia.
           </p>
         </div>
         <PodcastPlayer episodes={episodes} />
