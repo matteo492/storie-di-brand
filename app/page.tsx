@@ -14,7 +14,7 @@ const YT_VIDEOS = [
   },
   { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre", views: "543.908" },
   { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa", views: "871.987" },
-  { id: "vWYFH5Slkjs", title: "Kodak: come il re della fotografia ha inventato il digitale e ne è morto", views: "110.180" },
+  { id: "BAZKEGwyKlw", title: "Legami: come delle penne carine sono diventate una mania da 100 milioni", views: "110.180" },
 ];
 
 export default function Home() {
