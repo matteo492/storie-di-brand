@@ -1,4 +1,6 @@
 import Link from "next/link";
+import fs from "fs";
+import path from "path";
 import { getAllEpisodes } from "@/lib/episodes";
 import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
@@ -9,16 +11,21 @@ const YT_VIDEOS = [
   {
     id: "F06RtRjXrCU",
     title: "Che fine ha fatto A-STYLE? Il simbolo più trasgressivo degli anni 2000",
-    views: "124.765",
     main: true,
   },
-  { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre", views: "543.908" },
-  { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa", views: "871.987" },
-  { id: "BAZKEGwyKlw", title: "Legami: come delle penne carine sono diventate una mania da 100 milioni", views: "110.180" },
+  { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre" },
+  { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa" },
+  { id: "BAZKEGwyKlw", title: "Legami: come delle penne carine sono diventate una mania da 100 milioni" },
 ];
 
 export default function Home() {
   const episodes = getAllEpisodes();
+
+  let ytStats: Record<string, string> = {};
+  try {
+    const statsPath = path.join(process.cwd(), "public", "youtube-stats.json");
+    ytStats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
+  } catch { /* usa valori vuoti se il file non esiste */ }
 
   return (
     <>
@@ -107,7 +114,7 @@ export default function Home() {
               <div className="ep-card__body">
                 <h3>{v.title}</h3>
                 <div className="ep-card__meta">
-                  <span>{v.views} visualizzazioni</span>
+                  {ytStats[v.id] && <span>{ytStats[v.id]} visualizzazioni</span>}
                 </div>
               </div>
             </a>
