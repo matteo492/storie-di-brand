@@ -39,10 +39,12 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
           key={selectedId}
           src={`https://playlist.megaphone.fm?e=${selectedId}`}
           width="100%"
-          height="200"
+          height="240"
+          scrolling="no"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
           title="Player podcast"
+          style={{ overflow: "hidden" }}
         />
       </div>
 
