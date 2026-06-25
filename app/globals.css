@@ -632,14 +632,9 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
   padding: 0;
   margin-bottom: 2rem;
-  font-family: var(--display);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--red);
-  white-space: nowrap;
-  transition: opacity 0.2s;
+  text-align: left;
+  align-self: flex-start;
 }
-.sdb-podcast__expand-btn:hover { opacity: 0.8; }
 .sdb-podcast__ep-title {
   color: var(--cream);
   font-size: 0.9rem;

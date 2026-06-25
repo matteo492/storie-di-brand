@@ -111,7 +111,7 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
       {/* CTA espandi / scopri altro */}
       {!expanded ? (
         <button
-          className="sdb-podcast__expand-btn"
+          className="link-arrow sdb-podcast__expand-btn"
           onClick={() => setExpanded(true)}
         >
           Scopri di più ↓
