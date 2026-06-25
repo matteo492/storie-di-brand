@@ -110,24 +110,35 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
         </div>
       </ul>
 
-      {/* CTA espandi / scopri altro */}
-      {!expanded ? (
-        <button
-          className="link-arrow sdb-podcast__expand-btn"
-          onClick={() => setExpanded(true)}
-        >
-          Scopri di più ↓
-        </button>
-      ) : (
-        <a
-          href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
-          target="_blank"
-          rel="noopener"
-          className="link-arrow"
-        >
-          Scopri le altre storie →
-        </a>
-      )}
+      {/* CTA espandi / scopri altro + bottone collapse */}
+      <div className="sdb-podcast__cta-row">
+        {!expanded ? (
+          <button
+            className="link-arrow sdb-podcast__expand-btn"
+            onClick={() => setExpanded(true)}
+          >
+            Scopri di più ↓
+          </button>
+        ) : (
+          <>
+            <a
+              href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
+              target="_blank"
+              rel="noopener"
+              className="link-arrow"
+            >
+              Scopri le altre storie →
+            </a>
+            <button
+              className="sdb-podcast__collapse-btn"
+              aria-label="Chiudi lista"
+              onClick={() => setExpanded(false)}
+            >
+              ↑
+            </button>
+          </>
+        )}
+      </div>
 
       {/* Piattaforme */}
       <div className="sdb-podcast__platforms">
