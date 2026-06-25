@@ -630,20 +630,16 @@ img { max-width: 100%; display: block; }
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--red);
-  font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
   padding: 0;
   margin-bottom: 2rem;
-  transition: gap 0.2s;
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--red);
+  white-space: nowrap;
+  transition: opacity 0.2s;
 }
-.sdb-podcast__expand-btn:hover { gap: 0.7rem; }
+.sdb-podcast__expand-btn:hover { opacity: 0.8; }
 .sdb-podcast__ep-title {
   color: var(--cream);
   font-size: 0.9rem;

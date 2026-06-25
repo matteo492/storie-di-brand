@@ -114,7 +114,7 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
           className="sdb-podcast__expand-btn"
           onClick={() => setExpanded(true)}
         >
-          Tutti gli episodi ↓
+          Scopri di più ↓
         </button>
       ) : (
         <a
