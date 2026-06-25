@@ -95,6 +95,15 @@ export default function PodcastSection() {
             </ul>
           )}
 
+          <a
+            href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
+            target="_blank"
+            rel="noopener"
+            className="sdb-podcast__all"
+          >
+            Tutti gli episodi <span className="sdb-podcast__all-arrow">→</span>
+          </a>
+
           <div className="sdb-podcast__platforms">
             <a
               href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
