@@ -505,6 +505,9 @@ img { max-width: 100%; display: block; }
 .newsletter__form input:focus { outline: none; border-color: var(--red); }
 .newsletter__form input.is-error { border-color: var(--red); }
 .newsletter__form .btn { white-space: nowrap; }
+@media (max-width: 640px) {
+  .newsletter__form .btn { width: 100%; }
+}
 .newsletter__err {
   width: 100%;
   font-size: 0.85rem;
@@ -637,6 +640,56 @@ img { max-width: 100%; display: block; }
 .collab__inner { max-width: 820px; margin: 0 auto; }
 .collab__title { font-size: clamp(2.2rem, 5.5vw, 4.2rem); margin: 0.5rem 0 1.2rem; }
 .collab__sub { font-size: 1.2rem; color: rgba(250,249,210,0.78); margin-bottom: 2.5rem; }
+
+/* ---------- COLLAB FORM ---------- */
+.collab-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+.collab-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.collab-form input,
+.collab-form textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.95rem 1.2rem;
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.collab-form input:focus,
+.collab-form textarea:focus { border-color: var(--red); }
+.collab-form input::placeholder,
+.collab-form textarea::placeholder { color: rgba(250,249,210,0.35); }
+.collab-form textarea { resize: vertical; min-height: 120px; }
+.collab-form .btn { align-self: center; }
+.collab-form__done {
+  text-align: center;
+  font-size: 1.15rem;
+  color: var(--cream);
+  padding: 2.5rem 0;
+}
+.collab-form__err {
+  font-size: 0.9rem;
+  color: var(--red);
+  text-align: center;
+  margin-top: 0.25rem;
+}
+@media (max-width: 580px) {
+  .collab-form__row { grid-template-columns: 1fr; }
+}
 
 /* ---------- PODCAST PRINCIPALE (Storie di Brand) ---------- */
 .sdb-podcast {

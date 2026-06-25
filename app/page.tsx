@@ -7,6 +7,7 @@ import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
 import PodcastSection from "@/components/PodcastSection";
 import Typewriter from "@/components/Typewriter";
+import CollabForm from "@/components/CollabForm";
 
 const YT_VIDEOS = [
   {
@@ -226,11 +227,9 @@ export default function Home() {
             <br />a oltre 1 milione di persone?
           </h2>
           <p className="collab__sub">
-            Collabora con Storie di Brand: sponsorship, episodi branded e progetti su misura.
+            Sponsorship, episodi branded e progetti su misura. Scrivici e ti risponderemo entro 24 ore.
           </p>
-          <a href="mailto:info@storiedibrand.it" className="btn btn--primary btn--big">
-            Collabora con noi
-          </a>
+          <CollabForm />
         </div>
       </section>
     </>
