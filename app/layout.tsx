@@ -24,9 +24,9 @@ const oswald = Oswald({
 });
 
 const TICKER_BRANDS = [
-  "COCA-COLA", "NIVEA", "FERRARI", "LEGO", "NINTENDO",
-  "BARILLA", "NIKE", "APPLE", "FIAT", "STANDA",
-  "MASERATI", "GENTILINI", "FIORENTINA", "TREEDOM", "STARTUP GEEKS",
+  "YAKULT", "UNIVERSITÀ CATTOLICA", "KORO", "SCALABLE CAPITAL",
+  "STARTUP GEEKS", "EDEN VIAGGI", "SUPERPROF", "LIFE",
+  "NORDVPN", "HAIER", "HUMAMY", "REVOLUT", "WWF",
 ];
 
 export const metadata: Metadata = {
