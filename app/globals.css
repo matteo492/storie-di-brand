@@ -123,8 +123,16 @@ img { max-width: 100%; display: block; }
   width: 0; height: 2px; background: var(--red); transition: width 0.25s;
 }
 .nav__links a:hover::after { width: 100%; }
-.nav__burger { display: none; background: none; border: 0; flex-direction: column; gap: 5px; cursor: pointer; }
-.nav__burger span { width: 26px; height: 2px; background: var(--cream); transition: 0.3s; }
+.nav__burger {
+  display: none; background: none; border: 0;
+  flex-direction: column; gap: 6px; cursor: pointer; padding: 4px;
+}
+.nav__burger span {
+  width: 26px; height: 2px; background: var(--cream);
+  transition: transform 0.35s ease, opacity 0.25s ease, width 0.35s ease;
+  transform-origin: center;
+  display: block;
+}
 
 /* ---------- TICKER (marquee globale) ---------- */
 .ticker {
@@ -1031,21 +1039,42 @@ img { max-width: 100%; display: block; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
-  .nav__links, .nav .btn--small { display: none; }
-  .nav__links.open {
+  .nav .btn--small { display: none; }
+  .nav__links {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: var(--black);
-    padding: 2rem 1.5rem;
+    top: 60px; left: 0; right: 0;
+    background: #000;
+    backdrop-filter: blur(12px);
+    padding: 2rem 1.5rem 2.5rem;
     gap: 1.5rem;
     z-index: 999;
     border-bottom: 1px solid var(--line);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    pointer-events: none;
+  }
+  .nav__links.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
   }
   .nav__burger { display: flex; }
+  /* Burger → X quando open */
+  .nav__burger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav__burger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+  }
+  .nav__burger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
   .episodes__grid, .archive__grid { grid-template-columns: 1fr; }
   .ep-card--feature { grid-column: 1 / -1; flex-direction: column; }
   .ep-card--feature .ep-card__art { flex: none; width: 100%; }
