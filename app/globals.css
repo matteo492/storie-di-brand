@@ -18,7 +18,10 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* Niente scroll-behavior:smooth globale: farebbe scorrere tutta la pagina
+   ad ogni cambio route. Lo smooth delle ancore è gestito via JS nell'header.
+   scroll-padding-top compensa l'header fisso quando si salta a una sezione. */
+html { scroll-padding-top: 72px; }
 
 body {
   background: var(--black);

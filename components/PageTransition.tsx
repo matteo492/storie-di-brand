@@ -12,9 +12,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
     const el = ref.current;
     if (!el) return;
     el.style.opacity = "0";
-    el.style.transform = "translateY(10px)";
+    el.style.transform = "translateY(12px)";
+    const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
     const raf = requestAnimationFrame(() => {
-      el.style.transition = "opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1)";
+      el.style.transition = `opacity 0.7s ${ease}, transform 0.7s ${ease}`;
       el.style.opacity = "1";
       el.style.transform = "translateY(0)";
     });
