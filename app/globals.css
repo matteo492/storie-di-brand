@@ -634,6 +634,9 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2rem;
   text-align: left;
   align-self: flex-start;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
 }
 .sdb-podcast__ep-title {
   color: var(--cream);
