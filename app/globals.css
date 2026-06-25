@@ -559,8 +559,12 @@ img { max-width: 100%; display: block; }
   text-decoration: none;
   margin-bottom: 1.5rem;
   transition: background 0.2s;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
 }
-.sdb-podcast__latest:hover { background: rgba(255,87,87,0.1); }
+.sdb-podcast__latest:hover,
+.sdb-podcast__latest.active { background: rgba(255,87,87,0.12); border-color: var(--red); }
 .sdb-podcast__latest-img {
   width: 64px;
   height: 64px;
@@ -598,16 +602,23 @@ img { max-width: 100%; display: block; }
 .sdb-podcast__list li {
   border-bottom: 1px solid var(--line);
 }
-.sdb-podcast__list li a {
+.sdb-podcast__list li a,
+.sdb-podcast__list li button {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
   padding: 0.75rem 0;
   text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
   transition: color 0.15s;
 }
+.sdb-podcast__list li button:hover .sdb-podcast__ep-title,
 .sdb-podcast__list li a:hover .sdb-podcast__ep-title { color: var(--red); }
+.sdb-podcast__list li button.active .sdb-podcast__ep-title { color: var(--red); }
 .sdb-podcast__ep-title {
   color: var(--cream);
   font-size: 0.9rem;
