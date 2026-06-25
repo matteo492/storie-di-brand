@@ -531,12 +531,10 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--line);
 }
 .sdb-podcast__inner {
-  max-width: 1200px;
+  max-width: 780px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
 }
 .sdb-podcast__title {
   font-size: clamp(2.4rem, 5vw, 4rem);
@@ -624,48 +622,21 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
   flex-shrink: 0;
 }
-.sdb-podcast__all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--red);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  transition: gap 0.2s;
-}
-.sdb-podcast__all:hover { gap: 0.8rem; }
-.sdb-podcast__all-arrow {
-  font-size: 1.1rem;
-  line-height: 1;
-}
 .sdb-podcast__platforms {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 .sdb-podcast__player {
-  position: sticky;
-  top: 6rem;
+  margin-bottom: 1.5rem;
 }
 .sdb-podcast__player iframe {
   border: none;
   border-radius: 12px;
   display: block;
 }
-@media (max-width: 768px) {
-  .sdb-podcast__inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .sdb-podcast__player {
-    position: static;
-    order: -1;
-  }
-  .sdb-podcast__player iframe { height: 232px; }
+.sdb-podcast__platforms {
+  margin-top: 1.5rem;
 }
 
 /* ---------- PODCAST (BRANDY) — gioco di ricerca ---------- */
