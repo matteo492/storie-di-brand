@@ -6,6 +6,7 @@ import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
 import PodcastSection from "@/components/PodcastSection";
+import Typewriter from "@/components/Typewriter";
 
 const YT_VIDEOS = [
   {
@@ -59,15 +60,15 @@ export default function Home() {
           </div>
           <div className="hero__stats">
             <div className="stat">
-              <strong>1M+</strong>
+              <strong><Typewriter text="1M+" delay={700} speed={90} /></strong>
               <span>visualizzazioni</span>
             </div>
             <div className="stat">
-              <strong>Top 20</strong>
+              <strong><Typewriter text="Top 20" delay={850} speed={75} /></strong>
               <span>podcast più ascoltati in Italia</span>
             </div>
             <div className="stat">
-              <strong>4,8★</strong>
+              <strong><Typewriter text="4,8★" delay={1000} speed={90} /></strong>
               <span>su 3.135 recensioni</span>
             </div>
           </div>
@@ -82,7 +83,7 @@ export default function Home() {
         id="youtube"
         style={{ padding: "7rem 0", background: "var(--ink)" }}
       >
-        <div className="section-head" style={{ marginBottom: "2.5rem" }}>
+        <div className="section-head reveal" style={{ marginBottom: "2.5rem" }}>
           <div>
             <p className="eyebrow">Anche su YouTube</p>
             <h2 className="section-title">Le nostre storie in video</h2>
@@ -97,13 +98,14 @@ export default function Home() {
           </a>
         </div>
         <div className="episodes__grid">
-          {YT_VIDEOS.map((v) => (
+          {YT_VIDEOS.map((v, i) => (
             <a
               key={v.id}
               href={`https://youtu.be/${v.id}`}
               target="_blank"
               rel="noopener"
-              className={`ep-card${v.main ? " ep-card--feature" : ""}`}
+              className={`ep-card reveal${v.main ? " ep-card--feature" : ""}`}
+              data-reveal-delay={i * 90}
             >
               <div
                 className="ep-card__art"
@@ -124,7 +126,7 @@ export default function Home() {
 
       {/* ULTIMI EPISODI */}
       <section className="episodes" id="episodi">
-        <div className="section-head">
+        <div className="section-head reveal">
           <div>
             <p className="eyebrow">Da non perdere</p>
             <h2 className="section-title">Ultimi episodi</h2>
@@ -145,7 +147,7 @@ export default function Home() {
       {/* LIVE */}
       <section className="live" id="live">
         <div className="live__inner">
-          <div className="live__text">
+          <div className="live__text reveal">
             <p className="eyebrow">Eventi dal vivo</p>
             <h2 className="live__title">
               Storie di Brand <span className="hl">sul palco</span>
@@ -159,7 +161,7 @@ export default function Home() {
               Richiedi una live
             </a>
           </div>
-          <div className="live__video">
+          <div className="live__video reveal" data-reveal-delay={120}>
             <video controls preload="metadata">
               <source src="/live-trailer.mp4" type="video/mp4" />
             </video>
@@ -174,12 +176,12 @@ export default function Home() {
             href="https://www.amazon.it/Persone-che-pensano-grande-raccontato-ebook/dp/B0CG9FT3DJ/"
             target="_blank"
             rel="noopener"
-            className="book__cover"
+            className="book__cover reveal"
             aria-label="Persone che pensano in grande — acquista su Amazon"
           >
             <img src="/libro-cover.png" alt="Copertina del libro Persone che pensano in grande di Max Corona" />
           </a>
-          <div className="book__text">
+          <div className="book__text reveal" data-reveal-delay={120}>
             <p className="eyebrow">Il libro di Max Corona</p>
             <h2 className="book__title">Persone che pensano in grande</h2>
             <p className="book__sub">
@@ -201,7 +203,7 @@ export default function Home() {
 
       {/* NEWSLETTER */}
       <section className="newsletter" id="newsletter">
-        <div className="newsletter__inner">
+        <div className="newsletter__inner reveal">
           <p className="eyebrow">La newsletter settimanale</p>
           <h2 className="newsletter__title">
             Il meglio della settimana,<br />
@@ -217,7 +219,7 @@ export default function Home() {
 
       {/* COLLABORA */}
       <section className="collab" id="collabora">
-        <div className="collab__inner">
+        <div className="collab__inner reveal">
           <p className="eyebrow">Per i brand</p>
           <h2 className="collab__title">
             Vuoi raccontare la tua storia

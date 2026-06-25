@@ -146,7 +146,7 @@ export default async function EpisodePage({
         </header>
 
         {ep.youtubeId && (
-          <div className="episode__video">
+          <div className="episode__video reveal">
             <div className="video-embed">
               <iframe
                 src={`https://www.youtube.com/embed/${ep.youtubeId}`}
@@ -167,15 +167,20 @@ export default async function EpisodePage({
 
       {related.length > 0 && (
         <section className="related">
-          <div className="section-head">
+          <div className="section-head reveal">
             <div>
               <p className="eyebrow">Continua a esplorare</p>
               <h2 className="section-title">Episodi correlati</h2>
             </div>
           </div>
           <div className="episodes__grid">
-            {related.map((r) => (
-              <EpisodeCard key={r.slug} episode={r} />
+            {related.map((r, i) => (
+              <EpisodeCard
+                key={r.slug}
+                episode={r}
+                className="reveal"
+                revealDelay={i * 90}
+              />
             ))}
           </div>
         </section>

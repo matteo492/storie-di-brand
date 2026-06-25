@@ -4,16 +4,25 @@ import type { Episode } from "@/lib/episodes";
 export default function EpisodeCard({
   episode,
   feature = false,
+  className = "",
+  revealDelay,
 }: {
   episode: Episode;
   feature?: boolean;
+  className?: string;
+  revealDelay?: number;
 }) {
   const thumbnail = episode.youtubeId
     ? `https://i.ytimg.com/vi/${episode.youtubeId}/maxresdefault.jpg`
     : undefined;
 
   return (
-    <article className={`ep-card${feature ? " ep-card--feature" : ""}`}>
+    <article
+      className={`ep-card${feature ? " ep-card--feature" : ""}${
+        className ? ` ${className}` : ""
+      }`}
+      data-reveal-delay={revealDelay}
+    >
       <Link
         href={`/episodi/${episode.slug}`}
         className="ep-card__art"

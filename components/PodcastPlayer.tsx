@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type PodcastEp = {
   id: string;
@@ -26,6 +26,41 @@ function formatDate(raw: string) {
 export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
   const [selectedId, setSelectedId] = useState(episodes[0]?.id ?? "");
   const [expanded, setExpanded] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+  const mounted = useRef(false);
+
+  // Animazione altezza misurata in px reali → ease-in-out fluido in entrambe
+  // le direzioni (più affidabile di grid-template-rows / max-height fissa).
+  useEffect(() => {
+    const el = moreRef.current;
+    if (!el) return;
+    const inner = el.firstElementChild as HTMLElement | null;
+    if (!inner) return;
+
+    // Non animare lo stato iniziale al mount.
+    if (!mounted.current) {
+      mounted.current = true;
+      el.style.height = expanded ? "auto" : "0px";
+      return;
+    }
+
+    if (expanded) {
+      el.style.height = `${inner.offsetHeight}px`;
+      const onEnd = (e: TransitionEvent) => {
+        if (e.propertyName !== "height") return;
+        el.style.height = "auto"; // permette al contenuto di adattarsi
+        el.removeEventListener("transitionend", onEnd);
+      };
+      el.addEventListener("transitionend", onEnd);
+    } else {
+      // Da "auto" a 0: fisso prima l'altezza esatta, forzo il reflow, poi chiudo.
+      el.style.height = `${inner.offsetHeight}px`;
+      void el.offsetHeight;
+      requestAnimationFrame(() => {
+        el.style.height = "0px";
+      });
+    }
+  }, [expanded]);
 
   const latest = episodes[0] ?? null;
   const first5 = episodes.slice(1, 6);
@@ -92,52 +127,62 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
         ))}
 
         {/* Episodi extra — animati */}
-        <div className={`sdb-podcast__more${expanded ? " open" : ""}`}>
-          {next5.map((ep) => (
-            <li key={ep.id}>
-              <button
-                className={selectedId === ep.id ? "active" : ""}
-                onClick={() => setSelectedId(ep.id)}
-              >
-                <span className="sdb-podcast__ep-title">{ep.title}</span>
-                <span className="sdb-podcast__ep-meta">
-                  {ep.duration && `${ep.duration} · `}
-                  {formatDate(ep.date)}
-                </span>
-              </button>
-            </li>
-          ))}
+        <div ref={moreRef} className="sdb-podcast__more">
+          <div className="sdb-podcast__more-inner">
+            {next5.map((ep) => (
+              <li key={ep.id}>
+                <button
+                  className={selectedId === ep.id ? "active" : ""}
+                  onClick={() => setSelectedId(ep.id)}
+                >
+                  <span className="sdb-podcast__ep-title">{ep.title}</span>
+                  <span className="sdb-podcast__ep-meta">
+                    {ep.duration && `${ep.duration} · `}
+                    {formatDate(ep.date)}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </div>
         </div>
       </ul>
 
-      {/* CTA espandi / scopri altro + bottone collapse */}
+      {/* CTA espandi / scopri altro + bottone collapse — crossfade tra i due stati */}
       <div className="sdb-podcast__cta-row">
-        {!expanded ? (
-          <button
-            className="link-arrow sdb-podcast__expand-btn"
-            onClick={() => setExpanded(true)}
+        <button
+          className={`link-arrow sdb-podcast__expand-btn sdb-podcast__cta-fade${
+            expanded ? " is-hidden" : ""
+          }`}
+          aria-hidden={expanded}
+          tabIndex={expanded ? -1 : 0}
+          onClick={() => setExpanded(true)}
+        >
+          Scopri di più ↓
+        </button>
+        <div
+          className={`sdb-podcast__cta-fade sdb-podcast__cta-expanded${
+            expanded ? "" : " is-hidden"
+          }`}
+          aria-hidden={!expanded}
+        >
+          <a
+            href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
+            target="_blank"
+            rel="noopener"
+            className="link-arrow"
+            tabIndex={expanded ? 0 : -1}
           >
-            Scopri di più ↓
+            Scopri le altre storie →
+          </a>
+          <button
+            className="sdb-podcast__collapse-btn"
+            aria-label="Chiudi lista"
+            tabIndex={expanded ? 0 : -1}
+            onClick={() => setExpanded(false)}
+          >
+            ↑
           </button>
-        ) : (
-          <>
-            <a
-              href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
-              target="_blank"
-              rel="noopener"
-              className="link-arrow"
-            >
-              Scopri le altre storie →
-            </a>
-            <button
-              className="sdb-podcast__collapse-btn"
-              aria-label="Chiudi lista"
-              onClick={() => setExpanded(false)}
-            >
-              ↑
-            </button>
-          </>
-        )}
+        </div>
       </div>
 
       {/* Piattaforme */}

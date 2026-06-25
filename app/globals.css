@@ -195,6 +195,96 @@ img { max-width: 100%; display: block; }
 .stat span { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-top: 0.4rem; }
 .hero__marquee { margin-top: auto; }
 
+/* ---------- ANIMAZIONI ---------- */
+/* Entrata staggered al caricamento per i blocchi above-the-fold
+   (pura CSS, sicura senza JS e senza flash) */
+@keyframes sdbRevealUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero__inner > *,
+.page-head > *,
+.episode__hero > *:not(.episode__factbar) {
+  animation: sdbRevealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Hero homepage */
+.hero__inner > *:nth-child(1) { animation-delay: 0.05s; }
+.hero__inner > *:nth-child(2) { animation-delay: 0.18s; }
+.hero__inner > *:nth-child(3) { animation-delay: 0.31s; }
+.hero__inner > *:nth-child(4) { animation-delay: 0.44s; }
+.hero__inner > *:nth-child(5) { animation-delay: 0.57s; }
+/* Header archivio */
+.page-head > *:nth-child(1) { animation-delay: 0.05s; }
+.page-head > *:nth-child(2) { animation-delay: 0.18s; }
+.page-head > *:nth-child(3) { animation-delay: 0.31s; }
+/* Hero pagina episodio */
+.episode__hero > *:nth-child(1) { animation-delay: 0.05s; }
+.episode__hero > *:nth-child(2) { animation-delay: 0.18s; }
+.episode__hero > *:nth-child(3) { animation-delay: 0.31s; }
+/* Factbar: ogni dato entra in sequenza dopo l'hero */
+.episode__factbar .fact {
+  animation: sdbRevealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.episode__factbar .fact:nth-child(1) { animation-delay: 0.44s; }
+.episode__factbar .fact:nth-child(2) { animation-delay: 0.56s; }
+.episode__factbar .fact:nth-child(3) { animation-delay: 0.68s; }
+.episode__factbar .fact:nth-child(4) { animation-delay: 0.80s; }
+
+/* Effetto macchina da scrivere (caret lampeggiante mentre digita) */
+.typewriter {
+  position: relative;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.typewriter::after {
+  content: "";
+  display: inline-block;
+  width: 0.06em;
+  height: 0.9em;
+  margin-left: 0.06em;
+  vertical-align: -0.06em;
+  background: var(--red);
+  animation: sdbCaret 0.8s step-end infinite;
+}
+.typewriter.is-done::after {
+  animation: none;
+  opacity: 0;
+}
+@keyframes sdbCaret {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Reveal on scroll — gate via .reveal-ready (aggiunta solo da JS) */
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-ready .reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Riduzione movimento: niente animazioni, tutto subito visibile */
+@media (prefers-reduced-motion: reduce) {
+  .hero__inner > *,
+  .page-head > *,
+  .episode__hero > *,
+  .episode__factbar .fact,
+  .reveal-ready .reveal,
+  .reveal-ready .reveal.in-view {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .typewriter::after { display: none; }
+}
+
 /* ---------- SECTION HEAD ---------- */
 .section-head {
   max-width: var(--maxw);
@@ -356,7 +446,7 @@ img { max-width: 100%; display: block; }
 .ep-card__body .btn { align-self: flex-start; margin-top: auto; }
 
 .tag {
-  align-self: flex-start;
+  align-self: center;
   font-family: var(--display);
   font-size: 0.72rem;
   letter-spacing: 0.18em;
@@ -645,27 +735,42 @@ img { max-width: 100%; display: block; }
 .sdb-podcast__list li a:hover .sdb-podcast__ep-title { color: var(--red); }
 .sdb-podcast__list li button.active .sdb-podcast__ep-title { color: var(--red); }
 .sdb-podcast__more {
+  height: 0;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: height;
 }
-.sdb-podcast__more.open { max-height: 400px; }
 .sdb-podcast__expand-btn {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
   text-align: left;
-  align-self: flex-start;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.05em;
 }
 .sdb-podcast__cta-row {
+  display: grid;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+/* I due stati del CTA condividono la stessa cella e fanno crossfade */
+.sdb-podcast__cta-fade {
+  grid-area: 1 / 1;
+  transition: opacity 0.4s ease;
+}
+.sdb-podcast__cta-fade.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.sdb-podcast__expand-btn.sdb-podcast__cta-fade {
+  justify-self: start;
+}
+.sdb-podcast__cta-expanded {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
 }
 .sdb-podcast__collapse-btn {
   width: 40px; height: 40px;

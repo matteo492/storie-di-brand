@@ -23,7 +23,7 @@ export default function PodcastSection() {
   return (
     <section className="sdb-podcast" id="podcast-originale">
       <div className="sdb-podcast__inner">
-        <div className="sdb-podcast__header">
+        <div className="sdb-podcast__header reveal">
           <p className="eyebrow">Il podcast originale</p>
           <h2 className="sdb-podcast__title">Storie di Brand</h2>
           <p className="sdb-podcast__sub">

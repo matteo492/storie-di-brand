@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ticker from "@/components/Ticker";
 import PageTransition from "@/components/PageTransition";
+import ScrollReveal from "@/components/ScrollReveal";
 import { SITE_URL } from "@/lib/site";
 
 // Font brand reale (file in /public/fonts) + fallback Oswald
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="it" className={`${gothic.variable} ${oswald.variable}`}>
       <body>
         <Header />
+        <ScrollReveal />
         <PageTransition>{children}</PageTransition>
         <div className="hero__marquee">
           <Ticker items={TICKER_BRANDS} />
