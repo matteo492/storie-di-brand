@@ -30,6 +30,7 @@ jobs:
 
       - name: Update YouTube stats
         run: node scripts/update-youtube-stats.js
+        continue-on-error: true
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
