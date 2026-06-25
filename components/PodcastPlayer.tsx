@@ -28,11 +28,12 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
   const [expanded, setExpanded] = useState(false);
 
   const latest = episodes[0] ?? null;
-  const rest = expanded ? episodes.slice(1, 11) : episodes.slice(1, 6);
+  const first5 = episodes.slice(1, 6);
+  const next5 = episodes.slice(6, 11);
 
   return (
     <>
-      {/* Player embed — cambia con l'episodio selezionato */}
+      {/* Player embed */}
       <div className="sdb-podcast__player">
         <iframe
           key={selectedId}
@@ -71,10 +72,26 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
         </button>
       )}
 
-      {/* Lista episodi */}
-      {rest.length > 0 && (
-        <ul className="sdb-podcast__list">
-          {rest.map((ep) => (
+      {/* Lista episodi — sempre visibili */}
+      <ul className="sdb-podcast__list">
+        {first5.map((ep) => (
+          <li key={ep.id}>
+            <button
+              className={selectedId === ep.id ? "active" : ""}
+              onClick={() => setSelectedId(ep.id)}
+            >
+              <span className="sdb-podcast__ep-title">{ep.title}</span>
+              <span className="sdb-podcast__ep-meta">
+                {ep.duration && `${ep.duration} · `}
+                {formatDate(ep.date)}
+              </span>
+            </button>
+          </li>
+        ))}
+
+        {/* Episodi extra — animati */}
+        <div className={`sdb-podcast__more${expanded ? " open" : ""}`}>
+          {next5.map((ep) => (
             <li key={ep.id}>
               <button
                 className={selectedId === ep.id ? "active" : ""}
@@ -88,16 +105,16 @@ export default function PodcastPlayer({ episodes }: { episodes: PodcastEp[] }) {
               </button>
             </li>
           ))}
-        </ul>
-      )}
+        </div>
+      </ul>
 
       {/* CTA espandi / scopri altro */}
       {!expanded ? (
         <button
-          className="link-arrow"
+          className="sdb-podcast__expand-btn"
           onClick={() => setExpanded(true)}
         >
-          Tutti gli episodi →
+          Tutti gli episodi ↓
         </button>
       ) : (
         <a

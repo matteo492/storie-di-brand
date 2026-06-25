@@ -615,10 +615,35 @@ img { max-width: 100%; display: block; }
   width: 100%;
   cursor: pointer;
   transition: color 0.15s;
+  text-align: left;
 }
 .sdb-podcast__list li button:hover .sdb-podcast__ep-title,
 .sdb-podcast__list li a:hover .sdb-podcast__ep-title { color: var(--red); }
 .sdb-podcast__list li button.active .sdb-podcast__ep-title { color: var(--red); }
+.sdb-podcast__more {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease;
+}
+.sdb-podcast__more.open { max-height: 400px; }
+.sdb-podcast__expand-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--red);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  margin-bottom: 2rem;
+  transition: gap 0.2s;
+}
+.sdb-podcast__expand-btn:hover { gap: 0.7rem; }
 .sdb-podcast__ep-title {
   color: var(--cream);
   font-size: 0.9rem;
