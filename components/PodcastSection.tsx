@@ -97,6 +97,14 @@ export default function PodcastSection() {
 
           <div className="sdb-podcast__platforms">
             <a
+              href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
+              target="_blank"
+              rel="noopener"
+              className="btn btn--ghost"
+            >
+              Spotify
+            </a>
+            <a
               href="https://music.amazon.it/podcasts/97a19029-9d86-4e82-81a1-85ee641b02b0/storie-di-brand"
               target="_blank"
               rel="noopener"
