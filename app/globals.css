@@ -152,7 +152,7 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   gap: 2rem;
   align-items: center;
-  animation: marquee 48s linear infinite;
+  animation: marquee 80s linear infinite;
   font-family: var(--display);
   font-size: 1.2rem;
   letter-spacing: 0.1em;
@@ -485,14 +485,14 @@ img { max-width: 100%; display: block; }
 .newsletter__form {
   display: flex;
   gap: 0.7rem;
-  max-width: 480px;
+  max-width: 640px;
   margin: 0 auto;
   flex-wrap: wrap;
   justify-content: center;
 }
 .newsletter__form input {
   flex: 1;
-  min-width: 220px;
+  min-width: 180px;
   background: var(--ink-2);
   border: 1px solid var(--line);
   border-radius: 999px;

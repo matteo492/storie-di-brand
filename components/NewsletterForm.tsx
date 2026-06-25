@@ -9,6 +9,7 @@ import { useState } from "react";
  * pronto, basterà sostituire handleSubmit con la POST/iframe del provider.
  */
 export default function NewsletterForm() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "done" | "error">("idle");
 
@@ -21,7 +22,7 @@ export default function NewsletterForm() {
     }
     const subject = encodeURIComponent("Iscrizione newsletter Storie di Brand");
     const body = encodeURIComponent(
-      `Ciao, vorrei iscrivermi alla newsletter settimanale.\n\nEmail: ${email}`
+      `Ciao, vorrei iscrivermi alla newsletter settimanale.\n\nNome: ${name || "—"}\nEmail: ${email}`
     );
     window.location.href = `mailto:info@storiedibrand.it?subject=${subject}&body=${body}`;
     setStatus("done");
@@ -38,6 +39,13 @@ export default function NewsletterForm() {
 
   return (
     <form className="newsletter__form" onSubmit={handleSubmit} noValidate>
+      <input
+        type="text"
+        placeholder="Il tuo nome"
+        aria-label="Il tuo nome"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       <input
         type="email"
         required
