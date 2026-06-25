@@ -25,10 +25,13 @@ jobs:
       - name: Update Brandy episodes
         run: node scripts/update-brandy-episodes.js
 
+      - name: Update Storie di Brand podcast episodes
+        run: node scripts/update-podcast-episodes.js
+
       - name: Commit and push
         run: |
           git config user.name "Brandy Bot"
           git config user.email "noreply@storiedi.brand"
-          git add public/brandy-episodes.json
-          git diff --cached --quiet || git commit -m "chore: aggiorna episodi Brandy dal feed Megaphone"
+          git add public/brandy-episodes.json public/podcast-episodes.json
+          git diff --cached --quiet || git commit -m "chore: aggiorna episodi Brandy e podcast dal feed Megaphone"
           git push

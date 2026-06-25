@@ -3,6 +3,7 @@ import { getAllEpisodes } from "@/lib/episodes";
 import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
+import PodcastSection from "@/components/PodcastSection";
 
 const YT_VIDEOS = [
   {
@@ -125,6 +126,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* PODCAST PRINCIPALE — Storie di Brand */}
+      <PodcastSection />
 
       {/* PODCAST BRANDY — gioco di ricerca episodi */}
       <section className="podcast" id="podcast">

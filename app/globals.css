@@ -523,6 +523,132 @@ img { max-width: 100%; display: block; }
 .collab__title { font-size: clamp(2.2rem, 5.5vw, 4.2rem); margin: 0.5rem 0 1.2rem; }
 .collab__sub { font-size: 1.2rem; color: rgba(250,249,210,0.78); margin-bottom: 2.5rem; }
 
+/* ---------- PODCAST PRINCIPALE (Storie di Brand) ---------- */
+.sdb-podcast {
+  padding: 7rem clamp(1.2rem, 5vw, 3rem);
+  background: var(--ink);
+  border-top: 1px solid var(--line);
+}
+.sdb-podcast__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.sdb-podcast__title {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1.05;
+  color: var(--cream);
+  margin: 0.5rem 0 1rem;
+}
+.sdb-podcast__sub {
+  color: rgba(250,249,210,0.65);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.sdb-podcast__latest {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: background 0.2s;
+}
+.sdb-podcast__latest:hover { background: rgba(255,87,87,0.1); }
+.sdb-podcast__latest-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.sdb-podcast__latest-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.sdb-podcast__latest-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  font-weight: 600;
+}
+.sdb-podcast__latest-title {
+  color: var(--cream);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.sdb-podcast__latest-meta {
+  font-size: 0.78rem;
+  color: rgba(250,249,210,0.45);
+}
+.sdb-podcast__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  border-top: 1px solid var(--line);
+}
+.sdb-podcast__list li {
+  border-bottom: 1px solid var(--line);
+}
+.sdb-podcast__list li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.sdb-podcast__list li a:hover .sdb-podcast__ep-title { color: var(--red); }
+.sdb-podcast__ep-title {
+  color: var(--cream);
+  font-size: 0.9rem;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sdb-podcast__ep-meta {
+  font-size: 0.75rem;
+  color: rgba(250,249,210,0.4);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sdb-podcast__platforms {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.sdb-podcast__player {
+  position: sticky;
+  top: 6rem;
+}
+.sdb-podcast__player iframe {
+  border: none;
+  border-radius: 12px;
+  display: block;
+}
+@media (max-width: 768px) {
+  .sdb-podcast__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .sdb-podcast__player {
+    position: static;
+    order: -1;
+  }
+  .sdb-podcast__player iframe { height: 232px; }
+}
+
 /* ---------- PODCAST (BRANDY) — gioco di ricerca ---------- */
 .podcast {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);
