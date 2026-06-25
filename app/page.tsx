@@ -67,20 +67,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ULTIMI EPISODI */}
-      <section className="episodes" id="episodi">
-        <div className="section-head">
-          <div>
-            <p className="eyebrow">Gli ultimi</p>
-            <h2 className="section-title">Episodi recenti</h2>
-          </div>
-          <Link href="/episodi" className="link-arrow">
-            Esplora →
-          </Link>
-        </div>
-
-        <EpisodeSlider episodes={episodes.slice(0, 9)} />
-      </section>
+      {/* PODCAST PRINCIPALE — Storie di Brand */}
+      <PodcastSection />
 
       {/* YOUTUBE */}
       <section
@@ -127,8 +115,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PODCAST PRINCIPALE — Storie di Brand */}
-      <PodcastSection />
+      {/* ULTIMI EPISODI */}
+      <section className="episodes" id="episodi">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Gli ultimi</p>
+            <h2 className="section-title">Episodi recenti</h2>
+          </div>
+          <Link href="/episodi" className="link-arrow">
+            Esplora →
+          </Link>
+        </div>
+
+        <EpisodeSlider episodes={episodes.slice(0, 9)} />
+      </section>
 
       {/* PODCAST BRANDY — gioco di ricerca episodi */}
       <section className="podcast" id="podcast">

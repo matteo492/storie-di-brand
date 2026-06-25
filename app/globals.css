@@ -526,7 +526,8 @@ img { max-width: 100%; display: block; }
 /* ---------- PODCAST PRINCIPALE (Storie di Brand) ---------- */
 .sdb-podcast {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background: var(--ink);
+  background:
+    radial-gradient(120% 130% at 50% 0%, rgba(255,87,87,0.45), rgba(255,87,87,0.08) 45%, var(--ink) 80%);
   border-top: 1px solid var(--line);
 }
 .sdb-podcast__inner {
