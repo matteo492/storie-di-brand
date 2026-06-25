@@ -192,7 +192,7 @@ img { max-width: 100%; display: block; }
   color: #faf9d2;
   line-height: 1;
 }
-.stat span { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-top: 0.4rem; }
+.stat > span { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-top: 0.4rem; }
 .hero__marquee { margin-top: auto; }
 
 /* ---------- ANIMAZIONI ---------- */
