@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Ticker from "@/components/Ticker";
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
+import BookBanner from "@/components/BookBanner";
 import { SITE_URL } from "@/lib/site";
 
 // Font brand reale (file in /public/fonts) + fallback Oswald
@@ -70,6 +71,7 @@ export default function RootLayout({
           <Ticker items={TICKER_BRANDS} />
         </div>
         <Footer />
+        <BookBanner />
       </body>
     </html>
   );
