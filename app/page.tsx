@@ -47,7 +47,7 @@ export default function Home() {
             sono nati i brand che usi ogni giorno.
           </p>
           <div className="hero__cta">
-            <a href="mailto:info@storiedibrand.it" className="btn btn--primary">
+            <a href="#collabora" className="btn btn--primary">
               Contattaci
             </a>
             <a

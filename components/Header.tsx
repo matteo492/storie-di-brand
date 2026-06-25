@@ -53,7 +53,7 @@ export default function Header() {
           </Link>
         ))}
       </nav>
-      <a href="mailto:info@storiedibrand.it" className="btn btn--small btn--red">
+      <a href="/#collabora" className="btn btn--small btn--red" onClick={(e) => { if (typeof window !== 'undefined' && window.location.pathname === '/') { e.preventDefault(); document.getElementById('collabora')?.scrollIntoView({ behavior: 'smooth' }); } }}>
         Contattaci
       </a>
       <button
