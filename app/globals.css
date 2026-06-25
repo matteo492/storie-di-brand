@@ -536,6 +536,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
 }
+.sdb-podcast__header { text-align: center; }
 .sdb-podcast__title {
   font-size: clamp(2.4rem, 5vw, 4rem);
   line-height: 1.05;
