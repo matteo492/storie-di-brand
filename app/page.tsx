@@ -78,7 +78,7 @@ export default function Home() {
         <div className="section-head" style={{ marginBottom: "2.5rem" }}>
           <div>
             <p className="eyebrow">Anche su YouTube</p>
-            <h2 className="section-title">Guardaci su YouTube</h2>
+            <h2 className="section-title">Le nostre storie in video</h2>
           </div>
           <a
             href="https://www.youtube.com/@StoriediBrand"
@@ -119,8 +119,8 @@ export default function Home() {
       <section className="episodes" id="episodi">
         <div className="section-head">
           <div>
-            <p className="eyebrow">Gli ultimi</p>
-            <h2 className="section-title">Episodi recenti</h2>
+            <p className="eyebrow">Da non perdere</p>
+            <h2 className="section-title">Ultimi episodi</h2>
           </div>
           <Link href="/episodi" className="link-arrow">
             Esplora →
