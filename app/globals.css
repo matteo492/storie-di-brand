@@ -209,11 +209,13 @@ img { max-width: 100%; display: block; }
   color: var(--red);
   white-space: nowrap;
   position: relative;
+  display: inline-block;
+  align-self: flex-start;
 }
 .link-arrow::after {
   content: "";
   position: absolute;
-  left: 0; bottom: -3px;
+  left: 0; bottom: -5px;
   width: 0; height: 2px;
   background: var(--red);
   transition: width 0.3s ease;
