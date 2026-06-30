@@ -44,7 +44,7 @@ export default function Home() {
           </h1>
           <p className="hero__sub">
             Errori clamorosi, intuizioni geniali e colpi di fortuna. Riviviamo come
-            sono nati i brand che usi ogni giorno.
+            sono nati i brand che vivi ogni giorno.
           </p>
           <div className="hero__cta">
             <a href="#collabora" className="btn btn--primary">
@@ -170,38 +170,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LIBRO */}
-      <section className="book" id="libro">
-        <div className="book__inner">
-          <a
-            href="https://www.amazon.it/Persone-che-pensano-grande-raccontato-ebook/dp/B0CG9FT3DJ/"
-            target="_blank"
-            rel="noopener"
-            className="book__cover reveal"
-            aria-label="Persone che pensano in grande — acquista su Amazon"
-          >
-            <img src="/libro-cover.png" alt="Copertina del libro Persone che pensano in grande di Max Corona" />
-          </a>
-          <div className="book__text reveal" data-reveal-delay={120}>
-            <p className="eyebrow">Il libro di Max Corona</p>
-            <h2 className="book__title">Persone che pensano in grande</h2>
-            <p className="book__sub">
-              Le storie e le intuizioni delle menti che hanno cambiato il modo di fare
-              impresa, raccontate dalla voce di Storie di Brand. Un viaggio tra coraggio,
-              visione e idee fuori dagli schemi.
-            </p>
-            <a
-              href="https://www.amazon.it/Persone-che-pensano-grande-raccontato-ebook/dp/B0CG9FT3DJ/"
-              target="_blank"
-              rel="noopener"
-              className="btn btn--primary"
-            >
-              Acquista su Amazon
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* NEWSLETTER */}
       <section className="newsletter" id="newsletter">
         <div className="newsletter__inner reveal">
@@ -227,7 +195,7 @@ export default function Home() {
             <br />a oltre 1 milione di persone?
           </h2>
           <p className="collab__sub">
-            Sponsorship, episodi branded e progetti su misura. Scrivici e ti risponderemo entro 24 ore.
+            Sponsorship, episodi branded e progetti su misura. Raccontaci la tua idea.
           </p>
           <CollabForm />
         </div>

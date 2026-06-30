@@ -21,14 +21,19 @@ export default function BookBanner() {
   }, []);
 
   function dismiss() {
-    setDismissed(true);
+    setExiting(true);
     sessionStorage.setItem("book-banner-dismissed", "1");
+    setTimeout(() => setDismissed(true), 450);
   }
 
   if (dismissed) return null;
 
   return (
-    <div className={`book-banner${visible ? " is-visible" : ""}`} role="complementary" aria-label="Il libro di Max Corona">
+    <div
+      className={`book-banner${visible && !exiting ? " is-visible" : ""}`}
+      role="complementary"
+      aria-label="Il libro di Max Corona"
+    >
       <img src="/libro-cover.png" alt="Copertina Persone che pensano in grande" className="book-banner__cover" />
       <div className="book-banner__text">
         <p className="book-banner__title">Persone che pensano in grande</p>

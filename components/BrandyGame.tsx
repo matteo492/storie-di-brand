@@ -7,9 +7,9 @@ type Episode = { id: string; t: string; d: string; date: string };
 // Domande di esempio (cliccabili) — tutte con un match reale nel catalogo
 const SUGGESTIONS = [
   "Cosa sta succedendo a Zara?",
-  "Perché Nokia è fallita?",
+  "Come ha fatto Nokia a fallire?",
   "Chi ha inventato il divano letto?",
-  "Perché in Thailandia odiano la Pepsi?",
+  "Il disastro della Pepsi blu",
 ];
 
 // Stopword italiane: parole troppo comuni che non aiutano il match
@@ -65,7 +65,18 @@ function rank(query: string, eps: Episode[], limit: number): Episode[] {
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score);
 
-  return scored.slice(0, limit).map((x) => x.e);
+  // Dedup per titolo: alcune puntate sono ripubblicate con id diverso ma
+  // stesso titolo — teniamo solo la più pertinente (la prima dopo il sort).
+  const seenTitles = new Set<string>();
+  const unique: Episode[] = [];
+  for (const { e } of scored) {
+    const key = normalize(e.t);
+    if (seenTitles.has(key)) continue;
+    seenTitles.add(key);
+    unique.push(e);
+    if (unique.length >= limit) break;
+  }
+  return unique;
 }
 
 export default function BrandyGame() {
@@ -75,6 +86,7 @@ export default function BrandyGame() {
   const [alternatives, setAlternatives] = useState<Episode[]>([]);
   const [searched, setSearched] = useState(false);
   const [noResult, setNoResult] = useState(false);
+  const [descExpanded, setDescExpanded] = useState(false);
 
   // Carica il catalogo e propone un episodio a caso a ogni apertura della pagina
   useEffect(() => {
@@ -83,8 +95,10 @@ export default function BrandyGame() {
       .then((r) => r.json())
       .then((data: Episode[]) => {
         if (!active) return;
-        setEpisodes(data);
-        setCurrent(data[Math.floor(Math.random() * data.length)] ?? null);
+        // Scarta episodi senza id: non sono riproducibili nell'embed
+        const playable = data.filter((e) => e.id);
+        setEpisodes(playable);
+        setCurrent(playable[Math.floor(Math.random() * playable.length)] ?? null);
       })
       .catch(() => {});
     return () => {
@@ -101,7 +115,9 @@ export default function BrandyGame() {
     const question = q.trim();
     if (!question || episodes.length === 0) return;
     setQuery(question);
-    const results = rank(question, episodes, 4);
+    // Limite generoso: vogliamo che TUTTI gli episodi che citano la keyword
+    // emergano, non solo il più pertinente.
+    const results = rank(question, episodes, 12);
     if (results.length === 0) {
       // Nessun match: mostra il messaggio e ripiega su un episodio a caso
       setNoResult(true);
@@ -112,6 +128,7 @@ export default function BrandyGame() {
     }
     setNoResult(false);
     setSearched(true);
+    setDescExpanded(false);
     setCurrent(results[0]);
     setAlternatives(results.slice(1));
   }
@@ -122,6 +139,7 @@ export default function BrandyGame() {
     setNoResult(false);
     setAlternatives([]);
     setQuery("");
+    setDescExpanded(false);
     setCurrent(episodes[Math.floor(Math.random() * episodes.length)] ?? null);
   }
 
@@ -187,9 +205,7 @@ export default function BrandyGame() {
 
         {current && (
           <>
-            <h3 className="brandy__title">{current.t}</h3>
-            {current.d && <p className="brandy__desc">{current.d}</p>}
-            <div className="brandy__embed">
+<div className="brandy__embed">
               {embedSrc && (
                 <iframe
                   key={current.id}
