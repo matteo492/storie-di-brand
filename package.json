@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "new:episode": "node scripts/new-episode.js"
+    "new:episode": "node scripts/new-episode.js",
+    "generate:article": "node scripts/generate-article.js",
+    "publish:episode": "node scripts/publish-article.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

@@ -33,6 +33,8 @@ export async function generateMetadata({
     title: ep.title,
     description: ep.excerpt,
     alternates: { canonical: url },
+    // Le bozze non vanno indicizzate: restano visibili solo a chi ha il link diretto (per la revisione).
+    robots: ep.draft ? { index: false, follow: false } : undefined,
     openGraph: {
       type: "article",
       title: ep.title,
@@ -109,10 +111,19 @@ export default async function EpisodePage({
 
   return (
     <main className="episode">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(ep)) }}
-      />
+      {/* JSON-LD solo per gli articoli pubblicati: niente structured data sulle bozze. */}
+      {!ep.draft && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(ep)) }}
+        />
+      )}
+
+      {ep.draft && (
+        <div className="episode__draft-banner">
+          Bozza · non pubblicata — visibile solo a te. Approva per pubblicarla.
+        </div>
+      )}
 
       <article>
         <header className="episode__hero">

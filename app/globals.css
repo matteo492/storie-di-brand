@@ -287,6 +287,20 @@ img { max-width: 100%; display: block; }
   .typewriter::after { display: none; }
 }
 
+/* ---------- BANNER BOZZA (articolo non pubblicato) ---------- */
+.episode__draft-banner {
+  max-width: var(--maxw, 1100px);
+  margin: 1.5rem auto -1rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px dashed var(--red);
+  border-radius: 10px;
+  background: rgba(255, 87, 87, 0.08);
+  color: var(--red);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
 /* ---------- SEGNI A MANO (doodle) ---------- */
 .scribble {
   position: relative;

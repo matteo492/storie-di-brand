@@ -26,6 +26,7 @@ export interface EpisodeFrontmatter {
   featured?: boolean;
   sources?: EpisodeSource[];
   relatedSlugs?: string[]; // correlati forzati a mano (opzionale)
+  draft?: boolean; // se true resta fuori da liste/sitemap/indicizzazione finché non approvato
 }
 
 export interface Episode extends EpisodeFrontmatter {
@@ -75,16 +76,22 @@ function toEpisode(raw: string, fallbackSlug: string): Episode {
     featured: fm.featured ?? false,
     sources: fm.sources ?? [],
     relatedSlugs: fm.relatedSlugs ?? [],
+    draft: fm.draft ?? false,
     bodyHtml: marked.parse(content, { async: false }) as string,
     readingMinutes: Math.max(1, Math.round(words / 200)),
     youtubeId: youtubeIdFromUrl(fm.youtubeUrl),
   };
 }
 
-/** Tutti gli episodi, dal più recente al più vecchio. */
+/**
+ * Tutti gli episodi PUBBLICATI, dal più recente al più vecchio.
+ * Le bozze (`draft: true`) sono escluse: non compaiono in homepage,
+ * archivio, correlati, filtri o sitemap finché non vengono approvate.
+ */
 export function getAllEpisodes(): Episode[] {
   return readMarkdownFiles()
     .map(({ slug, raw }) => toEpisode(raw, slug))
+    .filter((e) => !e.draft)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 }
 
