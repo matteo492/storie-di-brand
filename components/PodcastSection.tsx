@@ -1,23 +1,23 @@
 import fs from "fs";
 import path from "path";
-import PodcastPlayer from "./PodcastPlayer";
+import BrandTimeline from "./BrandTimeline";
 
-type PodcastEp = {
+type BrandPoint = {
+  brand: string;
+  year: number;
   id: string;
   title: string;
-  excerpt: string;
-  duration: string;
-  date: string;
   image: string;
+  parts: number;
 };
 
 export default function PodcastSection() {
-  let episodes: PodcastEp[] = [];
+  let brands: BrandPoint[] = [];
   try {
-    const jsonPath = path.join(process.cwd(), "public", "podcast-episodes.json");
-    episodes = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+    const jsonPath = path.join(process.cwd(), "public", "brand-timeline.json");
+    brands = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
   } catch {
-    episodes = [];
+    brands = [];
   }
 
   return (
@@ -32,7 +32,41 @@ export default function PodcastSection() {
             Il podcast che ha cambiato il modo di raccontare il business in Italia.
           </p>
         </div>
-        <PodcastPlayer episodes={episodes} />
+
+        <p className="sdb-podcast__bridge">
+          <span className="sdb-podcast__bridge-tag">Il gioco</span>
+          Scorri la linea del tempo e scopri da che anno arriva ogni brand.
+        </p>
+
+        {brands.length > 0 && <BrandTimeline brands={brands} />}
+
+        {/* Piattaforme */}
+        <div className="sdb-podcast__platforms">
+          <a
+            href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
+            target="_blank"
+            rel="noopener"
+            className="btn btn--ghost"
+          >
+            Spotify
+          </a>
+          <a
+            href="https://music.amazon.it/podcasts/97a19029-9d86-4e82-81a1-85ee641b02b0/storie-di-brand"
+            target="_blank"
+            rel="noopener"
+            className="btn btn--ghost"
+          >
+            Amazon Music
+          </a>
+          <a
+            href="https://podcasts.apple.com/it/podcast/storie-di-brand/id1483404084"
+            target="_blank"
+            rel="noopener"
+            className="btn btn--ghost"
+          >
+            Apple Podcasts
+          </a>
+        </div>
       </div>
     </section>
   );

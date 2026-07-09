@@ -1,4 +1,4 @@
-name: "Update Brandy Episodes"
+name: "Update content (Brandy, podcast, timeline, YouTube stats)"
 
 on:
   schedule:
@@ -28,6 +28,12 @@ jobs:
       - name: Update Storie di Brand podcast episodes
         run: node scripts/update-podcast-episodes.js
 
+      # Rigenera la timeline dei brand dal feed podcast aggiornato.
+      # Le nuove parti dei brand GIÀ mappati (in FOUNDING) entrano da sole;
+      # i brand nuovi non mappati vengono ignorati finché non aggiungi l'anno.
+      - name: Rebuild brand timeline
+        run: node scripts/build-brand-timeline.js
+
       - name: Update YouTube stats
         run: node scripts/update-youtube-stats.js
         continue-on-error: true
@@ -38,6 +44,6 @@ jobs:
         run: |
           git config user.name "Brandy Bot"
           git config user.email "noreply@storiedi.brand"
-          git add public/brandy-episodes.json public/podcast-episodes.json public/youtube-stats.json
-          git diff --cached --quiet || git commit -m "chore: aggiorna episodi e stats YouTube"
+          git add public/brandy-episodes.json public/podcast-episodes.json public/brand-timeline.json public/youtube-stats.json
+          git diff --cached --quiet || git commit -m "chore: aggiorna episodi, timeline e stats YouTube"
           git push

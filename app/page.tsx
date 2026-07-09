@@ -145,6 +145,23 @@ export default function Home() {
         <BrandyGame />
       </section>
 
+      {/* NEWSLETTER */}
+      <section className="newsletter" id="newsletter">
+        <div className="newsletter__inner reveal">
+          <p className="eyebrow">La newsletter settimanale</p>
+          <h2 className="newsletter__title">
+            Il meglio della settimana,<br />
+            <span className="hl">ogni venerdì</span>
+          </h2>
+          <p className="newsletter__sub">
+            Il meglio di Storie di Brand, raccolto in una mail: marketing e business
+            raccontati come piace a te, niente spam. Ogni iscrizione ci dà la forza di
+            realizzare nuove storie, contenuti e video — sei tu a tenere in vita questo progetto.
+          </p>
+          <NewsletterForm />
+        </div>
+      </section>
+
       {/* LIVE */}
       <section className="live" id="live">
         <div className="live__inner">
@@ -167,22 +184,6 @@ export default function Home() {
               <source src="/live-trailer.mp4" type="video/mp4" />
             </video>
           </div>
-        </div>
-      </section>
-
-      {/* NEWSLETTER */}
-      <section className="newsletter" id="newsletter">
-        <div className="newsletter__inner reveal">
-          <p className="eyebrow">La newsletter settimanale</p>
-          <h2 className="newsletter__title">
-            Il meglio della settimana,<br />
-            <span className="hl">ogni venerdì</span>
-          </h2>
-          <p className="newsletter__sub">
-            Il meglio di Storie di Brand, raccolto in una mail. Niente spam, solo
-            marketing e business raccontati come piace a te.
-          </p>
-          <NewsletterForm />
         </div>
       </section>
 

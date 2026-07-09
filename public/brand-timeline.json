@@ -1,0 +1,1708 @@
+[
+  {
+    "brand": "Guinness",
+    "year": 1759,
+    "id": "MNTHA8074180283",
+    "title": "GUINNESS | Pt. 1 | Una liquida ambizione",
+    "image": "https://megaphone.imgix.net/podcasts/3e661952-9794-11ef-960c-23e7d6001315/image/cd35eb78251fa630f0675d7f68d993df.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA8074180283",
+        "title": "GUINNESS | Pt. 1 | Una liquida ambizione"
+      },
+      {
+        "id": "MNTHA6870593036",
+        "title": "GUINNESS | Pt. 2 | Arpe e tucani"
+      }
+    ]
+  },
+  {
+    "brand": "Schweppes",
+    "year": 1783,
+    "id": "MNTHA4075596764",
+    "title": "SCHWEPPES | L'invenzione più felice della mia vita",
+    "image": "https://megaphone.imgix.net/podcasts/c2df51ec-7b7a-11eb-bf43-0779587fb4fd/image/e2e4871871efef29515513df8759fc11.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4075596764",
+        "title": "SCHWEPPES | L'invenzione più felice della mia vita"
+      }
+    ]
+  },
+  {
+    "brand": "Levi's",
+    "year": 1853,
+    "id": "MNTHA7165715144",
+    "title": "LEVIS | Una storia americana (più o meno)",
+    "image": "https://megaphone.imgix.net/podcasts/c1c7af66-7b7a-11eb-bf43-9bcf05f7b836/image/3f3a145ec5f0fadd99a4691f5328f248.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7165715144",
+        "title": "LEVIS | Una storia americana (più o meno)"
+      }
+    ]
+  },
+  {
+    "brand": "Louis Vuitton",
+    "year": 1854,
+    "id": "MNTHA5370503357",
+    "title": "LOUIS VUITTON: Miseria e Nobità | Pt. 1",
+    "image": "https://megaphone.imgix.net/podcasts/97406086-bcd1-11ed-9fb6-334fba6bacf8/image/db0948.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA5370503357",
+        "title": "LOUIS VUITTON: Miseria e Nobità | Pt. 1"
+      },
+      {
+        "id": "MNTHA4411983768",
+        "title": "LOUIS VUITTON: il Baule delle Meraviglie | Pt. 2"
+      },
+      {
+        "id": "MNTHA3305536053",
+        "title": "LOUIS VUITTON: un lupo in cashmere | Pt. 3"
+      }
+    ]
+  },
+  {
+    "brand": "Stabilo",
+    "year": 1855,
+    "id": "MNTHA2836889097",
+    "title": "STABILO | La rabbia del cigno",
+    "image": "https://megaphone.imgix.net/podcasts/1c8cdd62-7a88-11ef-9034-f375e23700d6/image/a4d1f6a12dba9e4ae2c7bd47efae388d.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2836889097",
+        "title": "STABILO | La rabbia del cigno"
+      }
+    ]
+  },
+  {
+    "brand": "Nokia",
+    "year": 1865,
+    "id": "MNTHA5029302704",
+    "title": "NOKIA | Pt 1 | La vita di un fiume",
+    "image": "https://megaphone.imgix.net/podcasts/0052b8c4-44a3-11f1-a545-3b77b2b53822/image/db1fd823f67d8b9018463159c42f8f6c.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA5029302704",
+        "title": "NOKIA | Pt 1 | La vita di un fiume"
+      },
+      {
+        "id": "MNTHA9038560082",
+        "title": "NOKIA | Pt 2 | L’inferno sommerso"
+      }
+    ]
+  },
+  {
+    "brand": "Jack Daniel's",
+    "year": 1866,
+    "id": "MNTHA1367791693",
+    "title": "JACK DANIEL'S | Una leggenda a base quadrata",
+    "image": "https://megaphone.imgix.net/podcasts/25e5bc9a-cb80-11f0-881f-131497b31a3e/image/274cb188262c323c164b37ee728c2c2d.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA1367791693",
+        "title": "JACK DANIEL'S | Una leggenda a base quadrata"
+      }
+    ]
+  },
+  {
+    "brand": "Ferrino",
+    "year": 1870,
+    "id": "MNTHA2301848516",
+    "title": "FERRINO | Il rifugio delle avventure",
+    "image": "https://megaphone.imgix.net/podcasts/327c6ea2-7486-11ee-a78c-e7e598f910a4/image/1c4c01.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2301848516",
+        "title": "FERRINO | Il rifugio delle avventure"
+      }
+    ]
+  },
+  {
+    "brand": "Coca-Cola",
+    "year": 1886,
+    "id": "MNTHA8955464914",
+    "title": "I SEGRETI DI COCA-COLA | Pt 1 | Erbe miracolose",
+    "image": "https://megaphone.imgix.net/podcasts/2bb54dac-0c57-11ed-a4de-777274c3463a/image/coca_1.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 5,
+    "episodes": [
+      {
+        "id": "MNTHA8955464914",
+        "title": "I SEGRETI DI COCA-COLA | Pt 1 | Erbe miracolose"
+      },
+      {
+        "id": "MNTHA7849973366",
+        "title": "I SEGRETI DI COCA-COLA | Pt 2 | L'inizio del mito"
+      },
+      {
+        "id": "MNTHA6852764315",
+        "title": "I SEGRETI DI COCA-COLA | Pt. 3 | Oro Nero"
+      },
+      {
+        "id": "MNTHA7044636915",
+        "title": "I SEGRETI DI COCA-COLA | Pt. 4 | Pronti a tutto"
+      },
+      {
+        "id": "MNTHA6856884755",
+        "title": "I SEGRETI DI COCA-COLA | EXTRA | Formule magiche"
+      }
+    ]
+  },
+  {
+    "brand": "Yamaha",
+    "year": 1887,
+    "id": "MNTHA5835631672",
+    "title": "YAMAHA | La musica dei motori",
+    "image": "https://megaphone.imgix.net/podcasts/210ccd54-59dc-11f1-8f5a-5f378a3186be/image/3dd9248ebdf81f9b0d925692a39caafa.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5835631672",
+        "title": "YAMAHA | La musica dei motori"
+      }
+    ]
+  },
+  {
+    "brand": "Kodak",
+    "year": 1888,
+    "id": "MNTHA9118451318",
+    "title": "KODAK | Il mago dei ricordi",
+    "image": "https://megaphone.imgix.net/podcasts/76c576f4-a061-11eb-8713-6727d61e9c28/image/Storie_di_brand_Kodak.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA9118451318",
+        "title": "KODAK | Il mago dei ricordi"
+      }
+    ]
+  },
+  {
+    "brand": "Nintendo",
+    "year": 1889,
+    "id": "MNTHA9464590289",
+    "title": "NINTENDO | L'origine dei giochi",
+    "image": "https://megaphone.imgix.net/podcasts/e27f0622-5318-11ef-b73c-6ff3d07a2f73/image/fcbe1321c2bef6d88914a0e2469db408.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA8889157142",
+        "title": "NINTENDO | Pt 2 | Toccare i giusti tasti"
+      },
+      {
+        "id": "MNTHA1508651944",
+        "title": "NINTENDO | Pt 3 | Nuovi mondi"
+      },
+      {
+        "id": "MNTHA1563674812",
+        "title": "NINTENDO | Pt 4 | Giochi per tutti"
+      },
+      {
+        "id": "MNTHA9464590289",
+        "title": "NINTENDO | L'origine dei giochi"
+      }
+    ]
+  },
+  {
+    "brand": "Gentilini",
+    "year": 1890,
+    "id": "MNTHA4535698578",
+    "title": "BISCOTTI GENTILINI | Una fragrante avventura",
+    "image": "https://megaphone.imgix.net/podcasts/c2e8f732-24ea-11ec-90cc-c3357f43dda7/image/Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_marchio_americano_rubato_.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4535698578",
+        "title": "BISCOTTI GENTILINI | Una fragrante avventura"
+      }
+    ]
+  },
+  {
+    "brand": "Pepsi",
+    "year": 1893,
+    "id": "MNTHA8753301753",
+    "title": "PEPSI | Pozione magica | Pt. 1",
+    "image": "https://megaphone.imgix.net/podcasts/b4b546c4-89ca-11ee-ba63-bf8212f6c6e2/image/162db0.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA8753301753",
+        "title": "PEPSI | Pozione magica | Pt. 1"
+      },
+      {
+        "id": "MNTHA2494216088",
+        "title": "PEPSI | Rivalità senza fine | Pt. 2"
+      },
+      {
+        "id": "MNTHA7989814610",
+        "title": "Pepsi e il  disastro del NUMBER FEVER"
+      }
+    ]
+  },
+  {
+    "brand": "Melegatti",
+    "year": 1894,
+    "id": "MNTHA8187936184",
+    "title": "MELEGATTI | La storia del pandoro",
+    "image": "https://megaphone.imgix.net/podcasts/c0ad656c-7b7a-11eb-bf43-1f65ee9bc5d8/image/70bdc9b2ffe3157c46cf0e9b50857779.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8187936184",
+        "title": "MELEGATTI | La storia del pandoro"
+      }
+    ]
+  },
+  {
+    "brand": "Dolomite",
+    "year": 1897,
+    "id": "MNTHA8147142637",
+    "title": "DOLOMITE | Una sfida impossibile",
+    "image": "https://megaphone.imgix.net/podcasts/3a7c5e28-143c-11ee-b0cd-5f46c3a8f88d/image/3eeaf6.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8147142637",
+        "title": "DOLOMITE | Una sfida impossibile"
+      }
+    ]
+  },
+  {
+    "brand": "Aspirina",
+    "year": 1899,
+    "id": "MNTHA3228712921",
+    "title": "ASPIRINA | Pt 1 | Il potere del salice",
+    "image": "https://megaphone.imgix.net/podcasts/ffbaadbe-0aff-11f0-befe-0772a8a7ad64/image/e158b2cf0f2c7a6a9ac1492fd32ea282.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA3228712921",
+        "title": "ASPIRINA | Pt 1 | Il potere del salice"
+      },
+      {
+        "id": "MNTHA8354436252",
+        "title": "ASPIRINA | Pt 2 | La pillola delle meraviglie"
+      }
+    ]
+  },
+  {
+    "brand": "Fiat",
+    "year": 1899,
+    "id": "MNTHA4111025133",
+    "title": "I SEGRETI DI FIAT | Pt 1 | Le origini",
+    "image": "https://megaphone.imgix.net/podcasts/ece3b92a-7377-11f0-a260-93cfa23b6f83/image/a37d2330e08fce99e385095ebde68b5d.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA4111025133",
+        "title": "I SEGRETI DI FIAT | Pt 1 | Le origini"
+      },
+      {
+        "id": "MNTHA5716005452",
+        "title": "I SEGRETI DI FIAT | PT 2 | Intrighi e tradimenti"
+      },
+      {
+        "id": "MNTHA7826374778",
+        "title": "I SEGRETI DI FIAT | Pt 3 | Lupi e Agnelli"
+      },
+      {
+        "id": "MNTHA8469869034",
+        "title": "I SEGRETI DI FIAT | Pt 4 | Nuove strade"
+      }
+    ]
+  },
+  {
+    "brand": "Harley-Davidson",
+    "year": 1903,
+    "id": "MNTHA4485614613",
+    "title": "HARLEY-DAVIDSON | Pt.1 | Il suono della libertà",
+    "image": "https://megaphone.imgix.net/podcasts/fc6e8aaa-210b-11f0-8cab-87d07d1cd879/image/48e70128beb7bdfee861707478bf06ab.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4485614613",
+        "title": "HARLEY-DAVIDSON | Pt.1 | Il suono della libertà"
+      },
+      {
+        "id": "MNTHA2012350046",
+        "title": "HARLEY-DAVIDSON | Pt. 2 | Motori ruggenti"
+      }
+    ]
+  },
+  {
+    "brand": "Kellogg's",
+    "year": 1906,
+    "id": "MNTHA4999199464",
+    "title": "KELLOGG'S | Contro i peccati della carne",
+    "image": "https://megaphone.imgix.net/podcasts/c07fbe96-7b7a-11eb-bf43-cf728c581c6d/image/ff7ad8994da0b5d2f709d024bfaaf013.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4999199464",
+        "title": "KELLOGG'S | Contro i peccati della carne"
+      }
+    ]
+  },
+  {
+    "brand": "New Balance",
+    "year": 1906,
+    "id": "MNTHA7827664583",
+    "title": "NEW BALANCE |  Un' idea su misura",
+    "image": "https://megaphone.imgix.net/podcasts/65c61fe2-12f9-11f1-b1f2-0bfdb1f20bc7/image/fe822b191c83879509340d64511ad283.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7827664583",
+        "title": "NEW BALANCE |  Un' idea su misura"
+      }
+    ]
+  },
+  {
+    "brand": "Perugina",
+    "year": 1907,
+    "id": "MNTHA8587814712",
+    "title": "PERUGINA | Una donna tra baci e cazzotti",
+    "image": "https://megaphone.imgix.net/podcasts/c2926c42-7b7a-11eb-bf43-8ff439b762bc/image/b3b7c7957a44e87d94678215a8178997.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8587814712",
+        "title": "PERUGINA | Una donna tra baci e cazzotti"
+      }
+    ]
+  },
+  {
+    "brand": "Olivetti",
+    "year": 1908,
+    "id": "MNTHA8978503382",
+    "title": "OLIVETTI Pt.1 | Il suono del progresso",
+    "image": "https://megaphone.imgix.net/podcasts/7bb28e88-b653-11eb-82a4-bfd6eaecc680/image/olivetti_pt_1_def.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA8978503382",
+        "title": "OLIVETTI Pt.1 | Il suono del progresso"
+      },
+      {
+        "id": "MNTHA2650567880",
+        "title": "OLIVETTI Pt 2 | L'uomo che vide l'impossibile"
+      }
+    ]
+  },
+  {
+    "brand": "Chanel",
+    "year": 1910,
+    "id": "MNTHA3651740776",
+    "title": "CHANEL Pt 1 | Un nome d'arte",
+    "image": "https://megaphone.imgix.net/podcasts/16920e3c-1a41-11ec-8152-5fe459736ab1/image/copertina_chanel.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA3651740776",
+        "title": "CHANEL Pt 1 | Un nome d'arte"
+      },
+      {
+        "id": "MNTHA5305678962",
+        "title": "CHANEL Pt. 2 | Profumo di sfida"
+      }
+    ]
+  },
+  {
+    "brand": "Mars",
+    "year": 1911,
+    "id": "MNTHA2193162810",
+    "title": "MARS | Il senso del denaro",
+    "image": "https://megaphone.imgix.net/podcasts/a99fc0c6-84bc-11ec-8684-27bd911b8254/image/mars_copertina.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA6137578007",
+        "title": "MARS Pt. 2 | Uno strano super potere"
+      },
+      {
+        "id": "MNTHA7260730681",
+        "title": "MARS Pt. 3 | L'ambizione di un figlio"
+      },
+      {
+        "id": "MNTHA4408097696",
+        "title": "MARS Pt. 4 | Una promessa da mantenere"
+      },
+      {
+        "id": "MNTHA2193162810",
+        "title": "MARS | Il senso del denaro"
+      }
+    ]
+  },
+  {
+    "brand": "Nivea",
+    "year": 1911,
+    "id": "MNTHA4129011809",
+    "title": "NIVEA  | Segni di un'oscura ambizione",
+    "image": "https://megaphone.imgix.net/podcasts/9e21a50e-aedb-11ec-bbf4-d7aac2960521/image/nivea0.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4129011809",
+        "title": "NIVEA  | Segni di un'oscura ambizione"
+      }
+    ]
+  },
+  {
+    "brand": "Superga",
+    "year": 1911,
+    "id": "MNTHA7563031507",
+    "title": "SUPERGA | La scarpa degli italiani",
+    "image": "https://megaphone.imgix.net/podcasts/0f78687e-572a-11f0-b67c-bf3c1f4abb7b/image/18df9c646ed687b90126c0d42fa73a20.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7563031507",
+        "title": "SUPERGA | La scarpa degli italiani"
+      }
+    ]
+  },
+  {
+    "brand": "Maserati",
+    "year": 1914,
+    "id": "MNTHA2532086893",
+    "title": "MASERATI | Nati nel segno del tridente",
+    "image": "https://megaphone.imgix.net/podcasts/55222dd0-f43f-11eb-9266-abfd83004f4b/image/maserati.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2532086893",
+        "title": "MASERATI | Nati nel segno del tridente"
+      }
+    ]
+  },
+  {
+    "brand": "Bialetti",
+    "year": 1919,
+    "id": "MNTHA8930466241",
+    "title": "BIALETTI | Pt. 1 | Il suono di casa",
+    "image": "https://megaphone.imgix.net/podcasts/2e15ef7a-df22-11ef-b6a7-bf192546bebd/image/83f04a0cf3e461b08d58ebe5671235bb.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA8930466241",
+        "title": "BIALETTI | Pt. 1 | Il suono di casa"
+      },
+      {
+        "id": "MNTHA7470399811",
+        "title": "BIALETTI | Pt 2 | Un omino con i baffi"
+      }
+    ]
+  },
+  {
+    "brand": "Gucci",
+    "year": 1921,
+    "id": "MNTHA4263358445",
+    "title": "GUCCI Pt. 1 | Il fuoco dell'ambizione",
+    "image": "https://megaphone.imgix.net/podcasts/890eaf52-5069-11ec-bd5e-0bdf8f410b46/image/gucci_pt_1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4263358445",
+        "title": "GUCCI Pt. 1 | Il fuoco dell'ambizione"
+      },
+      {
+        "id": "MNTHA9073669228",
+        "title": "GUCCI Pt. 2 | Parenti serpenti"
+      }
+    ]
+  },
+  {
+    "brand": "BMW Motorrad",
+    "year": 1923,
+    "id": "MNTHA2073112077",
+    "title": "BMW  MOTORRAD | Vita da boxer | Pt. 1",
+    "image": "https://megaphone.imgix.net/podcasts/89a33058-f371-11ed-ac68-a733a6f144e4/image/eb8eff.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA2073112077",
+        "title": "BMW  MOTORRAD | Vita da boxer | Pt. 1"
+      },
+      {
+        "id": "MNTHA2581983924",
+        "title": "BMW  MOTORRAD | Strade Ignote | Pt. 2"
+      }
+    ]
+  },
+  {
+    "brand": "Colmar",
+    "year": 1923,
+    "id": "MNTHA5798982765",
+    "title": "COLMAR | In caso di neve",
+    "image": "https://megaphone.imgix.net/podcasts/46105556-77b4-11ee-ad2e-735daa869a63/image/5a4d86.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5798982765",
+        "title": "COLMAR | In caso di neve"
+      }
+    ]
+  },
+  {
+    "brand": "Disney",
+    "year": 1923,
+    "id": "MNTHA5180517330",
+    "title": "I SEGRETI DI WALT DISNEY | La strada per la magia",
+    "image": "https://megaphone.imgix.net/podcasts/2485e6b8-b2f4-11ef-82f9-7f99b7aee728/image/9d42e6d5f953d9e91dd1150a056f22d9.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA9861368393",
+        "title": "I SEGRETI DI WALT DISNEY | Pt. 2 | Un topolino impertinente"
+      },
+      {
+        "id": "MNTHA1215110998",
+        "title": "I SEGRETI DI WALT DISNEY | Pt. 3 | C'era una volta..."
+      },
+      {
+        "id": "MNTHA1132114938",
+        "title": "I SEGRETI DI WALT DISNEY | Pt. 4 | Un mondo magico"
+      },
+      {
+        "id": "MNTHA5180517330",
+        "title": "I SEGRETI DI WALT DISNEY | La strada per la magia"
+      }
+    ]
+  },
+  {
+    "brand": "Warner Bros.",
+    "year": 1923,
+    "id": "MNTHA5574550743",
+    "title": "WARNER BROS. | Fabbrica di sogni",
+    "image": "https://megaphone.imgix.net/podcasts/67ac2f98-94e5-11ee-9b99-13c6863bc86c/image/e1d263.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5574550743",
+        "title": "WARNER BROS. | Fabbrica di sogni"
+      }
+    ]
+  },
+  {
+    "brand": "La Sportiva",
+    "year": 1928,
+    "id": "MNTHA7576285226",
+    "title": "LA SPORTIVA | Una promessa da mantenere",
+    "image": "https://megaphone.imgix.net/podcasts/13233798-0e88-11ee-a1a0-5b2e278d6c9e/image/49b821.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7576285226",
+        "title": "LA SPORTIVA | Una promessa da mantenere"
+      }
+    ]
+  },
+  {
+    "brand": "Looney Tunes",
+    "year": 1930,
+    "id": "MNTHA4337788148",
+    "title": "LOONEY TUNES | Matti, lunatici e immortali",
+    "image": "https://megaphone.imgix.net/podcasts/36ec60f6-abb2-11ee-b88a-939d8595d205/image/88d11b.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4337788148",
+        "title": "LOONEY TUNES | Matti, lunatici e immortali"
+      }
+    ]
+  },
+  {
+    "brand": "LEGO",
+    "year": 1932,
+    "id": "MNTHA7208231151",
+    "title": "LEGO | La ricompensa del fato",
+    "image": "https://megaphone.imgix.net/podcasts/c10909ee-7b7a-11eb-bf43-17d5c902b5b2/image/bed924192c4f485f2a6a71e5f9518a5c.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7208231151",
+        "title": "LEGO | La ricompensa del fato"
+      }
+    ]
+  },
+  {
+    "brand": "Lacoste",
+    "year": 1933,
+    "id": "MNTHA7640079065",
+    "title": "LACOSTE | Pt. 1 | Un coccodrillo e la sua preda",
+    "image": "https://megaphone.imgix.net/podcasts/8963d838-3559-11ef-bfd9-87181d617ebd/image/4a2c36c6e25dad87edd15a0845116acd.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA7640079065",
+        "title": "LACOSTE | Pt. 1 | Un coccodrillo e la sua preda"
+      },
+      {
+        "id": "MNTHA8548630104",
+        "title": "LACOSTE | Pt. 2 | Una vittoria su misura"
+      }
+    ]
+  },
+  {
+    "brand": "DC Comics",
+    "year": 1934,
+    "id": "MNTHA6761333402",
+    "title": "DC COMICS | I primi eroi",
+    "image": "https://megaphone.imgix.net/podcasts/afc7ea12-9a79-11ee-ba8e-f3a5bd0fb367/image/3743c4.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA6761333402",
+        "title": "DC COMICS | I primi eroi"
+      }
+    ]
+  },
+  {
+    "brand": "Monopoly",
+    "year": 1935,
+    "id": "MNTHA4789570012",
+    "title": "MONOPOLY | La storia perfetta",
+    "image": "https://megaphone.imgix.net/podcasts/3ab0bf1a-63df-11ec-b233-ef71174495ed/image/monopoli.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA5984637187",
+        "title": "MONOPOLY Pt. 2 | Una donna tra povertà e progresso"
+      },
+      {
+        "id": "MNTHA9459649931",
+        "title": "MONOPOLY Pt. 3 | Il gioco dei potenti"
+      },
+      {
+        "id": "MNTHA5154949160",
+        "title": "MONOPOLY P.t 4 | La fine dell'inganno"
+      },
+      {
+        "id": "MNTHA4789570012",
+        "title": "MONOPOLY | La storia perfetta"
+      }
+    ]
+  },
+  {
+    "brand": "Salewa",
+    "year": 1935,
+    "id": "MNTHA5198593866",
+    "title": "SALEWA | Maestri di vita",
+    "image": "https://megaphone.imgix.net/podcasts/b6fdd822-953c-11f0-b4df-3bbac19b6bd7/image/ecf7346e493cac09b3d8c40de48c833a.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5198593866",
+        "title": "SALEWA | Maestri di vita"
+      }
+    ]
+  },
+  {
+    "brand": "Polaroid",
+    "year": 1937,
+    "id": "MNTHA7454614420",
+    "title": "POLAROID | Pt 1 | Il signore della luce",
+    "image": "https://megaphone.imgix.net/podcasts/18a744c6-1ca6-11ee-bdec-93b118c68338/image/ac80a9.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA7454614420",
+        "title": "POLAROID | Pt 1 | Il signore della luce"
+      },
+      {
+        "id": "MNTHA3939997848",
+        "title": "POLAROID | Pt 2 | La sfida del tempo"
+      }
+    ]
+  },
+  {
+    "brand": "Scarpa",
+    "year": 1938,
+    "id": "MNTHA9347006106",
+    "title": "SCARPA | Il piacere della sfida",
+    "image": "https://megaphone.imgix.net/podcasts/e29c727c-2b71-11ee-a767-f339b9b2fbbd/image/c77101.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA9347006106",
+        "title": "SCARPA | Il piacere della sfida"
+      }
+    ]
+  },
+  {
+    "brand": "Marvel",
+    "year": 1939,
+    "id": "MNTHA3920967402",
+    "title": "MARVEL Pt.1 | La genesi degli eroi",
+    "image": "https://megaphone.imgix.net/podcasts/7d199438-400a-11ec-a16f-2f3ceeb94730/image/Media_Cachep.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA3920967402",
+        "title": "MARVEL Pt.1 | La genesi degli eroi"
+      },
+      {
+        "id": "MNTHA4670625796",
+        "title": "MARVEL Pt 2 | Potere e responsabilità"
+      }
+    ]
+  },
+  {
+    "brand": "Fanta",
+    "year": 1940,
+    "id": "MNTHA3667038728",
+    "title": "FANTA | Il succo del diavolo",
+    "image": "https://megaphone.imgix.net/podcasts/c1dfc916-7b7a-11eb-bf43-33714699909e/image/c010483038a8faab16f9ea4ba9ce2dcc.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA3667038728",
+        "title": "FANTA | Il succo del diavolo"
+      }
+    ]
+  },
+  {
+    "brand": "McDonald's",
+    "year": 1940,
+    "id": "MNTHA9210927217",
+    "title": "MCDONALD'S | Pt. 1 | Due fratelli e una promessa",
+    "image": "https://megaphone.imgix.net/podcasts/29f4bffc-1f10-11ef-b3fe-7fe189f221e6/image/7f57adc192653321fc9b2e361d0798d0.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA9210927217",
+        "title": "MCDONALD'S | Pt. 1 | Due fratelli e una promessa"
+      },
+      {
+        "id": "MNTHA4794978920",
+        "title": "MCDONALD'S | Pt. 2 | Il fuoco dell'ambizione"
+      },
+      {
+        "id": "MNTHA1988182829",
+        "title": "MCDONALD'S | Pt.3 | Un piano perfetto"
+      },
+      {
+        "id": "MNTHA1710981221",
+        "title": "MCDONALD'S | Pt. 4 | La fine di un impero"
+      }
+    ]
+  },
+  {
+    "brand": "IKEA",
+    "year": 1943,
+    "id": "MNTHA9133835273",
+    "title": "IKEA | Un tirchio al comando",
+    "image": "https://megaphone.imgix.net/podcasts/c0df5658-7b7a-11eb-bf43-b7d9abff8b1a/image/2e2892eadd2580d428e8327311c88203.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA9133835273",
+        "title": "IKEA | Un tirchio al comando"
+      }
+    ]
+  },
+  {
+    "brand": "Algida",
+    "year": 1945,
+    "id": "MNTHA6180318927",
+    "title": "ALGIDA | L'eredità del freddo",
+    "image": "https://megaphone.imgix.net/podcasts/4bb87db0-fb53-11eb-9b06-03617861bc41/image/unnamed__7_.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA6180318927",
+        "title": "ALGIDA | L'eredità del freddo"
+      }
+    ]
+  },
+  {
+    "brand": "Bic",
+    "year": 1945,
+    "id": "MNTHA4532797850",
+    "title": "BIC | Un fallimento di grande successo",
+    "image": "https://megaphone.imgix.net/podcasts/c34bc80e-7b7a-11eb-bf43-3334d8fd3b15/image/0ff0634d7fbc0f1a770e4e082e8455c5.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4532797850",
+        "title": "BIC | Un fallimento di grande successo"
+      }
+    ]
+  },
+  {
+    "brand": "Dior",
+    "year": 1946,
+    "id": "MNTHA9245328747",
+    "title": "DIOR | Pt 1 | La sfortuna degli audaci",
+    "image": "https://megaphone.imgix.net/podcasts/3e1436a6-7a88-11ef-9fcd-7f2d6776d6e0/image/63a4eecf09c6d617a6042b4916645648.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA9245328747",
+        "title": "DIOR | Pt 1 | La sfortuna degli audaci"
+      },
+      {
+        "id": "MNTHA9267289392",
+        "title": "DIOR | Pt.2 | Il fiore nato dalle avversità"
+      }
+    ]
+  },
+  {
+    "brand": "Ferrero",
+    "year": 1946,
+    "id": "MNTHA5695429302",
+    "title": "FERRERO | Il fiore nato nelle avversità",
+    "image": "https://megaphone.imgix.net/podcasts/c0c1b53a-7b7a-11eb-bf43-0b35301a0ad9/image/8a148e7bf1fe9c3481f3773ddaf832f2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5695429302",
+        "title": "FERRERO | Il fiore nato nelle avversità"
+      }
+    ]
+  },
+  {
+    "brand": "Tupperware",
+    "year": 1946,
+    "id": "MNTHA3903427373",
+    "title": "TUPPERWARE | L'anima della festa",
+    "image": "https://megaphone.imgix.net/podcasts/c11deb84-7b7a-11eb-bf43-1bdd48d60ff8/image/cf5e9366619e1893e8aaaf382ebf932e.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA3903427373",
+        "title": "TUPPERWARE | L'anima della festa"
+      }
+    ]
+  },
+  {
+    "brand": "Ferrari",
+    "year": 1947,
+    "id": "MNTHA7538218166",
+    "title": "FERRARI | Pt. 1 | La condanna del secondo",
+    "image": "https://megaphone.imgix.net/podcasts/808b877c-3a70-11ee-9991-ebbb2650916a/image/898034.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA7538218166",
+        "title": "FERRARI | Pt. 1 | La condanna del secondo"
+      },
+      {
+        "id": "MNTHA7133197831",
+        "title": "FERRARI | Pt. 2 | Il cavallino rampante"
+      },
+      {
+        "id": "MNTHA8419970748",
+        "title": "FERRARI | Pt. 3 | Il Drake"
+      },
+      {
+        "id": "MNTHA9773505922",
+        "title": "FERRARI | Pt. 4 | Rivalità"
+      }
+    ]
+  },
+  {
+    "brand": "Puma",
+    "year": 1948,
+    "id": "MNTHA9198209928",
+    "title": "PUMA SUEDE e le Olimpiadi del '68",
+    "image": "https://megaphone.imgix.net/podcasts/c39815f8-4519-11ef-b27a-333620611ba8/image/20b073b8a45cdd3334affb7c879e2373.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA9198209928",
+        "title": "PUMA SUEDE e le Olimpiadi del '68"
+      }
+    ]
+  },
+  {
+    "brand": "Adidas",
+    "year": 1949,
+    "id": "MNTHA9525703171",
+    "title": "ADIDAS vs PUMA (pt 1) | Lotta fratricida",
+    "image": "https://megaphone.imgix.net/podcasts/c27fb7f0-7b7a-11eb-bf43-bbed8c0849db/image/bdcd9f441f3ad3c6e3f9a5607b382701.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA9525703171",
+        "title": "ADIDAS vs PUMA (pt 1) | Lotta fratricida"
+      },
+      {
+        "id": "MNTHA1114046194",
+        "title": "ADIDAS vs PUMA (pt 2) | Una rivalità senza fine"
+      }
+    ]
+  },
+  {
+    "brand": "Head",
+    "year": 1950,
+    "id": "MNTHA7145347344",
+    "title": "HEAD |  La scia delle idee",
+    "image": "https://megaphone.imgix.net/podcasts/96f76dc6-b57c-11f0-a59b-eb651c4a2ee5/image/98f902f277f2a5a1f1e1cf808c884a41.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7145347344",
+        "title": "HEAD |  La scia delle idee"
+      }
+    ]
+  },
+  {
+    "brand": "KFC",
+    "year": 1952,
+    "id": "MNTHA9147155454",
+    "title": "KFC | Pt 1 | Vento del sud",
+    "image": "https://megaphone.imgix.net/podcasts/a809b474-6ed2-11f1-aa70-9f45453c8caf/image/de0b7dceab4b4c9d689c37d550bc33a8.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA9147155454",
+        "title": "KFC | Pt 1 | Vento del sud"
+      },
+      {
+        "id": "MNTHA5760074544",
+        "title": "KFC | Pt 2 | Mezzo acro di fuoco"
+      },
+      {
+        "id": "MNTHA2714506724",
+        "title": "KFC | Pt 3 | Il colonnello"
+      },
+      {
+        "id": "MNTHA9122088520",
+        "title": "KFC | Pt.4 | Il canto del pollo"
+      }
+    ]
+  },
+  {
+    "brand": "Playboy",
+    "year": 1953,
+    "id": "MNTHA7985843566",
+    "title": "PLAYBOY (pt 1) | Tra sesso e successo!",
+    "image": "https://megaphone.imgix.net/podcasts/c238ac84-7b7a-11eb-bf43-1b2c959e54df/image/a6bccbb952f44a5d93d670b0b45dbfdc.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA7985843566",
+        "title": "PLAYBOY (pt 1) | Tra sesso e successo!"
+      },
+      {
+        "id": "MNTHA7382195633",
+        "title": "PLAYBOY (pt.2) | Il Falò delle Vanità"
+      }
+    ]
+  },
+  {
+    "brand": "Guido Berlucchi",
+    "year": 1955,
+    "id": "MNTHA9188259634",
+    "title": "GUIDO BERLUCCHI Pt. 1 | Storie di una terra",
+    "image": "https://megaphone.imgix.net/podcasts/3c77a81a-ec81-11ec-a37e-f31e7be5c13e/image/belucchi_copertina_top.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA9188259634",
+        "title": "GUIDO BERLUCCHI Pt. 1 | Storie di una terra"
+      },
+      {
+        "id": "MNTHA8909195448",
+        "title": "GUIDO BERLUCCHI Pt. 2 | Bolle di Vita"
+      }
+    ]
+  },
+  {
+    "brand": "Guinness World Records",
+    "year": 1955,
+    "id": "MNTHA9288234939",
+    "title": "GUINNESS WORLD RECORD  | Una strategia geniale",
+    "image": "https://megaphone.imgix.net/podcasts/4bd3c25a-d8ef-11ef-935f-dbef3b06ae68/image/1b00acd15ef4a22365218fff053baef5.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA9288234939",
+        "title": "GUINNESS WORLD RECORD  | Una strategia geniale"
+      }
+    ]
+  },
+  {
+    "brand": "Barbie",
+    "year": 1959,
+    "id": "MNTHA2798546094",
+    "title": "BARBIE | Un gioco di sguardi",
+    "image": "https://megaphone.imgix.net/podcasts/cc9e4a76-9628-11eb-aef9-affd0c441f21/image/barbie.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2798546094",
+        "title": "BARBIE | Un gioco di sguardi"
+      }
+    ]
+  },
+  {
+    "brand": "Mini",
+    "year": 1959,
+    "id": "MNTHA7874188729",
+    "title": "MINI | Oltre l'impossibile",
+    "image": "https://megaphone.imgix.net/podcasts/ebcc9dbc-7680-11ef-bf9d-dba76b7cf99d/image/7a3ee2ddfae9eeeac87fc868cfee72f1.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7874188729",
+        "title": "MINI | Oltre l'impossibile"
+      }
+    ]
+  },
+  {
+    "brand": "Yves Saint Laurent",
+    "year": 1961,
+    "id": "MNTHA3643126135",
+    "title": "YVES SAINT LAURENT | Pt.1 | Ricordi d'infanzia",
+    "image": "https://megaphone.imgix.net/podcasts/38a6fbf8-ccba-11ee-863c-b3fc186fbb82/image/fe1138.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA3643126135",
+        "title": "YVES SAINT LAURENT | Pt.1 | Ricordi d'infanzia"
+      },
+      {
+        "id": "MNTHA4630868868",
+        "title": "YVES SAINT LAURENT | Pt.2 | Identità di un genio"
+      }
+    ]
+  },
+  {
+    "brand": "Lamborghini",
+    "year": 1963,
+    "id": "MNTHA6004603881",
+    "title": "LAMBORGHINI | Mai sfidare un trattore",
+    "image": "https://megaphone.imgix.net/podcasts/c2aae434-7b7a-11eb-bf43-2b1011ed6049/image/dce3cb20ce8da0cb6e07641c9ccd98ff.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA6004603881",
+        "title": "LAMBORGHINI | Mai sfidare un trattore"
+      }
+    ]
+  },
+  {
+    "brand": "Garmont",
+    "year": 1964,
+    "id": "MNTHA8363683662",
+    "title": "GARMONT | Il sogno della vetta",
+    "image": "https://megaphone.imgix.net/podcasts/3083eaec-3487-11ee-8240-3b89b053b57b/image/8e2c73.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8363683662",
+        "title": "GARMONT | Il sogno della vetta"
+      }
+    ]
+  },
+  {
+    "brand": "Nike",
+    "year": 1964,
+    "id": "MNTHA4090760238",
+    "title": "NIKE | Mamma... sto andando in esplorazione!",
+    "image": "https://megaphone.imgix.net/podcasts/c39733ca-7b7a-11eb-bf43-2f65071783d8/image/eeb6d026603e683b12e71424b6353c77.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4090760238",
+        "title": "NIKE | Mamma... sto andando in esplorazione!"
+      },
+      {
+        "id": "MNTHA3402429630",
+        "title": "NIKE | Un viaggio in Giappone"
+      }
+    ]
+  },
+  {
+    "brand": "Gatorade",
+    "year": 1965,
+    "id": "MNTHA7753146264",
+    "title": "GATORADE | Il sapore della vittoria",
+    "image": "https://megaphone.imgix.net/podcasts/e98bfe8e-238c-11f1-8669-cbd6508fea0a/image/238326e45471cecb0affda5145dcba0c.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7753146264",
+        "title": "GATORADE | Il sapore della vittoria"
+      }
+    ]
+  },
+  {
+    "brand": "K-Way",
+    "year": 1965,
+    "id": "MNTHA2628641262",
+    "title": "K-WAY | In caso di...",
+    "image": "https://megaphone.imgix.net/podcasts/1b1e49ec-a4f9-11f0-9875-3b5b9c92bfd0/image/134fa83026280835850d3eba8809fd00.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2628641262",
+        "title": "K-WAY | In caso di..."
+      }
+    ]
+  },
+  {
+    "brand": "Kappa",
+    "year": 1967,
+    "id": "MNTHA5837665130",
+    "title": "KAPPA | Pt 1 | Un errore provvidenziale",
+    "image": "https://megaphone.imgix.net/podcasts/a6f5819c-c600-11f0-aa91-f7e8592355e8/image/4f3395015fe36648a470404db6a76db4.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA5837665130",
+        "title": "KAPPA | Pt 1 | Un errore provvidenziale"
+      },
+      {
+        "id": "MNTHA8836325341",
+        "title": "KAPPA | Pt. 2 | Una rivoluzione silenziosa"
+      }
+    ]
+  },
+  {
+    "brand": "The North Face",
+    "year": 1968,
+    "id": "MNTHA4234142187",
+    "title": "THE NORTH FACE | Il valore della Natura",
+    "image": "https://megaphone.imgix.net/podcasts/107507d4-ab56-11eb-965c-373b73aef814/image/Storie_di_brand_TheNorthFace.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4234142187",
+        "title": "THE NORTH FACE | Il valore della Natura"
+      }
+    ]
+  },
+  {
+    "brand": "Starbucks",
+    "year": 1971,
+    "id": "MNTHA4045523173",
+    "title": "STARBUCKS Pt. 1 | Il canto della sirena",
+    "image": "https://megaphone.imgix.net/podcasts/2d154306-2f84-11ec-832f-13ea1a09cf59/image/unnamed__12_.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4045523173",
+        "title": "STARBUCKS Pt. 1 | Il canto della sirena"
+      },
+      {
+        "id": "MNTHA8817336194",
+        "title": "STARBUCKS Pt. 2 | Un porto sicuro"
+      }
+    ]
+  },
+  {
+    "brand": "Dolomiti Superski",
+    "year": 1974,
+    "id": "MNTHA2291531687",
+    "title": "DOLOMITI SUPERSKI | Il richiamo della montagna",
+    "image": "https://megaphone.imgix.net/podcasts/a6bca3ca-ada3-11ef-81e0-eb6104a70914/image/19e75f98c35eb95ee4c1d56ff91156f1.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2291531687",
+        "title": "DOLOMITI SUPERSKI | Il richiamo della montagna"
+      }
+    ]
+  },
+  {
+    "brand": "Armani",
+    "year": 1975,
+    "id": "MNTHA3374941325",
+    "title": "ARMANI | Pt. 1 | L'eleganza del normale",
+    "image": "https://megaphone.imgix.net/podcasts/a3a3b10e-3d3d-11f0-83a4-5b8b09cd0144/image/0095472be982be66f8eda3142f6b6948.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA3374941325",
+        "title": "ARMANI | Pt. 1 | L'eleganza del normale"
+      },
+      {
+        "id": "MNTHA2718959658",
+        "title": "ARMANI | Pt. 2| L'ascesa del Re"
+      }
+    ]
+  },
+  {
+    "brand": "DeLorean",
+    "year": 1975,
+    "id": "MNTHA4778517952",
+    "title": "DELOREAN | La macchina del tempo | Pt.1",
+    "image": "https://megaphone.imgix.net/podcasts/66b53be4-7ef0-11ee-aa3f-1bd358e0fb9a/image/3500bd.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4778517952",
+        "title": "DELOREAN | La macchina del tempo | Pt.1"
+      },
+      {
+        "id": "MNTHA3141928578",
+        "title": "DELOREAN | Insospettabile successo | Pt.2"
+      }
+    ]
+  },
+  {
+    "brand": "Apple",
+    "year": 1976,
+    "id": "MNTHA5531345318",
+    "title": "APPLE | PT.1 | Scherzi del destino",
+    "image": "https://megaphone.imgix.net/podcasts/ee708db0-d6d0-11f0-ba3f-cba2cc13fd93/image/b4ab22b622c230c5b3ac39d8f0a70e0d.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA5531345318",
+        "title": "APPLE | PT.1 | Scherzi del destino"
+      },
+      {
+        "id": "MNTHA4127499116",
+        "title": "APPLE | Pt 2 | I pirati della Silicon Valley"
+      },
+      {
+        "id": "MNTHA9643935819",
+        "title": "APPLE | Pt. 3 | Il ritorno del re"
+      },
+      {
+        "id": "MNTHA9536403730",
+        "title": "APPLE | Pt 4 | La nascita di un impero"
+      }
+    ]
+  },
+  {
+    "brand": "L'Erbolario",
+    "year": 1978,
+    "id": "MNTHA4217953569",
+    "title": "L'ERBOLARIO | Il richiamo della Natura",
+    "image": "https://megaphone.imgix.net/podcasts/c8a3b63c-920e-11ef-b04e-137eeccd290b/image/93347ce0698a5e991b8378bde051cb38.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4217953569",
+        "title": "L'ERBOLARIO | Il richiamo della Natura"
+      }
+    ]
+  },
+  {
+    "brand": "Post-it",
+    "year": 1980,
+    "id": "MNTHA3621754248",
+    "title": "POST-IT | Per aerei e idee",
+    "image": "https://megaphone.imgix.net/podcasts/49baa490-05db-11ee-a57e-cb0cbde9a1e5/image/24b93f.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA3621754248",
+        "title": "POST-IT | Per aerei e idee"
+      }
+    ]
+  },
+  {
+    "brand": "Air Jordan",
+    "year": 1984,
+    "id": "MNTHA5929757574",
+    "title": "AIR JORDAN e l'accordo del secolo",
+    "image": "https://megaphone.imgix.net/podcasts/bf7748f6-dc67-11ee-8381-c7de24434b19/image/7949f55371354a46c8b5f7163d16531f.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5929757574",
+        "title": "AIR JORDAN e l'accordo del secolo"
+      }
+    ]
+  },
+  {
+    "brand": "BlackBerry",
+    "year": 1984,
+    "id": "MNTHA9637514692",
+    "title": "BLACKBERRY | Una nuova speranza |Pt.1",
+    "image": "https://megaphone.imgix.net/podcasts/b738b932-c087-11ee-bd20-ef20c6496d95/image/30380b.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA9637514692",
+        "title": "BLACKBERRY | Una nuova speranza |Pt.1"
+      },
+      {
+        "id": "MNTHA5796469601",
+        "title": "BLACKBERRY | La minaccia fantasma |Pt.2"
+      }
+    ]
+  },
+  {
+    "brand": "Ryanair",
+    "year": 1984,
+    "id": "MNTHA3378231103",
+    "title": "RYANAIR | Pt.1 | Il decollo",
+    "image": "https://megaphone.imgix.net/podcasts/7b093572-e84b-11ee-9f6c-13aa74a44abe/image/d6b56daa956e76271be955193d1d3780.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA3378231103",
+        "title": "RYANAIR | Pt.1 | Il decollo"
+      },
+      {
+        "id": "MNTHA5848763276",
+        "title": "RYANAIR | Pt. 2 | Alta quota"
+      }
+    ]
+  },
+  {
+    "brand": "Tetris",
+    "year": 1984,
+    "id": "MNTHA7506136798",
+    "title": "TETRIS | Pt.1 | Via di fuga",
+    "image": "https://megaphone.imgix.net/podcasts/9d11ba14-5d65-11f0-9d24-fbba079737f9/image/cd87f8affeb3a9a805d1de3f26277ecc.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA7506136798",
+        "title": "TETRIS | Pt.1 | Via di fuga"
+      },
+      {
+        "id": "MNTHA3461500448",
+        "title": "TETRIS | Pt 2 | Giochi di potere"
+      },
+      {
+        "id": "MNTHA3475598961",
+        "title": "TETRIS | Pt 3 | Dalla Russia con amore"
+      }
+    ]
+  },
+  {
+    "brand": "Blockbuster",
+    "year": 1985,
+    "id": "MNTHA8113376789",
+    "title": "L'inspiegabile caduta di BLOCKBUSTER",
+    "image": "https://megaphone.imgix.net/podcasts/c17cfda4-18ca-11ef-ab80-b3931fe7ff75/image/e78dd2e9cd37531327f673c923aaa969.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8113376789",
+        "title": "L'inspiegabile caduta di BLOCKBUSTER"
+      }
+    ]
+  },
+  {
+    "brand": "Pixar",
+    "year": 1986,
+    "id": "MNTHA4065287152",
+    "title": "PIXAR | PT 1 | Sogni digitali",
+    "image": "https://megaphone.imgix.net/podcasts/b7ca2940-fdce-11f0-80a3-a7e44f0bf8b6/image/3abee65a756d2a3fe9091587355f7cef.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4065287152",
+        "title": "PIXAR | PT 1 | Sogni digitali"
+      },
+      {
+        "id": "MNTHA3443409585",
+        "title": "PIXAR | Pt 2 | Verso l'infinito e oltre"
+      }
+    ]
+  },
+  {
+    "brand": "Red Bull",
+    "year": 1987,
+    "id": "MNTHA9454037657",
+    "title": "RED BULL | Per i poveri e gli estremi",
+    "image": "https://megaphone.imgix.net/podcasts/c3175c90-7b7a-11eb-bf43-37bd9f6ee1d9/image/4339dbc6596b0a512601517f4d68af15.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA9454037657",
+        "title": "RED BULL | Per i poveri e gli estremi"
+      }
+    ]
+  },
+  {
+    "brand": "Pokémon",
+    "year": 1996,
+    "id": "MNTHA5619598851",
+    "title": "POKÉMON | Un mondo nascosto",
+    "image": "https://megaphone.imgix.net/podcasts/395b43ee-6abf-11ef-b689-579f52ce71c2/image/57acab7f30c65e2feb441115608abce9.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA6398943962",
+        "title": "POKÉMON | Pt. 2 | Gotta Catch ’Em All"
+      },
+      {
+        "id": "MNTHA5619598851",
+        "title": "POKÉMON | Un mondo nascosto"
+      }
+    ]
+  },
+  {
+    "brand": "Harry Potter",
+    "year": 1997,
+    "id": "MNTHA6124302315",
+    "title": "HARRY POTTER | Un mondo magico",
+    "image": "https://megaphone.imgix.net/podcasts/351320ec-a00b-11ee-b395-170feabfa788/image/07ca06.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA6124302315",
+        "title": "HARRY POTTER | Un mondo magico"
+      }
+    ]
+  },
+  {
+    "brand": "Netflix",
+    "year": 1997,
+    "id": "MNTHA7595707954",
+    "title": "NETFLIX | Pt. 1 | Dischi dal futuro",
+    "image": "https://megaphone.imgix.net/podcasts/2fc09c18-0de4-11ef-b652-c3dac3129cdf/image/80403282f64f8ae22f66a6de7ae3b6a6.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA7595707954",
+        "title": "NETFLIX | Pt. 1 | Dischi dal futuro"
+      },
+      {
+        "id": "MNTHA3924182368",
+        "title": "NETFLIX | Pt 2 | Rinunciare a sé stessi"
+      },
+      {
+        "id": "MNTHA7529990563",
+        "title": "NETFLIX | ... e se usassimo i DVD?"
+      }
+    ]
+  },
+  {
+    "brand": "Google",
+    "year": 1998,
+    "id": "MNTHA2722410865",
+    "title": "GOOGLE | Pt. 1/3 | In cerca di risposte",
+    "image": "https://megaphone.imgix.net/podcasts/d0118636-f4fd-11ef-9bdb-e7f58930917a/image/065c982db3670ce9701d1f22591d1cd4.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA2722410865",
+        "title": "GOOGLE | Pt. 1/3 | In cerca di risposte"
+      },
+      {
+        "id": "MNTHA8325524978",
+        "title": "GOOGLE | Pt. 2/3 | Parole chiave"
+      },
+      {
+        "id": "MNTHA9815271274",
+        "title": "GOOGLE | Pt 3/3 | Risposte difficili"
+      }
+    ]
+  },
+  {
+    "brand": "Wikipedia",
+    "year": 2001,
+    "id": "MNTHA8084755828",
+    "title": "WIKIPEDIA | Fallisci fin che puoi",
+    "image": "https://megaphone.imgix.net/podcasts/c1f757f2-7b7a-11eb-bf43-e34e265374fa/image/4f9c7a2b2281d431e19a59119f45dd71.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8084755828",
+        "title": "WIKIPEDIA | Fallisci fin che puoi"
+      }
+    ]
+  },
+  {
+    "brand": "GoPro",
+    "year": 2002,
+    "id": "MNTHA3328985900",
+    "title": "GO PRO | La cavalcata degli eroi",
+    "image": "https://megaphone.imgix.net/podcasts/6ffe80b2-d2cb-11eb-bf5d-e79176a23f88/image/unnamed__1_.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA3328985900",
+        "title": "GO PRO | La cavalcata degli eroi"
+      }
+    ]
+  },
+  {
+    "brand": "YouTube",
+    "year": 2005,
+    "id": "MNTHA8918837518",
+    "title": "YOUTUBE | La rivincita degli sfigati",
+    "image": "https://megaphone.imgix.net/podcasts/c1a889c4-7b7a-11eb-bf43-5fe615f714c1/image/220077f2ffad2e910b9a9443d0db4380.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA8918837518",
+        "title": "YOUTUBE | La rivincita degli sfigati"
+      }
+    ]
+  },
+  {
+    "brand": "Spotify",
+    "year": 2006,
+    "id": "MNTHA5357634223",
+    "title": "SPOTIFY | Potere ai pirati!",
+    "image": "https://megaphone.imgix.net/podcasts/c2f866aa-7b7a-11eb-bf43-0f67c0b59fba/image/bcc4dafe1b4367a31e076d92b3feea78.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5357634223",
+        "title": "SPOTIFY | Potere ai pirati!"
+      }
+    ]
+  },
+  {
+    "brand": "Twitter",
+    "year": 2006,
+    "id": "MNTHA5891314032",
+    "title": "TWITTER | Una storia di speranza e tradimento",
+    "image": "https://megaphone.imgix.net/podcasts/c0f5796a-7b7a-11eb-bf43-03709e0c127b/image/78aa83e085f8e634453e22aeb1b2d4e9.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5891314032",
+        "title": "TWITTER | Una storia di speranza e tradimento"
+      }
+    ]
+  },
+  {
+    "brand": "Airbnb",
+    "year": 2008,
+    "id": "MNTHA5633222390",
+    "title": "AIR BnB | La peggiore idea che abbia mai funzionato",
+    "image": "https://megaphone.imgix.net/podcasts/c3646d5a-7b7a-11eb-bf43-47e92aa735e6/image/68e9bdb4ff2c840aa998d3cac65a367c.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5633222390",
+        "title": "AIR BnB | La peggiore idea che abbia mai funzionato"
+      }
+    ]
+  },
+  {
+    "brand": "Uber",
+    "year": 2009,
+    "id": "MNTHA3696858696",
+    "title": "UBER | Un passaggio di classe",
+    "image": "https://megaphone.imgix.net/podcasts/c160347e-1069-11ec-a38d-23f3ce232566/image/unnamed__8_.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA3696858696",
+        "title": "UBER | Un passaggio di classe"
+      }
+    ]
+  },
+  {
+    "brand": "WhatsApp",
+    "year": 2009,
+    "id": "MNTHA2572850907",
+    "title": "WHATSAPP | Notificati dalla fortuna",
+    "image": "https://megaphone.imgix.net/podcasts/c2562fac-7b7a-11eb-bf43-434071823807/image/07858ea66b707b807d4092f2c9cd4aef.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA2572850907",
+        "title": "WHATSAPP | Notificati dalla fortuna"
+      }
+    ]
+  },
+  {
+    "brand": "Instagram",
+    "year": 2010,
+    "id": "MNTHA3229354404",
+    "title": "INSTAGRAM | Una sbronza molto fortunata",
+    "image": "https://megaphone.imgix.net/podcasts/d083620a-8a40-11eb-a9e3-37b935ee6f1d/image/instagram.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA3229354404",
+        "title": "INSTAGRAM | Una sbronza molto fortunata"
+      }
+    ]
+  },
+  {
+    "brand": "Treedom",
+    "year": 2010,
+    "id": "MNTHA4633767627",
+    "title": "TREEDOM | Il seme della speranza",
+    "image": "https://megaphone.imgix.net/podcasts/c0682894-7b7a-11eb-bf43-8b218cd845b5/image/dd96a9e2d52ecc5716ffa9ed02dcc43d.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4633767627",
+        "title": "TREEDOM | Il seme della speranza"
+      }
+    ]
+  },
+  {
+    "brand": "Zoom",
+    "year": 2011,
+    "id": "MNTHA1424965223",
+    "title": "ZOOM | Il prezzo della normalità",
+    "image": "https://megaphone.imgix.net/podcasts/ba1d8c0a-cf7e-11ec-b9ea-0bd6c9fd8ffb/image/ZOOM_1.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA6417734271",
+        "title": "ZOOM Pt. 2 | Uno speciale teletrasporto"
+      },
+      {
+        "id": "MNTHA1424965223",
+        "title": "ZOOM | Il prezzo della normalità"
+      }
+    ]
+  },
+  {
+    "brand": "Tinder",
+    "year": 2012,
+    "id": "MNTHA5711793267",
+    "title": "TINDER: IL FUOCO DELLA PASSIONE| Pt 1 | Preliminari",
+    "image": "https://megaphone.imgix.net/podcasts/07bcdc4c-640b-11ed-ba4b-0bccc8f56c5e/image/8553dc.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 4,
+    "episodes": [
+      {
+        "id": "MNTHA5711793267",
+        "title": "TINDER: IL FUOCO DELLA PASSIONE| Pt 1 | Preliminari"
+      },
+      {
+        "id": "MNTHA4957531800",
+        "title": "TINDER: IL FUOCO DELLA PASSIONE| Pt 2 | Sguardi"
+      },
+      {
+        "id": "MNTHA5959931567",
+        "title": "TINDER: IL FUOCO DELLA PASSIONE| Pt 3 | Tradimento"
+      },
+      {
+        "id": "MNTHA7626806025",
+        "title": "TINDER: IL FUOCO DELLA PASSIONE| Pt 4 | Scandalo"
+      }
+    ]
+  },
+  {
+    "brand": "Telegram",
+    "year": 2013,
+    "id": "MNTHA4107811586",
+    "title": "TELEGRAM | Pt.1 | L'eletto",
+    "image": "https://megaphone.imgix.net/podcasts/9a1c8592-f253-11ee-a539-0786078662ef/image/acb807b03aec44c2bf7bbc37b270823a.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA4107811586",
+        "title": "TELEGRAM | Pt.1 | L'eletto"
+      },
+      {
+        "id": "MNTHA1468354643",
+        "title": "TELEGRAM | Pt 2 | Nemico Pubblico"
+      },
+      {
+        "id": "MNTHA1684509367",
+        "title": "TELEGRAM | Pt. 3 | Il prezzo della libertà"
+      }
+    ]
+  }
+]
