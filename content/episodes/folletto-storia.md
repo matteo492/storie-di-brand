@@ -6,7 +6,7 @@ brand: "Folletto"
 sector: "Elettrodomestici"
 era: "Anni 1880"
 youtubeUrl: "https://youtu.be/spNpZDl7oC0"
-duration: ""
+duration: "35 min"
 excerpt: "Un'azienda tedesca da 3 miliardi di euro che vende due soli prodotti, senza negozi e senza e-commerce. La storia di Vorwerk e del metodo Folletto, custodito come un segreto industriale da quasi 90 anni."
 coverColor: "#ff5757"
 featured: false
