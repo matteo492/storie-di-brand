@@ -9,6 +9,8 @@ export interface ArchiveItem {
   brand: string;
   sector: string;
   era: string;
+  sectorGroup: string;
+  eraGroup: string;
   coverColor: string;
   thumbnail: string | null;
 }
@@ -132,8 +134,8 @@ export default function ArchiveExplorer({
       episodes.filter(
         (e) =>
           (!active.brand || e.brand === active.brand) &&
-          (!active.sector || e.sector === active.sector) &&
-          (!active.era || e.era === active.era)
+          (!active.sector || e.sectorGroup === active.sector) &&
+          (!active.era || e.eraGroup === active.era)
       ),
     [episodes, active]
   );

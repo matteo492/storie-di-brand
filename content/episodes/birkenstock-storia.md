@@ -1,7 +1,7 @@
 ---
 title: "Birkenstock: le scarpe più brutte del mondo (e perché tutti le vogliono)"
 slug: "birkenstock-storia"
-publishedAt: "2026-08-24"
+publishedAt: "2026-08-25"
 brand: "Birkenstock"
 sector: "Calzature"
 era: "Anni 1770"

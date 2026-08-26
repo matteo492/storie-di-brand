@@ -1,7 +1,7 @@
 ---
 title: "Che fine ha fatto il TomTom? La vittoria che è costata la guerra dei navigatori"
 slug: "tomtom-storia"
-publishedAt: "2026-08-25"
+publishedAt: "2026-08-24"
 brand: "TomTom"
 sector: "Tecnologia"
 era: "Anni 2000"

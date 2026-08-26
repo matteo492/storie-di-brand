@@ -1,7 +1,7 @@
 ---
 title: "Il Super Liquidator: la pistola ad acqua inventata per errore da un ingegnere della NASA"
 slug: "super-liquidator-storia"
-publishedAt: "2026-08-23"
+publishedAt: "2026-08-26"
 brand: "Super Liquidator"
 sector: "Giocattoli"
 era: "Anni 1980"

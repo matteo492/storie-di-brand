@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllEpisodes, getFacets } from "@/lib/episodes";
+import { getAllEpisodes, getFacets, sectorGroup, eraGroup } from "@/lib/episodes";
 import ArchiveExplorer, { type ArchiveItem } from "@/components/ArchiveExplorer";
 
 export const metadata: Metadata = {
@@ -20,6 +20,8 @@ export default function ArchivePage() {
     brand: e.brand,
     sector: e.sector,
     era: e.era,
+    sectorGroup: sectorGroup(e.sector),
+    eraGroup: eraGroup(e.era),
     coverColor: e.coverColor ?? "#ff5757",
     thumbnail: e.youtubeId
       ? `https://i.ytimg.com/vi/${e.youtubeId}/maxresdefault.jpg`

@@ -1,7 +1,7 @@
 ---
 title: "FlixBus: il re dei pullman che non possiede nemmeno un pullman"
 slug: "flixbus-storia"
-publishedAt: "2026-08-26"
+publishedAt: "2026-08-23"
 brand: "FlixBus"
 sector: "Trasporti"
 era: "Anni 2000"
