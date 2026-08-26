@@ -169,7 +169,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem clamp(1.2rem, 5vw, 3rem) 0;
+  padding: 8rem clamp(1.2rem, 5vw, 3rem) 5rem;
   background:
     radial-gradient(120% 80% at 80% 0%, rgba(255,87,87,0.22), transparent 55%),
     radial-gradient(100% 70% at 0% 100%, rgba(250,249,210,0.06), transparent 50%),
@@ -1185,7 +1185,7 @@ img { max-width: 100%; display: block; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0 7px;
+  padding: 6px 9px;
   z-index: 3;
 }
 .bt-marker.is-above {
@@ -1231,6 +1231,13 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  position: relative;
+}
+/* Zona di tocco allargata (invisibile) attorno al pallino: tap più facile su mobile */
+.bt-marker__dot::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
 }
 @media (hover: hover) {
   .bt-marker:hover .bt-marker__dot {

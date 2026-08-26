@@ -175,7 +175,7 @@ export default function Home() {
               show dal vivo per aziende, conferenze ed eventi. Lo stesso storytelling
               che appassiona oltre 1 milione di persone, davanti al tuo pubblico.
             </p>
-            <a href="mailto:info@storiedibrand.it?subject=Richiesta%20evento%20live" className="btn btn--primary">
+            <a href="#collabora" className="btn btn--primary">
               Richiedi una live
             </a>
           </div>

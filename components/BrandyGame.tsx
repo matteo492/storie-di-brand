@@ -168,7 +168,7 @@ export default function BrandyGame() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Es: cosa sta succedendo a Zara?"
+          placeholder="Fai una domanda o cerca una parola chiave — es. Nokia, Nutella…"
           aria-label="Fai una domanda a Brandy"
         />
         <button type="submit" className="btn btn--primary">
