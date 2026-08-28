@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPodcastEpisodes, getPodcastYears } from "@/lib/podcast";
+import { getPodcastEpisodes, getPodcastYears, getPodcastStats } from "@/lib/podcast";
 import PodcastArchive from "@/components/PodcastArchive";
 
 export const metadata: Metadata = {
@@ -21,16 +21,34 @@ const PLATFORMS = [
 export default function PodcastPage() {
   const episodes = getPodcastEpisodes();
   const years = getPodcastYears(episodes);
+  const stats = getPodcastStats(episodes);
 
   return (
-    <main>
-      <header className="page-head">
+    <main className="pod-page">
+      <header className="page-head pod-head">
         <p className="eyebrow">Il podcast originale</p>
         <h1>Tutte le puntate</h1>
         <p>
-          L&apos;archivio completo di Storie di Brand: {episodes.length} puntate, dal 2019 a
-          oggi. Cerca un marchio, filtra per anno e ascolta direttamente da qui.
+          Ogni marchio che conosci ha un inizio che non immagini. Cerca un
+          brand, scegli un anno e ascolta direttamente da qui.
         </p>
+
+        <dl className="pod-stats">
+          <div>
+            <dt>Numero di puntate</dt>
+            <dd>{stats.total}</dd>
+          </div>
+          <div>
+            <dt>Ore di racconto</dt>
+            <dd>{stats.hours}</dd>
+          </div>
+          {stats.firstYear && (
+            <div>
+              <dt>Anno di nascita</dt>
+              <dd>{stats.firstYear}</dd>
+            </div>
+          )}
+        </dl>
       </header>
 
       <section className="pod-archive">

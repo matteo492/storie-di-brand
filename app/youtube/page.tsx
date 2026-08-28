@@ -30,7 +30,7 @@ export default function YouTubePage() {
   }));
 
   return (
-    <main>
+    <main className="yt-page">
       <header className="page-head">
         <p className="eyebrow">Il canale YouTube</p>
         <h1>Le nostre storie in video</h1>

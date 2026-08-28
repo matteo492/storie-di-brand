@@ -23,6 +23,8 @@ interface Facets {
 
 type FilterKey = "brand" | "sector" | "era";
 
+const PAGE_SIZE = 15;
+
 function Card({ ep }: { ep: ArchiveItem }) {
   return (
     <article className="ep-card">
@@ -125,9 +127,16 @@ export default function ArchiveExplorer({
     sector: null,
     era: null,
   });
+  const [limit, setLimit] = useState(PAGE_SIZE);
+  // Indice da cui partono le schede appena caricate: solo quelle si animano.
+  const shownBefore = useRef(PAGE_SIZE);
 
-  const set = (key: FilterKey, value: string | null) =>
+  // Cambiando filtro si riparte dall'inizio e rientrano tutte le schede
+  const set = (key: FilterKey, value: string | null) => {
+    shownBefore.current = 0;
+    setLimit(PAGE_SIZE);
     setActive((prev) => ({ ...prev, [key]: value }));
+  };
 
   const filtered = useMemo(
     () =>
@@ -140,7 +149,10 @@ export default function ArchiveExplorer({
     [episodes, active]
   );
 
+  const visible = filtered.slice(0, limit);
   const hasFilters = active.brand || active.sector || active.era;
+  // La chiave cambia coi filtri: React rimonta la griglia e l'animazione riparte
+  const gridKey = `${active.brand ?? ""}|${active.sector ?? ""}|${active.era ?? ""}`;
 
   return (
     <>
@@ -166,7 +178,11 @@ export default function ArchiveExplorer({
         {hasFilters && (
           <button
             className="filter-reset"
-            onClick={() => setActive({ brand: null, sector: null, era: null })}
+            onClick={() => {
+              shownBefore.current = 0;
+              setLimit(PAGE_SIZE);
+              setActive({ brand: null, sector: null, era: null });
+            }}
           >
             ✕ Azzera
           </button>
@@ -180,10 +196,38 @@ export default function ArchiveExplorer({
       {filtered.length === 0 ? (
         <p className="archive__empty">Nessun episodio con questi filtri.</p>
       ) : (
-        <div className="archive__grid">
-          {filtered.map((ep) => (
-            <Card key={ep.slug} ep={ep} />
-          ))}
+        <div className="archive__grid" key={gridKey}>
+          {visible.map((ep, i) => {
+            const isNew = i >= shownBefore.current;
+            return (
+              <div
+                key={ep.slug}
+                className={isNew ? "is-new" : undefined}
+                style={
+                  isNew
+                    ? { animationDelay: `${Math.min(i - shownBefore.current, 12) * 45}ms` }
+                    : undefined
+                }
+              >
+                <Card ep={ep} />
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {visible.length < filtered.length && (
+        <div className="archive__more">
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => {
+              shownBefore.current = limit;
+              setLimit((l) => l + PAGE_SIZE);
+            }}
+          >
+            Mostra altri episodi ({filtered.length - visible.length})
+          </button>
         </div>
       )}
     </>

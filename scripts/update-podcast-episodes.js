@@ -35,6 +35,39 @@ function parseDuration(raw) {
 }
 
 /**
+ * Corregge i refusi ricorrenti nei testi del feed (scritti a mano su Megaphone).
+ * Volutamente conservativo: solo parole in cui l'accento o l'apostrofo non sono
+ * ambigui. La correzione vera andrebbe fatta su Megaphone; qui evitiamo che
+ * l'errore finisca in pagina nel frattempo.
+ */
+const ACCENTI = {
+  eredita: "eredità", citta: "città", societa: "società", realta: "realtà",
+  qualita: "qualità", attivita: "attività", verita: "verità", novita: "novità",
+  liberta: "libertà", identita: "identità", universita: "università",
+  pubblicita: "pubblicità", felicita: "felicità", difficolta: "difficoltà",
+  possibilita: "possibilità", capacita: "capacità", curiosita: "curiosità",
+  celebrita: "celebrità", perche: "perché", poiche: "poiché", finche: "finché",
+  benche: "benché", cioe: "cioè", piu: "più", puo: "può", cosi: "così",
+};
+// Nomi femminili che dopo "un" vogliono l'apostrofo
+const FEMMINILI = "auto|idea|azienda|epoca|impresa|era|ora|isola|opera|arma|ombra|altra|americana|italiana";
+
+function fixTypos(text) {
+  let out = text;
+  for (const [sbagliato, giusto] of Object.entries(ACCENTI)) {
+    out = out.replace(new RegExp(`\\b${sbagliato}\\b`, "g"), giusto);
+    out = out.replace(
+      new RegExp(`\\b${sbagliato[0].toUpperCase()}${sbagliato.slice(1)}\\b`, "g"),
+      giusto[0].toUpperCase() + giusto.slice(1)
+    );
+  }
+  return out
+    .replace(new RegExp(`\\b([Uu])n (${FEMMINILI})\\b`, "g"), "$1n'$2")
+    .replace(/\bma d dove\b/gi, "ma da dove")
+    .replace(/\s{2,}/g, " ");
+}
+
+/**
  * Ripulisce la descrizione dal feed: via HTML, blocchi sponsor e righe con link,
  * così l'anteprima mostra il racconto e non la promo di turno.
  */
@@ -49,9 +82,8 @@ function cleanDescription(raw) {
 
   const isPromo = (line) =>
     !line ||
-    /https?:\/\//i.test(line) ||
     /^[\s\p{Extended_Pictographic}]*(prova|scopri|vai su|usa il codice|sponsor|iscriviti|segui)/iu.test(line) ||
-    /\b(finom|surfshark|nordvpn|codice sconto)\b/i.test(line) ||
+    /\b(finom|surfshark|nordvpn|brevo|brandy|brnady|codice sconto)\b/i.test(line) ||
     // boilerplate della piattaforma
     /learn more about your ad choices|adchoices/i.test(line) ||
     // crediti di produzione: non raccontano la puntata
@@ -59,7 +91,13 @@ function cleanDescription(raw) {
       line
     );
 
-  const body = text
+  // I link vanno tolti, non fanno scartare la riga: a volte la descrizione è
+  // incollata all'URL senza spazio (…?t=123TVincenzo Lancia è…) e buttare via
+  // la riga intera significherebbe perdere il racconto. Il confine dell'URL lo
+  // troviamo sullo spazio o sulla prima parola con l'iniziale maiuscola.
+  const noLinks = text.replace(/https?:\/\/\S*?(?=[A-Z][a-z]{2,}|\s|$)/g, " ");
+
+  const body = noLinks
     .split("\n")
     .map((l) => l.trim())
     .filter((l) => !isPromo(l))
@@ -69,7 +107,7 @@ function cleanDescription(raw) {
 
   // Se dopo la pulizia non resta nulla di raccontato, meglio nessuna anteprima
   // che rimettere in pagina la promo o i crediti.
-  return body.slice(0, 320).trim();
+  return fixTypos(body).slice(0, 320).trim();
 }
 
 async function parseFeed(xml) {
@@ -92,7 +130,9 @@ async function parseFeed(xml) {
       item["itunes:image"]?.[0] ||
       "";
 
-    return { id, title, excerpt, duration, date: pubDate, image };
+    // L'URL dell'enclosure è lo stesso che usano Spotify e Apple: mantiene
+    // il conteggio degli ascolti e l'inserimento pubblicitario di Megaphone.
+    return { id, title, excerpt, duration, date: pubDate, image, audio: enclosureUrl };
   });
 }
 

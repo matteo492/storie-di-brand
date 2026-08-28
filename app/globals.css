@@ -1768,79 +1768,251 @@ img { max-width: 100%; display: block; }
   padding: 0;
 }
 
-.pod-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
-.pod-item {
+/* ---- Puntata in evidenza: il player grande, sempre in cima ---- */
+.pod-hero {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  /* Il blocco di testo NON viene stirato: la sua altezza naturale è la misura
+     su cui il componente dimensiona la copertina quadrata. */
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+.pod-hero__body { flex: 1 1 0; min-width: 0; }
+.pod-hero__cover {
+  /* La misura arriva dal componente (lato = altezza del blocco accanto).
+     Il rapporto 1:1 resta come riserva prima che la misura sia disponibile. */
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  max-width: 42%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--ink-2);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--line);
+}
+.pod-hero__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pod-hero__label {
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--red);
+  margin: 0 0 0.6rem;
+}
+.pod-hero__title {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--cream);
+  margin: 0 0 0.6rem;
+  text-wrap: balance;
+}
+.pod-hero__meta {
+  font-size: 0.78rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 210, 0.5);
+  margin: 0 0 1rem;
+}
+.pod-hero__excerpt {
+  color: rgba(250, 249, 210, 0.7);
+  line-height: 1.6;
+  margin: 0 0 1.4rem;
+  max-width: 62ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* Sempre tre righe esatte, anche se la descrizione è più corta: così il
+     blocco mantiene la stessa altezza e la copertina non "balla". */
+  height: 4.8em;
+}
+/* Il player Megaphone mostra sempre la sua copertina a sinistra (un quadrato
+   alto quanto il player). Qui l'artwork ce l'abbiamo già grande, quindi la
+   ritagliamo: la cornice nasconde l'eccedenza e l'iframe scorre a sinistra. */
+.pod-hero__player { margin-top: 0.2rem; }
+
+/* ---- Player essenziale: solo play e avanzamento ---- */
+.mini {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--ink-2);
-  overflow: hidden;
-  transition: border-color 0.2s ease;
 }
-.pod-item.is-open { border-color: rgba(255, 87, 87, 0.5); }
-@media (hover: hover) {
-  .pod-item:hover { border-color: rgba(250, 249, 210, 0.24); }
+.mini__play {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--red);
+  color: #1a0d0d;
+  font-size: 1.05rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease;
 }
-.pod-item__main {
-  display: flex;
-  gap: 1.1rem;
+@media (hover: hover) { .mini__play:hover { background: #ff3d3d; transform: scale(1.06); } }
+.mini__play:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
+
+.mini__bar { flex: 1 1 auto; min-width: 0; }
+.mini__bar input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  padding: 0.9rem;
+  height: 6px;
+  border-radius: 999px;
+  /* la parte già ascoltata è rossa, il resto è la traccia scura */
+  background: linear-gradient(
+    to right,
+    var(--red) 0 var(--p, 0%),
+    rgba(250, 249, 210, 0.18) var(--p, 0%) 100%
+  );
+  cursor: pointer;
+}
+.mini__bar input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: none;
+  cursor: pointer;
+}
+.mini__bar input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: none;
+  cursor: pointer;
+}
+.mini__bar input[type="range"]:disabled { cursor: default; opacity: 0.6; }
+.mini__bar input[type="range"]:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+
+.mini__times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(250, 249, 210, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .mini { padding: 0.75rem 0.9rem; gap: 0.8rem; }
+  .mini__play { width: 46px; height: 46px; }
+}
+
+/* Selettore delle parti quando la puntata fa parte di una serie */
+.pod-parts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+.pod-part {
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: rgba(250, 249, 210, 0.7);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+@media (hover: hover) { .pod-part:hover { border-color: var(--red); color: var(--cream); } }
+.pod-part.is-sel { background: var(--red); border-color: var(--red); color: #1a0d0d; font-weight: 600; }
+.pod-part:focus-visible { outline: 2px solid rgba(250, 249, 210, 0.7); outline-offset: 2px; }
+
+
+/* ---- Griglia delle copertine ---- */
+.pod-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.6rem 1.4rem;
+}
+.pod-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
   background: none;
   border: none;
+  padding: 0;
   text-align: left;
   cursor: pointer;
   color: inherit;
-  align-items: center;
 }
-.pod-item__cover {
+.pod-tile__cover {
   position: relative;
-  flex: 0 0 auto;
-  width: 96px;
-  height: 96px;
-  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
 }
-.pod-item__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pod-item__play {
+.pod-tile__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pod-tile__play {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(6, 4, 4, 0.45);
+  font-size: 1.6rem;
   color: var(--cream);
-  font-size: 1.4rem;
+  background: rgba(6, 4, 4, 0.5);
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.22s ease;
 }
-.pod-item.is-open .pod-item__play { opacity: 1; background: rgba(255, 87, 87, 0.55); }
 @media (hover: hover) {
-  .pod-item__main:hover .pod-item__play { opacity: 1; }
+  .pod-tile:hover .pod-tile__cover { transform: translateY(-4px); border-color: rgba(255, 87, 87, 0.55); }
+  .pod-tile:hover .pod-tile__play { opacity: 1; }
 }
-.pod-item__body { min-width: 0; display: flex; flex-direction: column; gap: 0.3rem; }
-.pod-item__meta {
-  font-size: 0.72rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--red);
-}
-.pod-item__title {
+.pod-tile:focus-visible .pod-tile__cover { outline: 2px solid rgba(250, 249, 210, 0.7); outline-offset: 3px; }
+.pod-tile:focus-visible { outline: none; }
+/* La puntata attualmente nel player resta riconoscibile nella griglia */
+.pod-tile.is-playing .pod-tile__cover { border-color: var(--red); }
+.pod-tile.is-playing .pod-tile__play { opacity: 1; background: rgba(255, 87, 87, 0.45); }
+.pod-tile__title {
   font-family: var(--display);
-  font-size: 1.15rem;
-  line-height: 1.2;
+  font-size: 0.95rem;
+  line-height: 1.25;
   color: var(--cream);
-}
-.pod-item__excerpt {
-  font-size: 0.88rem;
-  color: rgba(250, 249, 210, 0.6);
-  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.pod-item__player { padding: 0 0.9rem 0.9rem; }
-.pod-item__player iframe { border-radius: 12px; display: block; }
+.pod-tile__meta {
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 210, 0.45);
+}
+
+@media (max-width: 1100px) { .pod-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 860px) {
+  .pod-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Sotto gli 860px si impila: non c'è più un blocco accanto a cui allinearsi,
+     quindi la copertina smette di allungarsi e resta quadrata. */
+  .pod-hero { flex-direction: column; align-items: flex-start; }
+  .pod-hero__cover {
+    width: min(260px, 70%);
+    max-width: none;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .pod-hero__body { width: 100%; flex: 1 1 auto; }
+}
+@media (max-width: 560px) { .pod-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem 1rem; } }
 
 .pod-empty { padding: 3rem 0; color: rgba(250, 249, 210, 0.6); }
 .pod-suggest {
@@ -2094,28 +2266,60 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- PAGINA TEAM (carosello a scorrimento infinito) ---------- */
-.team-section {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 0 6rem;
+/* Il carosello arriva ai bordi estremi della pagina: niente max-width qui.
+   L'allineamento col testo lo dà il padding della track (vedi sotto). */
+.team-section { padding: 0 0 6rem; }
+.team-carousel {
+  position: relative;
+  /* Margine della colonna di testo: lo usano sia la track (padding) sia le
+     sfumature (larghezza), così restano sempre allineati fra loro. */
+  --gutter: max(
+    clamp(1.2rem, 5vw, 3rem),
+    calc((100% - var(--maxw)) / 2 + clamp(1.2rem, 5vw, 3rem))
+  );
 }
-.team-carousel { position: relative; }
+/* Sfumature ai due bordi: le card ci sfilano sotto invece di essere tagliate
+   di netto. Non intercettano il mouse, così swipe e clic restano liberi. */
+.team-carousel::before,
+.team-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--gutter);
+  pointer-events: none;
+  z-index: 2;
+}
+.team-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--black), transparent);
+}
+.team-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--black), transparent);
+}
 .team-track {
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
   /* niente scroll-behavior:smooth: i riposizionamenti del loop devono restare
      istantanei (invisibili); lo scroll morbido delle frecce è chiesto via JS */
-  padding: 0.5rem clamp(1.2rem, 5vw, 3rem) 1.5rem;
+  /* A riposo il primo riquadro parte allineato al titolo; scorrendo, le card
+     proseguono fino ai bordi della pagina passando sotto le sfumature.
+     Il max() replica il margine della colonna di testo (max-width + gutter). */
+  padding: 0.5rem var(--gutter) 1.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .team-track::-webkit-scrollbar { display: none; }
 
-/* 5 riquadri visibili: cinque larghezze + i quattro spazi in mezzo */
+/* 5 riquadri visibili + la "sbirciatina" del sesto a destra, che suggerisce
+   che il carosello continua. Il conto: 5 larghezze + 5 spazi + lo spicchio
+   che avanza (--peek). A sinistra resta tagliato sul margine del testo. */
+.team-carousel { --peek: 2.5rem; }
 .team-card {
-  flex: 0 0 calc((100% - 4 * 1.5rem) / 5);
-  max-width: calc((100% - 4 * 1.5rem) / 5);
+  flex: 0 0 calc((100% - 5 * 1.5rem - var(--peek)) / 5);
+  max-width: calc((100% - 5 * 1.5rem - var(--peek)) / 5);
 }
 .team-card__photo {
   aspect-ratio: 1 / 1;
@@ -2182,11 +2386,230 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 1024px) {
   .team-card {
-    flex-basis: calc((100% - 2 * 1.5rem) / 3);
-    max-width: calc((100% - 2 * 1.5rem) / 3);
+    flex-basis: calc((100% - 3 * 1.5rem - var(--peek)) / 3);
+    max-width: calc((100% - 3 * 1.5rem - var(--peek)) / 3);
   }
 }
-@media (max-width: 640px) {
+/* Sui dispositivi touch si scorre col dito: le frecce non servono. */
+@media (hover: none), (max-width: 640px) {
   .team-arrow { display: none; }
+}
+@media (max-width: 640px) {
   .team-card { flex-basis: 44%; max-width: 44%; }
+}
+
+/* ---------- POSIZIONI APERTE (pagina Team) ---------- */
+.jobs {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 clamp(1.2rem, 5vw, 3rem) 7rem;
+}
+.jobs__head { margin-bottom: 2rem; }
+.jobs__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.job-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--ink-2);
+  padding: 1.6rem 1.8rem;
+  transition: border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .job-card:hover { border-color: rgba(255, 87, 87, 0.5); }
+}
+.job-card__body { flex: 1 1 320px; min-width: 0; }
+.job-card__title {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  line-height: 1.15;
+  color: var(--cream);
+  margin: 0 0 0.7rem;
+}
+.job-card__tags {
+  list-style: none;
+  margin: 0 0 0.8rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.job-card__tags li {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 210, 0.75);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+}
+.job-card__tags li:first-child {
+  color: var(--red);
+  border-color: rgba(255, 87, 87, 0.45);
+}
+.job-card__summary {
+  margin: 0;
+  color: rgba(250, 249, 210, 0.65);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.job-card__cta { flex: 0 0 auto; white-space: nowrap; }
+
+.jobs__empty,
+.jobs__note {
+  color: rgba(250, 249, 210, 0.6);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.jobs__note { margin: 1.6rem 0 0; }
+.jobs__empty a,
+.jobs__note a { color: var(--red); }
+
+@media (max-width: 640px) {
+  .job-card { padding: 1.3rem; gap: 1.2rem; }
+  .job-card__cta { width: 100%; text-align: center; }
+}
+
+/* ---- Numeri d'insieme in testata alla pagina podcast ---- */
+.pod-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.6rem, 5vw, 3.5rem);
+  margin: 2rem 0 0;
+}
+.pod-stats div { display: flex; flex-direction: column-reverse; }
+.pod-stats dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1;
+  color: var(--cream);
+  font-variant-numeric: tabular-nums;
+}
+.pod-stats dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: 0.45rem;
+}
+
+/* I <button> hanno uno sfondo di default del browser: va azzerato,
+   altrimenti il testo crema finisce su grigio chiaro ed è illeggibile. */
+.btn--ghost { background: transparent; }
+
+/* Entrata morbida delle copertine caricate con "Mostra altri brand":
+   sfumano salendo, una dopo l'altra (il ritardo lo imposta il componente). */
+@media (prefers-reduced-motion: no-preference) {
+  .pod-grid > li.is-new {
+    animation: pod-tile-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes pod-tile-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+/* Il pulsante reagisce al passaggio del mouse come gli altri della pagina */
+.pod-more .btn { transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+
+/* ---------- PAGINA PODCAST SU MOBILE ---------- */
+@media (max-width: 640px) {
+  /* Le tre statistiche su una riga sola: prima "2019" andava a capo da solo,
+     lasciando un buco e allungando inutilmente la testata. */
+  .pod-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+    margin-top: 1.6rem;
+  }
+  .pod-stats dd { font-size: 1.7rem; }
+  .pod-stats dt {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+    margin-top: 0.35rem;
+  }
+
+  /* Meno vuoto prima del contenuto: su schermo piccolo si scorreva troppo
+     per arrivare alla prima puntata. */
+  .page-head { padding-top: 6.5rem; padding-bottom: 1.2rem; }
+  .page-head p { font-size: 1rem; }
+
+  .pod-archive { padding-bottom: 4rem; }
+  .pod-hero { gap: 1.2rem; margin-bottom: 2.4rem; }
+  .pod-hero__title { font-size: 1.45rem; }
+  .pod-hero__excerpt { -webkit-line-clamp: 4; }
+  .pod-controls { gap: 0.8rem; }
+  .pod-platforms { margin-top: 2.6rem; padding-top: 1.8rem; }
+}
+
+/* ---------- SFONDO ROSSO DELLA PAGINA PODCAST ----------
+   Il rosso resta sotto il 45% di miscela col nero: oltre quella soglia gli
+   accenti rossi (occhielli, etichette) smettono di staccarsi dal fondo, mentre
+   il testo crema mantiene un contrasto ampio (8:1 e oltre). */
+/* Le misure sono in pixel, non in percentuale: le percentuali si calcolano
+   sull'altezza della pagina, che cambia quando si filtra per anno — e lo
+   sfondo si spostava a ogni filtro. Così invece resta identico. */
+.pod-page {
+  position: relative;
+  background:
+    radial-gradient(1500px 820px at 50% 0, rgba(255, 87, 87, 0.42), transparent 72%),
+    radial-gradient(1100px 700px at 88% 760px, rgba(255, 87, 87, 0.14), transparent 68%),
+    radial-gradient(900px 620px at 8% 1500px, rgba(255, 87, 87, 0.1), transparent 68%),
+    linear-gradient(
+      180deg,
+      rgba(255, 87, 87, 0.08) 0,
+      rgba(255, 87, 87, 0.03) 1400px,
+      transparent 2300px
+    ),
+    var(--black);
+  background-repeat: no-repeat;
+}
+/* Sul fondo rosso il player e il campo di ricerca hanno bisogno di un fondo
+   più scuro e di un bordo, per non confondersi con lo sfondo. */
+.pod-page .mini,
+.pod-page .pod-search input {
+  background: rgba(10, 8, 8, 0.72);
+  backdrop-filter: blur(6px);
+  border-color: rgba(250, 249, 210, 0.2);
+}
+
+
+/* ---------- SFONDO ROSSO DELLA PAGINA YOUTUBE ----------
+   Stessa impostazione della pagina podcast ma con più rosso diffuso: il picco
+   resta sotto la soglia oltre la quale gli accenti rossi non si distinguono. */
+.yt-page {
+  position: relative;
+  background:
+    radial-gradient(1600px 900px at 50% 0, rgba(255, 87, 87, 0.44), transparent 72%),
+    radial-gradient(1200px 780px at 12% 820px, rgba(255, 87, 87, 0.2), transparent 68%),
+    radial-gradient(1100px 700px at 92% 1600px, rgba(255, 87, 87, 0.16), transparent 68%),
+    linear-gradient(
+      180deg,
+      rgba(255, 87, 87, 0.13) 0,
+      rgba(255, 87, 87, 0.07) 1600px,
+      rgba(255, 87, 87, 0.03) 2600px,
+      transparent 3400px
+    ),
+    var(--black);
+  background-repeat: no-repeat;
+}
+/* Su fondo rosso i filtri dell'archivio hanno bisogno di un fondo scuro
+   per non confondersi con la pagina. */
+.yt-page .dropdown__btn {
+  background: rgba(10, 8, 8, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+/* Pulsante "Mostra altri episodi" dell'archivio YouTube */
+.archive__more { display: flex; justify-content: center; margin-top: 2.5rem; }
+.archive__more .btn { transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+/* Stessa entrata a cascata della griglia podcast */
+@media (prefers-reduced-motion: no-preference) {
+  .archive__grid > .is-new {
+    animation: pod-tile-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 }
