@@ -2278,25 +2278,24 @@ img { max-width: 100%; display: block; }
     calc((100% - var(--maxw)) / 2 + clamp(1.2rem, 5vw, 3rem))
   );
 }
-/* Sfumature ai due bordi: le card ci sfilano sotto invece di essere tagliate
-   di netto. Non intercettano il mouse, così swipe e clic restano liberi. */
-.team-carousel::before,
-.team-carousel::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: var(--gutter);
-  pointer-events: none;
-  z-index: 2;
-}
-.team-carousel::before {
-  left: 0;
-  background: linear-gradient(to right, var(--black), transparent);
-}
-.team-carousel::after {
-  right: 0;
-  background: linear-gradient(to left, var(--black), transparent);
+/* Le card sfumano ai bordi tramite una maschera sul nastro, non con due bande
+   colorate sopra: così l'effetto funziona su qualunque sfondo (nero o rosso)
+   senza dover indovinare il colore sottostante. */
+.team-track {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gutter),
+    #000 calc(100% - var(--gutter)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gutter),
+    #000 calc(100% - var(--gutter)),
+    transparent 100%
+  );
 }
 .team-track {
   display: flex;
@@ -2612,4 +2611,34 @@ img { max-width: 100%; display: block; }
   .archive__grid > .is-new {
     animation: pod-tile-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+}
+
+/* ---------- SFONDO ROSSO DELLA PAGINA TEAM ----------
+   Il rosso più diffuso delle tre pagine (le fasce intermedie e la velatura di
+   fondo sono le più alte), mantenendo il picco sotto la soglia oltre la quale
+   gli accenti rossi non si distinguono più. */
+.team-page {
+  position: relative;
+  background:
+    radial-gradient(1600px 900px at 50% 0, rgba(255, 87, 87, 0.44), transparent 72%),
+    radial-gradient(1300px 820px at 15% 700px, rgba(255, 87, 87, 0.26), transparent 68%),
+    radial-gradient(1200px 760px at 88% 1400px, rgba(255, 87, 87, 0.22), transparent 68%),
+    linear-gradient(
+      180deg,
+      rgba(255, 87, 87, 0.18) 0,
+      rgba(255, 87, 87, 0.11) 1200px,
+      rgba(255, 87, 87, 0.05) 2200px,
+      transparent 3000px
+    ),
+    var(--black);
+  background-repeat: no-repeat;
+}
+/* Su fondo rosso i riquadri segnaposto e la scheda annuncio hanno bisogno di
+   un fondo scuro per staccarsi dalla pagina. */
+.team-page .team-card__photo {
+  background: linear-gradient(160deg, rgba(10, 8, 8, 0.62), rgba(10, 8, 8, 0.38));
+}
+.team-page .job-card {
+  background: rgba(10, 8, 8, 0.62);
+  backdrop-filter: blur(6px);
 }

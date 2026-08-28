@@ -11,17 +11,20 @@ export default function Footer() {
           <p>Le incredibili storie dietro i marchi più famosi.</p>
         </div>
         <div className="footer__col">
+          {/* Stesso ordine del menu in alto */}
           <h4>Naviga</h4>
-          <Link href="/youtube">YouTube</Link>
           <Link href="/podcast">Podcast</Link>
+          <Link href="/youtube">YouTube</Link>
+          <Link href="/#live">Live</Link>
           <Link href="/team">Team</Link>
           <Link href="/#newsletter">Newsletter</Link>
           <Link href="/#collabora">Collabora</Link>
         </div>
         <div className="footer__col">
           <h4>Esplora</h4>
+          {/* "Canale YouTube": qui si esce dal sito, in Naviga si resta */}
           <a href="https://www.youtube.com/@StoriediBrand" target="_blank" rel="noopener">
-            YouTube
+            Canale YouTube
           </a>
           <a href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS" target="_blank" rel="noopener">
             Spotify

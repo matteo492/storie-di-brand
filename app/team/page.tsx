@@ -52,7 +52,7 @@ export default function TeamPage() {
   }));
 
   return (
-    <main>
+    <main className="team-page">
       <header className="page-head">
         <p className="eyebrow">Chi siamo</p>
         <h1>Le persone dietro le storie</h1>
