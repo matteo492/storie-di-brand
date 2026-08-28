@@ -116,7 +116,7 @@ const SECTOR_GROUPS: Record<string, string[]> = {
   Tecnologia: ["Tecnologia", "Elettrodomestici"],
   "Casa & Design": ["Arredamento", "Design"],
   "Motori & Trasporti": ["Automotive", "Trasporti"],
-  "Giochi & Intrattenimento": ["Giocattoli", "Giochi", "Intrattenimento"],
+  "Giochi & Intrattenimento": ["Giocattoli", "Giochi", "Intrattenimento", "Sport"],
   "Media & Retail": ["Editoria", "Cartoleria", "Retail"],
 };
 const SECTOR_TO_GROUP: Record<string, string> = Object.fromEntries(
