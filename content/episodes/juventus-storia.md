@@ -10,7 +10,7 @@ duration: "39 min"
 excerpt: "Nel 2017 la Juventus cancella lo stemma e mette al suo posto una lettera. Tre settimane per disegnarla, 39 di febbre alla presentazione e un mondo del calcio che non aveva mai visto nulla di simile. La storia di come una squadra è diventata un brand globale."
 coverColor: "#ff5757"
 featured: false
-draft: true
+draft: false
 sources:
   - label: "Storie di Brand — episodio su YouTube"
     url: "https://youtu.be/FQwaYebscxU"
