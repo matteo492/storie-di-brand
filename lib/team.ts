@@ -12,12 +12,12 @@ export interface TeamMember {
 }
 
 export const TEAM: TeamMember[] = [
-  { name: "Max Corona", role: "SDB Founder", photo: "/team/max-corona.jpg" },
-  { name: "Francesco Marchi", role: "Supporto autoriale e voci", photo: "/team/francesco-marchi.jpg" },
+  { name: "Max Corona", role: "SDB Founder e Host", photo: "/team/max-corona.jpg" },
+  { name: "Francesco Marchi", role: "Autore e Voci", photo: "/team/francesco-marchi.jpg" },
   { name: "Antonio Mezzadra", role: "Sound designer", photo: "/team/antonio-mezzadra.jpg" },
   { name: "Matteo Vitelli", role: "Videomaker & Motion Designer", photo: "/team/matteo-vitelli.jpg" },
   { name: "Agnese Evangelista", role: "Content Specialist", photo: "/team/agnese-evangelista.jpg" },
-  { name: "Andrea Maltagliati", role: "Head of Production", photo: "/team/andrea-maltagliati.jpg" },
+  { name: "Andrea Maltagliati", role: "Responsabile Produzione", photo: "/team/andrea-maltagliati.jpg" },
   { name: "Viola Vicentini", role: "Producer", photo: "/team/viola-vicentini.jpg" },
   { name: "Damiano Stingone", role: "Artwork", photo: "/team/damiano-stingone.jpg" },
 ];
