@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ticker from "@/components/Ticker";
+import TickerSlot from "@/components/TickerSlot";
 import { PARTNERS } from "@/lib/partners";
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -60,9 +61,9 @@ export default function RootLayout({
         <Header />
         <ScrollReveal />
         <PageTransition>{children}</PageTransition>
-        <div className="hero__marquee">
+        <TickerSlot>
           <Ticker items={PARTNERS} />
-        </div>
+        </TickerSlot>
         <Footer />
         <BookBanner />
       </body>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllEpisodes } from "@/lib/episodes";
-import { YT_VIDEOS, getYoutubeStats } from "@/lib/youtube";
+import { PARTNERS } from "@/lib/partners";
+import Ticker from "@/components/Ticker";
 import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -10,7 +11,6 @@ import CollabForm from "@/components/CollabForm";
 
 export default function Home() {
   const episodes = getAllEpisodes();
-  const ytStats = getYoutubeStats();
 
   return (
     <>
@@ -59,90 +59,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PODCAST PRINCIPALE — Storie di Brand */}
+      {/* PARTNER — loghi grandi subito sotto l'hero (decisione call Max).
+          Fa anche da sfumatura fra il nero dell'hero e il rosso del podcast. */}
+      <section className="partners-band" aria-label="Brand con cui abbiamo collaborato">
+        <p className="partners-band__label">Hanno scelto Storie di Brand</p>
+        <Ticker items={PARTNERS} size="lg" plain />
+      </section>
+
+      {/* PODCAST PRINCIPALE — Storie di Brand + timeline */}
       <PodcastSection />
 
       {/* YOUTUBE */}
-      <section
-        id="youtube"
-        style={{ padding: "7rem 0", background: "var(--ink)" }}
-      >
-        <div className="section-head reveal" style={{ marginBottom: "2.5rem" }}>
+      <section className="episodes" id="youtube">
+        <div className="section-head reveal">
           <div>
             <p className="eyebrow">Anche su YouTube</p>
             <h2 className="section-title">Le nostre storie in video</h2>
           </div>
-          <a
-            href="https://www.youtube.com/@StoriediBrand"
-            target="_blank"
-            rel="noopener"
-            className="link-arrow"
-          >
-            @StoriediBrand →
-          </a>
-        </div>
-        <div className="episodes__grid">
-          {YT_VIDEOS.map((v, i) => (
-            <a
-              key={v.id}
-              href={`https://youtu.be/${v.id}`}
-              target="_blank"
-              rel="noopener"
-              className={`ep-card reveal${v.main ? " ep-card--feature" : ""}`}
-              data-reveal-delay={i * 90}
-            >
-              <div
-                className="ep-card__art"
-                style={{
-                  backgroundImage: `url(https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg)`,
-                }}
-              />
-              <div className="ep-card__body">
-                <h3>{v.title}</h3>
-                <div className="ep-card__meta">
-                  {ytStats[v.id] && <span>{ytStats[v.id]} visualizzazioni</span>}
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* ULTIMI EPISODI */}
-      <section className="episodes" id="episodi">
-        <div className="section-head reveal">
-          <div>
-            <p className="eyebrow">Da non perdere</p>
-            <h2 className="section-title">Ultimi episodi</h2>
-          </div>
           <Link href="/youtube" className="link-arrow">
-            Esplora →
+            Tutti i video →
           </Link>
         </div>
 
         <EpisodeSlider episodes={episodes.slice(0, 9)} />
       </section>
 
-      {/* PODCAST BRANDY — gioco di ricerca episodi */}
-      <section className="podcast" id="podcast">
+      {/* GIOCHINO BRANDY — gioco di ricerca episodi */}
+      <section className="podcast" id="brandy">
         <BrandyGame />
-      </section>
-
-      {/* NEWSLETTER */}
-      <section className="newsletter" id="newsletter">
-        <div className="newsletter__inner reveal">
-          <p className="eyebrow">La newsletter settimanale</p>
-          <h2 className="newsletter__title">
-            Il meglio della settimana,<br />
-            <span className="hl">ogni venerdì</span>
-          </h2>
-          <p className="newsletter__sub">
-            Il meglio di Storie di Brand, raccolto in una mail: marketing e business
-            raccontati come piace a te, niente spam. Ogni iscrizione ci dà la forza di
-            realizzare nuove storie, contenuti e video — sei tu a tenere in vita questo progetto.
-          </p>
-          <NewsletterForm />
-        </div>
       </section>
 
       {/* LIVE */}
@@ -167,6 +111,23 @@ export default function Home() {
               <source src="/live-trailer.mp4" type="video/mp4" />
             </video>
           </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="newsletter" id="newsletter">
+        <div className="newsletter__inner reveal">
+          <p className="eyebrow">La newsletter settimanale</p>
+          <h2 className="newsletter__title">
+            Il meglio della settimana,<br />
+            <span className="hl">ogni venerdì</span>
+          </h2>
+          <p className="newsletter__sub">
+            Il meglio di Storie di Brand, raccolto in una mail: marketing e business
+            raccontati come piace a te, niente spam. Ogni iscrizione ci dà la forza di
+            realizzare nuove storie, contenuti e video — sei tu a tenere in vita questo progetto.
+          </p>
+          <NewsletterForm />
         </div>
       </section>
 

@@ -1,12 +1,16 @@
 import type { Partner } from "@/lib/partners";
 
 /** Area di riferimento: dà a ogni logo lo stesso peso ottico. */
-const AREA = 2400;
-const H_MIN = 20;
-const H_MAX = 40;
+const SIZES = {
+  sm: { AREA: 2400, H_MIN: 20, H_MAX: 40 },
+  lg: { AREA: 7000, H_MIN: 32, H_MAX: 62 },
+} as const;
+
+export type TickerSize = keyof typeof SIZES;
 
 /** Altezza e larghezza di un logo a parità di "inchiostro" percepito. */
-function misura(ratio = 3.4, scale = 1) {
+function misura(size: TickerSize, ratio = 3.4, scale = 1) {
+  const { AREA, H_MIN, H_MAX } = SIZES[size];
   const h = Math.min(H_MAX, Math.max(H_MIN, Math.sqrt(AREA / ratio))) * scale;
   return { h: Math.round(h), w: Math.round(h * ratio) };
 }
@@ -14,16 +18,29 @@ function misura(ratio = 3.4, scale = 1) {
 /**
  * Nastro scorrevole dei marchi con cui abbiamo collaborato.
  * Dove esiste il logo lo mostra, altrimenti scrive il nome.
+ * `size="lg"` è la fascia in evidenza sotto l'hero; `plain` toglie
+ * bordi e fondo così il nastro può appoggiarsi su una sfumatura.
  */
-export default function Ticker({ items }: { items: Partner[] }) {
+export default function Ticker({
+  items,
+  size = "sm",
+  plain = false,
+}: {
+  items: Partner[];
+  size?: TickerSize;
+  plain?: boolean;
+}) {
   const run = items.flatMap((p) => [p, null as Partner | null]); // null = separatore
   return (
-    <div className="ticker" aria-hidden="true">
+    <div
+      className={`ticker ticker--${size}${plain ? " ticker--plain" : ""}`}
+      aria-hidden="true"
+    >
       <div className="ticker__track">
         {[...run, ...run, ...run].map((p, i) => {
           if (p === null) return <span key={i} className="ticker__dot">•</span>;
           if (!p.logo) return <span key={i}>{p.name}</span>;
-          const { h, w } = misura(p.ratio, p.scale);
+          const { h, w } = misura(size, p.ratio, p.scale);
           return (
             <span key={i} className="ticker__logo">
               {/* La maschera colora il logo col colore del testo: tutti uguali */}

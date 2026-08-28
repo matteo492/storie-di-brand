@@ -161,21 +161,57 @@ img { max-width: 100%; display: block; }
   color: rgba(250, 249, 210, 0.55);
   will-change: transform;
 }
+.ticker--plain { border: 0; background: none; padding: 0; }
+.ticker--lg .ticker__track { font-size: 1.6rem; animation-duration: 110s; }
 .ticker__track > * { margin-right: 2rem; flex: 0 0 auto; }
+.ticker--lg .ticker__track > * { margin-right: 3.6rem; }
 .ticker__track span:nth-child(even) { color: var(--red); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+
+/* ---------- FASCIA PARTNER (home) ----------
+   Sta fra hero e podcast e fa due cose insieme: dà ai loghi dei clienti la
+   posizione di rilievo chiesta nella call, e trasforma lo stacco netto
+   nero -> rosso in una transizione continua. Il rosso in basso al centro
+   vale quanto quello in cima a .sdb-podcast, così la giunzione sparisce. */
+.partners-band {
+  position: relative;
+  padding: 5rem 0 4.5rem;
+  background: linear-gradient(to bottom, var(--black) 0%, var(--ink) 100%);
+}
+/* Il rosso non nasce sul bordo della fascia: comincia gia' dentro l'hero e
+   arriva al massimo esattamente dove attacca .sdb-podcast, che riparte dallo
+   stesso valore. Cosi' non c'e' ne' una riga netta ne' una cresta di luce:
+   la pendenza e' simile prima e dopo la giunzione. */
+.partners-band::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -420px;
+  bottom: 0;
+  background: radial-gradient(120% 1100px at 50% calc(100% + 260px), rgba(255,87,87,0.45), rgba(255,87,87,0.08) 45%, transparent 80%);
+  pointer-events: none;
+}
+.partners-band > * { position: relative; z-index: 1; }
+.partners-band__label {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 210, 0.45);
+  margin-bottom: 2rem;
+}
 
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 88vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem clamp(1.2rem, 5vw, 3rem) 5rem;
+  padding: 8rem clamp(1.2rem, 5vw, 3rem) 3rem;
   background:
     radial-gradient(120% 80% at 80% 0%, rgba(255,87,87,0.22), transparent 55%),
-    radial-gradient(100% 70% at 0% 100%, rgba(250,249,210,0.06), transparent 50%),
     var(--black);
   overflow: hidden;
 }
@@ -875,8 +911,7 @@ img { max-width: 100%; display: block; }
 .sdb-podcast {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);
   background:
-    radial-gradient(120% 130% at 50% 0%, rgba(255,87,87,0.45), rgba(255,87,87,0.08) 45%, var(--ink) 80%);
-  border-top: 1px solid var(--line);
+    radial-gradient(120% 1100px at 50% 260px, rgba(255,87,87,0.45), rgba(255,87,87,0.08) 45%, var(--ink) 80%);
 }
 .sdb-podcast__inner {
   max-width: 780px;
@@ -1213,7 +1248,8 @@ img { max-width: 100%; display: block; }
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 9px;
+  padding: 10px 20px;
+  touch-action: manipulation;
   z-index: 3;
 }
 .bt-marker.is-above {
