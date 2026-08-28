@@ -150,7 +150,9 @@ img { max-width: 100%; display: block; }
 }
 .ticker__track {
   display: inline-flex;
-  gap: 2rem;
+  /* Spaziatura come margine e non come "gap": col gap un terzo della larghezza
+     totale non coincide con una copia esatta (manca 1/3 di spazio) e a ogni
+     giro il nastro faceva un piccolo salto. Col margine il conto torna. */
   align-items: center;
   animation: marquee 80s linear infinite;
   font-family: var(--display);
@@ -159,6 +161,7 @@ img { max-width: 100%; display: block; }
   color: rgba(250, 249, 210, 0.55);
   will-change: transform;
 }
+.ticker__track > * { margin-right: 2rem; flex: 0 0 auto; }
 .ticker__track span:nth-child(even) { color: var(--red); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
 
@@ -422,17 +425,41 @@ img { max-width: 100%; display: block; }
 /* ---------- SLIDER EPISODI ---------- */
 .slider {
   position: relative;
-  max-width: var(--maxw);
-  margin: 0 auto;
+  /* Niente max-width: come il carosello del team, il nastro arriva ai bordi
+     della pagina e le frecce stanno ai margini estremi. */
+  --gutter: max(
+    clamp(1.2rem, 5vw, 3rem),
+    calc((100% - var(--maxw)) / 2 + clamp(1.2rem, 5vw, 3rem))
+  );
 }
 .slider__track {
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  /* Senza questo lo snap ignora il margine interno e aggancia la scheda a
+     filo del bordo, dentro la sfumatura. */
+  scroll-padding-left: var(--gutter);
+  /* Sfumatura su entrambi i lati: la scheda precedente e la successiva si
+     intravedono sfumate, mentre la prima intera resta nitida perché lo snap
+     la ferma esattamente dove la sfumatura finisce. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gutter),
+    #000 calc(100% - var(--gutter)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gutter),
+    #000 calc(100% - var(--gutter)),
+    transparent 100%
+  );
   /* niente scroll-behavior:smooth qui: i riposizionamenti del loop devono essere
      istantanei (invisibili). Lo scroll morbido delle frecce è chiesto via JS. */
-  padding: 0.5rem clamp(1.2rem, 5vw, 3rem) 1.5rem;
+  padding: 0.5rem var(--gutter) 1.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -464,6 +491,7 @@ img { max-width: 100%; display: block; }
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 @media (hover: hover) { .slider__arrow:hover { background: var(--red); border-color: var(--red); transform: translateY(-50%) scale(1.05); } }
+/* Ai bordi della pagina, come nel carosello del team */
 .slider__arrow--prev { left: clamp(0.2rem, 2vw, 1rem); }
 .slider__arrow--next { right: clamp(0.2rem, 2vw, 1rem); }
 @media (max-width: 768px) {
@@ -2641,4 +2669,24 @@ img { max-width: 100%; display: block; }
 .team-page .job-card {
   background: rgba(10, 8, 8, 0.62);
   backdrop-filter: blur(6px);
+}
+
+/* Loghi dei partner nel nastro: resi con una maschera, così prendono tutti
+   lo stesso colore del testo invece dei rispettivi colori di marca. */
+.ticker__logo {
+  display: inline-flex;
+  align-items: center;
+}
+.ticker__logo > span {
+  display: block;
+  /* larghezza e altezza le imposta il componente, per peso ottico uniforme */
+  background-color: currentColor;
+  -webkit-mask-image: var(--logo);
+  mask-image: var(--logo);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }

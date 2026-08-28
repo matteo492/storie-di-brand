@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ticker from "@/components/Ticker";
+import { PARTNERS } from "@/lib/partners";
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
 import BookBanner from "@/components/BookBanner";
@@ -23,14 +24,6 @@ const oswald = Oswald({
   variable: "--font-oswald",
   display: "swap",
 });
-
-const TICKER_BRANDS = [
-  "YAKULT", "UNIVERSITÀ CATTOLICA", "KORO", "SCALABLE CAPITAL",
-  "STARTUP GEEKS", "EDEN VIAGGI", "SUPERPROF", "LIFE",
-  "NORDVPN", "HAIER", "HUMAMY", "REVOLUT", "WWF",
-  "MASERATI", "GENTILINI", "FIORENTINA", "TREEDOM",
-  "FINOM", "ODOO", "SURFSHARK", "PLAUD.AI", "EDENRED", "HIGGSFIELD",
-];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -68,7 +61,7 @@ export default function RootLayout({
         <ScrollReveal />
         <PageTransition>{children}</PageTransition>
         <div className="hero__marquee">
-          <Ticker items={TICKER_BRANDS} />
+          <Ticker items={PARTNERS} />
         </div>
         <Footer />
         <BookBanner />
