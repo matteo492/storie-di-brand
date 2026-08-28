@@ -12,7 +12,9 @@ export default function Footer() {
         </div>
         <div className="footer__col">
           <h4>Naviga</h4>
-          <Link href="/episodi">Episodi</Link>
+          <Link href="/youtube">YouTube</Link>
+          <Link href="/podcast">Podcast</Link>
+          <Link href="/team">Team</Link>
           <Link href="/#newsletter">Newsletter</Link>
           <Link href="/#collabora">Collabora</Link>
         </div>

@@ -128,7 +128,7 @@ export default async function EpisodePage({
       <article>
         <header className="episode__hero">
           <div className="episode__meta-top">
-            <Link href="/episodi" className="link-arrow">
+            <Link href="/youtube" className="link-arrow">
               ← Archivio
             </Link>
             <span className="tag">{ep.sector}</span>

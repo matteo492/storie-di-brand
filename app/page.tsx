@@ -1,7 +1,6 @@
 import Link from "next/link";
-import fs from "fs";
-import path from "path";
 import { getAllEpisodes } from "@/lib/episodes";
+import { YT_VIDEOS, getYoutubeStats } from "@/lib/youtube";
 import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -9,25 +8,9 @@ import PodcastSection from "@/components/PodcastSection";
 import Typewriter from "@/components/Typewriter";
 import CollabForm from "@/components/CollabForm";
 
-const YT_VIDEOS = [
-  {
-    id: "F06RtRjXrCU",
-    title: "Che fine ha fatto A-STYLE? Il simbolo più trasgressivo degli anni 2000",
-    main: true,
-  },
-  { id: "QRc5dydzwqo", title: "L'incredibile storia della Multipla: l'auto più brutta di sempre" },
-  { id: "ihcYNgSVsTY", title: "L'oscura scomparsa della Standa" },
-  { id: "BAZKEGwyKlw", title: "Legami: come delle penne carine sono diventate una mania da 100 milioni" },
-];
-
 export default function Home() {
   const episodes = getAllEpisodes();
-
-  let ytStats: Record<string, string> = {};
-  try {
-    const statsPath = path.join(process.cwd(), "public", "youtube-stats.json");
-    ytStats = JSON.parse(fs.readFileSync(statsPath, "utf8"));
-  } catch { /* usa valori vuoti se il file non esiste */ }
+  const ytStats = getYoutubeStats();
 
   return (
     <>
@@ -132,7 +115,7 @@ export default function Home() {
             <p className="eyebrow">Da non perdere</p>
             <h2 className="section-title">Ultimi episodi</h2>
           </div>
-          <Link href="/episodi" className="link-arrow">
+          <Link href="/youtube" className="link-arrow">
             Esplora →
           </Link>
         </div>

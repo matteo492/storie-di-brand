@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  { href: "/#podcast-originale", label: "Podcast" },
-  { href: "/episodi", label: "Episodi" },
+  { href: "/podcast", label: "Podcast" },
+  { href: "/youtube", label: "YouTube" },
   { href: "/#live", label: "Live" },
+  { href: "/team", label: "Team" },
   { href: "/#newsletter", label: "Newsletter" },
   { href: "/#collabora", label: "Collabora" },
 ];

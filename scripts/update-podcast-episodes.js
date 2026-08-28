@@ -34,6 +34,44 @@ function parseDuration(raw) {
   return `${min} min`;
 }
 
+/**
+ * Ripulisce la descrizione dal feed: via HTML, blocchi sponsor e righe con link,
+ * così l'anteprima mostra il racconto e non la promo di turno.
+ */
+function cleanDescription(raw) {
+  const text = raw
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/⁠/g, ""); // word-joiner usato nei link del feed
+
+  const isPromo = (line) =>
+    !line ||
+    /https?:\/\//i.test(line) ||
+    /^[\s\p{Extended_Pictographic}]*(prova|scopri|vai su|usa il codice|sponsor|iscriviti|segui)/iu.test(line) ||
+    /\b(finom|surfshark|nordvpn|codice sconto)\b/i.test(line) ||
+    // boilerplate della piattaforma
+    /learn more about your ad choices|adchoices/i.test(line) ||
+    // crediti di produzione: non raccontano la puntata
+    /^(copertina|cover|sound design|supporto autoriale|voci|voce|montaggio|musiche|musica|scritto da|prodotto da|produzione|regia|editing|grafica|illustrazioni|si ringrazia|un podcast di)\b/i.test(
+      line
+    );
+
+  const body = text
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => !isPromo(l))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // Se dopo la pulizia non resta nulla di raccontato, meglio nessuna anteprima
+  // che rimettere in pagina la promo o i crediti.
+  return body.slice(0, 320).trim();
+}
+
 async function parseFeed(xml) {
   const parsed = await parseStringPromise(xml);
   const items = parsed.rss.channel[0].item || [];
@@ -46,7 +84,7 @@ async function parseFeed(xml) {
 
     const title = item.title?.[0] || "";
     const rawDesc = item.description?.[0] || item["itunes:summary"]?.[0] || "";
-    const excerpt = rawDesc.replace(/<[^>]*>/g, "").slice(0, 180).trim();
+    const excerpt = cleanDescription(rawDesc);
     const pubDate = item.pubDate?.[0] || "";
     const duration = parseDuration(item["itunes:duration"]?.[0] || "");
     const image =
@@ -76,6 +114,19 @@ async function main() {
 
     const idSet = new Set(allEpisodes.map((ep) => ep.id));
     const toAdd = newEpisodes.filter((ep) => ep.id && !idSet.has(ep.id));
+
+    // Gli episodi ancora presenti nel feed vengono riallineati (titolo, descrizione,
+    // durata, copertina): così le correzioni fatte su Megaphone arrivano sul sito.
+    // Quelli usciti dal feed restano nello storico così come sono.
+    const fresh = new Map(newEpisodes.filter((ep) => ep.id).map((ep) => [ep.id, ep]));
+    let refreshed = 0;
+    allEpisodes = allEpisodes.map((ep) => {
+      const f = fresh.get(ep.id);
+      if (!f) return ep;
+      if (f.excerpt !== ep.excerpt || f.title !== ep.title || f.duration !== ep.duration) refreshed++;
+      return { ...ep, ...f };
+    });
+    if (refreshed > 0) console.log(`♻️  Refreshed ${refreshed} existing episodes`);
 
     allEpisodes.unshift(...toAdd);
     allEpisodes.sort((a, b) => new Date(b.date) - new Date(a.date));
