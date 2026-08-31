@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getPodcastEpisodes, getPodcastYears, getPodcastStats } from "@/lib/podcast";
 import PodcastArchive from "@/components/PodcastArchive";
+import { PIATTAFORME } from "@/lib/piattaforme";
 
 export const metadata: Metadata = {
   title: "Il podcast — tutte le puntate",
@@ -8,15 +9,6 @@ export const metadata: Metadata = {
     "L'archivio completo del podcast Storie di Brand: tutte le puntate, dalla prima all'ultima. Cerca un marchio, filtra per anno e ascolta direttamente dal sito.",
   alternates: { canonical: "/podcast" },
 };
-
-const PLATFORMS = [
-  { label: "Spotify", href: "https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS" },
-  {
-    label: "Amazon Music",
-    href: "https://music.amazon.it/podcasts/97a19029-9d86-4e82-81a1-85ee641b02b0/storie-di-brand",
-  },
-  { label: "Apple Podcasts", href: "https://podcasts.apple.com/it/podcast/storie-di-brand/id1483404084" },
-];
 
 export default function PodcastPage() {
   const episodes = getPodcastEpisodes();
@@ -57,15 +49,19 @@ export default function PodcastPage() {
         <div className="pod-platforms">
           <p className="pod-platforms__label">Ascolta anche su</p>
           <div className="pod-platforms__links">
-            {PLATFORMS.map((p) => (
+            {PIATTAFORME.map((p) => (
               <a
-                key={p.label}
+                key={p.nome}
                 href={p.href}
                 target="_blank"
                 rel="noopener"
-                className="btn btn--ghost"
+                className="btn btn--ghost pod-platforms__link"
+                /* Su mobile resta solo il marchio: il nome serve comunque a
+                   chi naviga con uno screen reader. */
+                aria-label={p.nome}
               >
-                {p.label}
+                <span className="pod-platforms__marchio">{p.icona}</span>
+                <span className="pod-platforms__nome">{p.nome}</span>
               </a>
             ))}
           </div>

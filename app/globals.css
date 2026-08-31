@@ -3290,3 +3290,17 @@ img { max-width: 100%; display: block; }
   .episodes__grid > *,
   .archive__grid > * { width: 82%; }
 }
+
+
+/* I bottoni delle piattaforme: testo su desktop, solo marchio su mobile. */
+.pod-platforms__marchio { display: none; }
+.pod-platforms__marchio svg { display: block; width: auto; height: 24px; }
+
+@media (max-width: 768px) {
+  .pod-platforms__link {
+    padding: 0.6rem 1rem;
+    gap: 0;
+  }
+  .pod-platforms__marchio { display: block; }
+  .pod-platforms__nome { display: none; }
+}
