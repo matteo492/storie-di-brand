@@ -488,6 +488,12 @@ img { max-width: 100%; display: block; }
   transition: transform 0.3s var(--curva), border-color 0.3s var(--curva);
 }
 @media (hover: hover) { .ep-card:hover { transform: translateY(-6px); border-color: var(--red); } }
+/* Nell'archivio la card sta dentro a un contenitore che porta l'animazione di
+   comparsa. È il contenitore a essere tirato all'altezza della riga: senza
+   questo la card resta alta quanto il suo contenuto e, con il titolo su una
+   riga sola, risulta più bassa delle vicine. Vale sia in griglia sia nel
+   nastro orizzontale del mobile. */
+.archive__grid > * > .ep-card { height: 100%; }
 .ep-card--feature {
   grid-column: span 3;
   flex-direction: row;
@@ -1652,6 +1658,12 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 0.5rem;
   margin-top: 1.5rem;
+}
+.brandy__alts__righe {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
 }
 /* Una riga per coppia. I bottoni non superano mai metà riga, così restano due
    sopra e due sotto a qualsiasi larghezza: un titolo lungo va a capo dentro
@@ -3157,3 +3169,124 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 .case__cta .btn { margin-top: 1.5rem; }
+
+
+/* ==========================================================================
+   MOBILE: nastri orizzontali
+   Su schermo stretto queste sei zone diventano nastri da scorrere col dito
+   invece di colonne che allungano la pagina all'infinito. Nessuna freccia:
+   sul telefono si trascina.
+
+   `margin-inline: calc(50% - 50vw)` vale sempre meno il padding di chi le
+   contiene, a qualsiasi profondità di annidamento: il risultato è largo
+   esattamente quanto lo schermo, senza dover sapere dove sta ciascun nastro.
+   Il padding rimesso dentro allinea il primo elemento al titolo e lascia
+   vedere che il nastro continua oltre il bordo.
+
+   768px e non meno: è la soglia a cui .episodes__grid e .archive__grid
+   collassavano già su una colonna sola, cioè proprio la pila infinita che i
+   nastri servono a togliere di mezzo.
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero__stats,
+  .brandy__alts__righe,
+  .pod-years,
+  .filter-bar,
+  .pod-grid,
+  .episodes__grid,
+  .archive__grid {
+    --bordo: clamp(1.2rem, 5vw, 3rem);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Una larghezza esplicita bloccherebbe il box: i margini negativi lo
+       sposterebbero invece di allargarlo fino ai bordi dello schermo. */
+    width: auto;
+    /* Il nastro dei correlati è figlio di un contenitore flex in colonna:
+       senza stretch, `width:auto` diventa larghezza del contenuto e il box
+       deborda invece di allargarsi ai bordi. */
+    align-self: stretch;
+    max-width: none;
+    /* Il tetto serve per la barra di scorrimento classica dei desktop: `50vw`
+       la conta, `50%` no, e senza limite il nastro sforerebbe di mezza barra
+       per lato facendo scorrere la pagina in orizzontale. Sui telefoni, dove
+       la barra è in sovrimpressione e larga zero, i due valori coincidono. */
+    margin-inline: max(calc(50% - 50vw), calc(-1 * var(--bordo)));
+    padding-inline: var(--bordo);
+    scroll-padding-left: var(--bordo);
+  }
+  .hero__stats::-webkit-scrollbar,
+  .brandy__alts__righe::-webkit-scrollbar,
+  .pod-years::-webkit-scrollbar,
+  .filter-bar::-webkit-scrollbar,
+  .pod-grid::-webkit-scrollbar,
+  .episodes__grid::-webkit-scrollbar,
+  .archive__grid::-webkit-scrollbar { display: none; }
+
+  .hero__stats > *,
+  .brandy__alts__righe > *,
+  .pod-years > *,
+  .filter-bar > *,
+  .pod-grid > *,
+  .episodes__grid > *,
+  .archive__grid > * { flex: 0 0 auto; }
+
+  /* Nastri di pillole e numeri: larghezza del contenuto, niente aggancio —
+     su elementi piccoli lo snap è più fastidioso che utile. */
+  .hero__stats { gap: 2.2rem; padding-block: 0.2rem; }
+  .hero__stats > .stat { white-space: nowrap; }
+
+  .pod-years { gap: 0.5rem; padding-block: 0.2rem; }
+
+  .filter-bar { gap: 0.6rem; padding-block: 0.2rem 1.1rem; }
+  /* Il pannello del filtro diventa un foglio ancorato in fondo allo schermo.
+     Dentro a un nastro che scorre, un pannello in posizione assoluta verrebbe
+     ritagliato dal contenitore; e togliere il ritaglio all'apertura farebbe
+     saltare il nastro all'inizio (qui sono 65px di scorrimento), spostando
+     sotto al dito la pillola appena premuta. `position: fixed` esce dal
+     ritaglio senza toccare lo scorrimento, e su un telefono un elenco a tutta
+     larghezza si usa meglio di un pannello da 220px. */
+  .dropdown__panel {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 0;
+    max-height: min(60dvh, 420px);
+    border-width: 1px 0 0;
+    border-radius: 18px 18px 0 0;
+    padding: 0.6rem 0.6rem calc(0.6rem + env(safe-area-inset-bottom));
+    box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.7);
+  }
+
+  /* I correlati: le righe spariscono e i quattro bottoni filano in fila,
+     ciascuno su una riga sola di testo. */
+  .brandy__alts__righe { gap: 0.5rem; padding-block: 0.2rem; }
+  .brandy__alts__riga { display: contents; }
+  .brandy__alts button { max-width: none; white-space: nowrap; }
+
+  /* Nastri di schede: agganciano, come gli altri caroselli del sito. */
+  .pod-grid,
+  .episodes__grid,
+  .archive__grid {
+    scroll-snap-type: x mandatory;
+    padding-block: 0.3rem 1rem;
+  }
+  .pod-grid > *,
+  .episodes__grid > *,
+  .archive__grid > * { scroll-snap-align: start; }
+
+  .pod-grid { gap: 1rem; }
+  .pod-grid > * { width: 46%; }
+
+  .episodes__grid,
+  .archive__grid { gap: 1rem; }
+  .episodes__grid > *,
+  .archive__grid > * { width: 82%; }
+}

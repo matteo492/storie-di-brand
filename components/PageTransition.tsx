@@ -20,7 +20,30 @@ export default function PageTransition({ children }: { children: React.ReactNode
       el.style.opacity = "1";
       el.style.transform = "translateY(0)";
     });
-    return () => cancelAnimationFrame(raf);
+
+    // A dissolvenza finita si toglie tutto. Un transform lasciato addosso
+    // all'involucro della pagina, anche se è un translateY(0), fa da blocco
+    // contenitore: ogni `position: fixed` dentro la pagina smette di
+    // riferirsi alla finestra e si posiziona rispetto all'involucro.
+    // L'opacità resta com'è: il JSX la dichiara a zero e ripulirla la
+    // rimetterebbe a zero.
+    const pulisci = () => {
+      el.style.transition = "";
+      el.style.transform = "";
+    };
+    const alTermine = (e: TransitionEvent) => {
+      if (e.target === el && e.propertyName === "transform") pulisci();
+    };
+    el.addEventListener("transitionend", alTermine);
+    // Rete di sicurezza: con `prefers-reduced-motion` la transizione è
+    // azzerata e transitionend non arriva mai.
+    const scadenza = window.setTimeout(pulisci, 1200);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("transitionend", alTermine);
+      clearTimeout(scadenza);
+    };
   }, [pathname]);
 
   // Fix hash anchor navigation when coming from another page
