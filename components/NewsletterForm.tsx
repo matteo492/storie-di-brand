@@ -31,8 +31,8 @@ export default function NewsletterForm() {
   if (status === "done") {
     return (
       <p className="newsletter__done">
-        Grazie! Si è aperta la tua email: invia il messaggio per completare
-        l&apos;iscrizione. 📬
+        Ci siamo quasi: si è aperta la tua email, invia il messaggio e sei dei
+        nostri. 📬
       </p>
     );
   }
@@ -58,8 +58,9 @@ export default function NewsletterForm() {
         }}
         className={status === "error" ? "is-error" : ""}
       />
+      {/* Risponde alla domanda del sottotitolo: "Sei dei nostri?" → "Entra". */}
       <button type="submit" className="btn btn--primary">
-        Iscriviti
+        Entra
       </button>
       {status === "error" && (
         <span className="newsletter__err">Inserisci un&apos;email valida.</span>

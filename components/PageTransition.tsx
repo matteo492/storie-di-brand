@@ -13,9 +13,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
     if (!el) return;
     el.style.opacity = "0";
     el.style.transform = "translateY(12px)";
-    const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
+    // Stesso raccordo del resto del sito: il token vive in globals.css.
+    const raccordo = "var(--curva)";
     const raf = requestAnimationFrame(() => {
-      el.style.transition = `opacity 0.7s ${ease}, transform 0.7s ${ease}`;
+      el.style.transition = `opacity 0.84s ${raccordo}, transform 0.84s ${raccordo}`;
       el.style.opacity = "1";
       el.style.transform = "translateY(0)";
     });

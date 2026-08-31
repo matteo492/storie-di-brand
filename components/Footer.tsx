@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <Link href="/" className="nav__logo">
-            STORIE<span>DI</span>BRAND
+          <Link href="/" className="footer__logo" aria-label="Storie di Brand">
+            <img src="/logo-sdb.svg" alt="" width={1024} height={1024} />
           </Link>
           <p>Le incredibili storie dietro i marchi più famosi.</p>
         </div>

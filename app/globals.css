@@ -5,6 +5,11 @@
    ============================================ */
 
 :root {
+  /* Raccordi delle animazioni, in un posto solo.
+     --curva: decelerazione morbida, per tutto ciò che entra o reagisce.
+     --curva-doppia: partenza e arrivo morbidi, per aperture e chiusure. */
+  --curva: cubic-bezier(0.16, 1, 0.3, 1);
+  --curva-doppia: cubic-bezier(0.65, 0, 0.35, 1);
   --cream: #faf9d2;
   --red: #ff5757;
   --black: #000000;
@@ -77,7 +82,7 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   border: 1.5px solid var(--cream);
   color: var(--cream);
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: transform 0.24s var(--curva), background 0.24s var(--curva), color 0.24s var(--curva);
   cursor: pointer;
   white-space: nowrap;
 }
@@ -106,7 +111,7 @@ img { max-width: 100%; display: block; }
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, background 0.3s;
+  transition: border-color 0.36s var(--curva), background 0.36s var(--curva);
 }
 .nav.scrolled { border-color: var(--line); background: rgba(0,0,0,0.85); }
 .nav__logo {
@@ -129,7 +134,7 @@ img { max-width: 100%; display: block; }
 }
 .nav__links a::after {
   content: ""; position: absolute; left: 0; bottom: -2px;
-  width: 0; height: 2px; background: var(--red); transition: width 0.25s;
+  width: 0; height: 2px; background: var(--red); transition: width 0.3s var(--curva);
 }
 @media (hover: hover) { .nav__links a:hover::after { width: 100%; } }
 .nav__burger {
@@ -138,7 +143,7 @@ img { max-width: 100%; display: block; }
 }
 .nav__burger span {
   width: 26px; height: 2px; background: var(--cream);
-  transition: transform 0.35s ease, opacity 0.25s ease, width 0.35s ease;
+  transition: transform 0.42s var(--curva), opacity 0.3s var(--curva), width 0.42s var(--curva);
   transform-origin: center;
   display: block;
 }
@@ -223,7 +228,7 @@ img { max-width: 100%; display: block; }
 .hero__inner > *,
 .page-head > *,
 .episode__hero > *:not(.episode__factbar) {
-  animation: sdbRevealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: sdbRevealUp 1.08s var(--curva) both;
 }
 /* Hero homepage */
 .hero__inner > *:nth-child(1) { animation-delay: 0.05s; }
@@ -241,7 +246,7 @@ img { max-width: 100%; display: block; }
 .episode__hero > *:nth-child(3) { animation-delay: 0.31s; }
 /* Factbar: ogni dato entra in sequenza dopo l'hero */
 .episode__factbar .fact {
-  animation: sdbRevealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: sdbRevealUp 0.84s var(--curva) both;
 }
 .episode__factbar .fact:nth-child(1) { animation-delay: 0.44s; }
 .episode__factbar .fact:nth-child(2) { animation-delay: 0.56s; }
@@ -278,8 +283,8 @@ img { max-width: 100%; display: block; }
   opacity: 0;
   transform: translateY(26px);
   transition:
-    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.9s var(--curva),
+    transform 0.9s var(--curva);
   will-change: opacity, transform;
 }
 .reveal-ready .reveal.in-view {
@@ -338,8 +343,8 @@ img { max-width: 100%; display: block; }
 }
 .doodle.is-drawn path {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.5s cubic-bezier(0.5, 0, 0.5, 1);
-  transition-delay: calc(var(--i, 0) * 0.07s);
+  transition: stroke-dashoffset 0.6s var(--curva-doppia);
+  transition-delay: calc(var(--i, 0) * 0.084s);
 }
 @media (prefers-reduced-motion: reduce) {
   .doodle path { stroke-dashoffset: 0; }
@@ -420,7 +425,7 @@ img { max-width: 100%; display: block; }
   left: 0; bottom: -6px;
   width: 0; height: 2px;
   background: var(--red);
-  transition: width 0.3s ease;
+  transition: width 0.36s var(--curva);
 }
 @media (hover: hover) { .link-arrow:hover::after { width: 100%; } }
 
@@ -480,7 +485,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s, border-color 0.25s;
+  transition: transform 0.3s var(--curva), border-color 0.3s var(--curva);
 }
 @media (hover: hover) { .ep-card:hover { transform: translateY(-6px); border-color: var(--red); } }
 .ep-card--feature {
@@ -566,9 +571,12 @@ img { max-width: 100%; display: block; }
 .newsletter__sub {
   font-size: 1.1rem;
   color: rgba(250,249,210,0.78);
-  max-width: 52ch;
+  /* Misura più stretta e righe pareggiate: sotto a un titolo così grande un
+     paragrafo centrato su 52ch si sfilacciava in quattro righe irregolari. */
+  max-width: 44ch;
   margin: 0 auto 2.4rem;
   line-height: 1.55;
+  text-wrap: balance;
 }
 .newsletter__form {
   display: flex;
@@ -649,10 +657,7 @@ img { max-width: 100%; display: block; }
     rgba(8, 5, 5, 0.3) 68%,
     transparent 82%
   );
-  transition: opacity 0.4s ease;
 }
-/* Durante la riproduzione sparisce tutto: resta il video. */
-.live-banner.is-playing::after { opacity: 0; }
 .live-banner__testo {
   position: absolute;
   left: clamp(1.6rem, 6%, 4.5rem);
@@ -681,9 +686,111 @@ img { max-width: 100%; display: block; }
   justify-content: flex-start;
 }
 
+/* ---------- LA FINESTRA DEL TRAILER ---------- */
+/* <dialog> nativo: sta nel top layer, quindi non ha bisogno di z-index e non
+   può finire sotto all'intestazione fissa. */
+.live-finestra {
+  border: 0;
+  padding: clamp(1rem, 4vw, 3rem);
+  max-width: 100vw;
+  max-height: 100dvh;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+}
+/* Il display va solo sullo stato aperto: una regola secca su .live-finestra
+   scavalcherebbe il display:none che il browser dà al <dialog> chiuso, e il
+   video resterebbe in fondo alla pagina. Il <dialog> nasce centrato solo in
+   orizzontale: la griglia lo centra anche in verticale e dà al click fuori
+   dal riquadro tutta l'area. */
+.live-finestra[open] {
+  display: grid;
+  place-items: center;
+}
+.live-finestra::backdrop {
+  background: rgba(6, 4, 4, 0.86);
+  backdrop-filter: blur(6px);
+}
+
+/* Apertura e chiusura morbide senza una riga di JavaScript.
+   `allow-discrete` tiene la finestra visibile e nel top layer per tutta la
+   durata dell'uscita — altrimenti il display:none la farebbe sparire di
+   colpo — e @starting-style dà il fotogramma di partenza all'ingresso.
+   Il velo sfuma, il riquadro sale di poco e si apre di scala. */
+.live-finestra,
+.live-finestra::backdrop {
+  opacity: 0;
+  transition:
+    opacity 0.42s var(--curva-doppia),
+    display 0.42s allow-discrete,
+    overlay 0.42s allow-discrete;
+}
+.live-finestra[open],
+.live-finestra[open]::backdrop {
+  opacity: 1;
+}
+.live-finestra__corpo {
+  transform: scale(0.965) translateY(16px);
+  transition: transform 0.52s var(--curva);
+}
+.live-finestra[open] .live-finestra__corpo {
+  transform: none;
+}
+@starting-style {
+  .live-finestra[open],
+  .live-finestra[open]::backdrop {
+    opacity: 0;
+  }
+  .live-finestra[open] .live-finestra__corpo {
+    transform: scale(0.965) translateY(16px);
+  }
+}
+
+.live-finestra__corpo {
+  position: relative;
+  width: min(100%, 1100px);
+}
+.live-finestra__video {
+  display: block;
+  width: 100%;
+  max-height: calc(100dvh - 2 * clamp(1rem, 4vw, 3rem));
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.7);
+}
+.live-finestra__chiudi {
+  position: absolute;
+  top: -0.9rem;
+  right: -0.9rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(250, 249, 210, 0.28);
+  background: rgba(10, 8, 8, 0.92);
+  color: var(--cream);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.24s var(--curva), color 0.24s var(--curva), transform 0.24s var(--curva);
+}
+@media (hover: hover) {
+  .live-finestra__chiudi:hover {
+    background: var(--cream);
+    color: var(--black);
+    transform: scale(1.06);
+  }
+}
+
 @media (max-width: 860px) {
-  /* Impilato: il video sopra, il testo sotto — a quella larghezza la colonna
-     di testo sopra il video sarebbe troppo stretta per leggersi. */
+  /* La X rientra nel riquadro: fuori finirebbe oltre il bordo dello schermo. */
+  .live-finestra__chiudi { top: -3.4rem; right: 0; }
+
+  /* Impilato: la foto sopra, il testo sotto — a quella larghezza la colonna
+     di testo sopra la foto sarebbe troppo stretta per leggersi. */
   .live-banner {
     aspect-ratio: auto;
     border-radius: 20px;
@@ -725,7 +832,7 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
   width: 100%;
   border-radius: 4px 10px 10px 4px;
-  transition: transform 0.35s ease;
+  transition: transform 0.42s var(--curva);
   transform: perspective(1400px) rotateY(-9deg);
   transform-origin: left center;
 }
@@ -780,7 +887,7 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--line);
   backdrop-filter: blur(12px);
   transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.48s var(--curva);
 }
 .book-banner.is-visible { transform: translateY(0); }
 .book-banner__cover {
@@ -818,7 +925,7 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   flex-shrink: 0;
-  transition: color 0.2s;
+  transition: color 0.24s var(--curva);
 }
 @media (hover: hover) { .book-banner__close:hover { color: var(--cream); } }
 @media (max-width: 500px) {
@@ -860,7 +967,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--body);
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.24s var(--curva);
   box-sizing: border-box;
 }
 .collab-form input:focus,
@@ -942,7 +1049,7 @@ img { max-width: 100%; display: block; }
   padding: 1rem 1.2rem;
   text-decoration: none;
   margin-bottom: 1.5rem;
-  transition: background 0.2s;
+  transition: background 0.24s var(--curva);
   cursor: pointer;
   width: 100%;
   text-align: left;
@@ -998,7 +1105,7 @@ img { max-width: 100%; display: block; }
   border: none;
   width: 100%;
   cursor: pointer;
-  transition: color 0.15s;
+  transition: color 0.18s var(--curva);
   text-align: left;
 }
 @media (hover: hover) {
@@ -1009,7 +1116,7 @@ img { max-width: 100%; display: block; }
 .sdb-podcast__more {
   height: 0;
   overflow: hidden;
-  transition: height 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: height 0.66s var(--curva-doppia);
   will-change: height;
 }
 .sdb-podcast__expand-btn {
@@ -1030,7 +1137,7 @@ img { max-width: 100%; display: block; }
 /* I due stati del CTA condividono la stessa cella e fanno crossfade */
 .sdb-podcast__cta-fade {
   grid-area: 1 / 1;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.48s var(--curva);
 }
 .sdb-podcast__cta-fade.is-hidden {
   opacity: 0;
@@ -1055,7 +1162,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.24s var(--curva), opacity 0.24s var(--curva);
   flex-shrink: 0;
 }
 @media (hover: hover) { .sdb-podcast__collapse-btn:hover {
@@ -1166,15 +1273,15 @@ img { max-width: 100%; display: block; }
   border-radius: 50%;
   background: transparent;
   border: 1.5px solid rgba(250, 249, 210, 0.5);
-  transition: transform 0.2s ease, background 0.2s ease,
-    border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.24s var(--curva), background 0.24s var(--curva),
+    border-color 0.24s var(--curva), box-shadow 0.24s var(--curva);
 }
 .bt-marker__year {
   font-family: var(--body);
   font-size: 0.72rem;
   color: rgba(250, 249, 210, 0.45);
   font-variant-numeric: tabular-nums;
-  transition: color 0.2s ease;
+  transition: color 0.24s var(--curva);
 }
 @media (hover: hover) {
   .bt-marker:hover .bt-marker__dot {
@@ -1203,7 +1310,7 @@ img { max-width: 100%; display: block; }
 .bt-stage {
   margin-top: 2rem;
   overflow: hidden;
-  transition: height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: height 0.66s var(--curva-doppia);
 }
 @media (prefers-reduced-motion: reduce) {
   .bt-stage { transition: none; }
@@ -1227,7 +1334,7 @@ img { max-width: 100%; display: block; }
   --lato: 22rem;
   margin-bottom: 0;
   align-items: flex-start;
-  animation: bt-reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: bt-reveal 0.54s var(--curva);
 }
 :is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__cover {
   flex: 0 0 auto;
@@ -1321,7 +1428,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--body);
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.24s var(--curva);
 }
 .brandy__search input:focus { border-color: var(--red); }
 .brandy__search input::placeholder { color: rgba(250,249,210,0.4); }
@@ -1344,7 +1451,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--body);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.24s var(--curva);
 }
 @media (hover: hover) { .brandy__suggest button:hover {
   border-color: var(--red);
@@ -1370,7 +1477,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color 0.24s var(--curva);
 }
 @media (hover: hover) { .brandy__shuffle:hover { color: var(--cream); } }
 .brandy__title {
@@ -1383,7 +1490,7 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
   overflow: hidden;
   max-height: 600px;
-  transition: max-height 0.4s ease-in-out;
+  transition: max-height 0.48s var(--curva-doppia);
 }
 .brandy__desc-wrap.is-collapsed {
   max-height: 4.8em;
@@ -1408,7 +1515,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: color 0.24s var(--curva);
 }
 @media (hover: hover) { .brandy__desc-toggle:hover { color: var(--cream); } }
 .brandy__noresult {
@@ -1464,7 +1571,7 @@ img { max-width: 100%; display: block; }
   font-size: 1rem;
   text-align: left;
   cursor: pointer;
-  transition: border-color 0.25s ease, background 0.25s ease, opacity 0.35s ease;
+  transition: border-color 0.3s var(--curva), background 0.3s var(--curva), opacity 0.42s var(--curva);
 }
 @media (hover: hover) {
   .quiz__opzione:not(:disabled):hover {
@@ -1487,7 +1594,7 @@ img { max-width: 100%; display: block; }
 
 .quiz__esito {
   margin-top: 1.6rem;
-  animation: bt-reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: bt-reveal 0.54s var(--curva);
 }
 .quiz__verdetto {
   font-family: var(--display);
@@ -1541,14 +1648,22 @@ img { max-width: 100%; display: block; }
 }
 .brandy__alts {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
   margin-top: 1.5rem;
 }
-.brandy__alts span {
+/* Una riga per coppia. I bottoni non superano mai metà riga, così restano due
+   sopra e due sotto a qualsiasi larghezza: un titolo lungo va a capo dentro
+   al bottone invece di spingere il vicino alla riga successiva. */
+.brandy__alts__riga {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.5rem;
   width: 100%;
+}
+.brandy__alts span {
   text-align: center;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
@@ -1557,6 +1672,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 0.3rem;
 }
 .brandy__alts button {
+  max-width: calc(50% - 0.25rem);
   background: rgba(10, 8, 8, 0.5);
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1564,9 +1680,11 @@ img { max-width: 100%; display: block; }
   color: rgba(250, 249, 210, 0.8);
   font-family: var(--body);
   font-size: 0.82rem;
+  line-height: 1.35;
+  text-align: center;
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+  transition: transform 0.3s var(--curva),
+    border-color 0.3s var(--curva), background 0.3s var(--curva), color 0.3s var(--curva);
 }
 @media (hover: hover) {
   .brandy__alts button:hover {
@@ -1605,9 +1723,18 @@ img { max-width: 100%; display: block; }
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem;
   padding-bottom: 3rem; border-bottom: 1px solid var(--line);
 }
+/* Il marchio quadrato: i suoi due colori stanno dentro all'SVG, quindi va
+   servito come immagine e non mascherato in tinta unita. */
+.footer__logo {
+  display: inline-block;
+  width: clamp(60px, 6vw, 76px);
+  transition: opacity 0.24s var(--curva);
+}
+.footer__logo img { display: block; width: 100%; height: auto; }
+@media (hover: hover) { .footer__logo:hover { opacity: 0.82; } }
 .footer__brand p { color: rgba(250,249,210,0.6); margin-top: 1rem; max-width: 30ch; }
 .footer__col h4 { font-size: 0.85rem; letter-spacing: 0.18em; color: var(--red); margin-bottom: 1.2rem; }
-.footer__col a { display: block; color: rgba(250,249,210,0.75); margin-bottom: 0.6rem; font-size: 0.95rem; transition: color 0.2s; }
+.footer__col a { display: block; color: rgba(250,249,210,0.75); margin-bottom: 0.6rem; font-size: 0.95rem; transition: color 0.24s var(--curva); }
 @media (hover: hover) { .footer__col a:hover { color: var(--cream); } }
 .footer__bottom {
   max-width: var(--maxw); margin: 1.5rem auto 0;
@@ -1657,7 +1784,7 @@ img { max-width: 100%; display: block; }
   color: var(--cream);
   font-family: var(--body);
   font-size: 1rem;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.24s var(--curva);
 }
 .pod-search input::placeholder { color: rgba(250, 249, 210, 0.4); }
 .pod-search input:focus {
@@ -1678,7 +1805,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
   color: rgba(250, 249, 210, 0.7);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.216s var(--curva);
   font-variant-numeric: tabular-nums;
 }
 @media (hover: hover) {
@@ -1815,7 +1942,7 @@ img { max-width: 100%; display: block; }
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: transform 0.18s ease, background 0.18s ease;
+  transition: transform 0.216s var(--curva), background 0.216s var(--curva);
 }
 @media (hover: hover) { .mini__play:hover { background: #ff3d3d; transform: scale(1.06); } }
 .mini__play:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
@@ -1884,7 +2011,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
   color: rgba(250, 249, 210, 0.7);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.216s var(--curva);
 }
 @media (hover: hover) { .pod-part:hover { border-color: var(--red); color: var(--cream); } }
 .pod-part.is-sel { background: var(--red); border-color: var(--red); color: #1a0d0d; font-weight: 600; }
@@ -1919,7 +2046,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: var(--ink-2);
   border: 1px solid var(--line);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
+  transition: transform 0.3s var(--curva), border-color 0.3s var(--curva);
 }
 .pod-tile__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pod-tile__play {
@@ -1931,7 +2058,7 @@ img { max-width: 100%; display: block; }
   color: var(--cream);
   background: rgba(6, 4, 4, 0.5);
   opacity: 0;
-  transition: opacity 0.22s ease;
+  transition: opacity 0.264s var(--curva);
 }
 @media (hover: hover) {
   .pod-tile:hover .pod-tile__cover { transform: translateY(-4px); border-color: rgba(255, 87, 87, 0.55); }
@@ -2047,7 +2174,7 @@ img { max-width: 100%; display: block; }
   background: var(--ink-2);
   color: var(--cream);
   cursor: pointer;
-  transition: border-color 0.18s ease;
+  transition: border-color 0.216s var(--curva);
 }
 @media (hover: hover) { .dropdown__btn:hover { border-color: var(--cream); } }
 .dropdown__btn--active { border-color: var(--red); }
@@ -2083,7 +2210,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
   color: rgba(250, 249, 210, 0.8);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.18s var(--curva), color 0.18s var(--curva);
 }
 @media (hover: hover) { .dropdown__opt:hover { background: var(--ink-2); color: var(--cream); } }
 .dropdown__opt.is-sel { background: var(--red); color: #fff; }
@@ -2197,7 +2324,7 @@ img { max-width: 100%; display: block; }
     opacity: 0;
     visibility: hidden;
     transform: translateY(-6px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    transition: opacity 0.36s var(--curva), transform 0.36s var(--curva), visibility 0.36s var(--curva);
     pointer-events: none;
   }
   .nav__links.open {
@@ -2326,7 +2453,7 @@ img { max-width: 100%; display: block; }
   border-radius: 16px;
   background: var(--ink-2);
   padding: 1.6rem 1.8rem;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.24s var(--curva);
 }
 @media (hover: hover) {
   .job-card:hover { border-color: rgba(255, 87, 87, 0.5); }
@@ -2416,7 +2543,7 @@ img { max-width: 100%; display: block; }
    sfumano salendo, una dopo l'altra (il ritardo lo imposta il componente). */
 @media (prefers-reduced-motion: no-preference) {
   .pod-grid > li.is-new {
-    animation: pod-tile-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: pod-tile-in 0.66s var(--curva) both;
   }
   @keyframes pod-tile-in {
     from { opacity: 0; transform: translateY(16px); }
@@ -2424,7 +2551,7 @@ img { max-width: 100%; display: block; }
   }
 }
 /* Il pulsante reagisce al passaggio del mouse come gli altri della pagina */
-.pod-more .btn { transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.pod-more .btn { transition: background 0.24s var(--curva), color 0.24s var(--curva), border-color 0.24s var(--curva); }
 
 /* ---------- PAGINA PODCAST SU MOBILE ---------- */
 @media (max-width: 640px) {
@@ -2518,11 +2645,11 @@ img { max-width: 100%; display: block; }
 
 /* Pulsante "Mostra altri episodi" dell'archivio YouTube */
 .archive__more { display: flex; justify-content: center; margin-top: 2.5rem; }
-.archive__more .btn { transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.archive__more .btn { transition: background 0.24s var(--curva), color 0.24s var(--curva), border-color 0.24s var(--curva); }
 /* Stessa entrata a cascata della griglia podcast */
 @media (prefers-reduced-motion: no-preference) {
   .archive__grid > .is-new {
-    animation: pod-tile-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: pod-tile-in 0.66s var(--curva) both;
   }
 }
 
@@ -2675,8 +2802,8 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.45s ease, box-shadow 0.45s ease;
+  transition: transform 0.54s var(--curva),
+    border-color 0.54s var(--curva), box-shadow 0.54s var(--curva);
 }
 .universo__tag {
   font-size: 0.64rem;
@@ -2701,7 +2828,7 @@ img { max-width: 100%; display: block; }
   inset: 0;
   background-size: cover;
   background-position: 50% 50%;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.84s var(--curva);
 }
 .universo__card--foto::before {
   content: "";
@@ -2739,7 +2866,7 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   width: 46%;
   color: rgba(250, 249, 210, 0.22);
-  transition: color 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color 0.54s var(--curva), transform 0.66s var(--curva);
 }
 .universo__plus {
   position: absolute;
@@ -2755,8 +2882,8 @@ img { max-width: 100%; display: block; }
   line-height: 1;
   background: rgba(250, 249, 210, 0.92);
   color: #0a0808;
-  transition: background 0.35s ease, color 0.35s ease,
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background 0.42s var(--curva), color 0.42s var(--curva),
+    transform 0.42s var(--curva);
 }
 @media (hover: hover) {
   .universo__card:hover {
@@ -2843,8 +2970,8 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.45s ease, box-shadow 0.45s ease;
+  transition: transform 0.54s var(--curva),
+    border-color 0.54s var(--curva), box-shadow 0.54s var(--curva);
 }
 /* La velatura che scurisce il fondo per far leggere l'etichetta. Scurisce
    anche in cima, non solo in fondo: fermandosi a metà lasciava l'angolo alto
@@ -2856,7 +2983,7 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.22) 45%, rgba(0, 0, 0, 0.14));
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.54s var(--curva);
   pointer-events: none;
 }
 .pslider__img {
@@ -2867,7 +2994,7 @@ img { max-width: 100%; display: block; }
   /* La posizione la decide il componente (campo `fuoco` del partner): qui c'è
      solo il valore di riserva. */
   background-position: center;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.84s var(--curva);
 }
 /* Velatura sulla fotografia: il logo è crema e deve staccarsi da qualunque
    immagine ci finisca sotto. La leggera tinta rossa tiene la foto in palette. */
@@ -2900,8 +3027,8 @@ img { max-width: 100%; display: block; }
   mask-position: center;
   -webkit-mask-size: contain;
   mask-size: contain;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.45s ease;
+  transition: transform 0.84s var(--curva),
+    background-color 0.54s var(--curva);
 }
 /* L'etichetta sale dal basso a sinistra, sopra la velatura. */
 .pslider__scopri {
@@ -2915,7 +3042,7 @@ img { max-width: 100%; display: block; }
   color: var(--cream);
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.54s var(--curva), transform 0.54s var(--curva);
 }
 .pslider__testo {
   display: flex;
@@ -2928,7 +3055,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.02em;
   line-height: 1;
   color: var(--cream);
-  transition: color 0.35s ease;
+  transition: color 0.42s var(--curva);
 }
 .pslider__desc {
   font-size: 0.9rem;
@@ -2978,7 +3105,7 @@ img { max-width: 100%; display: block; }
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
-  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+  transition: background 0.3s var(--curva), border-color 0.3s var(--curva), opacity 0.3s var(--curva);
 }
 .car-arrow:hover:not(:disabled) {
   background: var(--red);

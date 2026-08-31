@@ -205,7 +205,7 @@ export default function ArchiveExplorer({
                 className={isNew ? "is-new" : undefined}
                 style={
                   isNew
-                    ? { animationDelay: `${Math.min(i - shownBefore.current, 12) * 45}ms` }
+                    ? { animationDelay: `${Math.min(i - shownBefore.current, 12) * 54}ms` }
                     : undefined
                 }
               >

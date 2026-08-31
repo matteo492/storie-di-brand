@@ -106,15 +106,14 @@ export default function Home() {
       {/* NEWSLETTER */}
       <section className="newsletter" id="newsletter">
         <div className="newsletter__inner reveal">
-          <p className="eyebrow">La newsletter settimanale</p>
+          <p className="eyebrow">La newsletter</p>
           <h2 className="newsletter__title">
             Il meglio della settimana,<br />
             <span className="hl">ogni venerdì</span>
           </h2>
           <p className="newsletter__sub">
-            Il meglio di Storie di Brand, raccolto in una mail: marketing e business
-            raccontati come piace a te, niente spam. Ogni iscrizione ci dà la forza di
-            realizzare nuove storie, contenuti e video — sei tu a tenere in vita questo progetto.
+            Ogni venerdì ci ritroviamo in una mail: le storie che nel podcast
+            non entrano e quelle che stiamo preparando. Sei dei nostri?
           </p>
           <NewsletterForm />
         </div>

@@ -308,16 +308,26 @@ export default function BrandyGame() {
               {correlate.length > 0 && (
                 <div className="brandy__alts">
                   <span>Episodi correlati</span>
-                  {correlate.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      className={c.id === idPuntata ? "is-sel" : undefined}
-                      onClick={() => setInAscolto(c.id)}
-                    >
-                      {c.t}
-                    </button>
-                  ))}
+                  {/* Due per riga, sempre: le quattro puntate vengono servite
+                      già divise in coppie, così l'impaginazione non dipende
+                      dalla lunghezza dei titoli. */}
+                  {[correlate.slice(0, 2), correlate.slice(2, 4)].map(
+                    (riga, i) =>
+                      riga.length > 0 && (
+                        <div className="brandy__alts__riga" key={i}>
+                          {riga.map((c) => (
+                            <button
+                              key={c.id}
+                              type="button"
+                              className={c.id === idPuntata ? "is-sel" : undefined}
+                              onClick={() => setInAscolto(c.id)}
+                            >
+                              {c.t}
+                            </button>
+                          ))}
+                        </div>
+                      )
+                  )}
                 </div>
               )}
             </div>
