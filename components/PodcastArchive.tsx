@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PodcastEpisode } from "@/lib/podcast";
 import { brandLabel } from "@/lib/podcast-brand";
 import PodcastPlayerMini from "./PodcastPlayerMini";
+import Dropdown from "./Dropdown";
+import { ORDINE_SETTORI, ORDINE_EPOCHE } from "@/lib/podcast-settori";
 
 const PAGE_SIZE = 24;
 
@@ -65,13 +67,21 @@ function groupByBrand(episodes: PodcastEpisode[]): GridItem[] {
 
 export default function PodcastArchive({
   episodes,
-  years,
+  settori,
+  epoche,
 }: {
   episodes: PodcastEpisode[];
-  years: number[];
+  /** marchio (come su copertina) → settore, e → epoca di fondazione. */
+  settori: Record<string, string>;
+  epoche: Record<string, string>;
 }) {
   const [query, setQuery] = useState("");
-  const [year, setYear] = useState<number | null>(null);
+  // La ricerca sta chiusa dietro a una lente: la barra a tutta larghezza
+  // pesava più dei filtri, che sono il primo modo di sfogliare l'archivio.
+  const [cercaAperta, setCercaAperta] = useState(false);
+  const campoCerca = useRef<HTMLInputElement>(null);
+  const [settore, setSettore] = useState<string | null>(null);
+  const [epoca, setEpoca] = useState<string | null>(null);
   const [limit, setLimit] = useState(PAGE_SIZE);
   // Indice da cui partono le caselle appena caricate: solo quelle si animano.
   const shownBefore = useRef(PAGE_SIZE);
@@ -79,19 +89,39 @@ export default function PodcastArchive({
   const featuredRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const indexed = useMemo(
-    () => episodes.map((e) => ({ ep: e, hay: norm(`${e.title} ${e.excerpt}`) })),
-    [episodes]
+    () =>
+      episodes.map((e) => {
+        const marchio = brandLabel(e);
+        return {
+          ep: e,
+          hay: norm(`${e.title} ${e.excerpt}`),
+          settore: settori[marchio] ?? null,
+          epoca: epoche[marchio] ?? null,
+        };
+      }),
+    [episodes, settori, epoche]
   );
 
   const filtered = useMemo(() => {
     const terms = norm(query).split(" ").filter(Boolean);
     return indexed
-      .filter(({ ep, hay }) => {
-        if (year && ep.year !== year) return false;
-        return terms.every((t) => hay.includes(t));
+      .filter((x) => {
+        if (settore && x.settore !== settore) return false;
+        if (epoca && x.epoca !== epoca) return false;
+        return terms.every((t) => x.hay.includes(t));
       })
       .map((x) => x.ep);
-  }, [indexed, query, year]);
+  }, [indexed, query, settore, epoca]);
+
+  // Nelle tendine finiscono solo le voci che hanno davvero delle puntate.
+  const settoriPresenti = useMemo(() => {
+    const presenti = new Set(indexed.map((x) => x.settore).filter(Boolean));
+    return ORDINE_SETTORI.filter((s) => presenti.has(s));
+  }, [indexed]);
+  const epochePresenti = useMemo(() => {
+    const presenti = new Set(indexed.map((x) => x.epoca).filter(Boolean));
+    return ORDINE_EPOCHE.filter((e) => presenti.has(e));
+  }, [indexed]);
 
   const items = useMemo(() => groupByBrand(filtered), [filtered]);
 
@@ -119,11 +149,13 @@ export default function PodcastArchive({
   }, [episodes, featured]);
 
   const visible = items.slice(0, limit);
-  const hasFilters = query.trim() !== "" || year !== null;
+  const hasFilters = query.trim() !== "" || settore !== null || epoca !== null;
 
   const reset = () => {
     setQuery("");
-    setYear(null);
+    setCercaAperta(false);
+    setSettore(null);
+    setEpoca(null);
     shownBefore.current = 0; // rientrano tutte
     setLimit(PAGE_SIZE);
   };
@@ -188,49 +220,73 @@ export default function PodcastArchive({
       )}
 
       <div className="pod-controls">
-        <div className="pod-search">
-          <span className="pod-search__icon" aria-hidden="true">
-            ⌕
-          </span>
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              shownBefore.current = PAGE_SIZE;
-              setLimit(PAGE_SIZE);
-            }}
-            placeholder="Cerca un brand o una puntata — es. Nike, Lego, Ferrari…"
-            aria-label="Cerca tra le puntate"
-          />
-        </div>
-
-        <div className="pod-years" role="group" aria-label="Filtra per anno">
-          <button
-            type="button"
-            className={`pod-year${year === null ? " is-sel" : ""}`}
-            onClick={() => {
-              setYear(null);
+        {/* Settore ed epoca di fondazione del marchio: l'anno di pubblicazione
+            non dice niente a chi cerca una storia da ascoltare. */}
+        <div className="pod-filtri">
+          <div className={`pod-cerca${cercaAperta ? " is-aperta" : ""}`}>
+            <button
+              type="button"
+              className="pod-cerca__lente"
+              aria-expanded={cercaAperta}
+              aria-label={cercaAperta ? "Chiudi la ricerca" : "Cerca un brand o una puntata"}
+              onClick={() => {
+                const apri = !cercaAperta;
+                setCercaAperta(apri);
+                if (apri) {
+                  // Il fuoco dopo il fotogramma: l'input è largo zero finché
+                  // l'animazione non parte, e il browser non ci porta sopra.
+                  requestAnimationFrame(() => campoCerca.current?.focus());
+                } else if (query) {
+                  // Chiudere una ricerca lasciandola attiva nasconde il motivo
+                  // per cui i risultati sono pochi.
+                  setQuery("");
+                  shownBefore.current = 0;
+                  setLimit(PAGE_SIZE);
+                }
+              }}
+            >
+              ⌕
+            </button>
+            <input
+              ref={campoCerca}
+              type="search"
+              value={query}
+              tabIndex={cercaAperta ? undefined : -1}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                shownBefore.current = PAGE_SIZE;
+                setLimit(PAGE_SIZE);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  setQuery("");
+                  setCercaAperta(false);
+                }
+              }}
+              placeholder="Cerca — es. Nike, Lego, Ferrari…"
+              aria-label="Cerca tra le puntate"
+            />
+          </div>
+          <Dropdown
+            label="Settore"
+            value={settore}
+            options={settoriPresenti}
+            onChange={(v) => {
+              setSettore(v);
               shownBefore.current = 0; // rientrano tutte
               setLimit(PAGE_SIZE);
             }}
-          >
-            Tutti
-          </button>
-          {years.map((y) => (
-            <button
-              key={y}
-              type="button"
-              className={`pod-year${year === y ? " is-sel" : ""}`}
-              onClick={() => {
-                setYear(year === y ? null : y);
-                shownBefore.current = 0; // rientrano tutte
-                setLimit(PAGE_SIZE);
-              }}
-            >
-              {y}
-            </button>
-          ))}
+          />
+          <Dropdown
+            label="Epoca"
+            value={epoca}
+            options={epochePresenti}
+            onChange={(v) => {
+              setEpoca(v);
+              shownBefore.current = 0;
+              setLimit(PAGE_SIZE);
+            }}
+          />
         </div>
       </div>
 
@@ -258,7 +314,7 @@ export default function PodcastArchive({
       ) : (
         // La chiave cambia con l'anno: React rimonta la griglia e l'animazione
         // di entrata riparte su tutte le caselle.
-        <ul className="pod-grid" key={`anno-${year ?? "tutti"}`}>
+        <ul className="pod-grid" key={`${settore ?? "tutti"}-${epoca ?? "tutte"}`}>
           {visible.map((item, i) => {
             const isNew = i >= shownBefore.current;
             const lead = item.kind === "series" ? item.parts[0] : item.ep;

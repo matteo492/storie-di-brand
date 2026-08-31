@@ -199,7 +199,7 @@ export default function BrandTimeline({ brands }: { brands: BrandPoint[] }) {
   return (
     <div className="bt" ref={btRef}>
       <p className="bt-bar">
-        Trascina la linea e clicca un punto per scoprire il marchio.
+        Trascina la linea e clicca un punto per scoprire il marchio
         <span className="bt-bar__sep">·</span>
         <strong>{discovered.size}</strong> di {layout.pts.length} scoperti
       </p>

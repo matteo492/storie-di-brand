@@ -65,7 +65,7 @@ export default function LiveBanner() {
           src="/live-banner.jpg"
           alt=""
           width={2000}
-          height={1116}
+          height={848}
         />
 
         <div className="live-banner__testo">

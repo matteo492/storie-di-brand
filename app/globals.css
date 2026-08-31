@@ -8,6 +8,8 @@
   /* Raccordi delle animazioni, in un posto solo.
      --curva: decelerazione morbida, per tutto ciò che entra o reagisce.
      --curva-doppia: partenza e arrivo morbidi, per aperture e chiusure. */
+  /* Altezza comune dei controlli di filtro: lente di ricerca e tendine. */
+  --alt-filtro: 44px;
   --curva: cubic-bezier(0.16, 1, 0.3, 1);
   --curva-doppia: cubic-bezier(0.65, 0, 0.35, 1);
   --cream: #faf9d2;
@@ -21,7 +23,7 @@
   --maxw: 1200px;
   /* Mezzo stacco: ogni sezione lo usa sopra e sotto, quindi fra due sezioni
      adiacenti la distanza è sempre il doppio di questo — uguale ovunque. */
-  --stacco: clamp(3.5rem, 8vw, 7rem);
+  --stacco: clamp(2.8rem, 6.4vw, 5.6rem);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -629,17 +631,18 @@ img { max-width: 100%; display: block; }
   padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
 }
 /* Il banner: la foto riempie la fascia, il testo le sta sopra a sinistra.
-   Il 2:1 toglie poco più del 5% sopra e sotto alla foto (16:9), quindi la
-   testa del soggetto resta dentro e si perde solo la base del leggio. */
+   Il 21:9 è quasi esattamente il taglio della fotografia (2000×848), quindi
+   si vede per intero: niente da ritagliare né sopra né ai lati. */
 .live-banner {
   position: relative;
   max-width: var(--maxw);
   margin: 0 auto;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 21 / 9;
   border-radius: 28px;
   overflow: hidden;
   background: var(--ink-2);
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+  transition: box-shadow 0.84s var(--curva);
 }
 .live-banner__media {
   position: absolute;
@@ -649,6 +652,15 @@ img { max-width: 100%; display: block; }
   object-fit: cover;
   border: 0;
   display: block;
+  transition: transform 0.84s var(--curva);
+}
+/* Stesso linguaggio delle card con foto dell'universo: la fotografia si
+   avvicina appena e l'ombra si fa più profonda. Niente sollevamento, che su
+   una fascia larga quanto la pagina sembrerebbe uno scatto; e la velatura
+   resta com'è, perché il testo ci sta sopra. */
+@media (hover: hover) {
+  .live-banner:hover .live-banner__media { transform: scale(1.04); }
+  .live-banner:hover { box-shadow: 0 48px 120px rgba(0, 0, 0, 0.68); }
 }
 .live-banner::after {
   content: "";
@@ -801,7 +813,15 @@ img { max-width: 100%; display: block; }
     aspect-ratio: auto;
     border-radius: 20px;
   }
-  .live-banner__media { position: relative; aspect-ratio: 16 / 9; height: auto; }
+  /* Impilata la foto passa a 16:9 e perde un quarto della larghezza: il
+     taglio va spostato a destra, dove sta il soggetto, altrimenti resta
+     inquadrata la tenda vuota. */
+  .live-banner__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-position: 80% 50%;
+  }
   .live-banner::after {
     inset: auto 0 0 0;
     height: 60%;
@@ -1284,7 +1304,7 @@ img { max-width: 100%; display: block; }
 }
 .bt-marker__year {
   font-family: var(--body);
-  font-size: 0.72rem;
+  font-size: 0.95rem;
   color: rgba(250, 249, 210, 0.45);
   font-variant-numeric: tabular-nums;
   transition: color 0.24s var(--curva);
@@ -1368,10 +1388,14 @@ img { max-width: 100%; display: block; }
   height: 3.2em;
   margin-bottom: 0.9rem;
 }
-/* La riga delle parti resta alta anche quando è vuota. */
+/* La riga delle parti resta alta anche quando è vuota. Il margine sotto è il
+   distacco minimo dal player: quando il testo è corto ci pensa il
+   `margin-top: auto` del player a fare aria, ma con una descrizione lunga —
+   tre righe — lo spazio libero finisce e le linguette gli finirebbero
+   addosso. */
 :is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-parts {
   min-height: 30px;
-  margin-bottom: 0;
+  margin-bottom: 0.9rem;
 }
 /* Il player è ancorato in fondo: l'eventuale aria avanzata sta sopra di lui,
    mai sotto, così sta sempre alla stessa quota. */
@@ -1714,12 +1738,6 @@ img { max-width: 100%; display: block; }
   }
 }
 .brandy__alts button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
-/* Quella in ascolto resta accesa. */
-.brandy__alts button.is-sel {
-  background: var(--red);
-  border-color: var(--red);
-  color: #fff;
-}
 .brandy__full {
   display: block;
   text-align: center;
@@ -1784,66 +1802,70 @@ img { max-width: 100%; display: block; }
   gap: 1rem;
   margin-bottom: 1.4rem;
 }
-.pod-search { position: relative; }
-.pod-search__icon {
-  position: absolute;
-  left: 1.1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  color: rgba(250, 249, 210, 0.45);
-  pointer-events: none;
-}
-.pod-search input {
-  width: 100%;
-  padding: 0.95rem 1.2rem 0.95rem 2.7rem;
-  border-radius: 999px;
+/* La ricerca vive accanto ai filtri, chiusa dentro una lente. Premendola il
+   campo si apre in larghezza: la barra a tutta pagina pesava più dei filtri,
+   che sono il primo modo di sfogliare l'archivio. */
+.pod-cerca {
+  display: flex;
+  align-items: center;
+  height: var(--alt-filtro);
   border: 1px solid var(--line);
+  border-radius: 999px;
   background: var(--ink-2);
+  transition: border-color 0.3s var(--curva), background 0.3s var(--curva);
+}
+.pod-cerca__lente {
+  flex: 0 0 auto;
+  width: var(--alt-filtro);
+  height: 100%;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: rgba(250, 249, 210, 0.55);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: color 0.3s var(--curva);
+}
+.pod-cerca input {
+  /* Chiusa è larga zero: il campo non c'è, ma resta nel flusso e può
+     animarsi. `width` e non `max-width`, perché è la larghezza a doversi
+     interpolare. */
+  width: 0;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
   color: var(--cream);
   font-family: var(--body);
-  font-size: 1rem;
-  transition: border-color 0.24s var(--curva);
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: width 0.42s var(--curva-doppia), opacity 0.28s var(--curva),
+    padding 0.42s var(--curva-doppia);
 }
-.pod-search input::placeholder { color: rgba(250, 249, 210, 0.4); }
-.pod-search input:focus {
-  outline: none;
-  border-color: var(--red);
-}
-.pod-search input::-webkit-search-cancel-button { filter: invert(0.7); }
+.pod-cerca input:focus { outline: none; }
+.pod-cerca input::placeholder { color: rgba(250, 249, 210, 0.4); }
+.pod-cerca input::-webkit-search-cancel-button { filter: invert(0.7); }
 
-.pod-years { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.pod-year {
-  font-family: var(--display);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.82rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: rgba(250, 249, 210, 0.7);
-  cursor: pointer;
-  transition: all 0.216s var(--curva);
-  font-variant-numeric: tabular-nums;
+.pod-cerca.is-aperta {
+  border-color: rgba(250, 249, 210, 0.35);
+  background: rgba(10, 8, 8, 0.72);
+}
+.pod-cerca.is-aperta .pod-cerca__lente { color: var(--cream); }
+.pod-cerca.is-aperta input {
+  width: min(19rem, 52vw);
+  padding-right: 1.1rem;
+  opacity: 1;
 }
 @media (hover: hover) {
-  .pod-year:hover { border-color: var(--red); color: var(--cream); }
+  .pod-cerca:hover { border-color: rgba(250, 249, 210, 0.35); }
+  .pod-cerca:hover .pod-cerca__lente { color: var(--cream); }
 }
-.pod-year.is-sel {
-  background: var(--red);
-  border-color: var(--red);
-  color: #1a0d0d;
-  font-weight: 600;
-}
-/* Il focus da tastiera non deve somigliare allo stato "selezionato" */
-.pod-year:focus-visible,
-.pod-item__main:focus-visible,
-.pod-reset:focus-visible {
-  outline: 2px solid rgba(250, 249, 210, 0.7);
-  outline-offset: 2px;
-}
-.pod-year:focus:not(:focus-visible) { outline: none; }
+
+/* I filtri dell'archivio podcast: stesse tendine dell'archivio YouTube. */
+.pod-filtri { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
 
 .pod-count {
   display: flex;
@@ -2187,7 +2209,9 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-size: 0.85rem;
-  padding: 0.7rem 1.1rem;
+  /* Stessa altezza della lente di ricerca: i tre controlli stanno in riga. */
+  height: var(--alt-filtro);
+  padding: 0 1.1rem;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: var(--ink-2);
@@ -2629,7 +2653,7 @@ img { max-width: 100%; display: block; }
    più scuro e di un bordo, per non confondersi con lo sfondo. */
 .pod-page .mini,
 .home-page .mini,
-.pod-page .pod-search input {
+.pod-page .pod-cerca.is-aperta {
   background: rgba(10, 8, 8, 0.72);
   backdrop-filter: blur(6px);
   border-color: rgba(250, 249, 210, 0.2);
@@ -3206,9 +3230,8 @@ img { max-width: 100%; display: block; }
    nastri servono a togliere di mezzo.
    ========================================================================== */
 @media (max-width: 768px) {
-  .hero__stats,
   .brandy__alts__righe,
-  .pod-years,
+  .pod-filtri,
   .filter-bar,
   .pod-grid,
   .episodes__grid,
@@ -3238,28 +3261,25 @@ img { max-width: 100%; display: block; }
     padding-inline: var(--bordo);
     scroll-padding-left: var(--bordo);
   }
-  .hero__stats::-webkit-scrollbar,
   .brandy__alts__righe::-webkit-scrollbar,
-  .pod-years::-webkit-scrollbar,
+  .pod-filtri::-webkit-scrollbar,
   .filter-bar::-webkit-scrollbar,
   .pod-grid::-webkit-scrollbar,
   .episodes__grid::-webkit-scrollbar,
   .archive__grid::-webkit-scrollbar { display: none; }
 
-  .hero__stats > *,
   .brandy__alts__righe > *,
-  .pod-years > *,
+  .pod-filtri > *,
   .filter-bar > *,
   .pod-grid > *,
   .episodes__grid > *,
   .archive__grid > * { flex: 0 0 auto; }
 
-  /* Nastri di pillole e numeri: larghezza del contenuto, niente aggancio —
-     su elementi piccoli lo snap è più fastidioso che utile. */
-  .hero__stats { gap: 2.2rem; padding-block: 0.2rem; }
-  .hero__stats > .stat { white-space: nowrap; }
-
-  .pod-years { gap: 0.5rem; padding-block: 0.2rem; }
+  /* Nastri di pillole: larghezza del contenuto, niente aggancio — su
+     elementi piccoli lo snap è più fastidioso che utile. */
+  .pod-filtri { gap: 0.6rem; padding-block: 0.2rem 0.4rem; }
+  /* Aperta occupa quasi tutto: le tendine restano raggiungibili scorrendo. */
+  .pod-cerca.is-aperta input { width: min(15rem, 58vw); }
 
   .filter-bar { gap: 0.6rem; padding-block: 0.2rem 1.1rem; }
   /* Il pannello del filtro diventa un foglio ancorato in fondo allo schermo.
@@ -3281,6 +3301,11 @@ img { max-width: 100%; display: block; }
     border-radius: 18px 18px 0 0;
     padding: 0.6rem 0.6rem calc(0.6rem + env(safe-area-inset-bottom));
     box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.7);
+    /* Sale dal fondo dello schermo invece di comparire di colpo. */
+    animation: foglio-su 0.42s var(--curva) both;
+  }
+  .dropdown__panel[data-uscita="si"] {
+    animation: foglio-giu 0.26s var(--curva-doppia) both;
   }
 
   /* I correlati: le righe spariscono e i quattro bottoni filano in fila,
@@ -3321,4 +3346,81 @@ img { max-width: 100%; display: block; }
   }
   .pod-platforms__marchio { display: block; }
   .pod-platforms__nome { display: none; }
+}
+
+
+/* Le date della timeline: sul telefono sono la sola cosa da leggere mentre si
+   trascina, quindi crescono più che su desktop. Il passo fra un marcatore e
+   l'altro non cambia, c'è spazio a sufficienza. */
+@media (max-width: 768px) {
+  .bt-marker__year { font-size: 1.02rem; }
+}
+
+
+/* Il "sorprendimi" del quiz: sta in fondo al blocco della risposta, staccato
+   dai correlati perché non è uno di loro — porta altrove nel catalogo. */
+.brandy__sorprendimi {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.8rem;
+}
+
+
+/* Cambio puntata nel quiz: la colonna di destra — testo, parti e player —
+   rientra in dissolvenza salendo di poco. La copertina non si muove: è
+   sempre la stessa e un lampeggio sarebbe rumore. */
+.quiz-hero .pod-hero__body {
+  animation: quiz-cambio 0.5s var(--curva);
+}
+@keyframes quiz-cambio {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+
+/* ---------- HERO SU MOBILE ----------
+   Allineata a sinistra come tutto il resto del sito: il titolo è un gothic
+   condensato enorme, un manifesto, e vuole un bordo da cui partire.
+
+   I dati diventano un elenco invece di tre colonne: numero e didascalia
+   sulla stessa riga, incolonnati fra loro. Tre righe brevi si leggono in un
+   attimo, e soprattutto la didascalia torna a una misura normale — è lei a
+   portare il significato, "26M+" da solo non dice niente. */
+@media (max-width: 768px) {
+  .hero__sub { max-width: 32ch; }
+  .hero__cta { margin-bottom: 2.6rem; }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.9rem;
+    row-gap: 0.6rem;
+    align-items: baseline;
+  }
+  /* Numero e didascalia diventano celle della stessa griglia: così tutte le
+     didascalie partono dalla stessa verticale, qualunque sia la larghezza
+     del numero accanto. */
+  .stat { display: contents; }
+  .stat strong { font-size: 1.6rem; }
+  .stat > span {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    margin-top: 0;
+  }
+}
+
+
+@keyframes foglio-su {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+@keyframes foglio-giu {
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
 }

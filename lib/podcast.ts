@@ -91,12 +91,6 @@ export function getPodcastEpisodes(): PodcastEpisode[] {
     .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 }
 
-/** Anni disponibili, dal più recente (per i filtri). */
-export function getPodcastYears(episodes: PodcastEpisode[]): number[] {
-  return Array.from(new Set(episodes.map((e) => e.year).filter(Boolean))).sort(
-    (a, b) => b - a
-  );
-}
 
 /** Numeri d'insieme del catalogo, per la testata della pagina. */
 export function getPodcastStats(episodes: PodcastEpisode[]) {

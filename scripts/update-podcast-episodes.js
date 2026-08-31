@@ -4,6 +4,7 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 const { parseStringPromise } = require("xml2js");
+const { pulisciCoda } = require("./lib/pulisci-coda.js");
 
 const FEED_URL = "https://feeds.megaphone.fm/storiedibrand";
 const OUTPUT_PATH = path.join(__dirname, "..", "public", "podcast-episodes.json");
@@ -107,7 +108,8 @@ function cleanDescription(raw) {
 
   // Se dopo la pulizia non resta nulla di raccontato, meglio nessuna anteprima
   // che rimettere in pagina la promo o i crediti.
-  return fixTypos(body).slice(0, 320).trim();
+  // Via anche l'invito rimasto monco dopo il taglio dell'indirizzo.
+  return pulisciCoda(fixTypos(body).slice(0, 320).trim());
 }
 
 async function parseFeed(xml) {

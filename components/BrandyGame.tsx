@@ -7,8 +7,18 @@ import { QUIZ, type Quiz } from "@/lib/brandy-quiz";
 type Episode = { id: string; t: string; d: string; date: string };
 
 // Stopword italiane: parole troppo comuni che non aiutano il match
+/**
+ * Parole da ignorare nella ricerca.
+ *
+ * Oltre agli articoli ci sono gli aggettivi da titolo acchiappa-click —
+ * strano, pazzo, assurdo, incredibile — e la parola "storia". Sono
+ * frequentissimi nel catalogo e non dicono niente sull'argomento: senza
+ * toglierli, i correlati di "La strana crisi di Foot Locker" finivano per
+ * essere le altre puntate che avevano "strana" nel titolo.
+ */
 const STOP = new Set(
-  "il lo la i gli le un uno una di a da in con su per tra fra e o ma se che chi cosa come quando dove perche perché sono ha hanno del della dei delle al alla ai alle nel nella sul sui sta succedendo si no non mi ti ci vi piu più molto tutto tutti questo quello suo sua loro essere fare quale quali qual".split(
+  ("il lo la i gli le un uno una di a da in con su per tra fra e o ma se che chi cosa come quando dove perche perché sono ha hanno del della dei degli delle al alla ai alle nel nella sul sui sta succedendo si no non mi ti ci vi piu più molto tutto tutti questo quello quella quelle quegli suo sua loro nostro nostra nostre essere fare quale quali qual " +
+    "strano strana strani strane pazzo pazza pazzi pazze assurdo assurda assurdi assurde incredibile incredibili storia storie vero vera cose sempre mai ecco dopo prima senza anche ancora").split(
     /\s+/
   )
 );
@@ -199,33 +209,48 @@ export default function BrandyGame() {
     () => (idPuntata ? episodes.find((e) => e.id === idPuntata) ?? null : null),
     [idPuntata, episodes]
   );
-  // Correlati a cascata: prima la parola chiave del quiz, poi — se non basta —
-  // le parole della puntata stessa, e in ultimo le puntate più recenti. Su temi
-  // di nicchia (le bustine di tè, la prima webcam) la sola parola chiave non
-  // trovava niente e il blocco spariva.
+  // Correlati alla puntata che si sta ascoltando, non a quella della risposta:
+  // dopo un "sorprendimi" o un salto fra correlati devono seguire l'ascolto.
+  //
+  // A cascata, perché una sola fonte non basta: sulla puntata del quiz la
+  // parola chiave è il segnale migliore, poi vengono le parole della puntata
+  // stessa e in ultimo le più recenti. Su temi di nicchia (le bustine di tè,
+  // la prima webcam) la sola parola chiave non trovava niente e il blocco
+  // spariva.
   const correlate = useMemo(() => {
     if (!quiz || episodes.length === 0) return [];
+    const base = idPuntata ?? quiz.episodio;
     const scelti: Episode[] = [];
     const aggiungi = (lista: Episode[]) => {
       for (const e of lista) {
         if (scelti.length >= 4) return;
-        if (e.id === quiz.episodio) continue;
+        if (e.id === base) continue;
         if (scelti.some((x) => x.id === e.id)) continue;
         scelti.push(e);
       }
     };
 
-    aggiungi(rank(quiz.cerca, episodes, 8));
+    if (base === quiz.episodio) aggiungi(rank(quiz.cerca, episodes, 8));
     if (scelti.length < 4) {
-      const ep = episodes.find((e) => e.id === quiz.episodio);
+      const ep = episodes.find((e) => e.id === base);
       if (ep) aggiungi(rank(`${ep.t} ${ep.d.slice(0, 160)}`, episodes, 12));
     }
     if (scelti.length < 4) aggiungi(episodes.slice(0, 8));
     return scelti;
-  }, [quiz, episodes]);
+  }, [quiz, episodes, idPuntata]);
   const audioSrc = idPuntata
     ? `https://traffic.megaphone.fm/${idPuntata}.mp3`
     : null;
+
+  /** Una puntata a caso fra le oltre mille, diversa da quella in ascolto. */
+  function sorprendimi() {
+    if (episodes.length === 0) return;
+    let scelta = idPuntata;
+    for (let tentativi = 0; tentativi < 8 && scelta === idPuntata; tentativi++) {
+      scelta = episodes[Math.floor(Math.random() * episodes.length)]?.id ?? null;
+    }
+    if (scelta) setInAscolto(scelta);
+  }
 
   return (
     <div className="brandy">
@@ -283,9 +308,18 @@ export default function BrandyGame() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/brandy-cover.jpg" alt="" width={600} height={600} />
                   </div>
-                  <div className="pod-hero__body">
+                  {/* La chiave cambia con la puntata: React rimonta la
+                      colonna e l'animazione di rientro riparte, così il
+                      cambio si vede anche restando fermi con lo sguardo.
+                      La copertina resta fuori: per Brandy è sempre la stessa
+                      e lampeggerebbe per niente. */}
+                  <div className="pod-hero__body" key={idPuntata ?? "quiz"}>
                     <div className="pod-hero__text">
-                      <p className="pod-hero__label">Ascolta com&apos;è andata</p>
+                      {/* Dopo un correlato o un "sorprendimi" non è più la
+                          puntata della risposta: l'etichetta lo dice. */}
+                      <p className="pod-hero__label">
+                        {inAscolto ? "Ora in ascolto" : "Ascolta com'è andata"}
+                      </p>
                       <h3 className="pod-hero__title">{puntata?.t ?? "Brandy"}</h3>
                       {puntata && (
                         <p className="pod-hero__meta">{dataLeggibile(puntata.date)}</p>
@@ -323,7 +357,6 @@ export default function BrandyGame() {
                               <button
                                 key={c.id}
                                 type="button"
-                                className={c.id === idPuntata ? "is-sel" : undefined}
                                 onClick={() => setInAscolto(c.id)}
                               >
                                 {c.t}
@@ -335,6 +368,18 @@ export default function BrandyGame() {
                   </div>
                 </div>
               )}
+
+              {/* Compare solo a risposta data: prima toglierebbe attenzione
+                  alla domanda. */}
+              <div className="brandy__sorprendimi">
+                <button
+                  type="button"
+                  className="btn btn--ghost btn--small"
+                  onClick={sorprendimi}
+                >
+                  🎲 Sorprendimi
+                </button>
+              </div>
             </div>
           )}
         </div>

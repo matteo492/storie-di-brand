@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { getPodcastEpisodes, getPodcastYears, getPodcastStats } from "@/lib/podcast";
+import { getPodcastEpisodes, getPodcastStats } from "@/lib/podcast";
+import { classificaMarchi } from "@/lib/podcast-classifica";
 import PodcastArchive from "@/components/PodcastArchive";
 import LinkPiattaforme from "@/components/LinkPiattaforme";
 
 export const metadata: Metadata = {
   title: "Il podcast — tutte le puntate",
   description:
-    "L'archivio completo del podcast Storie di Brand: tutte le puntate, dalla prima all'ultima. Cerca un marchio, filtra per anno e ascolta direttamente dal sito.",
+    "L'archivio completo del podcast Storie di Brand: tutte le puntate, dalla prima all'ultima. Cerca un marchio, filtra per settore o epoca e ascolta direttamente dal sito.",
   alternates: { canonical: "/podcast" },
 };
 
 export default function PodcastPage() {
   const episodes = getPodcastEpisodes();
-  const years = getPodcastYears(episodes);
+  const { settori, epoche } = classificaMarchi(episodes);
   const stats = getPodcastStats(episodes);
 
   return (
@@ -44,7 +45,7 @@ export default function PodcastPage() {
       </header>
 
       <section className="pod-archive">
-        <PodcastArchive episodes={episodes} years={years} />
+        <PodcastArchive episodes={episodes} settori={settori} epoche={epoche} />
 
         <div className="pod-platforms">
           <p className="pod-platforms__label">Ascolta anche su</p>

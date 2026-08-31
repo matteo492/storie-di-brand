@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import Dropdown from "./Dropdown";
 
 export interface ArchiveItem {
   slug: string;
@@ -51,69 +52,6 @@ function Card({ ep }: { ep: ArchiveItem }) {
   );
 }
 
-function Dropdown({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string;
-  value: string | null;
-  options: string[];
-  onChange: (v: string | null) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
-  }, []);
-
-  return (
-    <div className="dropdown" ref={ref}>
-      <button
-        className={`dropdown__btn${value ? " dropdown__btn--active" : ""}`}
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-      >
-        <span className="dropdown__label">{label}</span>
-        <span className="dropdown__value">{value ?? "Tutti"}</span>
-        <span className="dropdown__caret" aria-hidden="true">
-          ▾
-        </span>
-      </button>
-      {open && (
-        <div className="dropdown__panel" role="listbox">
-          <button
-            className={`dropdown__opt${!value ? " is-sel" : ""}`}
-            onClick={() => {
-              onChange(null);
-              setOpen(false);
-            }}
-          >
-            Tutti
-          </button>
-          {options.map((o) => (
-            <button
-              key={o}
-              className={`dropdown__opt${value === o ? " is-sel" : ""}`}
-              onClick={() => {
-                onChange(o);
-                setOpen(false);
-              }}
-            >
-              {o}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 export default function ArchiveExplorer({
   episodes,

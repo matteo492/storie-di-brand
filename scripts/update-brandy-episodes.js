@@ -4,6 +4,7 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 const { parseStringPromise } = require("xml2js");
+const { pulisciCoda } = require("./lib/pulisci-coda.js");
 
 const FEED_URL = "https://feeds.megaphone.fm/brandy";
 const OUTPUT_PATH = path.join(__dirname, "..", "public", "brandy-episodes.json");
@@ -26,7 +27,8 @@ function cleanDescription(raw) {
   d = d.split(
     /Vuoi far crescere|Prova SHOPIFY|Learn more about your ad choices|Visit megaphone|Privacy Policy|Entra nel canale|Iscriviti al canale|Sostieni il progetto|SPONSOR che sostengono|Sconti e prove|🚀|Scopri Qonto|Scopri NordVPN|Scopri Surfshark|Scopri Revolut|https?:\/\//iu
   )[0];
-  return d.replace(/\s+/g, " ").trim().slice(0, 600);
+  // Via anche l'invito rimasto monco dopo il taglio dell'indirizzo.
+  return pulisciCoda(d).slice(0, 600);
 }
 
 async function parseFeed(xml) {
