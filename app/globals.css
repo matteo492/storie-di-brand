@@ -1001,7 +1001,13 @@ img { max-width: 100%; display: block; }
 .collab-form input::placeholder,
 .collab-form textarea::placeholder { color: rgba(250,249,210,0.35); }
 .collab-form textarea { resize: vertical; min-height: 120px; }
-.collab-form .btn { align-self: center; }
+/* Il pulsante non è un quarto campo: prende il suo spazio, altrimenti nella
+   colonna del modulo lo si legge come l'ennesimo riquadro con lo stesso
+   passo degli altri. */
+.collab-form .btn {
+  align-self: center;
+  margin-top: 0.9rem;
+}
 .collab-form__done {
   text-align: center;
   font-size: 1.15rem;
