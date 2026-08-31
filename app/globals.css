@@ -139,6 +139,10 @@ img { max-width: 100%; display: block; }
   width: 0; height: 2px; background: var(--red); transition: width 0.3s var(--curva);
 }
 @media (hover: hover) { .nav__links a:hover::after { width: 100%; } }
+/* La pagina in cui ti trovi resta sottolineata. Solo le voci che portano a una
+   pagina vera: quelle verso una sezione della home non ce l'hanno. */
+.nav__links a[aria-current="page"] { color: var(--cream); }
+.nav__links a[aria-current="page"]::after { width: 100%; }
 .nav__burger {
   display: none; background: none; border: 0;
   flex-direction: column; gap: 6px; cursor: pointer; padding: 4px;
