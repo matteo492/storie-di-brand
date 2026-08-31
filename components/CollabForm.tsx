@@ -74,7 +74,7 @@ export default function CollabForm() {
         {status === "sending" ? "Invio…" : "Invia la richiesta"}
       </button>
       {status === "error" && (
-        <p className="collab-form__err">Qualcosa è andato storto. Riprova o scrivici a info@storiedibrand.it</p>
+        <p className="collab-form__err">Qualcosa è andato storto. Riprova o scrivici a max@storiedibrand.it</p>
       )}
     </form>
   );

@@ -78,27 +78,6 @@ export default function PodcastArchive({
   const [featuredId, setFeaturedId] = useState<string | null>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  // Lato della copertina = altezza del blocco di testo accanto. In CSS non è
-  // esprimibile (in flexbox è la copertina a dettare l'altezza), quindi la
-  // misuriamo. Il blocco non è "stretched", così non si innesca un rimbalzo.
-  const [coverSize, setCoverSize] = useState<number | null>(null);
-
-  useEffect(() => {
-    const el = bodyRef.current;
-    if (!el) return;
-    const affianco = window.matchMedia("(min-width: 861px)");
-    const misura = () =>
-      setCoverSize(affianco.matches ? Math.round(el.getBoundingClientRect().height) : null);
-    misura();
-    const ro = new ResizeObserver(misura);
-    ro.observe(el);
-    affianco.addEventListener("change", misura);
-    return () => {
-      ro.disconnect();
-      affianco.removeEventListener("change", misura);
-    };
-  }, []);
-
   const indexed = useMemo(
     () => episodes.map((e) => ({ ep: e, hay: norm(`${e.title} ${e.excerpt}`) })),
     [episodes]
@@ -158,16 +137,13 @@ export default function PodcastArchive({
     <>
       {featured && (
         <div className="pod-hero" ref={featuredRef}>
-          <div
-            className="pod-hero__cover"
-            style={coverSize ? { width: coverSize, height: coverSize } : undefined}
-          >
+          <div className="pod-hero__cover">
             {featured.image && (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img key={featured.id} src={featured.image} alt="" width={420} height={420} />
             )}
           </div>
-          <div className="pod-hero__body" ref={bodyRef}>
+          <div className="pod-hero__body">
             {/* La chiave cambia a ogni puntata: React rimonta il blocco e
                 l'animazione di entrata riparte. */}
             <div className="pod-hero__text" key={featured.id}>
@@ -182,9 +158,11 @@ export default function PodcastArchive({
               {featured.excerpt && <p className="pod-hero__excerpt">{featured.excerpt}</p>}
             </div>
 
-            {featuredParts.length > 0 && (
-              <div className="pod-parts" role="group" aria-label="Parti della serie">
-                {featuredParts.map((p, i) => (
+            {/* La riga c'è sempre, anche vuota: senza, il player si spostava
+                passando da una puntata singola a una serie in più parti. */}
+            <div className="pod-parts" role="group" aria-label="Parti della serie">
+              {featuredParts.length > 0 &&
+                featuredParts.map((p, i) => (
                   <button
                     key={p.id}
                     type="button"
@@ -194,8 +172,7 @@ export default function PodcastArchive({
                     {p.isExtra ? "Extra" : `Parte ${p.part ?? i + 1}`}
                   </button>
                 ))}
-              </div>
-            )}
+            </div>
 
             {/* Player essenziale: solo play e avanzamento. Quello di Megaphone
                 ripeteva copertina e titolo, già presenti qui sopra. */}

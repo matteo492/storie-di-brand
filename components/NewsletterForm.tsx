@@ -4,7 +4,7 @@ import { useState } from "react";
 
 /**
  * Form iscrizione newsletter.
- * INTERIM: invia l'iscrizione via mailto a info@storiedibrand.it (Max riceve
+ * INTERIM: invia l'iscrizione via mailto a max@storiedibrand.it (Max riceve
  * le email e le aggiunge manualmente). Quando il provider (es. Beehiiv) sarà
  * pronto, basterà sostituire handleSubmit con la POST/iframe del provider.
  */
@@ -24,7 +24,7 @@ export default function NewsletterForm() {
     const body = encodeURIComponent(
       `Ciao, vorrei iscrivermi alla newsletter settimanale.\n\nNome: ${name || "—"}\nEmail: ${email}`
     );
-    window.location.href = `mailto:info@storiedibrand.it?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:max@storiedibrand.it?subject=${subject}&body=${body}`;
     setStatus("done");
   }
 

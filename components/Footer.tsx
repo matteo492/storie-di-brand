@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
         <div className="footer__col">
           <h4>Contatti</h4>
-          <a href="mailto:info@storiedibrand.it">info@storiedibrand.it</a>
+          <a href="mailto:max@storiedibrand.it">max@storiedibrand.it</a>
           <a href="https://www.instagram.com/storiedibrand" target="_blank" rel="noopener">
             Instagram
           </a>

@@ -197,7 +197,18 @@ function main() {
       title: rep.title.trim(),
       image: rep.image || "",
       parts: all.length,
-      episodes: all.map((e) => ({ id: e.id, title: e.title.trim() })),
+      // L'indirizzo dell'MP3 viene copiato qui: la timeline non deve dipendere
+      // dalla finestra del feed RSS, che scorre e prima o poi perde le puntate
+      // piu' vecchie. E' lo stesso indirizzo usato da Spotify e Apple, quindi
+      // ascolti e pubblicita' restano tracciati da Megaphone.
+      episodes: all.map((e) => ({
+        id: e.id,
+        title: e.title.trim(),
+        audio: e.audio || "",
+        duration: e.duration || "",
+        excerpt: e.excerpt || "",
+        image: e.image || "",
+      })),
     });
   }
 

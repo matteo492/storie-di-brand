@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { getAllEpisodes } from "@/lib/episodes";
-import { PARTNERS } from "@/lib/partners";
-import Ticker from "@/components/Ticker";
+import AncoraDolce from "@/components/AncoraDolce";
+import LiveBanner from "@/components/LiveBanner";
+import PartnerSlider from "@/components/PartnerSlider";
+import Universe from "@/components/Universe";
 import EpisodeSlider from "@/components/EpisodeSlider";
 import BrandyGame from "@/components/BrandyGame";
 import NewsletterForm from "@/components/NewsletterForm";
@@ -13,7 +15,7 @@ export default function Home() {
   const episodes = getAllEpisodes();
 
   return (
-    <>
+    <div className="home-page">
       {/* HERO */}
       <section className="hero" id="ascolta">
         <div className="hero__inner">
@@ -30,22 +32,19 @@ export default function Home() {
             sono nati i brand che vivi ogni giorno.
           </p>
           <div className="hero__cta">
-            <a href="#collabora" className="btn btn--primary">
+            <AncoraDolce href="#collabora" className="btn btn--primary">
               Contattaci
-            </a>
-            <a
-              href="https://www.youtube.com/@StoriediBrand"
-              target="_blank"
-              rel="noopener"
-              className="btn btn--ghost"
-            >
-              ▶ Guarda su YouTube
-            </a>
+            </AncoraDolce>
+            {/* Porta alla sezione che spiega il progetto invece di mandare
+                fuori dal sito alla prima schermata. */}
+            <AncoraDolce href="#progetto" className="btn btn--ghost">
+              Scopri di più
+            </AncoraDolce>
           </div>
           <div className="hero__stats">
             <div className="stat">
-              <strong><Typewriter text="1M+" delay={700} speed={90} /></strong>
-              <span>visualizzazioni</span>
+              <strong><Typewriter text="26M+" delay={700} speed={90} /></strong>
+              <span>ascolti e visualizzazioni</span>
             </div>
             <div className="stat">
               <strong><Typewriter text="Top 20" delay={850} speed={75} /></strong>
@@ -59,11 +58,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PARTNER — loghi grandi subito sotto l'hero (decisione call Max).
-          Fa anche da sfumatura fra il nero dell'hero e il rosso del podcast. */}
-      <section className="partners-band" aria-label="Brand con cui abbiamo collaborato">
-        <p className="partners-band__label">Hanno scelto Storie di Brand</p>
-        <Ticker items={PARTNERS} size="lg" plain />
+      {/* L'UNIVERSO — cosa è Storie di Brand e su quali piattaforme vive */}
+      <Universe />
+
+      {/* PARTNER — la vetrina B2B: i marchi con cui abbiamo lavorato, ognuno
+          porta al proprio case study. */}
+      <section className="partners" id="collaborazioni">
+        <div className="partners__head">
+          <p className="eyebrow">Le collaborazioni</p>
+          <h2 className="partners__title">Hanno scelto Storie di Brand</h2>
+          <p className="partners__sub">
+            Dietro ogni brand, c&apos;è un progetto costruito insieme: in video, in
+            podcast o dal vivo. Ogni marchio ha la sua storia. Scoprila ora.
+          </p>
+        </div>
+        <PartnerSlider />
       </section>
 
       {/* PODCAST PRINCIPALE — Storie di Brand + timeline */}
@@ -91,27 +100,7 @@ export default function Home() {
 
       {/* LIVE */}
       <section className="live" id="live">
-        <div className="live__inner">
-          <div className="live__text reveal">
-            <p className="eyebrow">Eventi dal vivo</p>
-            <h2 className="live__title">
-              Storie di Brand <span className="hl">sul palco</span>
-            </h2>
-            <p className="live__sub">
-              Portiamo il racconto dei marchi fuori dallo schermo: keynote, talk e
-              show dal vivo per aziende, conferenze ed eventi. Lo stesso storytelling
-              che appassiona oltre 1 milione di persone, davanti al tuo pubblico.
-            </p>
-            <a href="#collabora" className="btn btn--primary">
-              Richiedi una live
-            </a>
-          </div>
-          <div className="live__video reveal" data-reveal-delay={120}>
-            <video controls preload="metadata">
-              <source src="/live-trailer.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
+        <LiveBanner />
       </section>
 
       {/* NEWSLETTER */}
@@ -137,7 +126,7 @@ export default function Home() {
           <p className="eyebrow">Per i brand</p>
           <h2 className="collab__title">
             Vuoi raccontare la tua storia
-            <br />a oltre 1 milione di persone?
+            <br />a oltre 2 milioni di persone?
           </h2>
           <p className="collab__sub">
             Sponsorship, episodi branded e progetti su misura. Raccontaci la tua idea.
@@ -145,6 +134,6 @@ export default function Home() {
           <CollabForm />
         </div>
       </section>
-    </>
+    </div>
   );
 }

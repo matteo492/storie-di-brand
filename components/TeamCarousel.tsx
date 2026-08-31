@@ -73,15 +73,6 @@ export default function TeamCarousel({ members = TEAM }: { members?: TeamMember[
 
   return (
     <div className="team-carousel">
-      <button
-        type="button"
-        className="team-arrow team-arrow--prev"
-        aria-label="Persone precedenti"
-        onClick={() => scroll(-1)}
-      >
-        ‹
-      </button>
-
       <div className="team-track" ref={trackRef} onScroll={onScroll}>
         {loop.map((m, i) => (
           <div className="team-card" key={`${m.name}-${i}`}>
@@ -101,14 +92,24 @@ export default function TeamCarousel({ members = TEAM }: { members?: TeamMember[
         ))}
       </div>
 
-      <button
-        type="button"
-        className="team-arrow team-arrow--next"
-        aria-label="Persone successive"
-        onClick={() => scroll(1)}
-      >
-        ›
-      </button>
+      <div className="car-nav">
+        <button
+          type="button"
+          className="car-arrow"
+          aria-label="Persone precedenti"
+          onClick={() => scroll(-1)}
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          className="car-arrow"
+          aria-label="Persone successive"
+          onClick={() => scroll(1)}
+        >
+          ›
+        </button>
+      </div>
     </div>
   );
 }

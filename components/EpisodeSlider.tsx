@@ -71,15 +71,6 @@ export default function EpisodeSlider({ episodes }: { episodes: Episode[] }) {
 
   return (
     <div className="slider">
-      <button
-        type="button"
-        className="slider__arrow slider__arrow--prev"
-        aria-label="Episodi precedenti"
-        onClick={() => scroll(-1)}
-      >
-        ‹
-      </button>
-
       <div className="slider__track" ref={trackRef} onScroll={onScroll}>
         {loop.map((ep, i) => (
           <div className="slider__item" key={`${ep.slug}-${i}`}>
@@ -88,14 +79,24 @@ export default function EpisodeSlider({ episodes }: { episodes: Episode[] }) {
         ))}
       </div>
 
-      <button
-        type="button"
-        className="slider__arrow slider__arrow--next"
-        aria-label="Episodi successivi"
-        onClick={() => scroll(1)}
-      >
-        ›
-      </button>
+      <div className="car-nav">
+        <button
+          type="button"
+          className="car-arrow"
+          aria-label="Episodi precedenti"
+          onClick={() => scroll(-1)}
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          className="car-arrow"
+          aria-label="Episodi successivi"
+          onClick={() => scroll(1)}
+        >
+          ›
+        </button>
+      </div>
     </div>
   );
 }

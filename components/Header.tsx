@@ -44,8 +44,17 @@ export default function Header() {
 
   return (
     <header className={`nav${scrolled ? " scrolled" : ""}`}>
-      <Link href="/" className="nav__logo">
-        STORIE<span>DI</span>BRAND
+      {/* Due scritture della stessa firma: il nome per esteso e la sigla, che
+          da sola resta leggibile quando lo spazio si stringe. Sono entrambe
+          nel documento e a scambiarle è il CSS, così il cambio è immediato al
+          ridimensionamento e il nome per i lettori di schermo resta uno solo. */}
+      <Link href="/" className="nav__logo" aria-label="Storie di Brand">
+        <span className="nav__logo__esteso" aria-hidden="true">
+          STORIE<em>DI</em>BRAND
+        </span>
+        <span className="nav__logo__sigla" aria-hidden="true">
+          S<em>D</em>B
+        </span>
       </Link>
       <nav className={`nav__links${open ? " open" : ""}`}>
         {LINKS.map((l) => (

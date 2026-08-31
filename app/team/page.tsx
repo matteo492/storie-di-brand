@@ -78,7 +78,7 @@ export default function TeamPage() {
           <p className="jobs__empty">
             Al momento non abbiamo posizioni aperte. Se pensi di essere la persona
             giusta per il nostro team, scrivici comunque a{" "}
-            <a href="mailto:info@storiedibrand.it">info@storiedibrand.it</a>.
+            <a href="mailto:max@storiedibrand.it">max@storiedibrand.it</a>.
           </p>
         ) : (
           <>
@@ -107,7 +107,7 @@ export default function TeamPage() {
             </ul>
             <p className="jobs__note">
               Non trovi il tuo ruolo? Scrivici a{" "}
-              <a href="mailto:info@storiedibrand.it">info@storiedibrand.it</a>: ci fa
+              <a href="mailto:max@storiedibrand.it">max@storiedibrand.it</a>: ci fa
               sempre piacere conoscere persone in gamba.
             </p>
           </>

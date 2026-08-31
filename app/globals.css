@@ -14,6 +14,9 @@
   --display: var(--font-gothic), var(--font-oswald), system-ui, sans-serif;
   --body: var(--font-oswald), system-ui, sans-serif;
   --maxw: 1200px;
+  /* Mezzo stacco: ogni sezione lo usa sopra e sotto, quindi fra due sezioni
+     adiacenti la distanza è sempre il doppio di questo — uguale ovunque. */
+  --stacco: clamp(3.5rem, 8vw, 7rem);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,7 +58,6 @@ img { max-width: 100%; display: block; }
 .eyebrow--dark { color: var(--black); }
 /* optically center the letter-spaced eyebrow within centered sections
    (the trailing letter-space would otherwise shift it slightly left) */
-.live__text .eyebrow,
 .brandy .eyebrow,
 .collab .eyebrow,
 .newsletter .eyebrow { text-indent: 0.28em; }
@@ -113,7 +115,9 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.02em;
   color: var(--cream);
 }
-.nav__logo span { color: var(--red); }
+.nav__logo em { font-style: normal; color: var(--red); }
+/* Da 900px in giù (dove il menu diventa a scomparsa) la firma si accorcia. */
+.nav__logo__sigla { display: none; }
 .nav__links { display: flex; gap: 2rem; }
 .nav__links a {
   font-family: var(--display);
@@ -168,40 +172,6 @@ img { max-width: 100%; display: block; }
 .ticker__track span:nth-child(even) { color: var(--red); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
 
-/* ---------- FASCIA PARTNER (home) ----------
-   Sta fra hero e podcast e fa due cose insieme: dà ai loghi dei clienti la
-   posizione di rilievo chiesta nella call, e trasforma lo stacco netto
-   nero -> rosso in una transizione continua. Il rosso in basso al centro
-   vale quanto quello in cima a .sdb-podcast, così la giunzione sparisce. */
-.partners-band {
-  position: relative;
-  padding: 5rem 0 4.5rem;
-  background: linear-gradient(to bottom, var(--black) 0%, var(--ink) 100%);
-}
-/* Il rosso non nasce sul bordo della fascia: comincia gia' dentro l'hero e
-   arriva al massimo esattamente dove attacca .sdb-podcast, che riparte dallo
-   stesso valore. Cosi' non c'e' ne' una riga netta ne' una cresta di luce:
-   la pendenza e' simile prima e dopo la giunzione. */
-.partners-band::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -420px;
-  bottom: 0;
-  background: radial-gradient(120% 1100px at 50% calc(100% + 260px), rgba(255,87,87,0.45), rgba(255,87,87,0.08) 45%, transparent 80%);
-  pointer-events: none;
-}
-.partners-band > * { position: relative; z-index: 1; }
-.partners-band__label {
-  text-align: center;
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(250, 249, 210, 0.45);
-  margin-bottom: 2rem;
-}
-
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
@@ -209,13 +179,20 @@ img { max-width: 100%; display: block; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem clamp(1.2rem, 5vw, 3rem) 3rem;
-  background:
-    radial-gradient(120% 80% at 80% 0%, rgba(255,87,87,0.22), transparent 55%),
-    var(--black);
+  /* Il margine laterale sta sul blocco interno, non sulla sezione: mettendolo
+     qui veniva riassorbito dal centramento del blocco da 1200px e l'hero
+     finiva 48px più a sinistra di tutte le altre sezioni. */
+  padding: 8rem 0 var(--stacco);
   overflow: hidden;
 }
-.hero__inner { max-width: var(--maxw); margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+.hero__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 clamp(1.2rem, 5vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
 .hero__title { font-size: clamp(2.8rem, 8.5vw, 7rem); margin: 0.4rem 0 1.6rem; }
 .hero__title .hl { color: var(--red); font-style: normal; position: relative; }
 .hero__sub {
@@ -448,7 +425,7 @@ img { max-width: 100%; display: block; }
 @media (hover: hover) { .link-arrow:hover::after { width: 100%; } }
 
 /* ---------- EPISODE CARDS ---------- */
-.episodes { padding: 7rem 0; }
+.episodes { padding: var(--stacco) 0; }
 .episodes__grid {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -461,8 +438,11 @@ img { max-width: 100%; display: block; }
 /* ---------- SLIDER EPISODI ---------- */
 .slider {
   position: relative;
-  /* Niente max-width: come il carosello del team, il nastro arriva ai bordi
-     della pagina e le frecce stanno ai margini estremi. */
+  /* Nessun max-width e nessuna sfumatura ai lati: il nastro arriva ai bordi
+     della pagina e le schede si tagliano lì, su desktop come su mobile.
+     `--gutter` serve solo ad allineare la prima scheda al titolo: è il padding
+     interno della track, non un contenitore. Stessa impostazione per i nastri
+     del team, del progetto e delle collaborazioni. */
   --gutter: max(
     clamp(1.2rem, 5vw, 3rem),
     calc((100% - var(--maxw)) / 2 + clamp(1.2rem, 5vw, 3rem))
@@ -476,26 +456,9 @@ img { max-width: 100%; display: block; }
   /* Senza questo lo snap ignora il margine interno e aggancia la scheda a
      filo del bordo, dentro la sfumatura. */
   scroll-padding-left: var(--gutter);
-  /* Sfumatura su entrambi i lati: la scheda precedente e la successiva si
-     intravedono sfumate, mentre la prima intera resta nitida perché lo snap
-     la ferma esattamente dove la sfumatura finisce. */
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gutter),
-    #000 calc(100% - var(--gutter)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gutter),
-    #000 calc(100% - var(--gutter)),
-    transparent 100%
-  );
   /* niente scroll-behavior:smooth qui: i riposizionamenti del loop devono essere
      istantanei (invisibili). Lo scroll morbido delle frecce è chiesto via JS. */
-  padding: 0.5rem var(--gutter) 1.5rem;
+  padding: 1.5rem var(--gutter) 3.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -506,32 +469,7 @@ img { max-width: 100%; display: block; }
   scroll-snap-align: start;
 }
 .slider__item .ep-card { height: 100%; }
-.slider__arrow {
-  position: absolute;
-  top: calc(50% - 1.5rem);
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(6px);
-  color: var(--cream);
-  font-size: 1.8rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
-}
-@media (hover: hover) { .slider__arrow:hover { background: var(--red); border-color: var(--red); transform: translateY(-50%) scale(1.05); } }
-/* Ai bordi della pagina, come nel carosello del team */
-.slider__arrow--prev { left: clamp(0.2rem, 2vw, 1rem); }
-.slider__arrow--next { right: clamp(0.2rem, 2vw, 1rem); }
 @media (max-width: 768px) {
-  .slider__arrow { display: none; }
   .slider__item { flex-basis: 78%; max-width: 78%; }
 }
 /* Sezione YouTube: featured a tutta larghezza in alto + 3 video sotto */
@@ -615,11 +553,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- NEWSLETTER ---------- */
 .newsletter {
-  padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background:
-    radial-gradient(70% 120% at 50% 0%, rgba(255,87,87,0.16), transparent 60%),
-    var(--ink);
-  border-top: 1px solid var(--line);
+  padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
   text-align: center;
 }
 .newsletter__inner { max-width: 680px; margin: 0 auto; }
@@ -678,52 +612,98 @@ img { max-width: 100%; display: block; }
 
 /* ---------- LIVE ---------- */
 .live {
-  padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background: radial-gradient(ellipse at 50% 0%, rgba(255,87,87,0.18) 0%, var(--ink) 70%);
-  border-top: 1px solid var(--line);
+  padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
 }
-.live__inner {
-  max-width: 920px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2rem, 5vw, 3.5rem);
-  align-items: center;
-  text-align: center;
-}
-.live__title {
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  margin: 0.4rem 0 1.2rem;
-  line-height: 0.98;
-}
-.live__title .hl { color: var(--red); }
-.live__sub {
-  font-size: 1.1rem;
-  color: rgba(250,249,210,0.78);
-  max-width: 48ch;
-  margin: 0 auto 2rem;
-  line-height: 1.55;
-  text-align: center;
-}
-.live__video {
+/* Il banner: la foto riempie la fascia, il testo le sta sopra a sinistra.
+   Il 2:1 toglie poco più del 5% sopra e sotto alla foto (16:9), quindi la
+   testa del soggetto resta dentro e si perde solo la base del leggio. */
+.live-banner {
   position: relative;
-  width: 100%;
-  max-width: 800px;
-  aspect-ratio: 16 / 9;
-  border-radius: 16px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  aspect-ratio: 2 / 1;
+  border-radius: 28px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
   background: var(--ink-2);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
 }
-.live__video video {
+.live-banner__media {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  border: 0;
   object-fit: cover;
+  border: 0;
+  display: block;
 }
+.live-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(8, 5, 5, 0.95) 0%,
+    rgba(8, 5, 5, 0.92) 42%,
+    rgba(8, 5, 5, 0.72) 55%,
+    rgba(8, 5, 5, 0.3) 68%,
+    transparent 82%
+  );
+  transition: opacity 0.4s ease;
+}
+/* Durante la riproduzione sparisce tutto: resta il video. */
+.live-banner.is-playing::after { opacity: 0; }
+.live-banner__testo {
+  position: absolute;
+  left: clamp(1.6rem, 6%, 4.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: min(44%, 470px);
+  text-align: left;
+}
+.live-banner__titolo {
+  font-size: clamp(1.8rem, 3.4vw, 2.9rem);
+  line-height: 1.05;
+  margin: 0.55rem 0 1rem;
+}
+.live-banner__titolo .hl { color: var(--red); }
+.live-banner__frase {
+  font-size: clamp(0.95rem, 1.3vw, 1.12rem);
+  line-height: 1.55;
+  color: rgba(250, 249, 210, 0.86);
+  margin-bottom: 1.6rem;
+}
+.live-banner__azioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: flex-start;
+}
+
+@media (max-width: 860px) {
+  /* Impilato: il video sopra, il testo sotto — a quella larghezza la colonna
+     di testo sopra il video sarebbe troppo stretta per leggersi. */
+  .live-banner {
+    aspect-ratio: auto;
+    border-radius: 20px;
+  }
+  .live-banner__media { position: relative; aspect-ratio: 16 / 9; height: auto; }
+  .live-banner::after {
+    inset: auto 0 0 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(8, 5, 5, 0.95), transparent);
+  }
+  .live-banner__testo {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: auto;
+    padding: 1.6rem clamp(1.2rem, 5vw, 2rem) 2rem;
+  }
+}
+
 /* ---------- LIBRO ---------- */
 .book {
   padding: 7rem clamp(1.2rem, 5vw, 3rem);
@@ -848,10 +828,8 @@ img { max-width: 100%; display: block; }
 
 /* ---------- COLLAB ---------- */
 .collab {
-  padding: 8rem clamp(1.2rem, 5vw, 3rem);
+  padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
   text-align: center;
-  background:
-    radial-gradient(120% 130% at 50% 0%, rgba(255,87,87,0.55), rgba(255,87,87,0.12) 45%, var(--ink) 80%);
 }
 .collab__inner { max-width: 820px; margin: 0 auto; }
 .collab__title { font-size: clamp(2.2rem, 5.5vw, 4.2rem); margin: 0.5rem 0 1.2rem; }
@@ -909,9 +887,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- PODCAST PRINCIPALE (Storie di Brand) ---------- */
 .sdb-podcast {
-  padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background:
-    radial-gradient(120% 1100px at 50% 260px, rgba(255,87,87,0.45), rgba(255,87,87,0.08) 45%, var(--ink) 80%);
+  padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
 }
 .sdb-podcast__inner {
   max-width: 780px;
@@ -1122,397 +1098,194 @@ img { max-width: 100%; display: block; }
 .bt {
   margin: 2.5rem 0 0;
 }
+/* Una riga sola al posto di due: istruzione e conteggio insieme. */
 .bt-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-.bt-hint {
-  font-size: 0.85rem;
+  text-align: center;
+  font-size: 0.82rem;
   color: rgba(250, 249, 210, 0.55);
-  line-height: 1.5;
-  white-space: nowrap;
+  margin-bottom: 1.6rem;
 }
-.bt-hint-arrow {
-  color: var(--red);
-  font-weight: 600;
-}
-.bt-progress {
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(250, 249, 210, 0.5);
-  white-space: nowrap;
-}
-.bt-progress strong {
-  color: var(--red);
-  font-size: 1.05rem;
-}
+.bt-bar strong { color: var(--red); }
+.bt-bar__sep { margin: 0 0.5rem; opacity: 0.5; }
 
-/* Viewport full-bleed che ospita lo slider e gli overlay "lente" ai lati */
-.bt-viewport {
+/* Il nastro arriva ai bordi della pagina, come gli altri caroselli. */
+.bt-scroller {
   position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  overflow: hidden;
-}
-/* Overlay lente: i due lati si scuriscono e si SFOCANO in modo progressivo →
-   il nastro sembra curvare via come uno slider circolare (drum), con profondità
-   di campo. Restano fissi al viewport, non scorrono col nastro. */
-.bt-edge {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 26%;
-  max-width: 340px;
-  pointer-events: none;
-  z-index: 4;
-}
-.bt-edge--left {
-  left: 0;
-  background: linear-gradient(to right, rgba(6,4,4,0.94) 0%, rgba(6,4,4,0.5) 48%, rgba(6,4,4,0) 100%);
-  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 20%, transparent 100%);
-  mask-image: linear-gradient(to right, #000 0%, #000 20%, transparent 100%);
-}
-.bt-edge--right {
-  right: 0;
-  background: linear-gradient(to left, rgba(6,4,4,0.94) 0%, rgba(6,4,4,0.5) 48%, rgba(6,4,4,0) 100%);
-  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 20%, transparent 100%);
-  mask-image: linear-gradient(to left, #000 0%, #000 20%, transparent 100%);
-}
-/* Riflesso centrale morbido: dà volume/curvatura al drum */
-.bt-viewport::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  background: radial-gradient(130% 90% at 50% 50%, rgba(255,248,224,0.12) 0%, rgba(255,248,224,0) 42%);
-}
-
-.bt-scroller {
-  position: relative;
   overflow-x: auto;
   overflow-y: hidden;
   cursor: grab;
-  background: transparent;
   scrollbar-width: none;
 }
-.bt-scroller.is-grabbing {
-  cursor: grabbing;
-}
-.bt-scroller::-webkit-scrollbar {
-  display: none;
-}
+.bt-scroller.is-grabbing { cursor: grabbing; }
+.bt-scroller::-webkit-scrollbar { display: none; }
 .bt-track {
   position: relative;
-  height: 184px;
+  height: 92px;
+  /* Quota della riga: la usano sia la riga sia i cursori, così i punti ci
+     cadono sopra esatti invece di starle a cavallo. */
+  --linea: 34px;
+  --dot: 9px;
+  --pad-y: 12px;
 }
-
-/* Il nastro: un'unica superficie chiara che riempie tutta l'altezza, look pulito
-   e moderno — leggera sfumatura, tacche fini da metro, linea centrale. */
-.bt-tape {
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 13px, rgba(60, 48, 20, 0.06) 13px 14px),
-    linear-gradient(180deg, #f7f2dd 0%, #efe8c7 55%, #e8e0bb 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
-    0 14px 40px rgba(0, 0, 0, 0.4);
-}
-/* Linea centrale del metro */
-.bt-tape::after {
-  content: "";
+/* Al posto del nastro chiaro, una riga sola: il fondo resta quello della
+   pagina e la timeline smette di essere un blocco estraneo. */
+.bt-line {
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
+  top: var(--linea);
   height: 1px;
-  background: rgba(54, 43, 16, 0.2);
+  background: rgba(250, 249, 210, 0.22);
 }
 
-/* Cursori — minimal, alternati sopra/sotto la linea centrale, sul nastro chiaro */
+/* Cursore: punto e anno, niente altro. Prima erano quattro elementi
+   ("?", anno, gambo, punto) alternati sopra e sotto la riga. */
 .bt-marker {
   position: absolute;
-  top: 50%;
+  /* Il centro del punto cade sulla riga: quota meno il margine interno
+     e meno mezzo punto. */
+  top: calc(var(--linea) - var(--pad-y) - var(--dot) / 2);
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 0.85rem;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 10px 20px;
+  padding: var(--pad-y) 18px;
   touch-action: manipulation;
-  z-index: 3;
+  z-index: 2;
 }
-.bt-marker.is-above {
-  transform: translate(-50%, calc(-100% + 5px));
-}
-.bt-marker.is-below {
-  transform: translate(-50%, -5px);
-  flex-direction: column-reverse;
-}
-.bt-marker__label {
-  font-family: var(--body);
-  font-weight: 600;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: rgba(54, 43, 16, 0.4);
-  white-space: nowrap;
-  max-width: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.18s ease;
+.bt-marker__dot {
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid rgba(250, 249, 210, 0.5);
+  transition: transform 0.2s ease, background 0.2s ease,
+    border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .bt-marker__year {
   font-family: var(--body);
-  font-weight: 500;
-  font-size: 0.74rem;
-  color: rgba(54, 43, 16, 0.85);
+  font-size: 0.72rem;
+  color: rgba(250, 249, 210, 0.45);
   font-variant-numeric: tabular-nums;
-  transition: color 0.18s ease;
-}
-.bt-marker__stem {
-  width: 1px;
-  height: 14px;
-  background: rgba(54, 43, 16, 0.3);
-  transition: background 0.18s ease;
-}
-.bt-marker__dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid var(--red);
-  flex-shrink: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  position: relative;
-}
-/* Zona di tocco allargata (invisibile) attorno al pallino: tap più facile su mobile */
-.bt-marker__dot::after {
-  content: "";
-  position: absolute;
-  inset: -12px;
+  transition: color 0.2s ease;
 }
 @media (hover: hover) {
   .bt-marker:hover .bt-marker__dot {
-    transform: scale(1.4);
-    box-shadow: 0 0 0 4px rgba(255, 87, 87, 0.22);
+    border-color: var(--red);
+    transform: scale(1.3);
   }
-  .bt-marker:hover .bt-marker__stem { background: var(--red); }
-  .bt-marker:hover .bt-marker__year { color: rgba(54, 43, 16, 1); }
-  .bt-marker:hover .bt-marker__label { color: var(--red); }
+  .bt-marker:hover .bt-marker__year { color: var(--cream); }
 }
+/* Già scoperto: punto pieno. Selezionato: punto pieno con alone. */
 .bt-marker.is-open .bt-marker__dot {
-  background: var(--red);
+  background: rgba(255, 87, 87, 0.55);
+  border-color: rgba(255, 87, 87, 0.55);
 }
-.bt-marker.is-open .bt-marker__label {
-  color: rgba(54, 43, 16, 0.85);
-}
+.bt-marker.is-open .bt-marker__year { color: rgba(250, 249, 210, 0.75); }
 .bt-marker.is-active .bt-marker__dot {
   background: var(--red);
-  box-shadow: 0 0 0 5px rgba(255, 87, 87, 0.28), 0 0 16px rgba(255, 87, 87, 0.55);
-  transform: scale(1.45);
+  border-color: var(--red);
+  transform: scale(1.35);
+  box-shadow: 0 0 0 5px rgba(255, 87, 87, 0.22);
 }
-.bt-marker.is-active .bt-marker__stem { background: var(--red); }
-.bt-marker.is-active .bt-marker__label {
-  color: var(--red);
-}
-.bt-marker.is-active .bt-marker__year {
-  color: rgba(54, 43, 16, 1);
-}
+.bt-marker.is-active .bt-marker__year { color: var(--cream); }
 
-/* Frecce navigazione */
-.bt-nav {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-.bt-nav__btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--ink-2);
-  color: var(--cream);
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-@media (hover: hover) {
-  .bt-nav__btn:hover { border-color: var(--red); color: var(--red); }
-}
-/* Su touch/mobile lo swipe basta: niente frecce per la timeline */
-@media (max-width: 980px) {
-  .bt-nav { display: none; }
-}
-
-/* Palco brand scoperto */
+/* Il marchio scoperto. L'altezza la imposta il componente misurando il
+   contenuto: così la comparsa del player apre la sezione con un movimento
+   morbido invece di far saltare di colpo tutto quello che sta sotto. */
 .bt-stage {
-  margin-top: 1.75rem;
-  min-height: 220px;
+  margin-top: 2rem;
+  overflow: hidden;
+  transition: height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bt-stage { transition: none; }
 }
 .bt-empty {
   text-align: center;
-  padding: 2.5rem 1.5rem;
-  border: 1px dashed var(--line);
-  border-radius: 16px;
-  color: rgba(250, 249, 210, 0.6);
-  line-height: 1.6;
+  font-size: 0.9rem;
+  color: rgba(250, 249, 210, 0.5);
 }
-.bt-empty__icon {
-  display: block;
-  font-size: 2rem;
-  margin-bottom: 0.8rem;
-}
-.bt-card {
-  display: grid;
-  grid-template-columns: 88px 1fr;
-  gap: 1.2rem 1.4rem;
-  align-items: center;
-  padding: 1.4rem;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 87, 87, 0.1), var(--ink-2));
+/* La scheda riusa l'impianto dell'hero della pagina Podcast — copertina a
+   sinistra, occhiello, titolo, durata, descrizione, parti e player a destra.
+   Stesse classi, così restano allineati per sempre: qui serve solo togliere
+   il margine di chiusura, perché il palco ha già il suo. */
+/* IMPIANTO A MISURE FISSE.
+   Qui niente si adatta al contenuto: copertina e blocco di testo hanno lo
+   stesso lato per tutti e 101 i marchi, e ogni elemento ha il suo posto.
+   Passando da un marchio all'altro non si sposta nulla — era il problema di
+   prima, quando il lato della copertina veniva calcolato sull'altezza del
+   testo e quindi cambiava a ogni puntata. */
+.bt-hero {
+  --lato: 22rem;
+  margin-bottom: 0;
+  align-items: flex-start;
   animation: bt-reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
-@keyframes bt-reveal {
-  from { opacity: 0; transform: translateY(12px) scale(0.985); }
-  to { opacity: 1; transform: none; }
-}
-.bt-card__cover {
-  width: 88px;
-  height: 88px;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
-}
-.bt-card__body { min-width: 0; }
-.bt-card__year {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--red);
-}
-.bt-card__brand {
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  line-height: 1;
-  margin: 0.2rem 0 0.35rem;
-}
-.bt-card__title {
-  font-size: 0.9rem;
-  color: rgba(250, 249, 210, 0.6);
-}
-.bt-card__player {
-  grid-column: 1 / -1;
-}
-.bt-card__player iframe {
-  border-radius: 12px;
-  display: block;
-}
-
-/* Carosello episodi (brand in più parti) — come lo slider, ma senza loop */
-.bt-car {
-  position: relative;
-}
-.bt-car__track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  border-radius: 12px;
-  scrollbar-width: none;
-}
-.bt-car__track::-webkit-scrollbar { display: none; }
-.bt-car__item {
-  flex: 0 0 100%;
-  min-width: 100%;
-  scroll-snap-align: start;
-}
-.bt-car__foot {
-  margin-top: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-.bt-car__arrow {
-  /* Desktop: ancorate a metà dell'embed (iframe alto 200px), fuori dalla card */
-  position: absolute;
-  top: 100px;
-  transform: translateY(-50%);
-  z-index: 2;
-  width: 50px;
-  height: 50px;
+:is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__cover {
   flex: 0 0 auto;
-  border-radius: 50%;
-  border: 1px solid rgba(250, 249, 210, 0.35);
-  background: var(--ink-2);
-  color: var(--cream);
-  font-size: 1.7rem;
-  line-height: 1;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
-  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  width: var(--lato);
+  height: var(--lato);
+  max-width: none;
 }
-@media (hover: hover) {
-  .bt-car__arrow:hover:not(:disabled) { background: var(--red); border-color: var(--red); }
+:is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__body {
+  height: var(--lato);
+  display: flex;
+  flex-direction: column;
 }
-.bt-car__arrow:disabled {
-  opacity: 0.25;
-  cursor: default;
-  box-shadow: none;
+/* Sempre due righe: i titoli corti lasciano l'aria sotto, quelli lunghi si
+   fermano con i puntini. Il titolo per intero resta nel player e sulle
+   piattaforme. */
+:is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.2em;
 }
-.bt-car__arrow--prev { left: -5.6rem; }
-.bt-car__arrow--next { right: -5.6rem; }
-.bt-car__meta {
-  text-align: center;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  color: rgba(250, 249, 210, 0.55);
+.bt-hero .pod-hero__excerpt {
+  -webkit-line-clamp: 2;
+  height: 3.2em;
+  margin-bottom: 0.9rem;
 }
-.bt-car__meta strong { color: var(--red); }
-/* Su schermi stretti le frecce scendono sotto l'embed, in riga col contatore */
-@media (max-width: 980px) {
-  .bt-car__arrow {
-    position: static;
-    transform: none;
-    width: 42px;
-    height: 42px;
-    font-size: 1.5rem;
-  }
+/* La riga delle parti resta alta anche quando è vuota. */
+:is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-parts {
+  min-height: 30px;
+  margin-bottom: 0;
 }
+/* Il player è ancorato in fondo: l'eventuale aria avanzata sta sopra di lui,
+   mai sotto, così sta sempre alla stessa quota. */
+:is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__player { margin-top: auto; }
 
-@media (max-width: 760px) {
-  .bt-hint { white-space: normal; }
+/* La pagina Podcast ha la descrizione su tre righe invece di due, quindi il
+   blocco di testo è più alto e il lato cresce di conseguenza. */
+.pod-page .pod-hero {
+  --lato: 24rem;
+  align-items: flex-start;
 }
-@media (max-width: 640px) {
-  .bt-card {
-    grid-template-columns: 64px 1fr;
-    gap: 0.9rem 1rem;
-    padding: 1.1rem;
+@media (max-width: 860px) {
+  /* Impilato: la copertina non deve più pareggiare un blocco accanto. */
+  :is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__cover {
+    width: min(260px, 70%);
+    height: auto;
   }
-  .bt-card__cover { width: 64px; height: 64px; }
-  .bt-hint { font-size: 0.78rem; }
+  :is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__body { height: auto; }
+}
+@keyframes bt-reveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ---------- PODCAST (BRANDY) — gioco di ricerca ---------- */
 .podcast {
-  padding: 7rem clamp(1.2rem, 5vw, 3rem);
-  background:
-    radial-gradient(120% 130% at 50% 0%, rgba(255,87,87,0.55), rgba(255,87,87,0.12) 45%, var(--ink) 80%);
-  border-top: 1px solid var(--line);
+  padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
 }
 .brandy { max-width: 760px; margin: 0 auto; text-align: center; }
 .brandy__head .eyebrow { margin-bottom: 0.8rem; }
@@ -1655,14 +1428,117 @@ img { max-width: 100%; display: block; }
   font-size: 2rem;
   margin-bottom: 1rem;
 }
-.brandy__embed {
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.55);
-  border: 1px solid var(--line);
-  min-height: 200px;
+/* ---------- IL QUIZ DI BRANDY ---------- */
+.quiz {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: left;
 }
-.brandy__embed iframe { display: block; border: 0; width: 100%; }
+.quiz__domanda {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 1.6rem;
+  text-align: center;
+  /* Spazio di due righe sempre riservato: le domande vanno da 23 a 146
+     caratteri e senza questo il blocco delle risposte ballava a ogni giro.
+     Il testo resta centrato nella scatola, che sia lungo una riga o due. */
+  min-height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Righe di lunghezza simile: senza, una domanda poteva finire con una
+     seconda riga di una parola sola ("Perché?"), che spezza l'equilibrio. */
+  text-wrap: balance;
+}
+.quiz__opzioni { display: flex; flex-direction: column; gap: 0.7rem; }
+.quiz__opzione {
+  padding: 0.95rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(250, 249, 210, 0.2);
+  background: rgba(10, 8, 8, 0.5);
+  backdrop-filter: blur(4px);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, opacity 0.35s ease;
+}
+@media (hover: hover) {
+  .quiz__opzione:not(:disabled):hover {
+    border-color: var(--red);
+    background: rgba(255, 87, 87, 0.12);
+  }
+}
+.quiz__opzione:disabled { cursor: default; }
+/* Dopo la risposta: verde per la giusta, rosso per quella scelta a torto,
+   le altre si spengono. */
+.quiz__opzione.is-giusta {
+  border-color: #56c07a;
+  background: rgba(86, 192, 122, 0.16);
+}
+.quiz__opzione.is-sbagliata {
+  border-color: var(--red);
+  background: rgba(255, 87, 87, 0.16);
+}
+.quiz__opzione.is-spenta { opacity: 0.4; }
+
+.quiz__esito {
+  margin-top: 1.6rem;
+  animation: bt-reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.quiz__verdetto {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--cream);
+  line-height: 1.4;
+  margin-bottom: 1.6rem;
+}
+.quiz__verdetto span {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  color: rgba(250, 249, 210, 0.75);
+}
+.quiz__etichetta {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.5rem;
+}
+/* La scheda della puntata: stesse regole delle altre, con il lato tarato
+   sulla larghezza di questa colonna e la descrizione su due righe. */
+.quiz-hero {
+  --lato: 17rem;
+  align-items: flex-start;
+  margin-bottom: 1.4rem;
+}
+/* Colonna più stretta e copertina più piccola: il titolo scende di un passo
+   per stare comunque in due righe. */
+.quiz-hero .pod-hero__title { font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+.quiz-hero .pod-hero__excerpt {
+  -webkit-line-clamp: 2;
+  height: 3.2em;
+  margin-bottom: 0.9rem;
+}
+.quiz__ancora { margin-top: 1.6rem; }
+
+/* Il titolo della puntata e il player del sito, al posto dell'embed di
+   Megaphone: stesso aspetto della timeline e della pagina Podcast. */
+.brandy__player {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+.brandy__titolo {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 0.7rem;
+}
 .brandy__alts {
   display: flex;
   flex-wrap: wrap;
@@ -1681,17 +1557,32 @@ img { max-width: 100%; display: block; }
   margin-bottom: 0.3rem;
 }
 .brandy__alts button {
-  background: var(--ink-2);
+  background: rgba(10, 8, 8, 0.5);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.4rem 0.9rem;
-  color: rgba(250,249,210,0.8);
+  color: rgba(250, 249, 210, 0.8);
   font-family: var(--body);
   font-size: 0.82rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
-@media (hover: hover) { .brandy__alts button:hover { border-color: var(--red); color: var(--cream); } }
+@media (hover: hover) {
+  .brandy__alts button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 87, 87, 0.6);
+    background: rgba(255, 87, 87, 0.14);
+    color: var(--cream);
+  }
+}
+.brandy__alts button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+/* Quella in ascolto resta accesa. */
+.brandy__alts button.is-sel {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
 .brandy__full {
   display: block;
   text-align: center;
@@ -1843,11 +1734,17 @@ img { max-width: 100%; display: block; }
 }
 .pod-hero__body { flex: 1 1 0; min-width: 0; }
 .pod-hero__cover {
-  /* La misura arriva dal componente (lato = altezza del blocco accanto).
-     Il rapporto 1:1 resta come riserva prima che la misura sia disponibile. */
+  /* Dal componente arriva SOLO la larghezza (il lato ideale = altezza del
+     blocco di testo accanto). L'altezza la deriva il rapporto 1:1, così anche
+     quando il tetto del 42% stringe la larghezza la copertina resta quadrata:
+     imponendo anche l'altezza diventava un rettangolo. */
   flex: 0 0 auto;
   aspect-ratio: 1 / 1;
-  max-width: 42%;
+  height: auto;
+  /* Il tetto è ciò che rompeva la corrispondenza: se il blocco di testo è più
+     alto, la copertina veniva stretta e smetteva di essergli pari. A 50% il
+     quadrato ci sta anche quando il testo è lungo. */
+  max-width: 50%;
   border-radius: 18px;
   overflow: hidden;
   background: var(--ink-2);
@@ -2281,6 +2178,11 @@ img { max-width: 100%; display: block; }
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .nav .btn--small { display: none; }
+  .nav__logo__esteso { display: none; }
+  .nav__logo__sigla { display: inline; }
+  /* La sigla è alta quanto l'hamburger a destra: le tre righe del menu
+     misurano 26px, e con questo corpo l'altezza delle maiuscole ci arriva. */
+  .nav__logo { font-size: 1.75rem; }
   .nav__links {
     display: flex;
     flex-direction: column;
@@ -2342,25 +2244,6 @@ img { max-width: 100%; display: block; }
     calc((100% - var(--maxw)) / 2 + clamp(1.2rem, 5vw, 3rem))
   );
 }
-/* Le card sfumano ai bordi tramite una maschera sul nastro, non con due bande
-   colorate sopra: così l'effetto funziona su qualunque sfondo (nero o rosso)
-   senza dover indovinare il colore sottostante. */
-.team-track {
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gutter),
-    #000 calc(100% - var(--gutter)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gutter),
-    #000 calc(100% - var(--gutter)),
-    transparent 100%
-  );
-}
 .team-track {
   display: flex;
   gap: 1.5rem;
@@ -2370,7 +2253,7 @@ img { max-width: 100%; display: block; }
   /* A riposo il primo riquadro parte allineato al titolo; scorrendo, le card
      proseguono fino ai bordi della pagina passando sotto le sfumature.
      Il max() replica il margine della colonna di testo (max-width + gutter). */
-  padding: 0.5rem var(--gutter) 1.5rem;
+  padding: 1.5rem var(--gutter) 3.5rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -2416,46 +2299,11 @@ img { max-width: 100%; display: block; }
   margin: 0;
 }
 
-.team-arrow {
-  position: absolute;
-  top: 38%;
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(6px);
-  color: var(--cream);
-  font-size: 1.8rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
-}
-@media (hover: hover) {
-  .team-arrow:hover {
-    background: var(--red);
-    border-color: var(--red);
-    transform: translateY(-50%) scale(1.05);
-  }
-}
-.team-arrow:focus-visible { outline: 2px solid rgba(250, 249, 210, 0.7); outline-offset: 2px; }
-.team-arrow--prev { left: clamp(0.2rem, 2vw, 1rem); }
-.team-arrow--next { right: clamp(0.2rem, 2vw, 1rem); }
-
 @media (max-width: 1024px) {
   .team-card {
     flex-basis: calc((100% - 3 * 1.5rem - var(--peek)) / 3);
     max-width: calc((100% - 3 * 1.5rem - var(--peek)) / 3);
   }
-}
-/* Sui dispositivi touch si scorre col dito: le frecce non servono. */
-@media (hover: none), (max-width: 640px) {
-  .team-arrow { display: none; }
 }
 @media (max-width: 640px) {
   .team-card { flex-basis: 44%; max-width: 44%; }
@@ -2634,6 +2482,7 @@ img { max-width: 100%; display: block; }
 /* Sul fondo rosso il player e il campo di ricerca hanno bisogno di un fondo
    più scuro e di un bordo, per non confondersi con lo sfondo. */
 .pod-page .mini,
+.home-page .mini,
 .pod-page .pod-search input {
   background: rgba(10, 8, 8, 0.72);
   backdrop-filter: blur(6px);
@@ -2726,3 +2575,458 @@ img { max-width: 100%; display: block; }
   -webkit-mask-size: contain;
   mask-size: contain;
 }
+
+/* ---------- SFONDO UNICO DELLA HOME ----------
+   Le sezioni della home non dipingono più niente: il fondo è uno solo, qui.
+   È l'unico modo perché non ci siano stacchi — finché ogni sezione si disegna
+   il proprio sfondo, sul confine resta sempre una riga o una cresta di luce.
+   Le misure sono in pixel e non in percentuale: le percentuali si ricalcolano
+   sull'altezza della pagina, che cambia (immagini, font, filtri) e sposterebbe
+   tutto l'impianto. I picchi restano sotto la soglia oltre la quale il testo
+   crema perde contrasto (qui non scende mai sotto 8:1). */
+.home-page {
+  position: relative;
+  background:
+    /* alone dell'hero, in alto a destra */
+    radial-gradient(1500px 900px at 88% -60px, rgba(255, 87, 87, 0.34), transparent 70%),
+    /* il rosso sale sotto l'hero e culmina fra i loghi e il podcast */
+    radial-gradient(1800px 1150px at 50% 1350px, rgba(255, 87, 87, 0.4), transparent 72%),
+    /* respiro sulla sezione YouTube */
+    radial-gradient(1400px 950px at 10% 2650px, rgba(255, 87, 87, 0.24), transparent 70%),
+    /* Brandy */
+    radial-gradient(1500px 1000px at 82% 3500px, rgba(255, 87, 87, 0.3), transparent 70%),
+    /* Live */
+    radial-gradient(1400px 950px at 16% 4450px, rgba(255, 87, 87, 0.26), transparent 70%),
+    /* newsletter + collabora: la chiusura B2B è la parte più calda */
+    radial-gradient(1800px 1250px at 50% 5950px, rgba(255, 87, 87, 0.36), transparent 72%),
+    /* velatura continua: la pagina non torna mai al nero pieno */
+    linear-gradient(
+      180deg,
+      rgba(255, 87, 87, 0.06) 0,
+      rgba(255, 87, 87, 0.12) 1200px,
+      rgba(255, 87, 87, 0.13) 3200px,
+      rgba(255, 87, 87, 0.13) 5000px,
+      rgba(255, 87, 87, 0.15) 6800px
+    ),
+    var(--black);
+  background-repeat: no-repeat;
+}
+/* Su fondo rosso i campi dei moduli hanno bisogno di un fondo scuro proprio,
+   altrimenti si confondono con la pagina. */
+.home-page .collab-form input,
+.home-page .collab-form textarea,
+.home-page .newsletter-form input {
+  background: rgba(10, 8, 8, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- L'UNIVERSO STORIE DI BRAND (home) ----------
+   Sta fra l'hero e le collaborazioni: prima si dice cos'è il progetto e dove
+   vive, poi si mostra con chi lavora. */
+.universo {
+  padding: var(--stacco) 0;
+}
+/* Allineata al bordo sinistro della prima scheda, come la sezione sotto. */
+.universo__head {
+  max-width: var(--maxw);
+  margin: 0 auto 2.6rem;
+  padding: 0 clamp(1.2rem, 5vw, 3rem);
+}
+.universo__head > * { max-width: 52ch; }
+.universo__title {
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  margin: 0.5rem 0 1.2rem;
+}
+.universo__title .hl { color: var(--red); }
+.universo__sub {
+  font-size: 1.08rem;
+  color: rgba(250, 249, 210, 0.78);
+}
+/* Testo per i soli lettori di schermo: il "+" da solo non direbbe dove porta. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scheda alta con il "+" in basso a destra: il testo sta in cima, il segno
+   in fondo fa da invito ad aprire. Tutta la scheda è cliccabile. */
+.universo__card {
+  position: relative;
+  flex: 0 0 clamp(250px, 25vw, 320px);
+  aspect-ratio: 5 / 8;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 1.9rem 1.7rem 4.4rem;
+  border: 1px solid rgba(250, 249, 210, 0.12);
+  border-radius: 22px;
+  background:
+    radial-gradient(120% 90% at 50% 100%, rgba(255, 87, 87, 0.12), transparent 70%),
+    rgba(10, 8, 8, 0.5);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease, box-shadow 0.45s ease;
+}
+.universo__tag {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.universo__nome {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  line-height: 1;
+}
+.universo__testo {
+  font-size: 0.95rem;
+  color: rgba(250, 249, 210, 0.72);
+}
+/* Fotografia di sfondo. La leggibilità viene prima di tutto: sopra la foto
+   c'è una velatura che scurisce molto la fascia alta, dove sta il testo, e
+   allenta al centro-basso dove c'è solo l'immagine. La leggera tinta rossa
+   tiene la foto dentro la palette della pagina. */
+.universo__foto {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.universo__card--foto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(8, 5, 5, 0.94) 0%,
+      rgba(8, 5, 5, 0.88) 26%,
+      rgba(8, 5, 5, 0.6) 48%,
+      rgba(8, 5, 5, 0.38) 70%,
+      rgba(8, 5, 5, 0.62) 100%
+    ),
+    linear-gradient(to bottom, rgba(255, 87, 87, 0.16), rgba(255, 87, 87, 0.06));
+}
+/* Testo e "+" restano sopra foto e velatura. Il testo va posizionato (il
+   contenuto in flusso resterebbe sotto agli elementi assoluti), mentre al "+"
+   basta l'indice: è già assoluto e cambiargli `position` lo sposterebbe. */
+.universo__card--foto .universo__tag,
+.universo__card--foto .universo__nome,
+.universo__card--foto .universo__testo {
+  position: relative;
+  z-index: 2;
+}
+.universo__card--foto .universo__plus { z-index: 2; }
+
+/* Il segno riempie la metà bassa, dove nel riferimento sta la fotografia. */
+.universo__segno {
+  position: absolute;
+  left: 50%;
+  bottom: 4.6rem;
+  transform: translateX(-50%);
+  width: 46%;
+  color: rgba(250, 249, 210, 0.22);
+  transition: color 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.universo__plus {
+  position: absolute;
+  right: 1.3rem;
+  bottom: 1.3rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+  background: rgba(250, 249, 210, 0.92);
+  color: #0a0808;
+  transition: background 0.35s ease, color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .universo__card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 87, 87, 0.45);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
+  }
+  .universo__card:hover .universo__plus {
+    background: var(--red);
+    color: #fff;
+    transform: scale(1.1);
+  }
+  .universo__card:hover .universo__foto { transform: scale(1.05); }
+  .universo__card:hover .universo__segno {
+    color: rgba(250, 249, 210, 0.42);
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+.universo__card:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* ---------- LE COLLABORAZIONI (home) ----------
+   Il nastro dei marchi torna a scorrere, ma ora ogni logo è cliccabile: si
+   ferma al passaggio del mouse, altrimenti sarebbe un bersaglio in movimento. */
+.partners {
+  padding: var(--stacco) 0;
+}
+/* Allineata al bordo sinistro della prima scheda, come nel riferimento. */
+.partners__head {
+  max-width: var(--maxw);
+  margin: 0 auto 2.6rem;
+  padding: 0 clamp(1.2rem, 5vw, 3rem);
+}
+.partners__head > * { max-width: 46ch; }
+.partners__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin: 0.5rem 0 1rem;
+}
+.partners__sub {
+  font-size: 1.02rem;
+  color: rgba(250, 249, 210, 0.75);
+}
+/* Le schede delle collaborazioni: immagine grande e sotto il racconto, come
+   una vetrina di progetti. Il nastro arriva al bordo destro dello schermo —
+   la scheda tagliata dice che ce ne sono altre — mentre la prima resta
+   allineata al titolo grazie allo stesso calcolo del margine usato dagli
+   altri caroselli del sito. */
+.pslider {
+  position: relative;
+  --gutter: max(
+    clamp(1.2rem, 5vw, 3rem),
+    calc((100% - var(--maxw)) / 2 + clamp(1.2rem, 5vw, 3rem))
+  );
+}
+.pslider__track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Senza questo lo snap ignora il margine interno e aggancia la scheda a
+     filo del bordo dello schermo invece che sotto al titolo. */
+  scroll-padding-left: var(--gutter);
+  /* Margine sopra e sotto obbligatorio: `overflow-x: auto` fa diventare `auto`
+     anche l'asse verticale, quindi il nastro ritaglia in altezza. Senza questo
+     spazio la scheda che si solleva al passaggio del mouse veniva tagliata sul
+     bordo superiore, e l'ombra spariva sotto. */
+  padding: 1.5rem var(--gutter) 3.5rem;
+  scrollbar-width: none;
+}
+.pslider__track::-webkit-scrollbar { display: none; }
+.pslider__card {
+  flex: 0 0 clamp(280px, 36vw, 460px);
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+}
+.pslider__art {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: rgba(10, 8, 8, 0.45);
+  border: 1px solid rgba(250, 249, 210, 0.1);
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease, box-shadow 0.45s ease;
+}
+/* La velatura che scurisce il fondo per far leggere l'etichetta. Scurisce
+   anche in cima, non solo in fondo: fermandosi a metà lasciava l'angolo alto
+   a contrasto col resto e si vedeva una fascia netta sul bordo superiore. */
+.pslider__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.22) 45%, rgba(0, 0, 0, 0.14));
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.pslider__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  /* La posizione la decide il componente (campo `fuoco` del partner): qui c'è
+     solo il valore di riserva. */
+  background-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Velatura sulla fotografia: il logo è crema e deve staccarsi da qualunque
+   immagine ci finisca sotto. La leggera tinta rossa tiene la foto in palette. */
+.pslider__art--foto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(8, 5, 5, 0.62), rgba(8, 5, 5, 0.52) 45%, rgba(8, 5, 5, 0.68)),
+    linear-gradient(to bottom, rgba(255, 87, 87, 0.14), rgba(255, 87, 87, 0.06));
+}
+/* Copertina di servizio: il logo del marchio al centro di un pannello.
+   Sparisce da sola quando al partner viene assegnata un'immagine. */
+.pslider__art--vuota {
+  background-image: radial-gradient(120% 120% at 50% 0%, rgba(255, 87, 87, 0.14), rgba(10, 8, 8, 0.42) 70%);
+}
+.pslider__logo {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: min(var(--w), 62%);
+  background-color: rgba(250, 249, 210, 0.8);
+  -webkit-mask-image: var(--logo);
+  mask-image: var(--logo);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.45s ease;
+}
+/* L'etichetta sale dal basso a sinistra, sopra la velatura. */
+.pslider__scopri {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.2rem;
+  z-index: 3;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pslider__testo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.pslider__nome {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--cream);
+  transition: color 0.35s ease;
+}
+.pslider__desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(250, 249, 210, 0.7);
+}
+@media (hover: hover) {
+  .pslider__card:hover .pslider__art {
+    transform: translateY(-6px);
+    border-color: rgba(255, 87, 87, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  }
+  .pslider__card:hover .pslider__art::after { opacity: 1; }
+  /* L'immagine si allarga dentro la cornice ferma: il movimento c'è, ma il
+     riquadro non si deforma. */
+  .pslider__card:hover .pslider__img { transform: scale(1.06); }
+  .pslider__card:hover .pslider__logo {
+    transform: scale(1.04);
+    background-color: var(--cream);
+  }
+  .pslider__card:hover .pslider__scopri { opacity: 1; transform: translateY(0); }
+  .pslider__card:hover .pslider__nome { color: var(--red); }
+}
+/* Stessa messa in evidenza per chi naviga da tastiera. */
+.pslider__card--link:focus-visible { outline: 2px solid var(--red); outline-offset: 5px; border-radius: 18px; }
+.pslider__card--link:focus-visible .pslider__art::after { opacity: 1; }
+.pslider__card--link:focus-visible .pslider__scopri { opacity: 1; transform: translateY(0); }
+
+/* Frecce al centro sotto al nastro, spente a inizio e fine corsa. */
+/* Le frecce di TUTTI i caroselli del sito: centrate sotto al nastro, mai
+   sopra alle schede. Stesso blocco per episodi, team, progetto e
+   collaborazioni, così restano coerenti ovunque. */
+.car-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  /* Poco margine: lo stacco dalle schede lo dà già il fondo del nastro. */
+  margin-top: 0.4rem;
+}
+.car-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(250, 249, 210, 0.22);
+  background: rgba(10, 8, 8, 0.5);
+  color: var(--cream);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+.car-arrow:hover:not(:disabled) {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.car-arrow:disabled { opacity: 0.3; cursor: default; }
+.car-arrow:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+@media (max-width: 620px) {
+  .universo__card { flex-basis: 74vw; }
+}
+@media (max-width: 680px) {
+  .pslider__card { flex-basis: 82vw; }
+  .car-nav { margin-top: 0.2rem; }
+}
+
+/* ---------- PAGINA CASE STUDY ---------- */
+.case {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 8rem clamp(1.2rem, 5vw, 3rem) 6rem;
+}
+.case__hero { margin-bottom: 3rem; }
+.case__hero .link-arrow { display: inline-block; margin-bottom: 2rem; }
+.case__title { font-size: clamp(2.2rem, 5.5vw, 4rem); margin: 0.5rem 0 1.2rem; }
+.case__intro { font-size: 1.2rem; color: rgba(250, 249, 210, 0.8); }
+.case__numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.case__video { margin-bottom: 3rem; }
+.case__backstage { margin-top: 4rem; }
+.case__shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.case__shots img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+.case__cta {
+  margin-top: 5rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.case__cta .btn { margin-top: 1.5rem; }
