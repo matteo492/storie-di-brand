@@ -6,6 +6,9 @@ import PodcastPlayerMini from "./PodcastPlayerMini";
 type BrandEpisode = {
   id: string;
   title: string;
+  /** Cosa scrivere sulla linguetta: "Parte 2", "Extra"… La calcola lo script
+   *  scripts/build-brand-timeline.js, che ha le date sotto mano. */
+  etichetta?: string;
   audio?: string;
   duration?: string;
   excerpt?: string;
@@ -29,12 +32,6 @@ const PX_PER_YEAR = 16;
 const MIN_GAP = 66;
 const MAX_GAP = 190;
 const PAD = 80;
-
-/** Numero di parte dal titolo ("BRAND | Pt. 2 | ..."), per le linguette. */
-function numeroParte(titolo: string, indice: number) {
-  const m = titolo.match(/\bPt\.?\s*(\d+)/i);
-  return m ? m[1] : String(indice + 1);
-}
 
 export default function BrandTimeline({ brands }: { brands: BrandPoint[] }) {
   const [selected, setSelected] = useState<BrandPoint | null>(null);
@@ -305,7 +302,7 @@ export default function BrandTimeline({ brands }: { brands: BrandPoint[] }) {
                       className={`pod-part${i === parte ? " is-sel" : ""}`}
                       onClick={() => setParte(i)}
                     >
-                      Parte {numeroParte(ep.title, i)}
+                      {ep.etichetta ?? `Parte ${i + 1}`}
                     </button>
                   ))}
               </div>

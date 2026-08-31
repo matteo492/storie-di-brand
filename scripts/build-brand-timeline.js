@@ -149,6 +149,48 @@ function partNumber(title) {
   return m ? parseInt(m[1], 10) : null;
 }
 
+/**
+ * Etichetta della linguetta per ogni puntata di un brand.
+ *
+ * Il numero nel titolo (Pt 2, P.t 4…) vince sempre. Quando manca ci si regola
+ * sulla data: una puntata senza numero uscita PRIMA di quelle numerate è la
+ * parte che non porta il marcatore (di solito la 1), mentre una uscita DOPO è
+ * un contenuto a sé — un flashback, uno speciale — e va etichettata "Extra".
+ * Anche EXTRA o FLASHBACK scritti nel titolo, o l'annuncio del flashback nella
+ * descrizione, bastano da soli.
+ *
+ * Torna { numero, etichetta }: `numero` è null per gli extra e serve a
+ * ordinarli in coda.
+ */
+function etichetta(ep, tutti) {
+  const esplicito = partNumber(ep.title);
+  if (esplicito != null) return { numero: esplicito, etichetta: `Parte ${esplicito}` };
+
+  if (/\b(EXTRA|FLASHBACK)\b/i.test(ep.title)) return { numero: null, etichetta: "Extra" };
+  if (/\bFLASHBACK\b/i.test(ep.excerpt || "")) return { numero: null, etichetta: "Extra" };
+
+  const numerati = tutti.filter((e) => partNumber(e.title) != null);
+  if (numerati.length === 0) return { numero: null, etichetta: null }; // serie tutta senza numeri
+
+  const numeri = numerati.map((e) => partNumber(e.title));
+  const minimo = Math.min(...numeri);
+  const primaData = Math.min(...numerati.map((e) => new Date(e.date).getTime()));
+
+  // Si deduce un numero solo se all'appello ne manca davvero uno all'inizio.
+  // Netflix ha già la sua "Pt. 1" del 2024 e in più una puntata sciolta del
+  // 2019: quella non è la parte mancante, è un'altra storia.
+  const senzaNumero = tutti
+    .filter((e) => partNumber(e.title) == null)
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+  const eLaPiuVecchia = senzaNumero.length > 0 && senzaNumero[0].id === ep.id;
+
+  if (minimo > 1 && eLaPiuVecchia && new Date(ep.date).getTime() < primaData) {
+    const n = minimo - 1;
+    return { numero: n, etichetta: `Parte ${n}` };
+  }
+  return { numero: null, etichetta: "Extra" };
+}
+
 function main() {
   const episodes = JSON.parse(fs.readFileSync(INPUT, "utf8"));
 
@@ -181,9 +223,12 @@ function main() {
       seen.add(t);
       return true;
     });
+    // Etichette prima dell'ordinamento: una puntata senza marcatore può
+    // rivelarsi la parte 1 e deve finire in testa, non in coda.
+    const etichette = new Map(all.map((e) => [e.id, etichetta(e, all)]));
     all.sort((a, b) => {
-      const pa = partNumber(a.title);
-      const pb = partNumber(b.title);
+      const pa = etichette.get(a.id).numero;
+      const pb = etichette.get(b.id).numero;
       if (pa != null && pb != null) return pa - pb;
       if (pa != null) return -1;
       if (pb != null) return 1;
@@ -201,9 +246,12 @@ function main() {
       // dalla finestra del feed RSS, che scorre e prima o poi perde le puntate
       // piu' vecchie. E' lo stesso indirizzo usato da Spotify e Apple, quindi
       // ascolti e pubblicita' restano tracciati da Megaphone.
-      episodes: all.map((e) => ({
+      episodes: all.map((e, i) => ({
         id: e.id,
         title: e.title.trim(),
+        // Cosa scrivere sulla linguetta. Le serie senza alcun numero nei
+        // titoli si accontentano della posizione.
+        etichetta: etichette.get(e.id).etichetta || `Parte ${i + 1}`,
         audio: e.audio || "",
         duration: e.duration || "",
         excerpt: e.excerpt || "",

@@ -1390,6 +1390,13 @@ img { max-width: 100%; display: block; }
     height: auto;
   }
   :is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-hero__body { height: auto; }
+  /* Impilato non c'è più nessuna quota da tenere: la riga delle parti torna
+     a essere alta quanto serve e riprende il suo stacco dal player, che qui
+     le sta subito sotto invece che in fondo alla colonna. */
+  :is(.bt-hero, .quiz-hero, .pod-page .pod-hero) .pod-parts {
+    min-height: 0;
+    margin-bottom: 1.1rem;
+  }
 }
 @keyframes bt-reveal {
   from { opacity: 0; transform: translateY(10px); }
@@ -3119,7 +3126,18 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
   transition: background 0.3s var(--curva), border-color 0.3s var(--curva), opacity 0.3s var(--curva);
 }
-.car-arrow:hover:not(:disabled) {
+/* Il rosso al passaggio del mouse vale solo dove un mouse c'è davvero:
+   sul touch il browser lascia :hover attaccato all'ultimo elemento toccato,
+   e la freccia restava accesa fino al tocco successivo altrove. */
+@media (hover: hover) {
+  .car-arrow:hover:not(:disabled) {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+  }
+}
+/* Col dito il rosso dura quanto la pressione. */
+.car-arrow:active:not(:disabled) {
   background: var(--red);
   border-color: var(--red);
   color: #fff;

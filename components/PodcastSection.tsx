@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import BrandTimeline from "./BrandTimeline";
+import LinkPiattaforme from "./LinkPiattaforme";
 
 type BrandPoint = {
   brand: string;
@@ -42,30 +43,7 @@ export default function PodcastSection() {
 
         {/* Piattaforme */}
         <div className="sdb-podcast__platforms">
-          <a
-            href="https://open.spotify.com/show/1HeVZSRqmiKzpBYp7k8utS"
-            target="_blank"
-            rel="noopener"
-            className="btn btn--ghost"
-          >
-            Spotify
-          </a>
-          <a
-            href="https://music.amazon.it/podcasts/97a19029-9d86-4e82-81a1-85ee641b02b0/storie-di-brand"
-            target="_blank"
-            rel="noopener"
-            className="btn btn--ghost"
-          >
-            Amazon Music
-          </a>
-          <a
-            href="https://podcasts.apple.com/it/podcast/storie-di-brand/id1483404084"
-            target="_blank"
-            rel="noopener"
-            className="btn btn--ghost"
-          >
-            Apple Podcasts
-          </a>
+          <LinkPiattaforme />
         </div>
       </div>
     </section>
