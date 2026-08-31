@@ -5,7 +5,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Ticker from "@/components/Ticker";
-import TickerSlot from "@/components/TickerSlot";
 import { PARTNERS } from "@/lib/partners";
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -61,9 +60,12 @@ export default function RootLayout({
         <Header />
         <ScrollReveal />
         <PageTransition>{children}</PageTransition>
-        <TickerSlot>
+        {/* Il nastro dei marchi chiude ogni pagina, home compresa: in home
+            resta anche il carosello grande a metà pagina — sono due letture
+            diverse dello stesso elenco, una da sfogliare e una come firma. */}
+        <div className="hero__marquee">
           <Ticker items={PARTNERS} />
-        </TickerSlot>
+        </div>
         <Footer />
         <BookBanner />
       </body>

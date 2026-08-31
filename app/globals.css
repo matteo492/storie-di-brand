@@ -954,9 +954,11 @@ img { max-width: 100%; display: block; }
   transition: color 0.24s var(--curva);
 }
 @media (hover: hover) { .book-banner__close:hover { color: var(--cream); } }
-@media (max-width: 500px) {
-  .book-banner__sub { display: none; }
-  .book-banner__cta { font-size: 0.85rem; padding: 0.6rem 1rem; }
+/* Su mobile il banner sparisce: una fascia fissa in fondo si mangia una
+   striscia di schermo per tutta la navigazione, e proprio dove stanno i
+   pulsanti delle sezioni. Su desktop lo spazio non manca e resta. */
+@media (max-width: 768px) {
+  .book-banner { display: none; }
 }
 
 /* ---------- COLLAB ---------- */
@@ -1237,15 +1239,21 @@ img { max-width: 100%; display: block; }
 .bt {
   margin: 2.5rem 0 0;
 }
-/* Una riga sola al posto di due: istruzione e conteggio insieme. */
+/* Due righe: prima quanti marchi hai scoperto, poi l'istruzione. Il conteggio
+   è la cosa che cambia mentre giochi, quindi sta in alto; l'istruzione resta
+   su una riga sola e non si spezza a metà frase. */
 .bt-bar {
   text-align: center;
   font-size: 0.82rem;
   color: rgba(250, 249, 210, 0.55);
   margin-bottom: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
 }
+.bt-bar__istruzione { white-space: nowrap; }
 .bt-bar strong { color: var(--red); }
-.bt-bar__sep { margin: 0 0.5rem; opacity: 0.5; }
 
 /* Il nastro arriva ai bordi della pagina, come gli altri caroselli. */
 .bt-scroller {
@@ -1363,7 +1371,7 @@ img { max-width: 100%; display: block; }
    prima, quando il lato della copertina veniva calcolato sull'altezza del
    testo e quindi cambiava a ogni puntata. */
 .bt-hero {
-  --lato: 22rem;
+  --lato: 23rem;
   margin-bottom: 0;
   align-items: flex-start;
   animation: bt-reveal 0.54s var(--curva);
@@ -1410,7 +1418,7 @@ img { max-width: 100%; display: block; }
 /* La pagina Podcast ha la descrizione su tre righe invece di due, quindi il
    blocco di testo è più alto e il lato cresce di conseguenza. */
 .pod-page .pod-hero {
-  --lato: 24rem;
+  --lato: 25rem;
   align-items: flex-start;
 }
 @media (max-width: 860px) {
@@ -1639,12 +1647,18 @@ img { max-width: 100%; display: block; }
   margin-top: 1.6rem;
   animation: bt-reveal 0.54s var(--curva);
 }
+/* Il verdetto sta su una riga sola: le venti spiegazioni sono tarate per
+   entrarci. La troncatura è una rete di sicurezza che non deve mai scattare —
+   se compaiono i puntini, quel testo va accorciato, non allargata la riga. */
 .quiz__verdetto {
   font-family: var(--display);
   font-size: 1.1rem;
   color: var(--cream);
   line-height: 1.4;
   margin-bottom: 1.6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .quiz__verdetto span {
   font-family: var(--body);
@@ -1661,7 +1675,7 @@ img { max-width: 100%; display: block; }
 /* La scheda della puntata: stesse regole delle altre, con il lato tarato
    sulla larghezza di questa colonna e la descrizione su due righe. */
 .quiz-hero {
-  --lato: 17rem;
+  --lato: 18rem;
   align-items: flex-start;
   margin-bottom: 1.4rem;
 }
@@ -3185,9 +3199,41 @@ img { max-width: 100%; display: block; }
 
 /* ---------- PAGINA CASE STUDY ---------- */
 .case {
-  max-width: 860px;
-  margin: 0 auto;
+  position: relative;
+  /* Lo stesso fondo delle altre pagine interne: senza, il case study era
+     l'unica schermata del sito su nero piatto. Il max-width sta sul
+     contenuto, non qui, altrimenti lo sfondo non arriverebbe ai bordi. */
+  background:
+    radial-gradient(1500px 820px at 50% 0, rgba(255, 87, 87, 0.42), transparent 72%),
+    radial-gradient(1100px 700px at 88% 900px, rgba(255, 87, 87, 0.14), transparent 68%),
+    radial-gradient(900px 620px at 8% 1800px, rgba(255, 87, 87, 0.1), transparent 68%),
+    linear-gradient(
+      180deg,
+      rgba(255, 87, 87, 0.08) 0,
+      rgba(255, 87, 87, 0.03) 1400px,
+      transparent 2300px
+    ),
+    var(--black);
+  background-repeat: no-repeat;
   padding: 8rem clamp(1.2rem, 5vw, 3rem) 6rem;
+}
+.case > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* I numeri del progetto sono la prova: vanno letti da lontano, non come una
+   didascalia. Stessa scala dei dati della hero in home. */
+.case__numbers .fact strong { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.case__numbers .fact span { font-size: 0.68rem; }
+/* `.prose` è pensata per stare da sola su una pagina, quindi porta il proprio
+   margine laterale: dentro al case study lo darebbe due volte e il racconto
+   risulterebbe rientrato rispetto agli altri blocchi. Prende anche la stessa
+   larghezza: l'introduzione e i due blocchi sfida/soluzione sono già su 860,
+   e una terza misura diversa spezzerebbe la colonna. */
+.case .prose {
+  max-width: 860px;
+  padding: 0;
 }
 .case__hero { margin-bottom: 3rem; }
 .case__hero .link-arrow { display: inline-block; margin-bottom: 2rem; }
@@ -3210,13 +3256,87 @@ img { max-width: 100%; display: block; }
   margin-top: 1.5rem;
 }
 .case__shots img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+/* I titoli interni al case study stanno sotto al titolo della pagina, non
+   sopra: `.section-title` è tarata sulle sezioni della home e qui arrivava a
+   72px, più del titolo del progetto. */
+.case__h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  margin-bottom: 1.4rem;
+}
+
+/* La chiusura: un riquadro, non una domanda appoggiata al fondo pagina. */
 .case__cta {
   margin-top: 5rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--line);
+  padding: clamp(2.2rem, 5vw, 3.4rem);
+  border: 1px solid rgba(250, 249, 210, 0.16);
+  border-radius: 26px;
+  background:
+    radial-gradient(700px 320px at 50% 0, rgba(255, 87, 87, 0.16), transparent 70%),
+    rgba(10, 8, 8, 0.5);
   text-align: center;
 }
-.case__cta .btn { margin-top: 1.5rem; }
+.case__cta__titolo {
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  line-height: 1.06;
+  margin: 0.5rem 0 0.9rem;
+}
+.case__cta__frase {
+  max-width: 46ch;
+  margin: 0 auto 1.8rem;
+  color: rgba(250, 249, 210, 0.78);
+  line-height: 1.6;
+  text-wrap: balance;
+}
+.case__cta__azioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+/* La sfida e la soluzione, affiancate: è la prima cosa che cerca un altro
+   brand arrivato qui, e messe una accanto all'altra si leggono come domanda
+   e risposta invece che come due paragrafi qualsiasi. */
+.case__duo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  /* Solo il verticale: `margin: 3rem 0` azzerava i margini automatici che
+     centrano il blocco insieme agli altri. */
+  margin-block: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.case__duo__voce h2 {
+  font-family: var(--body);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.9rem;
+}
+.case__duo__voce p {
+  color: rgba(250, 249, 210, 0.8);
+  line-height: 1.65;
+}
+
+/* I segnaposto: riquadri tratteggiati con l'ingombro definitivo, così
+   sostituendoli con i materiali veri non si sposta niente. */
+.video-embed.segnaposto,
+.case__shots__attesa {
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(250, 249, 210, 0.28);
+  border-radius: 12px;
+  background: rgba(250, 249, 210, 0.03);
+  color: rgba(250, 249, 210, 0.4);
+  font-family: var(--body);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.case__shots__attesa { aspect-ratio: 4 / 3; }
 
 
 /* ==========================================================================
@@ -3241,7 +3361,8 @@ img { max-width: 100%; display: block; }
   .filter-bar,
   .pod-grid,
   .episodes__grid,
-  .archive__grid {
+  .archive__grid,
+  .case__shots {
     --bordo: clamp(1.2rem, 5vw, 3rem);
     display: flex;
     flex-direction: row;
@@ -3272,14 +3393,16 @@ img { max-width: 100%; display: block; }
   .filter-bar::-webkit-scrollbar,
   .pod-grid::-webkit-scrollbar,
   .episodes__grid::-webkit-scrollbar,
-  .archive__grid::-webkit-scrollbar { display: none; }
+  .archive__grid::-webkit-scrollbar,
+  .case__shots::-webkit-scrollbar { display: none; }
 
   .brandy__alts__righe > *,
   .pod-filtri > *,
   .filter-bar > *,
   .pod-grid > *,
   .episodes__grid > *,
-  .archive__grid > * { flex: 0 0 auto; }
+  .archive__grid > *,
+  .case__shots > * { flex: 0 0 auto; }
 
   /* Nastri di pillole: larghezza del contenuto, niente aggancio — su
      elementi piccoli lo snap è più fastidioso che utile. */
@@ -3323,13 +3446,15 @@ img { max-width: 100%; display: block; }
   /* Nastri di schede: agganciano, come gli altri caroselli del sito. */
   .pod-grid,
   .episodes__grid,
-  .archive__grid {
+  .archive__grid,
+  .case__shots {
     scroll-snap-type: x mandatory;
     padding-block: 0.3rem 1rem;
   }
   .pod-grid > *,
   .episodes__grid > *,
-  .archive__grid > * { scroll-snap-align: start; }
+  .archive__grid > *,
+  .case__shots > * { scroll-snap-align: start; }
 
   .pod-grid { gap: 1rem; }
   .pod-grid > * { width: 46%; }
@@ -3338,6 +3463,13 @@ img { max-width: 100%; display: block; }
   .archive__grid { gap: 1rem; }
   .episodes__grid > *,
   .archive__grid > * { width: 82%; }
+
+  /* Il dietro le quinte diventa un nastro: impilate erano tre riquadri
+     identici uno sotto l'altro, mezzo schermo di scorrimento per delle
+     fotografie che si guardano di sfilata. */
+  .case__shots { gap: 0.8rem; }
+  .case__shots > * { width: 78%; }
+  .case__shots img { aspect-ratio: 4 / 3; height: auto; }
 }
 
 
@@ -3428,5 +3560,17 @@ img { max-width: 100%; display: block; }
   to {
     transform: translateY(100%);
     opacity: 0;
+  }
+}
+
+
+/* La riga unica vale solo dove il blocco del quiz è alla sua larghezza piena
+   (760px, da 900px di finestra in su). Sotto, il contenitore si stringe e
+   nessuna frase di questa lunghezza ci entrerebbe: a forzarla resterebbero
+   cinque parole e i puntini, cioè nessuna risposta. Lì va a capo. */
+@media (max-width: 900px) {
+  .quiz__verdetto {
+    white-space: normal;
+    overflow: visible;
   }
 }

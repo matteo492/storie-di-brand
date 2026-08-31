@@ -77,7 +77,7 @@ export const QUIZ: Quiz[] = [
       "Come si fa il pane in casa",
     ],
     spiegazione:
-      "Una domanda banalissima, cercata da mezzo Paese chiuso in cucina: Barilla ci ha costruito sopra una delle campagne più intelligenti degli ultimi anni.",
+      "Una domanda banalissima, cercata da mezzo Paese chiuso in cucina: Barilla ci ha costruito sopra una delle sue campagne migliori.",
     episodio: "MNTHA8093437125",
     cerca: "Barilla",
   },

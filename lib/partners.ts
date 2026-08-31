@@ -61,6 +61,7 @@ export const PARTNERS: Partner[] = [
     fuoco: "50% 100%",
   },
   { name: "MASERATI", logo: "maserati", ratio: 2.46, immagine: "maserati.jpg" },
+  { name: "SALEWA", logo: "salewa", ratio: 1.72, immagine: "salewa.jpg" },
   { name: "WWF", logo: "wwf", ratio: 0.67, immagine: "wwf.jpg" },
   { name: "HAIER", logo: "haier", ratio: 3.22, scale: 0.82 },
   { name: "REVOLUT", logo: "revolut", ratio: 4.53, scale: 0.82 },
