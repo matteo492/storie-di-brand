@@ -254,7 +254,7 @@ export default function BrandyGame() {
 
   return (
     <div className="brandy">
-      <div className="brandy__head">
+      <div className="brandy__head reveal">
         <p className="eyebrow">Il quiz · +1000 episodi</p>
         <h2 className="podcast__title">
           <span className="hl">Brandy</span> ti sfida

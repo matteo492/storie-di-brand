@@ -20,10 +20,14 @@ export default function Ticker({ items }: { items: Partner[] }) {
               <span
                 role="img"
                 aria-label={p.name}
+                /* Le misure passano come proprietà invece che come larghezza
+                   e altezza dirette: così il CSS può rimpicciolire tutto il
+                   nastro su mobile con un solo fattore, senza che il
+                   componente debba sapere quanto è largo lo schermo. */
                 style={{
                   ["--logo" as string]: `url(/partners/${p.logo}.svg)`,
-                  width: `${w}px`,
-                  height: `${h}px`,
+                  ["--w" as string]: `${w}px`,
+                  ["--h" as string]: `${h}px`,
                 }}
               />
             </span>

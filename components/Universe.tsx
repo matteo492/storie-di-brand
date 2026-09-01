@@ -55,7 +55,7 @@ const PIANETI: Pianeta[] = [
     ),
   },
   {
-    nome: "Le live",
+    nome: "Live",
     tag: "Sul palco",
     testo:
       "Anche la tua azienda ha una storia che non ha mai raccontato. La scriviamo e la portiamo sul palco, davanti ai tuoi clienti o al tuo team.",

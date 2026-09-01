@@ -64,7 +64,7 @@ export default function Home() {
       {/* PARTNER — la vetrina B2B: i marchi con cui abbiamo lavorato, ognuno
           porta al proprio case study. */}
       <section className="partners" id="collaborazioni">
-        <div className="partners__head">
+        <div className="partners__head reveal">
           <p className="eyebrow">Le collaborazioni</p>
           <h2 className="partners__title">Hanno scelto Storie di Brand</h2>
           <p className="partners__sub">

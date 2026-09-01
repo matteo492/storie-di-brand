@@ -10,6 +10,8 @@
      --curva-doppia: partenza e arrivo morbidi, per aperture e chiusure. */
   /* Altezza comune dei controlli di filtro: lente di ricerca e tendine. */
   --alt-filtro: 44px;
+  /* Fondo condiviso da barra e menù aperto: una superficie sola. */
+  --menu-fondo: #140c0c;
   --curva: cubic-bezier(0.16, 1, 0.3, 1);
   --curva-doppia: cubic-bezier(0.65, 0, 0.35, 1);
   --cream: #faf9d2;
@@ -223,6 +225,18 @@ img { max-width: 100%; display: block; }
 }
 .stat > span { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-top: 0.4rem; }
 .hero__marquee { margin-top: auto; }
+
+/* Lo stacco prima del nastro dei marchi vive DENTRO alla pagina, non sopra al
+   nastro: il nastro sta fuori dal contenitore che porta la sfumatura, quindi
+   un suo padding si dipingerebbe del nero del documento — una fascia che non
+   appartiene né alla sezione sopra né alla striscia. Qui invece lo spazio
+   resta colorato come la sezione che lo precede. */
+.home-page,
+.pod-page,
+.yt-page,
+.team-page {
+  padding-bottom: var(--stacco);
+}
 
 /* ---------- ANIMAZIONI ---------- */
 /* Entrata staggered al caricamento per i blocchi above-the-fold
@@ -1033,6 +1047,12 @@ img { max-width: 100%; display: block; }
 /* ---------- PODCAST PRINCIPALE (Storie di Brand) ---------- */
 .sdb-podcast {
   padding: var(--stacco) clamp(1.2rem, 5vw, 3rem);
+  /* La sezione è larga esattamente quanto l'area utile della pagina, quindi
+     è il punto giusto dove tagliare la mezza barra di scorrimento di cui il
+     nastro della timeline sporge (usa `100vw`, che la barra la comprende).
+     `clip` e non `hidden`: `hidden` renderebbe la sezione scorribile anche in
+     verticale e taglierebbe gli spostamenti delle animazioni d'entrata. */
+  overflow-x: clip;
 }
 .sdb-podcast__inner {
   max-width: 780px;
@@ -1259,7 +1279,12 @@ img { max-width: 100%; display: block; }
 .bt-bar__istruzione { white-space: nowrap; }
 .bt-bar strong { color: var(--red); }
 
-/* Il nastro arriva ai bordi della pagina, come gli altri caroselli. */
+/* Il nastro arriva ai due bordi della pagina, come gli altri caroselli.
+   Qui il limite usato per i nastri dentro sezioni a tutta larghezza non serve
+   e anzi farebbe danno: questa sezione è una colonna stretta e centrata,
+   quindi per raggiungere i bordi il tiro deve essere ben più di un rientro.
+   L'eventuale mezza barra di scorrimento di troppo la mangia
+   `overflow-x: hidden` del documento. */
 .bt-scroller {
   position: relative;
   width: 100vw;
@@ -1812,7 +1837,10 @@ img { max-width: 100%; display: block; }
   padding: 9rem clamp(1.2rem, 5vw, 3rem) 2rem;
 }
 .page-head h1 { font-size: clamp(2.6rem, 7vw, 5rem); margin: 0.4rem 0 1rem; }
-.page-head p { max-width: 55ch; color: rgba(250,249,210,0.72); font-size: 1.1rem; }
+/* `:not(.eyebrow)` perché l'occhiello è anch'esso un <p>: senza,
+   questa regola vinceva per specificità e lo portava a 16px, contro i
+   12,5px che ha in tutto il resto del sito. */
+.page-head p:not(.eyebrow) { max-width: 55ch; color: rgba(250,249,210,0.72); font-size: 1.1rem; }
 
 /* ---------- PAGINA PODCAST (archivio puntate) ---------- */
 .pod-archive {
@@ -2382,10 +2410,17 @@ img { max-width: 100%; display: block; }
     flex-direction: column;
     position: fixed;
     top: 60px; left: 0; right: 0;
-    background: #000;
-    backdrop-filter: blur(12px);
+    /* Non nero piatto ma un fondo caldo, e soprattutto lo stesso della barra
+       qui sopra: un colore pieno e nessuna sfumatura, perché una sfumatura
+       che parte dal bordo del pannello disegnerebbe da sola il gradino che
+       vogliamo togliere. */
+    background: var(--menu-fondo);
     padding: 2rem 1.5rem 2.5rem;
     gap: 1.5rem;
+    /* Ogni voce larga quanto la sua parola: da elementi di una colonna
+       sarebbero larghe quanto il pannello, e la sottolineatura della pagina
+       corrente attraverserebbe tutto lo schermo. */
+    align-items: flex-start;
     z-index: 999;
     border-bottom: 1px solid var(--line);
     opacity: 0;
@@ -2428,7 +2463,9 @@ img { max-width: 100%; display: block; }
 /* ---------- PAGINA TEAM (carosello a scorrimento infinito) ---------- */
 /* Il carosello arriva ai bordi estremi della pagina: niente max-width qui.
    L'allineamento col testo lo dà il padding della track (vedi sotto). */
-.team-section { padding: 0 0 6rem; }
+/* Lo stesso stacco di tutte le altre sezioni del sito: qui c'erano 6rem
+   fissi, più del doppio del token su mobile. */
+.team-section { padding: 0 0 var(--stacco); }
 .team-carousel {
   position: relative;
   /* Margine della colonna di testo: lo usano sia la track (padding) sia le
@@ -2501,13 +2538,17 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 640px) {
   .team-card { flex-basis: 44%; max-width: 44%; }
+  /* Ritratti in verticale: su una scheda stretta il quadrato taglia le
+     persone all'altezza del petto, mentre il rettangolo verticale le tiene
+     intere e dà al nastro un passo più snello. */
+  .team-card__photo { aspect-ratio: 3 / 4; }
 }
 
 /* ---------- POSIZIONI APERTE (pagina Team) ---------- */
 .jobs {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 clamp(1.2rem, 5vw, 3rem) 7rem;
+  padding: 0 clamp(1.2rem, 5vw, 3rem) var(--stacco);
 }
 .jobs__head { margin-bottom: 2rem; }
 .jobs__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
@@ -2641,7 +2682,7 @@ img { max-width: 100%; display: block; }
   /* Meno vuoto prima del contenuto: su schermo piccolo si scorreva troppo
      per arrivare alla prima puntata. */
   .page-head { padding-top: 6.5rem; padding-bottom: 1.2rem; }
-  .page-head p { font-size: 1rem; }
+  .page-head p:not(.eyebrow) { font-size: 1rem; }
 
   .pod-archive { padding-bottom: 4rem; }
   .pod-hero { gap: 1.2rem; margin-bottom: 2.4rem; }
@@ -2758,7 +2799,10 @@ img { max-width: 100%; display: block; }
 }
 .ticker__logo > span {
   display: block;
-  /* larghezza e altezza le imposta il componente, per peso ottico uniforme */
+  /* Le misure arrivano dal componente (peso ottico uniforme fra marchi di
+     forma diversa); `--scala-nastro` le rimpicciolisce tutte insieme. */
+  width: calc(var(--w) * var(--scala-nastro, 1));
+  height: calc(var(--h) * var(--scala-nastro, 1));
   background-color: currentColor;
   -webkit-mask-image: var(--logo);
   mask-image: var(--logo);
@@ -3454,6 +3498,21 @@ img { max-width: 100%; display: block; }
   .case__shots {
     scroll-snap-type: x mandatory;
     padding-block: 0.3rem 1rem;
+    /* Un nastro non deve mai scorrere in verticale: `overflow-x: auto` rende
+       scorrevole anche l'altro asse, e basta una sporgenza di pochi pixel per
+       farlo sentire sotto il dito. */
+    overflow-y: hidden;
+  }
+  /* La comparsa allo scorrimento, dentro a un nastro, non arriva mai a
+     compiersi: una scheda fuori dalla finestra orizzontale non entra nel
+     campo visivo, quindi resta traslata di 26px — ed era proprio quella
+     sporgenza a produrre lo scorrimento verticale. Dentro ai nastri le
+     schede si mostrano subito. */
+  .reveal-ready
+    :is(.pod-grid, .episodes__grid, .archive__grid, .case__shots)
+    .reveal {
+    opacity: 1;
+    transform: none;
   }
   .pod-grid > *,
   .episodes__grid > *,
@@ -3576,5 +3635,75 @@ img { max-width: 100%; display: block; }
   .quiz__verdetto {
     white-space: normal;
     overflow: visible;
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Il titolo della hero cresce fino a sfiorare il margine destro. La riga
+     più lunga ("PIÙ FAMOSI DEL MONDO.") è larga 6,81 volte il corpo del
+     carattere: a 12,8vw riempie il 98-99% della colonna a ogni larghezza di
+     telefono, senza mai andare a capo. Il margine di sicurezza serve sotto ai
+     384px, dove il rientro laterale smette di rimpicciolirsi e la colonna
+     stringe più in fretta del testo. */
+  .hero__title { font-size: 12.8vw; }
+}
+
+
+/* ---------- MOBILE: una scala sola per i testi ricorrenti ----------
+   Sotto i 768px convivevano cinque misure diverse per i titoli di sezione
+   (da 28,8 a 41,6px) e sei per i sottotitoli (da 16 a 19,2px): stesso ruolo,
+   corpi diversi, e su una colonna stretta lo scarto si legge come disordine.
+   Qui ognuno dei due ruoli ha un valore solo. */
+@media (max-width: 768px) {
+  .universo__title,
+  .partners__title,
+  .sdb-podcast__title,
+  .section-title,
+  .podcast__title,
+  .newsletter__title,
+  .collab__title {
+    font-size: 2.15rem;
+  }
+
+  .hero__sub,
+  .universo__sub,
+  .partners__sub,
+  .podcast__sub,
+  .newsletter__sub,
+  .collab__sub,
+  .page-head p:not(.eyebrow) {
+    font-size: 1.05rem;
+  }
+}
+
+
+/* ---------- MENÙ MOBILE E NASTRO ---------- */
+@media (max-width: 900px) {
+  /* Il menù è la continuazione della barra, non un pannello appoggiato sotto:
+     da aperto le due superfici prendono lo stesso fondo e il filetto che le
+     separava sparisce. Sta dopo `.nav.scrolled` di proposito — stessa
+     specificità, vince l'ultima. */
+  .nav:has(.nav__links.open) {
+    background: var(--menu-fondo);
+    border-bottom-color: transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Loghi del nastro un po' più piccoli: su una riga stretta, alla misura
+     del desktop rubavano la scena al testo intorno. */
+  .ticker { --scala-nastro: 0.82; }
+}
+
+
+@media (max-width: 768px) {
+  /* I nastri riservano in basso lo spazio per il sollevamento al passaggio
+     del mouse e per l'ombra. Sul telefono quel movimento non esiste, e quei
+     56px diventavano un vuoto fra le schede e le frecce. */
+  .slider__track,
+  .pslider__track,
+  .team-track {
+    padding-bottom: 1.4rem;
   }
 }

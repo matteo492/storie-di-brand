@@ -79,7 +79,7 @@ export default function TeamCarousel({ members = TEAM }: { members?: TeamMember[
             <div className="team-card__photo">
               {m.photo ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={m.photo} alt="" loading="lazy" />
+                <img src={m.photo} alt="" loading="lazy" style={{ objectPosition: m.fuoco }} />
               ) : (
                 <span className="team-card__initials" aria-hidden="true">
                   {initials(m.name)}
