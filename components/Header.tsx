@@ -59,6 +59,8 @@ export default function Header() {
       {/* Due firme: il marchio vero e proprio — lo stesso del footer — e la
           sigla, che prende il suo posto quando lo spazio si stringe, perché
           tre righe di testo dentro a una barra alta 60px non si leggono.
+          Sono entrambi disegni, non testo: la sigla scritta a mano che stava
+          qui prima non era mai davvero uguale al marchio.
           Sono entrambe nel documento e a scambiarle è il CSS, così il cambio
           è immediato al ridimensionamento e il nome per i lettori di schermo
           resta uno solo, sull'aria-label del collegamento. */}
@@ -77,9 +79,13 @@ export default function Header() {
           width={1024}
           height={1024}
         />
-        <span className="nav__logo__sigla" aria-hidden="true">
-          S<em>D</em>B
-        </span>
+        <img
+          className="nav__logo__sigla"
+          src="/sdb-sigla.svg"
+          alt=""
+          width={1080}
+          height={1080}
+        />
       </Link>
       <nav className={`nav__links${open ? " open" : ""}`}>
         {LINKS.map((l) => (

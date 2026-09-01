@@ -156,8 +156,10 @@ img { max-width: 100%; display: block; }
   position: relative;
   top: 0.125em;
 }
-.nav__logo em { font-style: normal; color: var(--red); }
-/* Da 900px in giù (dove il menu diventa a scomparsa) la firma si accorcia. */
+/* Da 900px in giù (dove il menu diventa a scomparsa) la firma si accorcia.
+   Il file ha la sua cornice quadrata con un po' d'aria sopra e sotto: le
+   lettere occupano circa i tre quarti dell'altezza, quindi il riquadro va
+   preso più alto di quanto si vuole vedere. */
 .nav__logo__sigla { display: none; }
 /* Quadrato: il marchio è alto quanto il pulsante di destra, così la barra
    non cambia altezza rispetto a quando qui c'era la scritta. */
@@ -2345,12 +2347,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 900px) {
   .nav .btn--small { display: none; }
   .nav__logo__marchio { display: none; }
-  .nav__logo__sigla { display: inline; }
-  /* Qui la firma torna a essere testo, e le serve il ritocco ottico. */
-  .nav__logo { position: relative; top: 0.125em; }
-  /* La sigla è alta quanto l'hamburger a destra: le tre righe del menu
-     misurano 26px, e con questo corpo l'altezza delle maiuscole ci arriva. */
-  .nav__logo { font-size: 1.75rem; }
+  .nav__logo__sigla { display: block; width: 36px; height: auto; }
   .nav__links {
     display: flex;
     flex-direction: column;
