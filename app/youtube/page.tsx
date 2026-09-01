@@ -74,6 +74,24 @@ export default function YouTubePage() {
               />
               <div className="ep-card__body">
                 <h3>{v.title}</h3>
+                {v.collaborazione && (
+                  <p className="ep-card__collab">
+                    {v.collaborazione.logo && (
+                      /* Il marchio è una maschera, non un'immagine: prende il
+                         colore del testo e resta della stessa famiglia della
+                         label invece di piantarci dentro un logo a colori. */
+                      <span
+                        className="ep-card__collab__logo"
+                        style={{
+                          ["--logo" as string]: `url(/partners/${v.collaborazione.logo}.svg)`,
+                          ["--ratio" as string]: v.collaborazione.ratio ?? 1,
+                        }}
+                        aria-hidden="true"
+                      />
+                    )}
+                    {v.collaborazione.testo}
+                  </p>
+                )}
                 <div className="ep-card__meta">
                   {ytStats[v.id] && <span>{ytStats[v.id]} visualizzazioni</span>}
                 </div>

@@ -1,12 +1,12 @@
 import { PIATTAFORME } from "@/lib/piattaforme";
 
 /**
- * I tre link "ascolta anche su". Su desktop portano il nome della
- * piattaforma, sotto i 768px solo il marchio, per non occupare tre righe
- * di schermo con dei bottoni di servizio.
+ * I tre link "ascolta anche su": il marchio è il pulsante, senza cornice
+ * intorno. Sono loghi conosciuti e chiusi in una tessera, quindi si reggono
+ * da soli — il nome scritto di fianco raddoppiava la stessa informazione.
  *
  * Rende solo i link, senza contenitore: i tre punti in cui compaiono hanno
- * impaginazioni diverse e ognuno tiene il suo.
+ * impaginazioni diverse e ognuno tiene la sua.
  */
 export default function LinkPiattaforme() {
   return (
@@ -17,13 +17,12 @@ export default function LinkPiattaforme() {
           href={p.href}
           target="_blank"
           rel="noopener"
-          className="btn btn--ghost pod-platforms__link"
-          // Il nome sparisce su mobile ma deve restare per chi usa uno
-          // screen reader.
+          className="pod-platforms__link"
+          // Senza testo scritto, il nome resta solo qui: è l'unica cosa che
+          // legge chi usa uno screen reader.
           aria-label={p.nome}
         >
-          <span className="pod-platforms__marchio">{p.icona}</span>
-          <span className="pod-platforms__nome">{p.nome}</span>
+          {p.icona}
         </a>
       ))}
     </>

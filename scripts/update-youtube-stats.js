@@ -5,8 +5,9 @@
 const fs = require("fs");
 const path = require("path");
 
+// Stessi video di YT_VIDEOS in lib/youtube.ts: se cambia lì, cambia anche qui.
 const VIDEO_IDS = [
-  "F06RtRjXrCU",
+  "FQwaYebscxU",
   "QRc5dydzwqo",
   "ihcYNgSVsTY",
   "ZTT2LnpcQic",

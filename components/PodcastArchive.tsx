@@ -80,6 +80,7 @@ export default function PodcastArchive({
   // pesava più dei filtri, che sono il primo modo di sfogliare l'archivio.
   const [cercaAperta, setCercaAperta] = useState(false);
   const campoCerca = useRef<HTMLInputElement>(null);
+  const cercaRef = useRef<HTMLDivElement>(null);
   const [settore, setSettore] = useState<string | null>(null);
   const [epoca, setEpoca] = useState<string | null>(null);
   const [limit, setLimit] = useState(PAGE_SIZE);
@@ -88,6 +89,27 @@ export default function PodcastArchive({
   const [featuredId, setFeaturedId] = useState<string | null>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  /**
+   * Toccare fuori chiude la barra, come ci si aspetta da qualcosa che si è
+   * aperto sopra al resto.
+   *
+   * Solo a campo vuoto, però: con una ricerca scritta chiuderla vorrebbe dire
+   * o buttare via quello che si è digitato, o lasciare i risultati filtrati
+   * senza più niente che lo spieghi. In quel caso la barra resta, e a chiuderla
+   * è la lente — che il testo lo cancella apposta.
+   *
+   * `pointerdown` e non `click`: si chiude appena il dito tocca, senza
+   * aspettare che il tocco finisca.
+   */
+  useEffect(() => {
+    if (!cercaAperta || query) return;
+    const fuori = (e: PointerEvent) => {
+      if (!cercaRef.current?.contains(e.target as Node)) setCercaAperta(false);
+    };
+    document.addEventListener("pointerdown", fuori);
+    return () => document.removeEventListener("pointerdown", fuori);
+  }, [cercaAperta, query]);
+
   const indexed = useMemo(
     () =>
       episodes.map((e) => {
@@ -223,7 +245,10 @@ export default function PodcastArchive({
         {/* Settore ed epoca di fondazione del marchio: l'anno di pubblicazione
             non dice niente a chi cerca una storia da ascoltare. */}
         <div className="pod-filtri">
-          <div className={`pod-cerca${cercaAperta ? " is-aperta" : ""}`}>
+          <div
+            ref={cercaRef}
+            className={`pod-cerca${cercaAperta ? " is-aperta" : ""}`}
+          >
             <button
               type="button"
               className="pod-cerca__lente"

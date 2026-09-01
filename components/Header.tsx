@@ -56,14 +56,27 @@ export default function Header() {
 
   return (
     <header className={`nav${scrolled ? " scrolled" : ""}`}>
-      {/* Due scritture della stessa firma: il nome per esteso e la sigla, che
-          da sola resta leggibile quando lo spazio si stringe. Sono entrambe
-          nel documento e a scambiarle è il CSS, così il cambio è immediato al
-          ridimensionamento e il nome per i lettori di schermo resta uno solo. */}
-      <Link href="/" className="nav__logo" aria-label="Storie di Brand">
-        <span className="nav__logo__esteso" aria-hidden="true">
-          STORIE<em>DI</em>BRAND
-        </span>
+      {/* Due firme: il marchio vero e proprio — lo stesso del footer — e la
+          sigla, che prende il suo posto quando lo spazio si stringe, perché
+          tre righe di testo dentro a una barra alta 60px non si leggono.
+          Sono entrambe nel documento e a scambiarle è il CSS, così il cambio
+          è immediato al ridimensionamento e il nome per i lettori di schermo
+          resta uno solo, sull'aria-label del collegamento. */}
+      <Link
+        href="/"
+        className="nav__logo"
+        aria-label="Storie di Brand"
+        // Col menu aperto la firma porta in home: lasciare il pannello
+        // aperto sopra alla pagina appena arrivata non avrebbe senso.
+        onClick={() => setOpen(false)}
+      >
+        <img
+          className="nav__logo__marchio"
+          src="/logo-sdb.svg"
+          alt=""
+          width={1024}
+          height={1024}
+        />
         <span className="nav__logo__sigla" aria-hidden="true">
           S<em>D</em>B
         </span>
@@ -79,10 +92,24 @@ export default function Header() {
             {l.label}
           </Link>
         ))}
+        {/* Sotto i 900px il pulsante rosso qui sotto sparisce: senza questa
+            voce, dal menu non si arriverebbe più al form. Sopra i 900px la
+            nasconde il CSS, per non averla due volte nella stessa barra. */}
+        <Link
+          href="/#collabora"
+          className="nav__links__cta"
+          onClick={(e) => handleNav(e, "/#collabora")}
+        >
+          Collabora
+        </Link>
       </nav>
-      <a href="/#collabora" className="btn btn--small btn--red" onClick={(e) => { if (typeof window !== 'undefined' && window.location.pathname === '/') { e.preventDefault(); document.getElementById('collabora')?.scrollIntoView({ behavior: 'smooth' }); } }}>
+      <Link
+        href="/#collabora"
+        className="btn btn--small btn--red"
+        onClick={(e) => handleNav(e, "/#collabora")}
+      >
         Collabora
-      </a>
+      </Link>
       <button
         className="nav__burger"
         aria-label="Menu"

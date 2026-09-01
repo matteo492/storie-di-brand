@@ -71,7 +71,22 @@ img { max-width: 100%; display: block; }
 .collab .eyebrow,
 .newsletter .eyebrow { text-indent: 0.28em; }
 
-.section-title { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+/* I titoli di sezione, tutti alla stessa misura.
+   Erano nati uno alla volta e su desktop andavano da 44,8px a 72px: sulla
+   sola home se ne incrociavano quattro diverse, e scorrendo si sentiva. Il
+   valore scelto è la mediana di quelli che c'erano, cioè quello che già
+   usavano in tre. L'interlinea la lasciano decidere a h1-h4 (1.02): chi la
+   ridefiniva faceva sembrare il titolo di un altro carattere.
+   Sotto i 768px il blocco in fondo al file li porta tutti a 2.15rem. */
+.section-title,
+.universo__title,
+.partners__title,
+.sdb-podcast__title,
+.podcast__title,
+.newsletter__title,
+.collab__title {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+}
 
 /* ---------- BUTTONS ---------- */
 .btn {
@@ -123,11 +138,35 @@ img { max-width: 100%; display: block; }
   font-size: 1.35rem;
   letter-spacing: 0.02em;
   color: var(--cream);
+  /* Stesso schiarimento del logo nel footer: la firma si comporta allo stesso
+     modo nei due punti in cui compare. Sotto la protezione di `hover: hover`
+     come il resto del sito, altrimenti sul touch resta attaccata dopo il tocco. */
+  transition: opacity 0.24s var(--curva);
+}
+@media (hover: hover) { .nav__logo:hover { opacity: 0.82; } }
+/* Il testo della barra siede più in alto del suo contenitore.
+   Non è un errore di impaginazione: la riga di un testo riserva lo spazio per
+   le discendenti anche quando è tutto maiuscolo e discendenti non ce ne sono,
+   quindi l'inchiostro resta in cima alla riga mentre il flex centra la riga.
+   Accanto all'hamburger, che è geometria pura, si vede: la firma stava 3,7px
+   più su. Lo scarto vale (ascendente − discendente − altezza delle maiuscole)
+   / 2, che per questo carattere fa 0.125em — una costante, quindi in em segue
+   il corpo sia della firma che delle voci. */
+.nav__links a {
+  position: relative;
+  top: 0.125em;
 }
 .nav__logo em { font-style: normal; color: var(--red); }
 /* Da 900px in giù (dove il menu diventa a scomparsa) la firma si accorcia. */
 .nav__logo__sigla { display: none; }
+/* Quadrato: il marchio è alto quanto il pulsante di destra, così la barra
+   non cambia altezza rispetto a quando qui c'era la scritta. */
+.nav__logo__marchio { display: block; width: 44px; height: auto; }
 .nav__links { display: flex; gap: 2rem; }
+/* La voce COLLABORA vive solo dentro al menu: sopra i 900px il suo posto è
+   il pulsante rosso in fondo alla barra, e averla due volte sarebbe un
+   doppione. */
+.nav__links__cta { display: none; }
 .nav__links a {
   font-family: var(--display);
   text-transform: uppercase;
@@ -567,6 +606,42 @@ img { max-width: 100%; display: block; }
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+/* Il credito di una collaborazione: sta fra titolo e visualizzazioni, e usa la
+   lingua degli occhielli del sito — rosso, maiuscolo, spaziato — ma di un corpo
+   più piccolo, perché è una precisazione, non un richiamo. Niente pillola: il
+   testo è lungo e nella colonna stretta della card andrebbe a capo dentro al
+   bordo, che è la cosa che una pillola non sa fare bene. */
+/* Due classi e non una: `.ep-card__body p` è più specifica di un selettore
+   semplice e vincerebbe su corpo e colore, oltre a imporre il taglio a due
+   righe che qui non serve. */
+.ep-card__body .ep-card__collab {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--red);
+}
+/* In linea con il testo e non elemento a sé: se la label va a capo — succede
+   sul telefono — il marchio resta appeso alla prima riga invece di centrarsi
+   fra le due. */
+.ep-card__collab__logo {
+  display: inline-block;
+  vertical-align: -0.28em;
+  height: 1.5em;
+  width: calc(1.5em * var(--ratio, 1));
+  margin-right: 0.55em;
+  background-color: currentColor;
+  -webkit-mask-image: var(--logo);
+  mask-image: var(--logo);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
 .ep-card__meta { display: flex; gap: 0.6rem; flex-wrap: wrap; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,249,210,0.5); }
 .ep-card__body .btn { align-self: flex-start; margin-top: auto; }
 
@@ -588,11 +663,7 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 .newsletter__inner { max-width: 680px; margin: 0 auto; }
-.newsletter__title {
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
-  line-height: 0.98;
-  margin: 0.3rem 0 1.2rem;
-}
+.newsletter__title { margin: 0.3rem 0 1.2rem; }
 .newsletter__title .hl { color: var(--red); }
 .newsletter__sub {
   font-size: 1.1rem;
@@ -916,6 +987,27 @@ img { max-width: 100%; display: block; }
   .ep-card--feature .ep-card__body p { -webkit-line-clamp: unset; }
 }
 
+/* Sopra i 1024px il video in evidenza sta accanto alla sua immagine, in una
+   colonna larga metà card e alta quanto una foto 16:9: lì il titolo ha spazio
+   per respirare più di quelli delle card piccole, e a corpo uguale sembrava
+   solo una card grande. Sotto, dove si impila e la colonna si stringe, resta
+   la misura di prima. */
+@media (min-width: 1025px) {
+  .ep-card--feature .ep-card__body h3 {
+    font-size: clamp(1.35rem, 1.9vw, 1.9rem);
+  }
+  .ep-card--feature .ep-card__meta { font-size: 0.9rem; }
+}
+
+/* Sul telefono le card dei video stanno in un nastro che scorre, e sono alte
+   tutte quanto la più alta: due righe di credito in una sola card allungano
+   anche le altre tre. Il credito sparisce, il video resta lo stesso. */
+@media (max-width: 768px) {
+  /* Due classi, come la regola che imposta `display: block` più sopra:
+     con una sola perderebbe di specificità e la label resterebbe lì. */
+  .ep-card__body .ep-card__collab { display: none; }
+}
+
 /* ---------- BOOK BANNER (sticky bottom) ---------- */
 .book-banner {
   position: fixed;
@@ -985,7 +1077,7 @@ img { max-width: 100%; display: block; }
   text-align: center;
 }
 .collab__inner { max-width: 820px; margin: 0 auto; }
-.collab__title { font-size: clamp(2.2rem, 5.5vw, 4.2rem); margin: 0.5rem 0 1.2rem; }
+.collab__title { margin: 0.5rem 0 1.2rem; }
 .collab__sub { font-size: 1.2rem; color: rgba(250,249,210,0.78); margin-bottom: 2.5rem; }
 
 /* ---------- COLLAB FORM ---------- */
@@ -1062,8 +1154,6 @@ img { max-width: 100%; display: block; }
 }
 .sdb-podcast__header { text-align: center; }
 .sdb-podcast__title {
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  line-height: 1.05;
   color: var(--cream);
   margin: 0.5rem 0 1rem;
 }
@@ -1097,166 +1187,12 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   padding: 0.22rem 0.7rem;
 }
-.sdb-podcast__latest {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 1rem 1.2rem;
-  text-decoration: none;
-  margin-bottom: 1.5rem;
-  transition: background 0.24s var(--curva);
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-}
-@media (hover: hover) { .sdb-podcast__latest:hover { background: rgba(255,87,87,0.12); border-color: var(--red); } }
-.sdb-podcast__latest.active { background: rgba(255,87,87,0.12); border-color: var(--red); }
-.sdb-podcast__latest-img {
-  width: 64px;
-  height: 64px;
-  border-radius: 6px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.sdb-podcast__latest-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-.sdb-podcast__latest-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--red);
-  font-weight: 600;
-}
-.sdb-podcast__latest-title {
-  color: var(--cream);
-  font-size: 0.95rem;
-  line-height: 1.35;
-}
-.sdb-podcast__latest-meta {
-  font-size: 0.78rem;
-  color: rgba(250,249,210,0.45);
-}
-.sdb-podcast__list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem;
-  border-top: 1px solid var(--line);
-}
-.sdb-podcast__list li {
-  border-bottom: 1px solid var(--line);
-}
-.sdb-podcast__list li a,
-.sdb-podcast__list li button {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 0.75rem 0;
-  text-decoration: none;
-  background: none;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  transition: color 0.18s var(--curva);
-  text-align: left;
-}
-@media (hover: hover) {
-  .sdb-podcast__list li button:hover .sdb-podcast__ep-title,
-  .sdb-podcast__list li a:hover .sdb-podcast__ep-title { color: var(--red); }
-}
-.sdb-podcast__list li button.active .sdb-podcast__ep-title { color: var(--red); }
-.sdb-podcast__more {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.66s var(--curva-doppia);
-  will-change: height;
-}
-.sdb-podcast__expand-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-  font-size: 16px;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-}
-.sdb-podcast__cta-row {
-  display: grid;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-/* I due stati del CTA condividono la stessa cella e fanno crossfade */
-.sdb-podcast__cta-fade {
-  grid-area: 1 / 1;
-  transition: opacity 0.48s var(--curva);
-}
-.sdb-podcast__cta-fade.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.sdb-podcast__expand-btn.sdb-podcast__cta-fade {
-  justify-self: start;
-}
-.sdb-podcast__cta-expanded {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.sdb-podcast__collapse-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--red);
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.24s var(--curva), opacity 0.24s var(--curva);
-  flex-shrink: 0;
-}
-@media (hover: hover) { .sdb-podcast__collapse-btn:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
-} }
-.sdb-podcast__ep-title {
-  color: var(--cream);
-  font-size: 0.9rem;
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sdb-podcast__ep-meta {
-  font-size: 0.75rem;
-  color: rgba(250,249,210,0.4);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
 .sdb-podcast__platforms {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   flex-wrap: wrap;
-}
-.sdb-podcast__player {
-  margin-bottom: 1.5rem;
-}
-.sdb-podcast__player iframe {
-  border: none;
-  border-radius: 12px;
-  display: block;
-}
-.sdb-podcast__platforms {
-  margin-top: 2.5rem;
   justify-content: center;
+  margin-top: 2.5rem;
 }
 
 /* ---------- TIMELINE DEI BRAND — gioco ---------- */
@@ -1476,11 +1412,7 @@ img { max-width: 100%; display: block; }
 }
 .brandy { max-width: 760px; margin: 0 auto; text-align: center; }
 .brandy__head .eyebrow { margin-bottom: 0.8rem; }
-.podcast__title {
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
-  margin: 0.2rem 0 1rem;
-  line-height: 0.98;
-}
+.podcast__title { margin: 0.2rem 0 1rem; }
 .podcast__title .hl { color: var(--red); }
 .podcast__sub {
   font-size: 1.1rem;
@@ -2220,7 +2152,19 @@ img { max-width: 100%; display: block; }
   color: rgba(250, 249, 210, 0.5);
   margin-bottom: 1.2rem;
 }
-.pod-platforms__links { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+.pod-platforms__links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+/* Il marchio è il pulsante: niente cornice, niente riempimento, solo il logo.
+   Vale nei due punti in cui i link compaiono — qui e nella sezione podcast
+   della home — perché la regola sta sul link, non sul contenitore. */
+.pod-platforms__link {
+  display: inline-flex;
+  color: var(--cream);
+  transition: opacity 0.24s var(--curva), transform 0.24s var(--curva);
+}
+.pod-platforms__link svg { display: block; width: auto; height: 32px; }
+@media (hover: hover) {
+  .pod-platforms__link:hover { opacity: 0.82; transform: translateY(-2px); }
+}
 
 @media (max-width: 640px) {
   .pod-item__main { gap: 0.8rem; padding: 0.7rem; }
@@ -2400,8 +2344,10 @@ img { max-width: 100%; display: block; }
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
   .nav .btn--small { display: none; }
-  .nav__logo__esteso { display: none; }
+  .nav__logo__marchio { display: none; }
   .nav__logo__sigla { display: inline; }
+  /* Qui la firma torna a essere testo, e le serve il ritocco ottico. */
+  .nav__logo { position: relative; top: 0.125em; }
   /* La sigla è alta quanto l'hamburger a destra: le tre righe del menu
      misurano 26px, e con questo corpo l'altezza delle maiuscole ci arriva. */
   .nav__logo { font-size: 1.75rem; }
@@ -2435,6 +2381,7 @@ img { max-width: 100%; display: block; }
     transform: translateY(0);
     pointer-events: auto;
   }
+  .nav__links__cta { display: block; }
   .nav__burger { display: flex; }
   /* Burger → X quando open */
   .nav__burger[aria-expanded="true"] span:nth-child(1) {
@@ -2871,10 +2818,7 @@ img { max-width: 100%; display: block; }
   padding: 0 clamp(1.2rem, 5vw, 3rem);
 }
 .universo__head > * { max-width: 52ch; }
-.universo__title {
-  font-size: clamp(2rem, 4.6vw, 3.4rem);
-  margin: 0.5rem 0 1.2rem;
-}
+.universo__title { margin: 0.5rem 0 1.2rem; }
 .universo__title .hl { color: var(--red); }
 .universo__sub {
   font-size: 1.08rem;
@@ -3028,10 +2972,7 @@ img { max-width: 100%; display: block; }
   padding: 0 clamp(1.2rem, 5vw, 3rem);
 }
 .partners__head > * { max-width: 46ch; }
-.partners__title {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  margin: 0.5rem 0 1rem;
-}
+.partners__title { margin: 0.5rem 0 1rem; }
 .partners__sub {
   font-size: 1.02rem;
   color: rgba(250, 249, 210, 0.75);
@@ -3305,8 +3246,8 @@ img { max-width: 100%; display: block; }
 }
 .case__shots img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 /* I titoli interni al case study stanno sotto al titolo della pagina, non
-   sopra: `.section-title` è tarata sulle sezioni della home e qui arrivava a
-   72px, più del titolo del progetto. */
+   sopra: la misura dei titoli di sezione è tarata sulla home e qui avrebbe
+   superato il titolo del progetto. */
 .case__h2 {
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   margin-bottom: 1.4rem;
@@ -3536,18 +3477,6 @@ img { max-width: 100%; display: block; }
 }
 
 
-/* I bottoni delle piattaforme: testo su desktop, solo marchio su mobile. */
-.pod-platforms__marchio { display: none; }
-.pod-platforms__marchio svg { display: block; width: auto; height: 24px; }
-
-@media (max-width: 768px) {
-  .pod-platforms__link {
-    padding: 0.6rem 1rem;
-    gap: 0;
-  }
-  .pod-platforms__marchio { display: block; }
-  .pod-platforms__nome { display: none; }
-}
 
 
 /* Le date della timeline: sul telefono sono la sola cosa da leggere mentre si
