@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   description:
     "La docu-serie che racconta storia, errori e intuizioni geniali dietro i brand più famosi del mondo. Condotta da Max Corona.",
   keywords: ["storie di brand", "storia dei marchi", "branding", "marketing", "Max Corona"],
-  /* Il marchio vettoriale, senza fondo: lo stesso file che fa da firma nella
-     barra sotto i 900px, così icona e sigla non possono divergere. */
-  icons: { icon: "/sdb-sigla.svg" },
+  /* Stesso disegno della firma nella barra, ma file a sé: la favicon cambia
+     colore col tema del browser, la firma no (vedi il commento nel file). */
+  icons: { icon: "/sdb-favicon.svg" },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
