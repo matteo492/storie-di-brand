@@ -40,6 +40,7 @@ export const SETTORI: Record<string, string> = {
   ASPIRINA: "Bellezza & Salute",
 
   // --- Cibo & Bevande ---
+  APEROL: "Cibo & Bevande",
   KFC: "Cibo & Bevande",
   "MCDONALD'S": "Cibo & Bevande",
   STARBUCKS: "Cibo & Bevande",

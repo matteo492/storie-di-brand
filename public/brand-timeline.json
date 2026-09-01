@@ -739,6 +739,25 @@
     ]
   },
   {
+    "brand": "Aperol",
+    "year": 1919,
+    "id": "MNTHA4309881877",
+    "title": "APEROL | Sapere fraterno",
+    "image": "https://megaphone.imgix.net/podcasts/d8d2e880-a5d9-11f1-a760-4f0179b93eba/image/db796d478c290cb81937826a6d33c85d.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA4309881877",
+        "title": "APEROL | Sapere fraterno",
+        "etichetta": "Parte 1",
+        "audio": "https://traffic.megaphone.fm/MNTHA4309881877.mp3",
+        "duration": "33 min",
+        "excerpt": "Oggi ripercorriamo la storia del \"re degli aperitivi\". Un brand da consumare al sole del tramonto d'estate, ma che nasconde una storia di sofferenza, intrighi di marketing e un vescovo beffato.",
+        "image": "https://megaphone.imgix.net/podcasts/d8d2e880-a5d9-11f1-a760-4f0179b93eba/image/db796d478c290cb81937826a6d33c85d.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      }
+    ]
+  },
+  {
     "brand": "Bialetti",
     "year": 1919,
     "id": "MNTHA8930466241",

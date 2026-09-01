@@ -62,6 +62,7 @@ const FOUNDING = {
   "NIVEA": { name: "Nivea", year: 1911 },
   "SUPERGA": { name: "Superga", year: 1911 },
   "MASERATI": { name: "Maserati", year: 1914 },
+  "APEROL": { name: "Aperol", year: 1919 },
   "BIALETTI": { name: "Bialetti", year: 1919 },
   "GUCCI": { name: "Gucci", year: 1921 },
   "BMW MOTORRAD": { name: "BMW Motorrad", year: 1923 },
