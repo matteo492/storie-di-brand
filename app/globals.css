@@ -2246,6 +2246,40 @@ img { max-width: 100%; display: block; }
   padding: 0.4rem;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
+/* La barra di scorrimento del pannello, vestita come il resto: quella di
+   sistema arrivava bianca e spessa in mezzo a un pannello nero. Non la
+   nascondo come nei caroselli — lì il trascinamento è ovvio, qui la barra è
+   l'unico segno che l'elenco continua sotto.
+
+   Le due sintassi NON possono convivere sullo stesso elemento: basta
+   impostare `scrollbar-color` perché il motore ignori i pseudo-elementi
+   `::-webkit-scrollbar` (misurato: con il colore standard il solco torna a
+   17px, senza scende a 8). Quindi qui i pseudo-elementi, che permettono la
+   misura esatta, e la proprietà standard solo dove i pseudo-elementi non
+   esistono — cioè Firefox, che è quello che `@supports not selector()`
+   riconosce senza dover nominare nessun browser. */
+.dropdown__panel::-webkit-scrollbar { width: 10px; }
+.dropdown__panel::-webkit-scrollbar-track { background: transparent; }
+.dropdown__panel::-webkit-scrollbar-thumb {
+  /* Il bordo trasparente ritagliato lascia il cursore visibile 4px ma con
+     10px da afferrare: sottile all'occhio, comodo al mouse. */
+  background: rgba(250, 249, 210, 0.26);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+@media (hover: hover) {
+  .dropdown__panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(250, 249, 210, 0.5);
+    background-clip: padding-box;
+  }
+}
+@supports not selector(::-webkit-scrollbar) {
+  .dropdown__panel {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(250, 249, 210, 0.26) transparent;
+  }
+}
 .dropdown__opt {
   display: block;
   width: 100%;
