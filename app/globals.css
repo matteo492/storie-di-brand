@@ -1316,6 +1316,15 @@ img { max-width: 100%; display: block; }
    morbido invece di far saltare di colpo tutto quello che sta sotto. */
 .bt-stage {
   margin-top: 2rem;
+  /* Il taglio serve all'animazione dell'altezza, ma tagliava anche di lato, e
+     lì c'era l'ombra della copertina — 60px di sfocatura contro un bordo che
+     le stava addosso. Il riquadro si allarga fino ai margini della pagina e
+     rientra con un margine uguale e contrario: il contenuto non si muove di un
+     pixel, l'ombra ha spazio, e quel che resta viene tagliato al bordo dello
+     schermo, dove non si vede. */
+  --sfogo: clamp(1.2rem, 5vw, 3rem);
+  padding-inline: var(--sfogo);
+  margin-inline: calc(-1 * var(--sfogo));
   overflow: hidden;
   transition: height 0.66s var(--curva-doppia);
 }
@@ -3516,23 +3525,52 @@ img { max-width: 100%; display: block; }
    attimo, e soprattutto la didascalia torna a una misura normale — è lei a
    portare il significato, "26M+" da solo non dice niente. */
 @media (max-width: 768px) {
-  .hero__sub { max-width: 32ch; }
-  .hero__cta { margin-bottom: 2.6rem; }
+  /* La prima schermata piena.
+     Prima erano 88vh — quindi sotto sbucava una striscia della sezione
+     seguente — con 128px di vuoto in cima sotto una barra alta 60, e un
+     contenuto di 523px dentro a un riquadro di 715: il resto era aria.
+     Qui l'altezza è una schermata esatta (svh, così non balla quando la barra
+     del browser si ritira), il rientro in cima è quel che serve a stare sotto
+     alla barra, e le parti crescono per occupare lo spazio invece di
+     lasciarlo vuoto. */
+  .hero {
+    min-height: 100svh;
+    /* Poco più della barra fissa: quel poco è l'aria che sui telefoni corti
+       separa l'occhiello dalla barra, dove il centramento non ha più margine
+       da distribuire. Il resto lo distribuisce lui. */
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+  /* Gli stacchi seguono l'altezza della finestra, non una misura fissa: su un
+     telefono alto una misura fissa lascia il contenuto rannicchiato in mezzo,
+     su uno corto lo fa sbordare. I limiti del clamp tengono i due estremi. */
+  .hero .eyebrow {
+    font-size: 0.85rem;
+    margin-bottom: clamp(0.9rem, 2.4svh, 2rem);
+  }
+  .hero__title { margin-bottom: clamp(1.5rem, 4.6svh, 3.4rem); }
+  .hero__sub {
+    max-width: 32ch;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: clamp(1.4rem, 4.2svh, 3.2rem);
+  }
+  .hero__cta { margin-bottom: clamp(1.6rem, 6svh, 4.6rem); }
 
   .hero__stats {
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: 0.9rem;
-    row-gap: 0.6rem;
+    column-gap: 1rem;
+    row-gap: clamp(0.7rem, 2.4svh, 1.6rem);
     align-items: baseline;
   }
   /* Numero e didascalia diventano celle della stessa griglia: così tutte le
      didascalie partono dalla stessa verticale, qualunque sia la larghezza
      del numero accanto. */
   .stat { display: contents; }
-  .stat strong { font-size: 1.6rem; }
+  .stat strong { font-size: 2.1rem; }
   .stat > span {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.08em;
     margin-top: 0;
   }

@@ -34,6 +34,23 @@ function key(title) {
 
 // Mappa curata: chiave normalizzata → { name (come mostrato), year (fondazione) }.
 // Gli speciali (SCELTE, SPECIALE, STORIE DI BRAND, ecc.) sono volutamente esclusi.
+/**
+ * Chiavi del feed che non sono marchi: rubriche, speciali e titoli una tantum.
+ * Servono al controllo qui sotto per non dare l'allarme ogni notte su roba
+ * che non deve stare in timeline.
+ */
+const NON_MARCHI = new Set([
+  "AVVENTURIERI 2.0",
+  "SCELTE",
+  "SPECIALE",
+  "SPECIALE MONTAGNA",
+  "STORIE DI BRAND",
+  "VI PRESENTO DONNE DI GLORIA",
+  "L'ASSURDA PROMOZIONE DI MEDIAWORLD PER I MONDIALI 2006",
+  "LA PIÙ GRANDE CAMPAGNA DI MARKETING DELLA STORIA CHRISTMAS EDITION",
+  "LA PUBBLICITÀ PEGGIORE DEL SECOLO",
+]);
+
 const FOUNDING = {
   "SCHWEPPES": { name: "Schweppes", year: 1783 },
   "GUINNESS": { name: "Guinness", year: 1759 },
@@ -54,6 +71,7 @@ const FOUNDING = {
   "ASPIRINA": { name: "Aspirina", year: 1899 },
   "HARLEY-DAVIDSON": { name: "Harley-Davidson", year: 1903 },
   "KELLOGG'S": { name: "Kellogg's", year: 1906 },
+  "LANCIA": { name: "Lancia", year: 1906 },
   "NEW BALANCE": { name: "New Balance", year: 1906 },
   "PERUGINA": { name: "Perugina", year: 1907 },
   "OLIVETTI": { name: "Olivetti", year: 1908 },
@@ -98,6 +116,7 @@ const FOUNDING = {
   "GUIDO BERLUCCHI": { name: "Guido Berlucchi", year: 1955 },
   "MINI": { name: "Mini", year: 1959 },
   "BARBIE": { name: "Barbie", year: 1959 },
+  "WWF": { name: "WWF", year: 1961 },
   "YVES SAINT LAURENT": { name: "Yves Saint Laurent", year: 1961 },
   "LAMBORGHINI": { name: "Lamborghini", year: 1963 },
   "GARMONT": { name: "Garmont", year: 1964 },
@@ -107,6 +126,8 @@ const FOUNDING = {
   "KAPPA": { name: "Kappa", year: 1967 },
   "THE NORTH FACE": { name: "The North Face", year: 1968 },
   "STARBUCKS": { name: "Starbucks", year: 1971 },
+  "LONELY PLANET": { name: "Lonely Planet", year: 1973 },
+  "PATAGONIA": { name: "Patagonia", year: 1973 },
   "DOLOMITI SUPERSKI": { name: "Dolomiti Superski", year: 1974 },
   "ARMANI": { name: "Armani", year: 1975 },
   "DELOREAN": { name: "DeLorean", year: 1975 },
@@ -269,6 +290,31 @@ function main() {
   if (missing.length) {
     console.log(`⚠️  ${missing.length} chiavi non trovate nel feed:`, missing.join(", "));
   }
+
+  /* Il controllo che conta, ed è quello nella direzione opposta: marchi che il
+     feed racconta ma che qui non sappiamo dove mettere. Senza anno di
+     fondazione la timeline li salta, e finora li saltava in silenzio: la
+     puntata usciva, il sito si aggiornava, e il marchio semplicemente non
+     compariva senza che nessun errore lo dicesse. L'elenco finisce in un file
+     che il workflow legge per fallire apposta a lavoro finito. */
+  const senzaAnno = Object.keys(groups)
+    .filter((k) => !FOUNDING[k] && !NON_MARCHI.has(k))
+    .sort();
+  if (senzaAnno.length) {
+    console.log(
+      `\n❌ ${senzaAnno.length} marchi nel feed senza anno di fondazione, quindi fuori dalla timeline:`
+    );
+    senzaAnno.forEach((k) => console.log(`   • ${k}`));
+    console.log(
+      "\n   Aggiungili a FOUNDING qui sopra (e a SETTORI in lib/podcast-settori.ts),\n" +
+        "   oppure a NON_MARCHI se non sono marchi da mettere in timeline."
+    );
+  }
+  const avvisi = path.join(
+    process.env.RUNNER_TEMP || require("node:os").tmpdir(),
+    "brand-senza-anno.txt"
+  );
+  fs.writeFileSync(avvisi, senzaAnno.join("\n"));
 }
 
 main();

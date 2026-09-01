@@ -144,7 +144,17 @@ export default function BrandTimeline({ brands }: { brands: BrandPoint[] }) {
     return () => ro.disconnect();
   }, []);
 
-  // Trascinamento con il puntatore (drag-to-pan) per esplorare la linea del tempo.
+  /**
+   * Trascinamento col mouse (drag-to-pan) per esplorare la linea del tempo.
+   *
+   * Solo col mouse, di proposito. Sul touch lo scorrimento lo fa già il
+   * browser, e lo fa meglio: inerzia, rimbalzo ai capi, aggancio. Facendolo
+   * anche qui si litigava con lui — e peggio: quando il browser si prende il
+   * gesto manda `pointercancel` senza `pointerup`, quindi lo stato di
+   * trascinamento restava acceso con le coordinate di partenza vecchie. Il
+   * tocco successivo, ovunque sulla pagina, calcolava lo spostamento da quel
+   * punto morto e riportava la linea all'inizio. È il "riparte da capo".
+   */
   useEffect(() => {
     const sc = scrollerRef.current;
     if (!sc) return;
@@ -154,6 +164,7 @@ export default function BrandTimeline({ brands }: { brands: BrandPoint[] }) {
     let moved = false;
 
     const onDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
       // Ignora i click diretti sui cursori (gestiti dal loro onClick)
       if ((e.target as HTMLElement).closest(".bt-marker")) return;
       down = true;
@@ -184,11 +195,14 @@ export default function BrandTimeline({ brands }: { brands: BrandPoint[] }) {
     sc.addEventListener("pointerdown", onDown);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    // Anche l'annullamento chiude il trascinamento: senza, resta aperto.
+    window.addEventListener("pointercancel", onUp);
     sc.addEventListener("click", onClickCapture, true);
     return () => {
       sc.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
       sc.removeEventListener("click", onClickCapture, true);
     };
   }, []);

@@ -159,17 +159,16 @@ export const ORDINE_SETTORI = [
 /**
  * Anno di fondazione dei marchi che non stanno nella timeline.
  *
- * Gli anni della timeline (public/brand-timeline.json) coprono 101 marchi, ma
+ * La timeline (public/brand-timeline.json) copre la gran parte dei marchi, ma
  * il podcast ne racconta di più. Questi sono i mancanti, compilati a mano come
  * i settori qui sopra: **da verificare**. Chi non è nemmeno qui resta fuori dal
  * filtro per epoca, non dall'archivio.
+ *
+ * Chi entra in timeline va tolto da qui: l'anno lo si legge da lì, e due
+ * elenchi della stessa cosa prima o poi divergono.
  */
 export const ANNI_MANCANTI: Record<string, number> = {
-  LANCIA: 1906,
   HOOVER: 1908,
-  PATAGONIA: 1973,
-  "LONELY PLANET": 1973,
-  WWF: 1961,
   "GUINNESS WORLD RECORD": 1955,
   TREEDOM: 2010,
   MEDIAWORLD: 1991,

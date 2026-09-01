@@ -542,6 +542,43 @@
     ]
   },
   {
+    "brand": "Lancia",
+    "year": 1906,
+    "id": "MNTHA7328382998",
+    "title": "LANCIA | Pt 1 | Il prezzo dell'identità",
+    "image": "https://megaphone.imgix.net/podcasts/9e549e88-8bf8-11f1-ae2c-a72dfc5dd8fc/image/6c9d9b5895d061aa6651e47afff8f8cc.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 3,
+    "episodes": [
+      {
+        "id": "MNTHA7328382998",
+        "title": "LANCIA | Pt 1 | Il prezzo dell'identità",
+        "etichetta": "Parte 1",
+        "audio": "https://traffic.megaphone.fm/MNTHA7328382998.mp3",
+        "duration": "35 min",
+        "excerpt": "Lancia è uno dei marchi automobilistici più famosi del mondo, ma da dove nasce? In questo episodio andremo alla scoperta della grande avventura di un uomo geniale che ha corso tutta la sua vita alla ricerca della sua identità.",
+        "image": "https://megaphone.imgix.net/podcasts/9e549e88-8bf8-11f1-ae2c-a72dfc5dd8fc/image/6c9d9b5895d061aa6651e47afff8f8cc.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      },
+      {
+        "id": "MNTHA3331611110",
+        "title": "LANCIA | Pt 2 | In fuga da se stessi",
+        "etichetta": "Parte 2",
+        "audio": "https://traffic.megaphone.fm/MNTHA3331611110.mp3",
+        "duration": "30 min",
+        "excerpt": "Vincenzo Lancia è braccato dalla mala di New York mentre la sua creatura sta rivoluzionando il panorama automobilistico mondiale. Ma riuscirà la Lancia a sopravvivere alla scomparsa del suo creatore?",
+        "image": "https://megaphone.imgix.net/podcasts/96795fe4-9190-11f1-91e3-8f74b79d35ac/image/4be0830ed7342bfa0ed89b237990e31b.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      },
+      {
+        "id": "MNTHA7238205107",
+        "title": "LANCIA | Pt 3 | Doppia natura",
+        "etichetta": "Parte 3",
+        "audio": "https://traffic.megaphone.fm/MNTHA7238205107.mp3",
+        "duration": "29 min",
+        "excerpt": "La Lancia ormai è l'ombra di se stessa, ma in un garage sta nascendo un vero e proprio mito. Da un lato Lancia vince il mondiale rally per 10 volte di fila dall'altro l'eredità di Vincenzo è dilaniata. Un'auto che ha creato il futuro ma che non è riuscita a viverlo.",
+        "image": "https://megaphone.imgix.net/podcasts/9d0cfef8-91b6-11f1-ade1-bb1519c4516c/image/89980e5cff7569d1c49c05a6d621f623.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      }
+    ]
+  },
+  {
     "brand": "New Balance",
     "year": 1906,
     "id": "MNTHA7827664583",
@@ -1629,6 +1666,25 @@
     ]
   },
   {
+    "brand": "WWF",
+    "year": 1961,
+    "id": "MNTHA7464314938",
+    "title": "WWF | Il battito della Natura",
+    "image": "https://megaphone.imgix.net/podcasts/7c264ec0-7919-11f1-9fed-438613a1fe1d/image/10817df97e623541be25cece294c0d72.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA7464314938",
+        "title": "WWF | Il battito della Natura",
+        "etichetta": "Parte 1",
+        "audio": "https://traffic.megaphone.fm/MNTHA7464314938.mp3",
+        "duration": "31 min",
+        "excerpt": "La storia di oggi parte da un incontro inatteso in una foresta turca:davanti a un’orsa con i suoi cuccioli, il giovane cacciatore capisce che non vuole più imbracciare un fucile, ma dedicare la sua vita alla protezione della Natura. WWF Italia, le prime battaglie per salvare animali e territori minacciati e la capacità",
+        "image": "https://megaphone.imgix.net/podcasts/7c264ec0-7919-11f1-9fed-438613a1fe1d/image/10817df97e623541be25cece294c0d72.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      }
+    ]
+  },
+  {
     "brand": "Yves Saint Laurent",
     "year": 1961,
     "id": "MNTHA3643126135",
@@ -1832,6 +1888,53 @@
         "duration": "26 min",
         "excerpt": "La nostra macchina del tempo ci riporta indietro nel tempo dove avevamo lasciato il nostro protagonista Howard Shultz: a Milano in un bar mentre sorseggia il suo primo espresso. Nell'episodio di oggi capiremo come ha fatto Starbucks a diventare un gigante in un mercato che ancora non esisteva. Tra intrighi e strategie",
         "image": "https://megaphone.imgix.net/podcasts/f6f9d71e-3622-11ec-a380-53590873664b/image/Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_Copia_di_marchio_american.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      }
+    ]
+  },
+  {
+    "brand": "Lonely Planet",
+    "year": 1973,
+    "id": "MNTHA5870556359",
+    "title": "LONELY PLANET | Due hippie alla conquista del mondo",
+    "image": "https://megaphone.imgix.net/podcasts/c32f9bca-7b7a-11eb-bf43-7bbd5b6febaa/image/43d1d77d33f0e050f700617ca7370093.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 1,
+    "episodes": [
+      {
+        "id": "MNTHA5870556359",
+        "title": "LONELY PLANET | Due hippie alla conquista del mondo",
+        "etichetta": "Parte 1",
+        "audio": "https://traffic.megaphone.fm/MNTHA5870556359.mp3?updated=1643267382",
+        "duration": "18 min",
+        "excerpt": "Viaggiare è una scoperta: scoprire il mondo per scoprire se stessi. Nel 1972 due hippie",
+        "image": "https://megaphone.imgix.net/podcasts/c32f9bca-7b7a-11eb-bf43-7bbd5b6febaa/image/43d1d77d33f0e050f700617ca7370093.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      }
+    ]
+  },
+  {
+    "brand": "Patagonia",
+    "year": 1973,
+    "id": "MNTHA4872730223",
+    "title": "PATAGONIA Pt.1 | Un esploratore e la sua amata",
+    "image": "https://megaphone.imgix.net/podcasts/c1573e7a-7b7a-11eb-bf43-b3365e16ee7b/image/4601c30169162155bbe195e7e1994766.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+    "parts": 2,
+    "episodes": [
+      {
+        "id": "MNTHA4872730223",
+        "title": "PATAGONIA Pt.1 | Un esploratore e la sua amata",
+        "etichetta": "Parte 1",
+        "audio": "https://traffic.megaphone.fm/MNTHA4872730223.mp3?updated=1643267012",
+        "duration": "18 min",
+        "excerpt": "Un reietto esploratore si dedica mente e corpo alla sua amata: la natura selvaggia! Apre un business senza neanche rendersene conto, ma qualcosa lo logora nel profondo. Torniamo indietro nel tempo per fare la conoscenza di Yvon Chouinard e della sua banda di amici girovaghi che quasi per caso fondano un brand milionari",
+        "image": "https://megaphone.imgix.net/podcasts/c1573e7a-7b7a-11eb-bf43-b3365e16ee7b/image/4601c30169162155bbe195e7e1994766.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+      },
+      {
+        "id": "MNTHA1452970484",
+        "title": "PATAGONIA Pt.2  | La guardia della Natura",
+        "etichetta": "Parte 2",
+        "audio": "https://traffic.megaphone.fm/MNTHA1452970484.mp3?updated=1643266989",
+        "duration": "17 min",
+        "excerpt": "Rieccoci catapultati nella storia di Yvon Chouinard e della sua Patagonia. Abbiamo lasciato i nostri protagonisti alle prese con una tempesta che minacciala loro esistenza forse riusciranno a venirne a capo...ma a quale prezzo?",
+        "image": "https://megaphone.imgix.net/podcasts/c1387eae-7b7a-11eb-bf43-576b289cee0e/image/f7e41bebd8dc165175ee0d069dcd26e8.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
       }
     ]
   },

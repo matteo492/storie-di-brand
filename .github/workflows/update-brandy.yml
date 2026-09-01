@@ -47,3 +47,22 @@ jobs:
           git add public/brandy-episodes.json public/podcast-episodes.json public/brand-timeline.json public/youtube-stats.json
           git diff --cached --quiet || git commit -m "chore: aggiorna episodi, timeline e stats YouTube"
           git push
+
+      # In coda e non prima: i dati devono aggiornarsi comunque, anche quando
+      # c'è un marchio da mappare. Questo passo serve solo a farlo sapere —
+      # un workflow rosso manda una mail, un avviso nei log non lo legge
+      # nessuno, ed è così che un marchio è rimasto fuori dalla timeline per
+      # settimane senza che se ne accorgesse nessuno.
+      - name: Segnala i marchi senza anno di fondazione
+        run: |
+          FILE="$RUNNER_TEMP/brand-senza-anno.txt"
+          if [ -s "$FILE" ]; then
+            echo "### Marchi fuori dalla timeline" >> $GITHUB_STEP_SUMMARY
+            echo "Questi marchi sono nel feed ma non hanno un anno di fondazione, quindi la timeline li salta:" >> $GITHUB_STEP_SUMMARY
+            sed 's/^/- /' "$FILE" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Aggiungili a FOUNDING in scripts/build-brand-timeline.js e a SETTORI in lib/podcast-settori.ts, oppure a NON_MARCHI se non vanno in timeline." >> $GITHUB_STEP_SUMMARY
+            echo "Marchi senza anno di fondazione:"; cat "$FILE"
+            exit 1
+          fi
+          echo "Nessun marchio da mappare."
