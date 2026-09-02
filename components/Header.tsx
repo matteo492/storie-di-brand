@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import MarchioSdb from "./MarchioSdb";
 
 const LINKS = [
   { href: "/podcast", label: "Podcast" },
@@ -72,13 +73,7 @@ export default function Header() {
         // aperto sopra alla pagina appena arrivata non avrebbe senso.
         onClick={() => setOpen(false)}
       >
-        <img
-          className="nav__logo__marchio"
-          src="/logo-sdb.svg"
-          alt=""
-          width={1024}
-          height={1024}
-        />
+        <MarchioSdb className="nav__logo__marchio" />
         <img
           className="nav__logo__sigla"
           src="/sdb-sigla.svg"

@@ -143,7 +143,9 @@ img { max-width: 100%; display: block; }
      come il resto del sito, altrimenti sul touch resta attaccata dopo il tocco. */
   transition: opacity 0.24s var(--curva);
 }
-@media (hover: hover) { .nav__logo:hover { opacity: 0.82; } }
+/* Lo schiarimento vale solo dove la firma è la sigla, cioè sotto i 900px
+   (regola in fondo al file): sul marchio si sommerebbe alla barra che compare
+   e alla parola che si sposta, e tre cose insieme sono una di troppo. */
 /* Il testo della barra siede più in alto del suo contenitore.
    Non è un errore di impaginazione: la riga di un testo riserva lo spazio per
    le discendenti anche quando è tutto maiuscolo e discendenti non ce ne sono,
@@ -163,7 +165,67 @@ img { max-width: 100%; display: block; }
 .nav__logo__sigla { display: none; }
 /* Quadrato: il marchio è alto quanto il pulsante di destra, così la barra
    non cambia altezza rispetto a quando qui c'era la scritta. */
-.nav__logo__marchio { display: block; width: 44px; height: auto; }
+/* ---------- IL MARCHIO ANIMATO (barra + parola) ---------- */
+/* Sta nella barra di navigazione e nel footer, con la stessa animazione: la
+   misura la decide chi lo ospita, il comportamento è questo. */
+.marchio-sdb { display: block; position: relative; }
+.marchio-sdb__testo { display: block; width: 100%; height: auto; }
+/* La barra rossa, ridisegnata qui perché nel file è un rettangolo pieno e in
+   CSS diventa animabile. Le misure sono quelle esatte del <polygon> tolto da
+   /logo-sdb-testo.svg, in percentuale della griglia da 1024: resta al suo
+   posto a qualunque dimensione. */
+.marchio-sdb__riga {
+  position: absolute;
+  left: 0.252%;
+  top: 0.256%;
+  width: 7.697%;
+  height: 99.495%;
+  background: var(--red);
+}
+
+/* Al passaggio del mouse la barra si disegna dall'alto verso il basso e la
+   parola scivola a destra. Uscendo, la barra si ritira sempre dall'alto —
+   quindi non ripercorre all'indietro la strada dell'entrata, si accorcia verso
+   il basso — e la parola rientra.
+   Il verso lo decide il punto d'ancoraggio, che cambia di colpo mentre è la
+   scala ad animarsi: `top` mentre cresce, `bottom` mentre sparisce. A scala
+   piena i due punti danno lo stesso disegno, quindi lo scambio non si vede.
+
+   La parola si muove all'indietro, non in avanti: a riposo sta spostata a
+   sinistra e sotto il mouse TORNA dov'è disegnata nel file. Così la forma che
+   si vede da fermi sopra al marchio è esattamente /logo-sdb.svg, vuoto fra
+   barra e parola compreso. Spostandola in avanti quel vuoto raddoppiava.
+   Lo spostamento è in percentuale e non in pixel, così vale uguale sul
+   marchio da 44px della barra e su quello più grande del footer. */
+@media (hover: hover) {
+  .marchio-sdb__riga {
+    transform: scaleY(0);
+    transform-origin: center bottom;
+    transition: transform 0.42s var(--curva-doppia);
+  }
+  .marchio-sdb__testo {
+    transform: translateX(-11%);
+    transition: transform 0.42s var(--curva-doppia);
+  }
+  :is(.nav__logo, .footer__logo):hover .marchio-sdb__riga {
+    transform: scaleY(1);
+    transform-origin: center top;
+  }
+  :is(.nav__logo, .footer__logo):hover .marchio-sdb__testo {
+    transform: translateX(0);
+  }
+}
+/* Chi ha chiesto meno animazioni vede il logo intero e fermo. */
+@media (prefers-reduced-motion: reduce) {
+  .marchio-sdb__riga,
+  :is(.nav__logo, .footer__logo):hover .marchio-sdb__riga,
+  .marchio-sdb__testo,
+  :is(.nav__logo, .footer__logo):hover .marchio-sdb__testo {
+    transform: none;
+    transition: none;
+  }
+}
+.nav__logo__marchio { width: 44px; }
 .nav__links { display: flex; gap: 2rem; }
 /* La voce COLLABORA vive solo dentro al menu: sopra i 900px il suo posto è
    il pulsante rosso in fondo alla barra, e averla due volte sarebbe un
@@ -1759,8 +1821,7 @@ img { max-width: 100%; display: block; }
   width: clamp(60px, 6vw, 76px);
   transition: opacity 0.24s var(--curva);
 }
-.footer__logo img { display: block; width: 100%; height: auto; }
-@media (hover: hover) { .footer__logo:hover { opacity: 0.82; } }
+.footer__logo .marchio-sdb { width: 100%; }
 .footer__brand p { color: rgba(250,249,210,0.6); margin-top: 1rem; max-width: 30ch; }
 .footer__col h4 { font-size: 0.85rem; letter-spacing: 0.18em; color: var(--red); margin-bottom: 1.2rem; }
 .footer__col a { display: block; color: rgba(250,249,210,0.75); margin-bottom: 0.6rem; font-size: 0.95rem; transition: color 0.24s var(--curva); }
@@ -2391,6 +2452,7 @@ img { max-width: 100%; display: block; }
   .nav .btn--small { display: none; }
   .nav__logo__marchio { display: none; }
   .nav__logo__sigla { display: block; width: 36px; height: auto; }
+  @media (hover: hover) { .nav__logo:hover { opacity: 0.82; } }
   .nav__links {
     display: flex;
     flex-direction: column;

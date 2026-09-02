@@ -1,4 +1,5 @@
 import Link from "next/link";
+import MarchioSdb from "./MarchioSdb";
 
 export default function Footer() {
   return (
@@ -6,7 +7,7 @@ export default function Footer() {
       <div className="footer__inner">
         <div className="footer__brand">
           <Link href="/" className="footer__logo" aria-label="Storie di Brand">
-            <img src="/logo-sdb.svg" alt="" width={1024} height={1024} />
+            <MarchioSdb />
           </Link>
           <p>Le incredibili storie dietro i marchi più famosi.</p>
         </div>
