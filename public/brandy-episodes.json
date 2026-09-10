@@ -1,5 +1,41 @@
 [
   {
+    "id": "MNTHA8449040483",
+    "t": "L'assurda storia di Clippy",
+    "d": "Licenziata pubblicamente in diretta da Bill Gates e Jeff Bezos, inserita tra le 50 invenzioni peggiori di sempre da Time, ma oggi tornata come emoji e maglione natalizio: la storia della graffetta più odiata e amata della storia dell'informatica. 💰",
+    "date": "Thu, 10 Sep 2026 04:00:00 -0000"
+  },
+  {
+    "id": "MNTHA2037197215",
+    "t": "L'iPod è stato copiato?",
+    "d": "Nel 1979, vent'anni prima dell'iPod, un ventitreenne londinese brevetta un lettore musicale a chip identico nell'idea, con Paul McCartney tra gli investitori. La storia di come 60.000 sterline mancanti gli sono costate il futuro. 💰",
+    "date": "Wed, 09 Sep 2026 04:00:00 -0000"
+  },
+  {
+    "id": "MNTHA8410914110",
+    "t": "Caterpillar e il suo strano business model legato all'AI",
+    "d": "Mentre tutti guardano ai chip, chi si sta arricchendo davvero con la corsa all'AI è Caterpillar: la produttrice di ruspe che oggi cresce grazie alle turbine a gas per alimentare i data center che non riescono ad allacciarsi alla rete elettrica. 💰",
+    "date": "Tue, 08 Sep 2026 04:00:00 -0000"
+  },
+  {
+    "id": "MNTHA8320506201",
+    "t": "L'inganno della margarina",
+    "d": "Per proteggere il burro, alcuni Stati americani hanno addirittura imposto per legge di colorare la margarina di rosa shocking: la storia di come un grasso nato per le mucche malate sia diventato prima \"veleno\", poi finto farmaco venduto in farmacia. 💰",
+    "date": "Mon, 07 Sep 2026 04:00:00 -0000"
+  },
+  {
+    "id": "MNTHA2890334473",
+    "t": "IKEA - Primi passi",
+    "d": "Come si fa pubblicità ammettendo di essere secondi? IKEA lo ha fatto fotografando i primi passi dei bambini che si aggrappano ai suoi mobili più banali, riconoscendo che contro le braccia di un genitore non c'è gara. 💰",
+    "date": "Fri, 04 Sep 2026 04:00:00 -0000"
+  },
+  {
+    "id": "MNTHA3192687971",
+    "t": "L'assurdo omicidio della canapa italiana",
+    "d": "L'Italia era il secondo produttore mondiale di canapa, una fibra migliore del cotone sotto ogni aspetto: come ha fatto a sparire? La storia di tre uomini d'affari americani che, per interesse economico, hanno cancellato una pianta millenaria. 💰",
+    "date": "Thu, 03 Sep 2026 04:00:00 -0000"
+  },
+  {
     "id": "MNTHA5695506014",
     "t": "L'utopia del villaggio Eni",
     "d": "Negli anni '50 Enrico Mattei costruisce a Borca di Cadore un villaggio vacanze per tutti i dipendenti Eni, dirigenti e operai mescolati per sorteggio: la storia di un modello aziendale rivoluzionario, oggi rimasto quasi fantasma. 💰",
@@ -920,7 +956,7 @@
   {
     "id": "MNTHA6361283946",
     "t": "La rivoluzione TURISMO LENTO ",
-    "d": "Viaggiare sta diventando stressante, ma grazie a Consorzio Vino Alto Adige cerchiamo di capire come tornare ad una lenta normalità. Ascolta il podcast STORIE di BRAND - ⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠",
+    "d": "Viaggiare sta diventando stressante, ma grazie a Consorzio Vino Alto Adige cerchiamo di capire come tornare ad una lenta normalità. Ascolta il podcast STORIE di BRAND - ⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠⁠���",
     "date": "Tue, 27 Jan 2026 05:00:00 -0000"
   },
   {
@@ -3211,7 +3247,7 @@
   },
   {
     "id": "MNTHA5250598886",
-    "t": "Il problema delle spiagge italiane 🏖️",
+    "t": "Il problema delle spiagge italiane ����️",
     "d": "Arrivata l'estate e io non posso non pensare che le spiagge italiane potrebbero essere molto, ma molto, meglio!",
     "date": "Wed, 17 Jul 2024 04:00:00 -0000"
   },
