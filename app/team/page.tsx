@@ -3,6 +3,7 @@ import TeamCarousel from "@/components/TeamCarousel";
 import { TEAM } from "@/lib/team";
 import { OPEN_POSITIONS } from "@/lib/jobs";
 import { SITE_URL } from "@/lib/site";
+import CandidaturaSpontanea from "@/components/CandidaturaSpontanea";
 
 export const metadata: Metadata = {
   title: "Il team",
@@ -75,11 +76,7 @@ export default function TeamPage() {
         </div>
 
         {OPEN_POSITIONS.length === 0 ? (
-          <p className="jobs__empty">
-            Al momento non abbiamo posizioni aperte. Se pensi di essere la persona
-            giusta per il nostro team, scrivici comunque a{" "}
-            <a href="mailto:max@storiedibrand.it">max@storiedibrand.it</a>.
-          </p>
+          <CandidaturaSpontanea invito="Al momento non abbiamo posizioni aperte, ma le persone in gamba ci interessano sempre." />
         ) : (
           <>
             <ul className="jobs__list">
@@ -105,11 +102,7 @@ export default function TeamPage() {
                 </li>
               ))}
             </ul>
-            <p className="jobs__note">
-              Non trovi il tuo ruolo? Scrivici a{" "}
-              <a href="mailto:max@storiedibrand.it">max@storiedibrand.it</a>: ci fa
-              sempre piacere conoscere persone in gamba.
-            </p>
+            <CandidaturaSpontanea invito="Non trovi il tuo ruolo? Ci fa sempre piacere conoscere persone in gamba." />
           </>
         )}
       </section>

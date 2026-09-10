@@ -1811,7 +1811,7 @@ img { max-width: 100%; display: block; }
 .footer { border-top: 1px solid var(--line); padding: 4rem clamp(1.2rem, 5vw, 3rem) 1.5rem; }
 .footer__inner {
   max-width: var(--maxw); margin: 0 auto;
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem;
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
   padding-bottom: 3rem; border-bottom: 1px solid var(--line);
 }
 /* Il marchio quadrato: i suoi due colori stanno dentro all'SVG, quindi va
@@ -2662,6 +2662,58 @@ img { max-width: 100%; display: block; }
 .jobs__note { margin: 1.6rem 0 0; }
 .jobs__empty a,
 .jobs__note a { color: var(--red); }
+/* L'invito ad aprire la candidatura: è un pulsante perché apre qualcosa qui,
+   non porta altrove — ma dentro a una frase deve leggersi come il resto del
+   testo, quindi prende l'aspetto di un collegamento e non della pillola. */
+.jobs__apri {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--red);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.24s var(--curva);
+}
+@media (hover: hover) { .jobs__apri:hover { opacity: 0.75; } }
+/* Il modulo qui non è centrato né stretto come quello dei brand: sta in
+   colonna con le offerte di lavoro e ne prende la larghezza, altrimenti il
+   bordo destro resta frastagliato rispetto alle card che gli stanno sopra. */
+.jobs__modulo { margin: 1.6rem 0 0; max-width: none; }
+
+/* L'apertura del modulo.
+   L'altezza si anima passando la riga della griglia da 0fr a 1fr: è il modo
+   di far crescere un blocco fino alla sua altezza naturale senza doverla
+   misurare in JavaScript e senza scriverla a mano. Quello che sta sotto
+   scivola giù invece di saltare di colpo.
+   Il contenuto entra un po' dopo l'altezza — prima si fa spazio, poi si
+   riempie — perché farli partire insieme fa sembrare l'apertura più brusca
+   di quanto sia. */
+.jobs__rivela {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.52s var(--curva-doppia);
+}
+.jobs__rivela__interno {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.34s var(--curva-doppia),
+    transform 0.34s var(--curva-doppia);
+}
+.jobs__rivela[data-aperto="si"] { grid-template-rows: 1fr; }
+.jobs__rivela[data-aperto="si"] .jobs__rivela__interno {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.14s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .jobs__rivela,
+  .jobs__rivela__interno { transition: none; }
+  .jobs__rivela__interno { transform: none; }
+}
+.jobs__note--esito { color: var(--cream); }
 
 @media (max-width: 640px) {
   .job-card { padding: 1.3rem; gap: 1.2rem; }

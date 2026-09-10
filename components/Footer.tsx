@@ -1,14 +1,16 @@
 import Link from "next/link";
 import MarchioSdb from "./MarchioSdb";
+import LinkCasa from "./LinkCasa";
+import LinkSezione from "./LinkSezione";
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <Link href="/" className="footer__logo" aria-label="Storie di Brand">
+          <LinkCasa className="footer__logo" etichetta="Storie di Brand">
             <MarchioSdb />
-          </Link>
+          </LinkCasa>
           <p>Le incredibili storie dietro i marchi più famosi.</p>
         </div>
         <div className="footer__col">
@@ -16,10 +18,10 @@ export default function Footer() {
           <h4>Naviga</h4>
           <Link href="/podcast">Podcast</Link>
           <Link href="/youtube">YouTube</Link>
-          <Link href="/#live">Live</Link>
+          <LinkSezione id="live">Live</LinkSezione>
           <Link href="/team">Team</Link>
-          <Link href="/#newsletter">Newsletter</Link>
-          <Link href="/#collabora">Collabora</Link>
+          <LinkSezione id="newsletter">Newsletter</LinkSezione>
+          <LinkSezione id="collabora">Collabora</LinkSezione>
         </div>
         <div className="footer__col">
           <h4>Esplora</h4>
@@ -33,10 +35,6 @@ export default function Footer() {
           <a href="https://t.me/storiedibrand" target="_blank" rel="noopener">
             Telegram
           </a>
-        </div>
-        <div className="footer__col">
-          <h4>Contatti</h4>
-          <a href="mailto:max@storiedibrand.it">max@storiedibrand.it</a>
           <a href="https://www.instagram.com/storiedibrand" target="_blank" rel="noopener">
             Instagram
           </a>

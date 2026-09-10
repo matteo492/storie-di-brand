@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import MarchioSdb from "./MarchioSdb";
+import LinkCasa from "./LinkCasa";
+import { scorriAllaSezione } from "@/lib/scorrimento";
 
 const LINKS = [
   { href: "/podcast", label: "Podcast" },
@@ -34,11 +36,7 @@ export default function Header() {
   ) => {
     setOpen(false);
     if (href.startsWith("/#") && pathname === "/") {
-      const el = document.getElementById(href.slice(2));
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      if (scorriAllaSezione(href.slice(2))) e.preventDefault();
     }
   };
 
@@ -65,13 +63,13 @@ export default function Header() {
           Sono entrambe nel documento e a scambiarle è il CSS, così il cambio
           è immediato al ridimensionamento e il nome per i lettori di schermo
           resta uno solo, sull'aria-label del collegamento. */}
-      <Link
-        href="/"
+      <LinkCasa
         className="nav__logo"
-        aria-label="Storie di Brand"
-        // Col menu aperto la firma porta in home: lasciare il pannello
-        // aperto sopra alla pagina appena arrivata non avrebbe senso.
-        onClick={() => setOpen(false)}
+        etichetta="Storie di Brand"
+        // Col menu aperto la firma porta in home: lasciare il pannello aperto
+        // sopra alla pagina appena arrivata non avrebbe senso. Se in home ci
+        // siamo già, LinkCasa riporta in cima invece di non fare niente.
+        alClick={() => setOpen(false)}
       >
         <MarchioSdb className="nav__logo__marchio" />
         <img
@@ -81,7 +79,7 @@ export default function Header() {
           width={1080}
           height={1080}
         />
-      </Link>
+      </LinkCasa>
       <nav className={`nav__links${open ? " open" : ""}`}>
         {LINKS.map((l) => (
           <Link

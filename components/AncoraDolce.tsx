@@ -1,5 +1,7 @@
 "use client";
 
+import { scorriAllaSezione } from "@/lib/scorrimento";
+
 /**
  * Collegamento a una sezione della stessa pagina, con scorrimento morbido.
  * Serve perché il foglio di stile non attiva `scroll-behavior: smooth` in
@@ -20,10 +22,8 @@ export default function AncoraDolce({
       href={href}
       className={className}
       onClick={(e) => {
-        const el = document.querySelector(href);
-        if (!el) return; // sezione assente: lascia fare al salto normale
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth" });
+        // Sezione assente: lascia fare al salto normale.
+        if (scorriAllaSezione(href.replace(/^#/, ""))) e.preventDefault();
       }}
     >
       {children}
